@@ -15,11 +15,20 @@ namespace MartinCostello.ProjectEuler
         {
             // Arrange
             string[] args = new[] { "1" };
-
-            Puzzle target = new MyPuzzle();
+            Puzzle target = new MyPuzzle(2);
 
             // Act
             int actual = target.Solve(args);
+
+            // Assert
+            Assert.Equal(-1, actual);
+
+            // Arrange
+            args = new string[0];
+            target = new MyPuzzle(1);
+
+            // Act
+            actual = target.Solve(args);
 
             // Assert
             Assert.Equal(-1, actual);
@@ -27,11 +36,25 @@ namespace MartinCostello.ProjectEuler
 
         private sealed class MyPuzzle : Puzzle
         {
+            /// <summary>
+            /// The value to use ofr <see cref="MinimumArguments"/>.
+            /// </summary>
+            private readonly int _minimumArguments;
+
+            /// <summary>
+            /// Initializes a new instance of the <see cref="MyPuzzle"/> class.
+            /// </summary>
+            /// <param name="minimumArguments">The value to use for <see cref="MinimumArguments"/>.</param>
+            internal MyPuzzle(int minimumArguments)
+            {
+                _minimumArguments = minimumArguments;
+            }
+
             /// <inheritdoc />
             public override string Question => "What is the meaning of life, the universe and everything?";
 
             /// <inheritdoc />
-            protected override int MinimumArguments => 2;
+            protected override int MinimumArguments => _minimumArguments;
 
             /// <inheritdoc />
             protected override int SolveCore(string[] args)
