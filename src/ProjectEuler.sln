@@ -1,0 +1,64 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectEuler", "ProjectEuler\ProjectEuler.csproj", "{A1E75A22-FDDD-4A3A-AC69-37E840690168}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B3FF2840-474C-4F9E-B3ED-99C39B461C22}"
+	ProjectSection(SolutionItems) = preProject
+		AssemblyVersion.cs = AssemblyVersion.cs
+		CommonAssemblyInfo.cs = CommonAssemblyInfo.cs
+		FxCopDictionary.xml = FxCopDictionary.xml
+		ProjectEuler.Common.targets = ProjectEuler.Common.targets
+		ProjectEuler.msbuild = ProjectEuler.msbuild
+		ProjectEuler.ruleset = ProjectEuler.ruleset
+		ProjectEuler.snk = ProjectEuler.snk
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{55207590-427D-4789-8228-7C4C25D84B00}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\packages.config = .nuget\packages.config
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{DA33743B-B807-45B7-BE57-FCC11AE42263}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGet", "NuGet", "{63D7071C-7593-4C00-839A-5A9F20D88450}"
+	ProjectSection(SolutionItems) = preProject
+		Tools\NuGet\NuGet.config = Tools\NuGet\NuGet.config
+		Tools\NuGet\NuGet.exe = Tools\NuGet\NuGet.exe
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "StyleCop", "StyleCop", "{90E29777-2B61-42A6-AECE-3D9A58D4B03F}"
+	ProjectSection(SolutionItems) = preProject
+		Tools\StyleCop\stylecop.json = Tools\StyleCop\stylecop.json
+		Tools\StyleCop\StyleCop.Targets = Tools\StyleCop\StyleCop.Targets
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectEuler.Tests", "ProjectEuler.Tests\ProjectEuler.Tests.csproj", "{AFC24FE9-7588-49BB-98C3-D3FDE4ED85F3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A1E75A22-FDDD-4A3A-AC69-37E840690168}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1E75A22-FDDD-4A3A-AC69-37E840690168}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1E75A22-FDDD-4A3A-AC69-37E840690168}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1E75A22-FDDD-4A3A-AC69-37E840690168}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AFC24FE9-7588-49BB-98C3-D3FDE4ED85F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFC24FE9-7588-49BB-98C3-D3FDE4ED85F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFC24FE9-7588-49BB-98C3-D3FDE4ED85F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFC24FE9-7588-49BB-98C3-D3FDE4ED85F3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{55207590-427D-4789-8228-7C4C25D84B00} = {B3FF2840-474C-4F9E-B3ED-99C39B461C22}
+		{DA33743B-B807-45B7-BE57-FCC11AE42263} = {B3FF2840-474C-4F9E-B3ED-99C39B461C22}
+		{63D7071C-7593-4C00-839A-5A9F20D88450} = {DA33743B-B807-45B7-BE57-FCC11AE42263}
+		{90E29777-2B61-42A6-AECE-3D9A58D4B03F} = {DA33743B-B807-45B7-BE57-FCC11AE42263}
+	EndGlobalSection
+EndGlobal
