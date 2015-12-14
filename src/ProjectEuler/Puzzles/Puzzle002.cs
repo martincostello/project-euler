@@ -34,7 +34,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
 
             while (true)
             {
-                int next = fibonacciValues.Last() + fibonacciValues[fibonacciValues.Count - 2];
+                int next = fibonacciValues[fibonacciValues.Count - 1] + fibonacciValues[fibonacciValues.Count - 2];
 
                 if (next > max)
                 {
