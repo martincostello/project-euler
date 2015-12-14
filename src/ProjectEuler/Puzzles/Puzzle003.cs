@@ -49,11 +49,6 @@ namespace MartinCostello.ProjectEuler.Puzzles
         /// </returns>
         private static bool IsPrime(long value)
         {
-            if (value % 2 == 0 && value != 2)
-            {
-                return false;
-            }
-
             for (long i = (long)Math.Sqrt(value); i > 1; i--)
             {
                 if (value % i == 0)
