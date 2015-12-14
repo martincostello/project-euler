@@ -45,6 +45,7 @@
       <Link>CommonAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="IPuzzle.cs" />
+    <Compile Include="Maths.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Puzzle.cs" />
@@ -54,6 +55,7 @@
     <Compile Include="Puzzles\Puzzle004.cs" />
     <Compile Include="Puzzles\Puzzle005.cs" />
     <Compile Include="Puzzles\Puzzle006.cs" />
+    <Compile Include="Puzzles\Puzzle007.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

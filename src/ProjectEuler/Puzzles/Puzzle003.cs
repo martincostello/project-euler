@@ -30,7 +30,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
 
             for (long i = (long)Math.Sqrt(max); i > 1; i--)
             {
-                if (max % i == 0 && IsPrime(i))
+                if (max % i == 0 && Maths.IsPrime(i))
                 {
                     Answer = i;
                     break;
@@ -38,26 +38,6 @@ namespace MartinCostello.ProjectEuler.Puzzles
             }
 
             return 0;
-        }
-
-        /// <summary>
-        /// Returns whether the specified value is a prime number.
-        /// </summary>
-        /// <param name="value">The value to test for being prime.</param>
-        /// <returns>
-        /// <see langword="true"/> if <paramref name="value"/> is a prime number; otherwise <see langword="false"/>.
-        /// </returns>
-        private static bool IsPrime(long value)
-        {
-            for (long i = (long)Math.Sqrt(value); i > 1; i--)
-            {
-                if (value % i == 0)
-                {
-                    return false;
-                }
-            }
-
-            return true;
         }
     }
 }
