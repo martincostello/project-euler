@@ -58,10 +58,12 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="ProgramTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Puzzles\Puzzle001Tests.cs" />
     <Compile Include="Puzzles\Puzzle002Tests.cs" />
+    <Compile Include="Puzzles\Puzzle003Tests.cs" />
     <Compile Include="PuzzleTests.cs" />
   </ItemGroup>
   <ItemGroup>
