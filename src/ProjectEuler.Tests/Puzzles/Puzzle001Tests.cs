@@ -27,5 +27,35 @@ namespace MartinCostello.ProjectEuler.Puzzles
             Assert.Equal(0, actual);
             Assert.Equal(expected, target.Answer);
         }
+
+        [Fact]
+        public static void Puzzle001_Returns_Minus_One_If_Maximum_Value_Is_Invalid()
+        {
+            // Arrange
+            string[] args = new[] { "a" };
+
+            Puzzle001 target = new Puzzle001();
+
+            // Act
+            int actual = target.Solve(args);
+
+            // Assert
+            Assert.Equal(-1, actual);
+        }
+
+        [Fact]
+        public static void Puzzle001_Returns_Minus_One_If_Maximum_Value_Is_Too_Small()
+        {
+            // Arrange
+            string[] args = new[] { "0" };
+
+            Puzzle001 target = new Puzzle001();
+
+            // Act
+            int actual = target.Solve(args);
+
+            // Assert
+            Assert.Equal(-1, actual);
+        }
     }
 }
