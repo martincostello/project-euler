@@ -28,9 +28,10 @@ namespace MartinCostello.ProjectEuler
             if (!EnsureArguments(args, MinimumArguments))
             {
                 Console.Error.WriteLine(
-                    "At least {0:N0} argument{1} are required.",
+                    "At least {0:N0} argument{1} {2} required.",
                     MinimumArguments,
-                    MinimumArguments == 1 ? string.Empty : "s");
+                    MinimumArguments == 1 ? string.Empty : "s",
+                    MinimumArguments == 1 ? "is" : "are");
 
                 return -1;
             }
