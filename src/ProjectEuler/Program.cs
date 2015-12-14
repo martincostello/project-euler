@@ -38,10 +38,12 @@ namespace MartinCostello.ProjectEuler
             }
 
             Console.WriteLine();
-            Console.WriteLine("Project Euler - Day {0}", day);
+            Console.WriteLine("Project Euler - Puzzle {0}", day);
             Console.WriteLine();
 
             args = args.Skip(1).ToArray();
+
+            Console.WriteLine(puzzle.Question);
 
             Stopwatch stopwatch = Stopwatch.StartNew();
 
@@ -49,6 +51,8 @@ namespace MartinCostello.ProjectEuler
 
             stopwatch.Stop();
 
+            Console.WriteLine();
+            Console.WriteLine("Answer: {0}", puzzle.Answer);
             Console.WriteLine();
             Console.WriteLine("Took {0:N2} seconds.", stopwatch.Elapsed.TotalSeconds);
 

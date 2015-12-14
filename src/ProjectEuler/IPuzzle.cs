@@ -9,6 +9,16 @@ namespace MartinCostello.ProjectEuler
     internal interface IPuzzle
     {
         /// <summary>
+        /// Gets the text of the puzzle's question.
+        /// </summary>
+        string Question { get; }
+
+        /// <summary>
+        /// Gets the answer to the puzzle.
+        /// </summary>
+        object Answer { get; }
+
+        /// <summary>
         /// Solves the puzzle given the specified arguments.
         /// </summary>
         /// <param name="args">The input arguments to the puzzle.</param>

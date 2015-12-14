@@ -10,11 +10,11 @@ namespace MartinCostello.ProjectEuler
     /// </summary>
     public static class ProgramTests
     {
-        [Fact(Skip = "No puzzles are implemented yet.")]
+        [Fact]
         public static void Program_Returns_Zero_If_Input_Valid()
         {
             // Arrange
-            string[] args = new[] { string.Empty };
+            string[] args = new[] { "1", "10" };
 
             // Act
             int actual = Program.Main(args);

@@ -8,7 +8,7 @@
     <ProjectGuid>{AFC24FE9-7588-49BB-98C3-D3FDE4ED85F3}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ProjectEuler.Tests</RootNamespace>
+    <RootNamespace>MartinCostello.ProjectEuler</RootNamespace>
     <AssemblyName>ProjectEuler.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -60,6 +60,7 @@
     </Compile>
     <Compile Include="ProgramTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Puzzles\Puzzle001Tests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ProjectEuler\ProjectEuler.csproj">

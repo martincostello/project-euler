@@ -47,6 +47,8 @@
     <Compile Include="IPuzzle.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Puzzle.cs" />
+    <Compile Include="Puzzles\Puzzle001.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
