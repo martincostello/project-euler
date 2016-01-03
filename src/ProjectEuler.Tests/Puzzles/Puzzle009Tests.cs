@@ -14,15 +14,10 @@ namespace MartinCostello.ProjectEuler.Puzzles
         public static void Puzzle009_Returns_Correct_Solution()
         {
             // Arrange
-            string[] args = new string[0];
-            var target = new Puzzle009();
+            object expected = 31875000;
 
-            // Act
-            int actual = target.Solve(args);
-
-            // Assert
-            Assert.Equal(0, actual);
-            Assert.Equal(31875000, target.Answer);
+            // Act and Assert
+            Puzzles.AssertSolution<Puzzle009>(expected);
         }
     }
 }

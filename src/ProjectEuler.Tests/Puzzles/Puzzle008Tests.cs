@@ -17,14 +17,9 @@ namespace MartinCostello.ProjectEuler.Puzzles
         {
             // Arrange
             string[] args = new[] { value };
-            var target = new Puzzle008();
 
-            // Act
-            int actual = target.Solve(args);
-
-            // Assert
-            Assert.Equal(0, actual);
-            Assert.Equal(expected, target.Answer);
+            // Act and Assert
+            Puzzles.AssertSolution<Puzzle008>(args, expected);
         }
 
         [Fact]
@@ -32,13 +27,9 @@ namespace MartinCostello.ProjectEuler.Puzzles
         {
             // Arrange
             string[] args = new[] { "a" };
-            var target = new Puzzle008();
 
-            // Act
-            int actual = target.Solve(args);
-
-            // Assert
-            Assert.Equal(-1, actual);
+            // Act and Assert
+            Puzzles.AssertInvalid<Puzzle008>(args);
         }
 
         [Fact]
@@ -46,13 +37,9 @@ namespace MartinCostello.ProjectEuler.Puzzles
         {
             // Arrange
             string[] args = new[] { "1" };
-            var target = new Puzzle008();
 
-            // Act
-            int actual = target.Solve(args);
-
-            // Assert
-            Assert.Equal(-1, actual);
+            // Act and Assert
+            Puzzles.AssertInvalid<Puzzle008>(args);
         }
     }
 }
