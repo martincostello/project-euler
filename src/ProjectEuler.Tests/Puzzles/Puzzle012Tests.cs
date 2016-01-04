@@ -10,7 +10,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
     /// </summary>
     public static class Puzzle012Tests
     {
-        [Theory]
+        [NotCITheory]
         [InlineData("1", 1)]
         [InlineData("2", 3)]
         [InlineData("3", 6)]

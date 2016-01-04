@@ -60,6 +60,7 @@
     </Compile>
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="MathsTests.cs" />
+    <Compile Include="NotCITheoryAttribute.cs" />
     <Compile Include="ProgramTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Puzzles\Puzzle001Tests.cs" />

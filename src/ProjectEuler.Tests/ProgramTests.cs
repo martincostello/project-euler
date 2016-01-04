@@ -26,6 +26,10 @@ namespace MartinCostello.ProjectEuler
                 return new[]
                 {
                     new[] { new[] { "1", "10" } },
+                    new[] { new[] { "5", "10" } },
+                    new[] { new[] { "7", "6" } },
+                    new[] { new[] { "10", "10" } },
+                    new[] { new[] { "12", "6" } },
                     new[] { new[] { "13" } },
                 };
             }
