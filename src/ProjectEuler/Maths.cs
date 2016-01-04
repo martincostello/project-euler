@@ -49,6 +49,11 @@ namespace MartinCostello.ProjectEuler
         /// </returns>
         internal static bool IsPrime(long value)
         {
+            if (value == 1)
+            {
+                return false;
+            }
+
             long sqrt = (long)Math.Sqrt(value);
 
             for (long i = sqrt; i > 1; i--)

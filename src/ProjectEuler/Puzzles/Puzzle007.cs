@@ -30,7 +30,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
 
             int primesFound = 0;
 
-            for (int i = 1; primesFound <= numbers; i++)
+            for (int i = 2; primesFound < numbers; i++)
             {
                 if (Maths.IsPrime(i))
                 {
