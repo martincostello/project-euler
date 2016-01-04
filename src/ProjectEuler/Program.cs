@@ -71,7 +71,17 @@ namespace MartinCostello.ProjectEuler
                 Console.WriteLine();
                 Console.WriteLine("Answer: {0}", puzzle.Answer);
                 Console.WriteLine();
-                Console.WriteLine("Took {0:N2} seconds.", stopwatch.Elapsed.TotalSeconds);
+
+                if (stopwatch.Elapsed.TotalSeconds < 0.01f)
+                {
+                    Console.WriteLine("Took <0.01 seconds.");
+                }
+                else
+                {
+                    Console.WriteLine("Took {0:N2} seconds.", stopwatch.Elapsed.TotalSeconds);
+                }
+
+                Console.WriteLine();
             }
 
             return result;
