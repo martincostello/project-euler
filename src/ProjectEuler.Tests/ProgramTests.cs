@@ -12,10 +12,32 @@ namespace MartinCostello.ProjectEuler
     /// </summary>
     public static class ProgramTests
     {
-        [Theory]
-        [InlineData(typeof(Puzzle001), new string[] { "10" })]
-        public static void Program_SolvePuzzle_Returns_Zero_If_Input_Valid(Type type, string[] args)
+        /// <summary>
+        /// Gets the test data for <see cref="Program_Returns_Zero_If_Input_Valid"/>.
+        /// </summary>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage(
+            "Microsoft.Performance",
+            "CA1819:PropertiesShouldNotReturnArrays",
+            Justification = "Required for use by xunit.")]
+        public static object[][] Args
         {
+            get
+            {
+                return new[]
+                {
+                    new[] { new[] { "1", "10" } },
+                    new[] { new[] { "13" } },
+                };
+            }
+        }
+
+        [Fact]
+        public static void Program_SolvePuzzle_Returns_Zero_If_Input_Valid()
+        {
+            // Arrange
+            Type type = typeof(Puzzle001);
+            string[] args = new[] { "10" };
+
             // Act
             int actual = Program.SolvePuzzle(type, args);
 
@@ -23,12 +45,10 @@ namespace MartinCostello.ProjectEuler
             Assert.Equal(0, actual);
         }
 
-        [Fact]
-        public static void Program_Returns_Zero_If_Input_Valid()
+        [Theory]
+        [MemberData(nameof(Args))]
+        public static void Program_Returns_Zero_If_Input_Valid(string[] args)
         {
-            // Arrange
-            string[] args = new[] { "1", "10" };
-
             // Act
             int actual = Program.Main(args);
 
