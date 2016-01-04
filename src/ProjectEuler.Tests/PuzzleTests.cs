@@ -3,6 +3,8 @@
 
 namespace MartinCostello.ProjectEuler
 {
+    using System;
+    using System.Linq;
     using Xunit;
 
     /// <summary>
@@ -32,6 +34,32 @@ namespace MartinCostello.ProjectEuler
 
             // Assert
             Assert.Equal(-1, actual);
+        }
+
+        [Fact]
+        public static void Puzzles_Have_Questions()
+        {
+            // Arrange
+            var puzzleType = typeof(IPuzzle);
+
+            var puzzleTypes = puzzleType.Assembly
+                .GetTypes()
+                .Where((p) => !p.IsAbstract)
+                .Where((p) => puzzleType.IsAssignableFrom(p))
+                .ToList();
+
+            Assert.NotEmpty(puzzleTypes);
+
+            foreach (var type in puzzleTypes)
+            {
+                // Act
+                var puzzle = Activator.CreateInstance(type) as IPuzzle;
+
+                // Assert
+                Assert.NotNull(puzzle);
+                Assert.NotNull(puzzle.Question);
+                Assert.NotEmpty(puzzle.Question);
+            }
         }
 
         private sealed class MyPuzzle : Puzzle
