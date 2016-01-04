@@ -5,6 +5,7 @@ namespace MartinCostello.ProjectEuler
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
 
     /// <summary>
     /// A class containing mathematics-related methods. This class cannot be inherited.
@@ -18,27 +19,7 @@ namespace MartinCostello.ProjectEuler
         /// <returns>
         /// An <see cref="IEnumerable{T}"/> containing the factors of the specified number.
         /// </returns>
-        internal static IEnumerable<long> GetFactors(long value)
-        {
-            if (value > 1)
-            {
-                // 1 is a factor of positive numbers
-                yield return 1;
-
-                long half = value / 2;
-
-                for (long i = 2; i <= half; i++)
-                {
-                    if (value % i == 0)
-                    {
-                        yield return i;
-                    }
-                }
-            }
-
-            // A number is always a factor of itself
-            yield return value;
-        }
+        internal static IEnumerable<long> GetFactors(long value) => GetFactorsInternal(value).OrderBy((p) => p);
 
         /// <summary>
         /// Returns whether the specified value is a prime number.
@@ -65,6 +46,32 @@ namespace MartinCostello.ProjectEuler
             }
 
             return true;
+        }
+
+        /// <summary>
+        /// Returns the factors of the specified number.
+        /// </summary>
+        /// <param name="value">The value to get the factors for.</param>
+        /// <returns>
+        /// An <see cref="IEnumerable{T}"/> containing the factors of the specified number.
+        /// </returns>
+        /// <remarks>
+        /// The values returned are unsorted.
+        /// </remarks>
+        private static IEnumerable<long> GetFactorsInternal(long value)
+        {
+            for (int i = 1; i * i <= value; i++)
+            {
+                if (value % i == 0)
+                {
+                    yield return i;
+
+                    if (i * i != value)
+                    {
+                        yield return value / i;
+                    }
+                }
+            }
         }
     }
 }
