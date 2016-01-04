@@ -59,17 +59,9 @@ namespace MartinCostello.ProjectEuler.Puzzles
             {
                 result = Sum(numbers, i) + carry;
 
-                if (result > 10)
-                {
-                    // Carry through the columns greater than the tens
-                    // column of the sum of the digits at this index
-                    carry = result / 10;
-                }
-                else
-                {
-                    // Nothing to carry, sum makes no material difference to next column
-                    carry = 0;
-                }
+                // Carry through the columns greater than the tens
+                // column of the sum of the digits at this index.
+                carry = result / 10;
             }
 
             const int DigitsToOutput = 10;
