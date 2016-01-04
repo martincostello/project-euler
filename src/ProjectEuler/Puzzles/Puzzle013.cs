@@ -53,9 +53,11 @@ namespace MartinCostello.ProjectEuler.Puzzles
             long result = 0;
             long carry = 0;
 
+            const int DigitsToOutput = 10;
+
             // Work through the digits in increasing powers of 10
             // until we are effectively left with 10 digit numbers.
-            for (int i = length - 1; i > 10; i--)
+            for (int i = length - 1; i > DigitsToOutput; i--)
             {
                 result = Sum(numbers, i) + carry;
 
@@ -63,8 +65,6 @@ namespace MartinCostello.ProjectEuler.Puzzles
                 // column of the sum of the digits at this index.
                 carry = result / 10;
             }
-
-            const int DigitsToOutput = 10;
 
             // Sum the highest number of digits of the input values
             long total = numbers
