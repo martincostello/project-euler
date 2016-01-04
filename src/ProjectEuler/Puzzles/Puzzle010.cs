@@ -12,6 +12,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
     /// </summary>
     internal sealed class Puzzle010 : Puzzle
     {
+        /// <inheritdoc />
         public override string Question => "Find the sum of all the primes below the specified value.";
 
         /// <inheritdoc />

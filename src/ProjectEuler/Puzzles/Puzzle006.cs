@@ -12,6 +12,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
     /// </summary>
     internal sealed class Puzzle006 : Puzzle
     {
+        /// <inheritdoc />
         public override string Question => "What is the difference between the sum of the squares of the specified number of natural numbers and the square of their sum?";
 
         /// <inheritdoc />

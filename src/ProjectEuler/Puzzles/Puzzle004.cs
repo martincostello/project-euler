@@ -13,6 +13,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
     /// </summary>
     internal sealed class Puzzle004 : Puzzle
     {
+        /// <inheritdoc />
         public override string Question => "What is the largest palindrome made from the product of two numbers with the specified number of digits?";
 
         /// <inheritdoc />

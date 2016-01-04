@@ -11,6 +11,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
     /// </summary>
     internal sealed class Puzzle007 : Puzzle
     {
+        /// <inheritdoc />
         public override string Question => "What is the prime number with the specified ordinal number?";
 
         /// <inheritdoc />

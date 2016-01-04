@@ -13,6 +13,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
     /// </summary>
     internal sealed class Puzzle005 : Puzzle
     {
+        /// <inheritdoc />
         public override string Question => "What is the smallest positive number that is evenly divisible by all of the numbers from 1 to the specified value?";
 
         /// <inheritdoc />

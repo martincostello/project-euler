@@ -11,6 +11,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
     /// </summary>
     internal sealed class Puzzle001 : Puzzle
     {
+        /// <inheritdoc />
         public override string Question => "What is the sum of all the multiples of 3 or 5 below the given value?";
 
         /// <inheritdoc />

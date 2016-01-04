@@ -10,6 +10,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
     /// </summary>
     internal sealed class Puzzle009 : Puzzle
     {
+        /// <inheritdoc />
         public override string Question => "There exists exactly one Pythagorean triplet for which a + b + c = 1000. Find the product abc.";
 
         /// <inheritdoc />

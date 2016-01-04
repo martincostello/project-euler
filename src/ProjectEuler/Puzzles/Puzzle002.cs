@@ -13,6 +13,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
     /// </summary>
     internal sealed class Puzzle002 : Puzzle
     {
+        /// <inheritdoc />
         public override string Question => "By considering the terms in the Fibonacci sequence starting with 1 and 2 whose values do not exceed the specified value, what is the sum of the even-valued terms?";
 
         /// <inheritdoc />

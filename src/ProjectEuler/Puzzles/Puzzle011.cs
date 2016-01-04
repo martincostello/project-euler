@@ -16,6 +16,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
         /// </summary>
         private static readonly int[][] Grid = BuildGrid();
 
+        /// <inheritdoc />
         public override string Question => "Find the greatest product of four adjacent numbers in the same direction in the grid.";
 
         /// <inheritdoc />

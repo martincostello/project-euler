@@ -11,6 +11,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
     /// </summary>
     internal sealed class Puzzle003 : Puzzle
     {
+        /// <inheritdoc />
         public override string Question => "What is the largest prime factor of the specified number?";
 
         /// <inheritdoc />

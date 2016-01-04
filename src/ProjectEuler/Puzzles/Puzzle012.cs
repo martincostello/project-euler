@@ -12,6 +12,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
     /// </summary>
     internal sealed class Puzzle012 : Puzzle
     {
+        /// <inheritdoc />
         public override string Question => "What is the value of the first triangle number to have the specified number of divisors?";
 
         /// <inheritdoc />
