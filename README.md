@@ -22,7 +22,7 @@ My solutions for [https://projecteuler.net/](https://projecteuler.net/).
 The following prerequisites are required to use the assembly:
 
  * Microsoft Windows 7 SP1 (or later);
- * Microsoft .NET Framework 4.5 (or later).
+ * Microsoft .NET Framework 4.6.1 (or later).
 
 ## Compilation
 
