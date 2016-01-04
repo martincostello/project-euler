@@ -3,6 +3,8 @@
 
 namespace MartinCostello.ProjectEuler
 {
+    using System;
+    using Puzzles;
     using Xunit;
 
     /// <summary>
@@ -10,6 +12,17 @@ namespace MartinCostello.ProjectEuler
     /// </summary>
     public static class ProgramTests
     {
+        [Theory]
+        [InlineData(typeof(Puzzle001), new string[] { "10" })]
+        public static void Program_SolvePuzzle_Returns_Zero_If_Input_Valid(Type type, string[] args)
+        {
+            // Act
+            int actual = Program.SolvePuzzle(type, args);
+
+            // Assert
+            Assert.Equal(0, actual);
+        }
+
         [Fact]
         public static void Program_Returns_Zero_If_Input_Valid()
         {

@@ -26,22 +26,37 @@ namespace MartinCostello.ProjectEuler
                 return -1;
             }
 
-            int day;
-            IPuzzle puzzle = null;
+            int puzzle;
+            Type type = null;
 
-            if (!int.TryParse(args[0], NumberStyles.Integer & ~NumberStyles.AllowLeadingSign, CultureInfo.InvariantCulture, out day) ||
-                day < 1 ||
-                (puzzle = GetPuzzle(day)) == null)
+            if (!int.TryParse(args[0], NumberStyles.Integer & ~NumberStyles.AllowLeadingSign, CultureInfo.InvariantCulture, out puzzle) ||
+                puzzle < 1 ||
+                (type = GetPuzzleType(puzzle)) == null)
             {
                 Console.Error.WriteLine("The puzzle number specified is invalid.");
                 return -1;
             }
 
-            Console.WriteLine();
-            Console.WriteLine("Project Euler - Puzzle {0}", day);
-            Console.WriteLine();
-
             args = args.Skip(1).ToArray();
+
+            return SolvePuzzle(type, args);
+        }
+
+        /// <summary>
+        /// Solves the puzzle associated with the specified type.
+        /// </summary>
+        /// <param name="type">The type of the puzzle.</param>
+        /// <param name="args">The arguments to pass to the puzzle.</param>
+        /// <returns>
+        /// The value returned by <see cref="IPuzzle.Solve"/>.
+        /// </returns>
+        internal static int SolvePuzzle(Type type, string[] args)
+        {
+            IPuzzle puzzle = Activator.CreateInstance(type, nonPublic: true) as IPuzzle;
+
+            Console.WriteLine();
+            Console.WriteLine("Project Euler - Puzzle {0}", type.Name.Replace("Puzzle", string.Empty).TrimStart('0'));
+            Console.WriteLine();
 
             Console.WriteLine(puzzle.Question);
 
@@ -49,36 +64,34 @@ namespace MartinCostello.ProjectEuler
 
             int result = puzzle.Solve(args);
 
-            stopwatch.Stop();
+            if (result == 0)
+            {
+                stopwatch.Stop();
 
-            Console.WriteLine();
-            Console.WriteLine("Answer: {0}", puzzle.Answer);
-            Console.WriteLine();
-            Console.WriteLine("Took {0:N2} seconds.", stopwatch.Elapsed.TotalSeconds);
+                Console.WriteLine();
+                Console.WriteLine("Answer: {0}", puzzle.Answer);
+                Console.WriteLine();
+                Console.WriteLine("Took {0:N2} seconds.", stopwatch.Elapsed.TotalSeconds);
+            }
 
             return result;
         }
 
         /// <summary>
-        /// Gets the puzzle to use for the specified day.
+        /// Gets the puzzle type to use for the specified number.
         /// </summary>
-        /// <param name="day">The day to get the puzzle for.</param>
-        /// <returns>The <see cref="IPuzzle"/> for the specified day.</returns>
-        private static IPuzzle GetPuzzle(int day)
+        /// <param name="number">The number of the puzzle to get the type for.</param>
+        /// <returns>
+        /// The <see cref="Type"/> for the specified puzzle number, if found; otherwise <see langword="null"/>.
+        /// </returns>
+        private static Type GetPuzzleType(int number)
         {
             string typeName = string.Format(
                 CultureInfo.InvariantCulture,
                 "MartinCostello.ProjectEuler.Puzzles.Puzzle{0:000}",
-                day);
+                number);
 
-            Type type = Type.GetType(typeName);
-
-            if (type == null)
-            {
-                return null;
-            }
-
-            return Activator.CreateInstance(type, nonPublic: true) as IPuzzle;
+            return Type.GetType(typeName);
         }
     }
 }
