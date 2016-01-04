@@ -45,6 +45,20 @@ namespace MartinCostello.ProjectEuler
             Assert.Equal(0, actual);
         }
 
+        [Fact]
+        public static void Program_SolvePuzzle_Returns_Minus_One_If_Input_Invalid()
+        {
+            // Arrange
+            Type type = typeof(Puzzle001);
+            string[] args = new string[0];
+
+            // Act
+            int actual = Program.SolvePuzzle(type, args);
+
+            // Assert
+            Assert.Equal(-1, actual);
+        }
+
         [Theory]
         [MemberData(nameof(Args))]
         public static void Program_Returns_Zero_If_Input_Valid(string[] args)
