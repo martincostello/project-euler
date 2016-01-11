@@ -78,6 +78,7 @@
     <Compile Include="Puzzles\Puzzle013Tests.cs" />
     <Compile Include="Puzzles\Puzzle014Tests.cs" />
     <Compile Include="Puzzles\Puzzle016Tests.cs" />
+    <Compile Include="Puzzles\Puzzle017Tests.cs" />
     <Compile Include="Puzzles\Puzzle019Tests.cs" />
     <Compile Include="Puzzles\Puzzles.cs" />
     <Compile Include="PuzzleTests.cs" />
