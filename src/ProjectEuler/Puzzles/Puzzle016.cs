@@ -70,20 +70,14 @@ namespace MartinCostello.ProjectEuler.Puzzles
                 // Get the number for this digit from its character
                 int number = digits[i] - '0';
 
-                // Double the number and include any value that needs carrying over
+                // Double the number and include the tens carry over from the last iteration
                 int sum = number + number + carry;
 
-                // Carry over the tens column
+                // Carry over the tens
                 carry = sum / 10;
 
-                // Adjust the sum to just the ones if required and add to
-                // the result as a new column on the left of the digits.
-                if (sum > 9)
-                {
-                    sum -= 10;
-                }
-
-                result.Insert(0, (char)(sum + '0'));
+                // Add the ones to the result
+                result.Insert(0, (char)((sum % 10) + '0'));
             }
 
             // Add the digit for any left over carry value
