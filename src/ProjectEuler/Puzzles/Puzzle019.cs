@@ -14,9 +14,6 @@ namespace MartinCostello.ProjectEuler.Puzzles
         public override string Question => "How many Sundays fell on the first of the month during the twentieth century (1 Jan 1901 to 31 Dec 2000)?";
 
         /// <inheritdoc />
-        protected override int MinimumArguments => 0;
-
-        /// <inheritdoc />
         protected override int SolveCore(string[] args)
         {
             DateTime date = new DateTime(1901, 1, 1, 0, 0, 0, DateTimeKind.Utc);

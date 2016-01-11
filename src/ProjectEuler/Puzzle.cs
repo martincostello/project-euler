@@ -20,7 +20,7 @@ namespace MartinCostello.ProjectEuler
         /// <summary>
         /// Gets the minimum number of arguments required to solve the puzzle.
         /// </summary>
-        protected abstract int MinimumArguments { get; }
+        protected virtual int MinimumArguments => 0;
 
         /// <inheritdoc />
         public virtual int Solve(string[] args)

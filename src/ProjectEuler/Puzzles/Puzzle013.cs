@@ -21,9 +21,6 @@ namespace MartinCostello.ProjectEuler.Puzzles
         /// <inheritdoc />
         public override string Question => "What are the first ten digits of the sum of the one-hundred 50-digit numbers?";
 
-        /// <inheritdoc />
-        protected override int MinimumArguments => 0;
-
         /// <summary>
         /// Sums the values of the numbers in the specified index of the specified strings.
         /// </summary>

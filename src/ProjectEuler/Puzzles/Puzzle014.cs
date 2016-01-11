@@ -14,9 +14,6 @@ namespace MartinCostello.ProjectEuler.Puzzles
         /// <inheritdoc />
         public override string Question => "Which starting number, under one million, produces the longest chain?";
 
-        /// <inheritdoc />
-        protected override int MinimumArguments => 0;
-
         /// <summary>
         /// Gets the Collatz sequence that starts at the specified value.
         /// </summary>
