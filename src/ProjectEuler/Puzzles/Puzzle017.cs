@@ -128,18 +128,17 @@ namespace MartinCostello.ProjectEuler.Puzzles
 
             if (ones > 0)
             {
-                if (builder.Length > 0)
+                // Every value less than twenty-one has a special case,
+                // so we always need to add something before the ones.
+                if (tens < 1)
                 {
-                    if (tens < 1)
-                    {
-                        // Values like "three hundred and one"
-                        builder.Append(" and ");
-                    }
-                    else
-                    {
-                        // Values like "eighty-six"
-                        builder.Append('-');
-                    }
+                    // Values like "three hundred and one"
+                    builder.Append(" and ");
+                }
+                else
+                {
+                    // Values like "eighty-six"
+                    builder.Append('-');
                 }
 
                 builder.Append(NumberWords[ones]);
