@@ -29,7 +29,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
         }
 
         [Fact]
-        public static void Puzzle016_Returns_Minus_One_If_Maximum_Value_Is_Invalid()
+        public static void Puzzle016_Returns_Minus_One_If_Power_Is_Invalid()
         {
             // Arrange
             string[] args = new[] { "a" };
@@ -39,7 +39,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
         }
 
         [Fact]
-        public static void Puzzle016_Returns_Minus_One_If_Maximum_Value_Is_Too_Small()
+        public static void Puzzle016_Returns_Minus_One_If_Power_Is_Too_Small()
         {
             // Arrange
             string[] args = new[] { "-1" };
