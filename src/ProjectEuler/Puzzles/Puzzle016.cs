@@ -52,7 +52,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
         }
 
         /// <summary>
-        /// Doubles the specified numer represented by its character digits.
+        /// Doubles the specified number represented by its character digits.
         /// </summary>
         /// <param name="digits">The digits of the number as characters.</param>
         /// <returns>
