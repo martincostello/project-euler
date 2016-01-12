@@ -11,6 +11,20 @@ namespace MartinCostello.ProjectEuler
     public static class MathsTests
     {
         [Theory]
+        [InlineData("1", "1", "2")]
+        [InlineData("9", "9", "18")]
+        [InlineData("15", "999", "1014")]
+        [InlineData("100", "0", "100")]
+        public static void Maths_Add_Returns_Correct_Value(string x, string y, string expected)
+        {
+            // Act
+            string actual = Maths.Add(x, y);
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
         [InlineData(1, new long[] { 1 })]
         [InlineData(2, new long[] { 1, 2 })]
         [InlineData(3, new long[] { 1, 3 })]

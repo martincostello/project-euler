@@ -13,6 +13,63 @@ namespace MartinCostello.ProjectEuler
     internal static class Maths
     {
         /// <summary>
+        /// Adds the two numbers specified as strings and returns the result.
+        /// </summary>
+        /// <param name="x">The first number.</param>
+        /// <param name="y">The second number.</param>
+        /// <returns>
+        /// A <see cref="string"/> containing the result of adding <paramref name="x"/> and <paramref name="y"/>.
+        /// </returns>
+        internal static string Add(string x, string y)
+        {
+            string longest = x.Length <= y.Length ? y : x;
+            string shortest = x.Length <= y.Length ? x : y;
+
+            Stack<char> first = new Stack<char>(longest);
+            Stack<char> second = new Stack<char>();
+
+            // Pad the second value with the shortest number to have a
+            // stack of characters the same length as the longest one.
+            for (int i = 0; i < longest.Length - shortest.Length; i++)
+            {
+                second.Push('0');
+            }
+
+            foreach (char ch in shortest)
+            {
+                second.Push(ch);
+            }
+
+            Stack<char> result = new Stack<char>();
+
+            int carry = 0;
+
+            while (first.Count > 0)
+            {
+                // Get the next numbers from the digits' next character
+                int firstNumber = first.Pop() - '0';
+                int secondNumber = second.Pop() - '0';
+
+                // Add the numbers and include the tens carry over from the last iteration
+                int sum = firstNumber + secondNumber + carry;
+
+                // Carry over the tens
+                carry = sum / 10;
+
+                // Add the ones to the result
+                result.Push((char)((sum % 10) + '0'));
+            }
+
+            // Add the digit for any left over carry value
+            if (carry != 0)
+            {
+                result.Push((char)(carry + '0'));
+            }
+
+            return new string(result.ToArray());
+        }
+
+        /// <summary>
         /// Returns the factors of the specified number.
         /// </summary>
         /// <param name="value">The value to get the factors for.</param>

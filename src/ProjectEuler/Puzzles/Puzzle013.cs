@@ -4,8 +4,6 @@
 namespace MartinCostello.ProjectEuler.Puzzles
 {
     using System;
-    using System.Collections.Generic;
-    using System.Globalization;
     using System.Linq;
 
     /// <summary>
@@ -21,58 +19,12 @@ namespace MartinCostello.ProjectEuler.Puzzles
         /// <inheritdoc />
         public override string Question => "What are the first ten digits of the sum of the one-hundred 50-digit numbers?";
 
-        /// <summary>
-        /// Sums the values of the numbers in the specified index of the specified strings.
-        /// </summary>
-        /// <param name="collection">The values to sum the digits for.</param>
-        /// <param name="index">The index of the digits to sum.</param>
-        /// <returns>
-        /// The sum of the digits in the specified index of the collection.
-        /// </returns>
-        /// <remarks>
-        /// Assumes that the values in <paramref name="collection"/> are all the same length, consist
-        /// only of digits, and have a length appropriate to get the character at <paramref name="index"/>.
-        /// </remarks>
-        internal static int Sum(IEnumerable<string> collection, int index)
-        {
-            return collection
-                .Select((p) => p[index] - 0x30)
-                .Sum();
-        }
-
         /// <inheritdoc />
         protected override int SolveCore(string[] args)
         {
-            string[] numbers = Numbers;
-
-            int length = numbers[0].Length;
-
-            long result = 0;
-            long carry = 0;
-
-            const int DigitsToOutput = 10;
-
-            // Work through the digits in increasing powers of 10
-            // until we are effectively left with 10 digit numbers.
-            for (int i = length - 1; i > DigitsToOutput; i--)
-            {
-                result = Sum(numbers, i) + carry;
-
-                // Carry through the columns greater than the tens
-                // column of the sum of the digits at this index.
-                carry = result / 10;
-            }
-
-            // Sum the highest number of digits of the input values
-            long total = numbers
-                .Select((p) => p.Substring(0, DigitsToOutput))
-                .Select((p) => long.Parse(p, CultureInfo.InvariantCulture))
-                .Sum();
-
-            // Add the carry over of the sum of the previous length-DigitsOfInterest digits
-            total += carry;
-
-            Answer = total.ToString(CultureInfo.InvariantCulture).Substring(0, DigitsToOutput);
+            Answer = Numbers
+                .Aggregate((x, y) => Maths.Add(x, y))
+                .Substring(0, 10);
 
             return 0;
         }

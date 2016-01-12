@@ -4,7 +4,6 @@
 namespace MartinCostello.ProjectEuler.Puzzles
 {
     using System;
-    using System.Collections.Generic;
     using System.Globalization;
     using System.Linq;
 
@@ -31,15 +30,15 @@ namespace MartinCostello.ProjectEuler.Puzzles
                 return -1;
             }
 
-            IList<char> digits = new List<char>();
+            string digits = string.Empty;
 
             if (power > 0)
             {
-                digits.Add('2');
+                digits = "2";
 
                 for (int i = 2; i <= power; i++)
                 {
-                    digits = Double(digits);
+                    digits = Maths.Add(digits, digits);
                 }
             }
 
@@ -49,44 +48,6 @@ namespace MartinCostello.ProjectEuler.Puzzles
                 .Sum();
 
             return 0;
-        }
-
-        /// <summary>
-        /// Doubles the specified number represented by its character digits.
-        /// </summary>
-        /// <param name="digits">The digits of the number as characters.</param>
-        /// <returns>
-        /// An <see cref="IList{T}"/> containing characters of the double of the specified number.
-        /// </returns>
-        private static IList<char> Double(IList<char> digits)
-        {
-            List<char> result = new List<char>();
-
-            int carry = 0;
-
-            // Work through the digits from the ones column upwards
-            for (int i = digits.Count - 1; i > -1; i--)
-            {
-                // Get the number for this digit from its character
-                int number = digits[i] - '0';
-
-                // Double the number and include the tens carry over from the last iteration
-                int sum = number + number + carry;
-
-                // Carry over the tens
-                carry = sum / 10;
-
-                // Add the ones to the result
-                result.Insert(0, (char)((sum % 10) + '0'));
-            }
-
-            // Add the digit for any left over carry value
-            if (carry != 0)
-            {
-                result.Insert(0, (char)(carry + '0'));
-            }
-
-            return result;
         }
     }
 }

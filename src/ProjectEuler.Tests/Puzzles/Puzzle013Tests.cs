@@ -19,23 +19,5 @@ namespace MartinCostello.ProjectEuler.Puzzles
             // Act and Assert
             Puzzles.AssertSolution<Puzzle013>(expected);
         }
-
-        [Theory]
-        [InlineData(new[] { "0", "0", "0", "0", }, 0, 0)]
-        [InlineData(new[] { "01", "02", "03", "04", }, 0, 0)]
-        [InlineData(new[] { "01", "02", "03", "04", }, 1, 10)]
-        [InlineData(new[] { "14", "23", "32", "41", }, 0, 10)]
-        [InlineData(new[] { "14", "23", "32", "41", }, 1, 10)]
-        [InlineData(new[] { "09", "03", "01", "06", }, 0, 0)]
-        [InlineData(new[] { "09", "03", "01", "06", }, 1, 19)]
-        [InlineData(new[] { "9", "9", "9", "9", "9", "9", "9", "9", "9", "9", "9", "9" }, 0, 108)]
-        public static void Puzzle013_Sum_Returns_Correct_Value(string[] collection, int index, int expected)
-        {
-            // Act
-            int actual = Puzzle013.Sum(collection, index);
-
-            // Assert
-            Assert.Equal(expected, actual);
-        }
     }
 }
