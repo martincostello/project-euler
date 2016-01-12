@@ -21,6 +21,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
         }
 
         [Theory]
+        [InlineData(0L, new long[] { })]
         [InlineData(1L, new long[] { 1 })]
         [InlineData(2L, new long[] { 2, 1 })]
         [InlineData(3L, new long[] { 3, 10, 5, 16, 8, 4, 2, 1 })]

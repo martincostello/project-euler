@@ -23,23 +23,26 @@ namespace MartinCostello.ProjectEuler.Puzzles
         /// </returns>
         internal static IEnumerable<long> GetCollatzSequence(long start)
         {
-            long current = start;
-
-            while (current != 1)
+            if (start > 0)
             {
+                long current = start;
+
+                while (current != 1)
+                {
+                    yield return current;
+
+                    if (current % 2 == 0)
+                    {
+                        current /= 2;
+                    }
+                    else
+                    {
+                        current = (3 * current) + 1;
+                    }
+                }
+
                 yield return current;
-
-                if (current % 2 == 0)
-                {
-                    current /= 2;
-                }
-                else
-                {
-                    current = (3 * current) + 1;
-                }
             }
-
-            yield return current;
         }
 
         /// <inheritdoc />
