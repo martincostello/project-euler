@@ -18,6 +18,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
 
             // Act and Assert
             Puzzles.AssertSolution<Puzzle011>(expected);
+            Puzzles.AssertSolution<Puzzle011>(expected);
         }
     }
 }
