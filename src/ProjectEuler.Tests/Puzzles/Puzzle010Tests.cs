@@ -10,10 +10,24 @@ namespace MartinCostello.ProjectEuler.Puzzles
     /// </summary>
     public static class Puzzle010Tests
     {
-        [NotCITheory]
-        [InlineData("10", 17L)]
-        [InlineData("2000000", 142913828922L)]
+        [Theory]
+        [InlineData("3", 2L)]
+        [InlineData("5", 2L + 3L)]
+        [InlineData("6", 2L + 3L + 5L)]
+        [InlineData("7", 2L + 3L + 5L)]
+        [InlineData("10", 2L + 3L + 5L + 7L)]
         public static void Puzzle010_Returns_Correct_Solution(string value, long expected)
+        {
+            // Arrange
+            string[] args = new[] { value };
+
+            // Act and Assert
+            Puzzles.AssertSolution<Puzzle010>(args, expected);
+        }
+
+        [NotCITheory]
+        [InlineData("2000000", 142913828922L)]
+        public static void Puzzle010_Returns_Correct_Solution_Slow(string value, long expected)
         {
             // Arrange
             string[] args = new[] { value };
