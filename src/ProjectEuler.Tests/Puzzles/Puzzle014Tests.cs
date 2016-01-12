@@ -20,13 +20,14 @@ namespace MartinCostello.ProjectEuler.Puzzles
             Puzzles.AssertSolution<Puzzle014>(expected);
         }
 
-        [Fact]
-        public static void Puzzle_014_GetCollatzSequence_Returns_Correct_Sequence()
+        [Theory]
+        [InlineData(1L, new long[] { 1 })]
+        [InlineData(2L, new long[] { 2, 1 })]
+        [InlineData(3L, new long[] { 3, 10, 5, 16, 8, 4, 2, 1 })]
+        [InlineData(4L, new long[] { 4, 2, 1 })]
+        [InlineData(13L, new long[] { 13, 40, 20, 10, 5, 16, 8, 4, 2, 1 })]
+        public static void Puzzle014_GetCollatzSequence_Returns_Correct_Sequence(long start, long[] expected)
         {
-            // Arrange
-            long start = 13;
-            var expected = new long[] { 13, 40, 20, 10, 5, 16, 8, 4, 2, 1 };
-
             // Act
             var actual = Puzzle014.GetCollatzSequence(start);
 
