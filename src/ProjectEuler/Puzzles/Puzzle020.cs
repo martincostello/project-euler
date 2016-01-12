@@ -8,7 +8,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
     using System.Linq;
 
     /// <summary>
-    /// A class representing the solution to <c>https://projecteuler.net/problem=16</c>. This class cannot be inherited.
+    /// A class representing the solution to <c>https://projecteuler.net/problem=20</c>. This class cannot be inherited.
     /// </summary>
     internal sealed class Puzzle020 : Puzzle
     {
