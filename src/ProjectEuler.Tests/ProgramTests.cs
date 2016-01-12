@@ -50,6 +50,34 @@ namespace MartinCostello.ProjectEuler
         }
 
         [Fact]
+        public static void Program_SolvePuzzle_Returns_Zero_If_Input_Valid_Fast_Puzzle()
+        {
+            // Arrange
+            Type type = typeof(FastPuzzle);
+            string[] args = new[] { "10" };
+
+            // Act
+            int actual = Program.SolvePuzzle(type, args);
+
+            // Assert
+            Assert.Equal(0, actual);
+        }
+
+        [Fact]
+        public static void Program_SolvePuzzle_Returns_Zero_If_Input_Valid_Slow_Puzzle()
+        {
+            // Arrange
+            Type type = typeof(SlowPuzzle);
+            string[] args = new[] { "10" };
+
+            // Act
+            int actual = Program.SolvePuzzle(type, args);
+
+            // Assert
+            Assert.Equal(0, actual);
+        }
+
+        [Fact]
         public static void Program_SolvePuzzle_Returns_Minus_One_If_Input_Invalid()
         {
             // Arrange
@@ -137,6 +165,39 @@ namespace MartinCostello.ProjectEuler
 
             // Assert
             Assert.Equal(-1, actual);
+        }
+
+        /// <summary>
+        /// A class representing a fast puzzle. This class cannot be inherited.
+        /// </summary>
+        private sealed class FastPuzzle : Puzzle
+        {
+            /// <inheritdoc />
+            public override string Question => "What is 1 plus 1?";
+
+            /// <inheritdoc />
+            protected override int SolveCore(string[] args)
+            {
+                Answer = 1 + 1;
+                return 0;
+            }
+        }
+
+        /// <summary>
+        /// A class representing a slow puzzle. This class cannot be inherited.
+        /// </summary>
+        private sealed class SlowPuzzle : Puzzle
+        {
+            /// <inheritdoc />
+            public override string Question => "What is the time in 3 seconds?";
+
+            /// <inheritdoc />
+            protected override int SolveCore(string[] args)
+            {
+                System.Threading.Thread.Sleep(TimeSpan.FromSeconds(3));
+                Answer = DateTime.UtcNow;
+                return 0;
+            }
         }
     }
 }
