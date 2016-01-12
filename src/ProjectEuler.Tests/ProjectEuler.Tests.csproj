@@ -81,6 +81,7 @@
     <Compile Include="Puzzles\Puzzle017Tests.cs" />
     <Compile Include="Puzzles\Puzzle019Tests.cs" />
     <Compile Include="Puzzles\Puzzle020Tests.cs" />
+    <Compile Include="Puzzles\Puzzle021Tests.cs" />
     <Compile Include="Puzzles\Puzzles.cs" />
     <Compile Include="PuzzleTests.cs" />
   </ItemGroup>
