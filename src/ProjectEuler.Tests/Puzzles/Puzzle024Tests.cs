@@ -10,7 +10,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
     /// </summary>
     public static class Puzzle024Tests
     {
-        [NotCIFact]
+        [Fact]
         public static void Puzzle024_Returns_Correct_Solution()
         {
             // Arrange
