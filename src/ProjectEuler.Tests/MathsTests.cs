@@ -45,6 +45,26 @@ namespace MartinCostello.ProjectEuler
         }
 
         [Theory]
+        [InlineData(2, new long[] { 1 })]
+        [InlineData(3, new long[] { 1 })]
+        [InlineData(4, new long[] { 1, 2 })]
+        [InlineData(5, new long[] { 1 })]
+        [InlineData(6, new long[] { 1, 2, 3 })]
+        [InlineData(10, new long[] { 1, 2, 5 })]
+        [InlineData(12, new long[] { 1, 2, 3, 4, 6 })]
+        [InlineData(15, new long[] { 1, 3, 5 })]
+        [InlineData(21, new long[] { 1, 3, 7 })]
+        [InlineData(28, new long[] { 1, 2, 4, 7, 14 })]
+        public static void Maths_GetProperDivisors_Returns_Correct_Values(long value, long[] expected)
+        {
+            // Act
+            var actual = Maths.GetProperDivisors(value);
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
         [InlineData(1, false)]
         [InlineData(2, true)]
         [InlineData(3, true)]
@@ -94,6 +114,31 @@ namespace MartinCostello.ProjectEuler
         {
             // Act
             var actual = Maths.IsPrime(value);
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData(12, true)]
+        public static void Maths_IsAbundantNumber_Returns_Correct_Value(long value, bool expected)
+        {
+            // Act
+            bool actual = Maths.IsAbundantNumber(value);
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData(2, false)]
+        [InlineData(3, false)]
+        [InlineData(4, false)]
+        [InlineData(28, true)]
+        public static void Maths_IsPerfectNumber_Returns_Correct_Value(long value, bool expected)
+        {
+            // Act
+            bool actual = Maths.IsPerfectNumber(value);
 
             // Assert
             Assert.Equal(expected, actual);

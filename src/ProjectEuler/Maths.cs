@@ -74,9 +74,42 @@ namespace MartinCostello.ProjectEuler
         /// </summary>
         /// <param name="value">The value to get the factors for.</param>
         /// <returns>
-        /// An <see cref="IEnumerable{T}"/> containing the factors of the specified number.
+        /// An <see cref="IEnumerable{T}"/> which enumerates the factors of <paramref name="value"/>.
         /// </returns>
         internal static IEnumerable<long> GetFactors(long value) => GetFactorsInternal(value).OrderBy((p) => p);
+
+        /// <summary>
+        /// Returns the proper divisors of the specified number.
+        /// </summary>
+        /// <param name="value">The value to get the proper divisors for.</param>
+        /// <returns>
+        /// An <see cref="IEnumerable{T}"/> which enumerates the proper divisors of <paramref name="value"/>.
+        /// </returns>
+        internal static IEnumerable<long> GetProperDivisors(long value) => GetFactors(value).TakeWhile((p) => p != value);
+
+        /// <summary>
+        /// Returns whether the specified number is an abundant number.
+        /// </summary>
+        /// <param name="value">The number to test for being an abundant number.</param>
+        /// <returns>
+        /// <see langword="true"/> if <paramref name="value"/> is an abundant number; otherwise <see langword="false"/>.
+        /// </returns>
+        internal static bool IsAbundantNumber(long value)
+        {
+            return GetProperDivisors(value).Sum() > value;
+        }
+
+        /// <summary>
+        /// Returns whether the specified number is a perfect number.
+        /// </summary>
+        /// <param name="value">The number to test for being a perfect number.</param>
+        /// <returns>
+        /// <see langword="true"/> if <paramref name="value"/> is a perfect number; otherwise <see langword="false"/>.
+        /// </returns>
+        internal static bool IsPerfectNumber(long value)
+        {
+            return GetProperDivisors(value).Sum() == value;
+        }
 
         /// <summary>
         /// Returns whether the specified value is a prime number.

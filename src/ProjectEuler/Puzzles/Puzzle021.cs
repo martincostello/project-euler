@@ -52,6 +52,6 @@ namespace MartinCostello.ProjectEuler.Puzzles
         /// <returns>
         /// The sum of the proper divisors of <paramref name="value"/>.
         /// </returns>
-        private static long D(long value) => Maths.GetFactors(value).Sum() - value;
+        private static long D(long value) => Maths.GetProperDivisors(value).Sum();
     }
 }
