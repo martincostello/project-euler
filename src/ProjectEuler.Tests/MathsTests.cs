@@ -3,6 +3,7 @@
 
 namespace MartinCostello.ProjectEuler
 {
+    using System.Linq;
     using Xunit;
 
     /// <summary>
@@ -142,6 +143,56 @@ namespace MartinCostello.ProjectEuler
 
             // Assert
             Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public static void Maths_Permutations_Returns_Correct_Value_2()
+        {
+            // Arrange
+            var collection = new[] { "a", "b" };
+
+            // Act
+            var actual = Maths.Permutations(collection)
+                .Select((p) => p.ToArray())
+                .ToArray();
+
+            // Assert
+            Assert.Equal(2, actual.Length);
+            Assert.Equal(new[] { "a", "b" }, actual[0]);
+            Assert.Equal(new[] { "b", "a" }, actual[1]);
+
+            collection = new[] { "b", "a" };
+
+            // Act
+            actual = Maths.Permutations(collection)
+                .Select((p) => p.ToArray())
+                .ToArray();
+
+            // Assert
+            Assert.Equal(2, actual.Length);
+            Assert.Equal(new[] { "b", "a" }, actual[0]);
+            Assert.Equal(new[] { "a", "b" }, actual[1]);
+        }
+
+        [Fact]
+        public static void Maths_Permutations_Returns_Correct_Value_3()
+        {
+            // Arrange
+            var collection = new[] { "a", "b", "c" };
+
+            // Act
+            var actual = Maths.Permutations(collection)
+                .Select((p) => p.ToArray())
+                .ToArray();
+
+            // Assert
+            Assert.Equal(6, actual.Length);
+            Assert.Equal(new[] { "a", "b", "c" }, actual[0]);
+            Assert.Equal(new[] { "a", "c", "b" }, actual[1]);
+            Assert.Equal(new[] { "b", "a", "c" }, actual[2]);
+            Assert.Equal(new[] { "b", "c", "a" }, actual[3]);
+            Assert.Equal(new[] { "c", "a", "b" }, actual[4]);
+            Assert.Equal(new[] { "c", "b", "a" }, actual[5]);
         }
     }
 }
