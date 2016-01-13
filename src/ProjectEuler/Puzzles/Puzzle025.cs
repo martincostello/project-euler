@@ -21,20 +21,20 @@ namespace MartinCostello.ProjectEuler.Puzzles
         /// </returns>
         internal static IEnumerable<string> Fibonacci()
         {
-            List<string> sequence = new List<string>() { "1", "1" };
+            string x = "1";
+            string y = "1";
 
-            foreach (string value in sequence)
+            yield return x;
+            yield return y;
+
+            while (true)
             {
-                yield return value;
-            }
+                string next = Maths.Add(x, y);
 
-            for (int i = 2; ; i++)
-            {
-                string value = Maths.Add(sequence[i - 1], sequence[i - 2]);
+                yield return next;
 
-                yield return value;
-
-                sequence.Add(value);
+                x = y;
+                y = next;
             }
         }
 
