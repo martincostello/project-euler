@@ -5,6 +5,7 @@ namespace MartinCostello.ProjectEuler
 {
     using System;
     using System.Collections.Generic;
+    using System.IO;
 
     /// <summary>
     /// The base class for puzzles.
@@ -51,6 +52,18 @@ namespace MartinCostello.ProjectEuler
         protected static bool EnsureArguments(ICollection<string> args, int minimumLength)
         {
             return args.Count >= minimumLength;
+        }
+
+        /// <summary>
+        /// Returns the <see cref="Stream"/> associated with the resource for the puzzle.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="Stream"/> containing the resource associated with the puzzle.
+        /// </returns>
+        protected Stream ReadResource()
+        {
+            Type thisType = GetType();
+            return thisType.Assembly.GetManifestResourceStream(FormattableString.Invariant($"{thisType.FullName}.Data.txt")) ?? Stream.Null;
         }
 
         /// <summary>
