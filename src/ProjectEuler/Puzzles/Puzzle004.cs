@@ -24,8 +24,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
         {
             int digits;
 
-            if (!int.TryParse(args[0], NumberStyles.Integer & ~NumberStyles.AllowLeadingSign, CultureInfo.InvariantCulture, out digits) ||
-                digits < 2)
+            if (!TryParseInt32(args[0], out digits) || digits < 2)
             {
                 Console.Error.WriteLine("The specified number of digits is invalid.");
                 return -1;

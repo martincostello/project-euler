@@ -5,6 +5,7 @@ namespace MartinCostello.ProjectEuler
 {
     using System;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.IO;
 
     /// <summary>
@@ -50,6 +51,32 @@ namespace MartinCostello.ProjectEuler
         /// <paramref name="minimumLength"/> in length; otherwise <see langword="false"/>.
         /// </returns>
         protected static bool EnsureArguments(ICollection<string> args, int minimumLength) => args.Count >= minimumLength;
+
+        /// <summary>
+        /// Tries to parse the specified <see cref="string"/> as a 32-bit integer.
+        /// </summary>
+        /// <param name="value">The value to try and parse.</param>
+        /// <param name="result">When the method returns, contains the parsed value, if successful.</param>
+        /// <returns>
+        /// <see langword="true"/> if <paramref name="value"/> was parsed successfully; otherwise <see langword="false"/>.
+        /// </returns>
+        protected static bool TryParseInt32(string value, out int result)
+        {
+            return int.TryParse(value, NumberStyles.Integer, CultureInfo.InvariantCulture, out result);
+        }
+
+        /// <summary>
+        /// Tries to parse the specified <see cref="string"/> as a 64-bit integer.
+        /// </summary>
+        /// <param name="value">The value to try and parse.</param>
+        /// <param name="result">When the method returns, contains the parsed value, if successful.</param>
+        /// <returns>
+        /// <see langword="true"/> if <paramref name="value"/> was parsed successfully; otherwise <see langword="false"/>.
+        /// </returns>
+        protected static bool TryParseInt64(string value, out long result)
+        {
+            return long.TryParse(value, NumberStyles.Integer, CultureInfo.InvariantCulture, out result);
+        }
 
         /// <summary>
         /// Returns the <see cref="Stream"/> associated with the resource for the puzzle.

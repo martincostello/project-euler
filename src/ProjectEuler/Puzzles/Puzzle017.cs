@@ -5,7 +5,6 @@ namespace MartinCostello.ProjectEuler.Puzzles
 {
     using System;
     using System.Collections.Generic;
-    using System.Globalization;
     using System.Text;
 
     /// <summary>
@@ -150,10 +149,9 @@ namespace MartinCostello.ProjectEuler.Puzzles
         /// <inheritdoc />
         protected override int SolveCore(string[] args)
         {
-            int maximum;
+            int max;
 
-            if (!int.TryParse(args[0], NumberStyles.Integer & ~NumberStyles.AllowLeadingSign, CultureInfo.InvariantCulture, out maximum) ||
-                maximum < 1)
+            if (!TryParseInt32(args[0], out max) || max < 1)
             {
                 Console.Error.WriteLine("The specified number is invalid.");
                 return -1;
@@ -161,7 +159,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
 
             int sum = 0;
 
-            for (int i = 1; i <= maximum; i++)
+            for (int i = 1; i <= max; i++)
             {
                 sum += ToEnglish(i)
                     .Replace(" ", string.Empty)

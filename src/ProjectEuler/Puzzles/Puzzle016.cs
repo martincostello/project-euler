@@ -4,7 +4,6 @@
 namespace MartinCostello.ProjectEuler.Puzzles
 {
     using System;
-    using System.Globalization;
     using System.Linq;
 
     /// <summary>
@@ -23,8 +22,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
         {
             int power;
 
-            if (!int.TryParse(args[0], NumberStyles.Integer & ~NumberStyles.AllowLeadingSign, CultureInfo.InvariantCulture, out power) ||
-                power < 0)
+            if (!TryParseInt32(args[0], out power) || power < 0)
             {
                 Console.Error.WriteLine("The specified number is invalid.");
                 return -1;

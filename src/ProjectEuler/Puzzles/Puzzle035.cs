@@ -60,8 +60,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
         {
             int maximum;
 
-            if (!int.TryParse(args[0], NumberStyles.Integer & ~NumberStyles.AllowLeadingSign, CultureInfo.InvariantCulture, out maximum) ||
-                maximum < 2)
+            if (!TryParseInt32(args[0], out maximum) || maximum < 2)
             {
                 Console.Error.WriteLine("The specified number is invalid.");
                 return -1;

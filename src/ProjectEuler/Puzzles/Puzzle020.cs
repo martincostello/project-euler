@@ -23,8 +23,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
         {
             int number;
 
-            if (!int.TryParse(args[0], NumberStyles.Integer & ~NumberStyles.AllowLeadingSign, CultureInfo.InvariantCulture, out number) ||
-                number < 0)
+            if (!TryParseInt32(args[0], out number) || number < 0)
             {
                 Console.Error.WriteLine("The specified number is invalid.");
                 return -1;

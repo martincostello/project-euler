@@ -4,8 +4,6 @@
 namespace MartinCostello.ProjectEuler.Puzzles
 {
     using System;
-    using System.Collections.Generic;
-    using System.Globalization;
     using System.Linq;
 
     /// <summary>
@@ -24,8 +22,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
         {
             int max;
 
-            if (!int.TryParse(args[0], NumberStyles.Integer & ~NumberStyles.AllowLeadingSign, CultureInfo.InvariantCulture, out max) ||
-                max < 2)
+            if (!TryParseInt32(args[0], out max) || max < 2)
             {
                 Console.Error.WriteLine("The specified maximum number is invalid.");
                 return -1;

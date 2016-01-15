@@ -5,7 +5,6 @@ namespace MartinCostello.ProjectEuler.Puzzles
 {
     using System;
     using System.Collections.Generic;
-    using System.Globalization;
 
     /// <summary>
     /// A class representing the solution to <c>https://projecteuler.net/problem=8</c>. This class cannot be inherited.
@@ -28,8 +27,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
         {
             int digits;
 
-            if (!int.TryParse(args[0], NumberStyles.Integer & ~NumberStyles.AllowLeadingSign, CultureInfo.InvariantCulture, out digits) ||
-                digits < 2)
+            if (!TryParseInt32(args[0], out digits) || digits < 2)
             {
                 Console.Error.WriteLine("The specified number is invalid.");
                 return -1;

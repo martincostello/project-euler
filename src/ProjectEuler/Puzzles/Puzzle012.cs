@@ -4,7 +4,6 @@
 namespace MartinCostello.ProjectEuler.Puzzles
 {
     using System;
-    using System.Globalization;
     using System.Linq;
 
     /// <summary>
@@ -23,8 +22,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
         {
             int divisors;
 
-            if (!int.TryParse(args[0], NumberStyles.Integer & ~NumberStyles.AllowLeadingSign, CultureInfo.InvariantCulture, out divisors) ||
-                divisors < 1)
+            if (!TryParseInt32(args[0], out divisors) || divisors < 1)
             {
                 Console.Error.WriteLine("The specified number of divisors is invalid.");
                 return -1;
