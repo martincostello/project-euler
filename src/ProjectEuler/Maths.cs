@@ -70,6 +70,38 @@ namespace MartinCostello.ProjectEuler
         }
 
         /// <summary>
+        /// Returns the digits of the specified value in base 10.
+        /// </summary>
+        /// <param name="value">The value to get the digits for.</param>
+        /// <returns>
+        /// The digits of <paramref name="value"/> in base 10.
+        /// </returns>
+        internal static int[] Digits(long value)
+        {
+            if (value < 0)
+            {
+                value = Math.Abs(value);
+            }
+
+            var digits = new List<int>();
+
+            while (value > 9)
+            {
+                digits.Add((int)(value % 10));
+                value /= 10;
+            }
+
+            digits.Add((int)value);
+
+            if (digits.Count > 1)
+            {
+                digits.Reverse();
+            }
+
+            return digits.ToArray();
+        }
+
+        /// <summary>
         /// Returns the factorial (<c>value!</c>) of the specified value.
         /// </summary>
         /// <param name="value">The value to get the factorial for.</param>

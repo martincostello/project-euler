@@ -5,7 +5,6 @@ namespace MartinCostello.ProjectEuler.Puzzles
 {
     using System;
     using System.Collections.Generic;
-    using System.Globalization;
 
     /// <summary>
     /// A class representing the solution to <c>https://projecteuler.net/problem=35</c>. This class cannot be inherited.
@@ -27,29 +26,38 @@ namespace MartinCostello.ProjectEuler.Puzzles
         /// </returns>
         internal static IList<int> GetRotations(int value)
         {
-            var chars = value.ToString(CultureInfo.InvariantCulture).ToCharArray();
+            int[] digits = Maths.Digits(value);
 
             var result = new List<int>()
             {
                 value,
             };
 
-            for (int i = 0; i < chars.Length - 1; i++)
+            for (int i = 0; i < digits.Length - 1; i++)
             {
-                var rotation = new char[chars.Length];
+                var rotationDigits = new int[digits.Length];
                 int index = 0;
 
-                for (int j = i + 1; j < chars.Length; j++)
+                for (int j = i + 1; j < digits.Length; j++)
                 {
-                    rotation[index++] = chars[j];
+                    rotationDigits[index++] = digits[j];
                 }
 
                 for (int j = 0; j < i + 1; j++)
                 {
-                    rotation[index++] = chars[j];
+                    rotationDigits[index++] = digits[j];
                 }
 
-                result.Add(int.Parse(new string(rotation), CultureInfo.InvariantCulture));
+                int rotation = 0;
+
+                for (int j = 0; j < rotationDigits.Length - 1; j++)
+                {
+                    rotation += rotationDigits[j] * (int)Math.Pow(10, rotationDigits.Length - j - 1);
+                }
+
+                rotation += rotationDigits[rotationDigits.Length - 1];
+
+                result.Add(rotation);
             }
 
             return result;

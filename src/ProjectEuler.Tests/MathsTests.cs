@@ -3,6 +3,7 @@
 
 namespace MartinCostello.ProjectEuler
 {
+    using System.Collections.Generic;
     using System.Linq;
     using Xunit;
 
@@ -20,6 +21,32 @@ namespace MartinCostello.ProjectEuler
         {
             // Act
             string actual = Maths.Add(x, y);
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData(-11, new[] { 1, 1 })]
+        [InlineData(-10, new[] { 1, 0 })]
+        [InlineData(-9, new[] { 9 })]
+        [InlineData(-1, new[] { 1 })]
+        [InlineData(0, new[] { 0 })]
+        [InlineData(1, new[] { 1 })]
+        [InlineData(2, new[] { 2 })]
+        [InlineData(9, new[] { 9 })]
+        [InlineData(10, new[] { 1, 0 })]
+        [InlineData(99, new[] { 9, 9 })]
+        [InlineData(100, new[] { 1, 0, 0 })]
+        [InlineData(101, new[] { 1, 0, 1 })]
+        [InlineData(999, new[] { 9, 9, 9 })]
+        [InlineData(1000, new[] { 1, 0, 0, 0 })]
+        [InlineData(1001, new[] { 1, 0, 0, 1 })]
+        [InlineData(1002, new[] { 1, 0, 0, 2 })]
+        public static void Maths_Digits_Returns_Correct_Value(long value, IEnumerable<int> expected)
+        {
+            // Act
+            var actual = Maths.Digits(value);
 
             // Assert
             Assert.Equal(expected, actual);

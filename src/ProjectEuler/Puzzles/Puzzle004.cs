@@ -5,7 +5,6 @@ namespace MartinCostello.ProjectEuler.Puzzles
 {
     using System;
     using System.Collections.Generic;
-    using System.Globalization;
     using System.Linq;
 
     /// <summary>
@@ -22,9 +21,9 @@ namespace MartinCostello.ProjectEuler.Puzzles
         /// <inheritdoc />
         protected override int SolveCore(string[] args)
         {
-            int digits;
+            int digitCount;
 
-            if (!TryParseInt32(args[0], out digits) || digits < 2)
+            if (!TryParseInt32(args[0], out digitCount) || digitCount < 2)
             {
                 Console.Error.WriteLine("The specified number of digits is invalid.");
                 return -1;
@@ -32,19 +31,18 @@ namespace MartinCostello.ProjectEuler.Puzzles
 
             var palindromes = new List<int>();
 
-            for (int i = (int)Math.Pow(10, digits - 1); i < Math.Pow(10, digits); i++)
+            for (int i = (int)Math.Pow(10, digitCount - 1); i < Math.Pow(10, digitCount); i++)
             {
-                for (int j = (int)Math.Pow(10, digits - 1); j < i + 1; j++)
+                for (int j = (int)Math.Pow(10, digitCount - 1); j < i + 1; j++)
                 {
                     int product = i * j;
-
-                    char[] chars = product.ToString(CultureInfo.InvariantCulture).ToCharArray();
+                    int[] digits = Maths.Digits(product);
 
                     bool isPalindromic = true;
 
-                    for (int k = 0; k < chars.Length / 2; k++)
+                    for (int k = 0; k < digits.Length / 2; k++)
                     {
-                        if (chars[k] != chars[chars.Length - k - 1])
+                        if (digits[k] != digits[digits.Length - k - 1])
                         {
                             isPalindromic = false;
                             break;

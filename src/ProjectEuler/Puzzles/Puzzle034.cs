@@ -3,9 +3,6 @@
 
 namespace MartinCostello.ProjectEuler.Puzzles
 {
-    using System.Globalization;
-    using System.Linq;
-
     /// <summary>
     /// A class representing the solution to <c>https://projecteuler.net/problem=34</c>. This class cannot be inherited.
     /// </summary>
@@ -40,36 +37,37 @@ namespace MartinCostello.ProjectEuler.Puzzles
         /// </returns>
         internal static bool IsCurious(int value)
         {
-            var digits = value
-                .ToString(CultureInfo.InvariantCulture)
-                .ToCharArray()
-                .Select((p) => p - '0')
-                .ToArray();
+            int[] digits = Maths.Digits(value);
 
-            long factorialSum = digits
-                .Select((p) => Factorials[p])
-                .Sum();
+            int sum = 0;
 
-            return factorialSum == value;
+            for (int i = 0; i < digits.Length; i++)
+            {
+                sum += Factorials[digits[i]];
+            }
+
+            return sum == value;
         }
 
         /// <inheritdoc />
         protected override int SolveCore(string[] args)
         {
+            int sum = 0;
             int upperBound = 0;
 
-            for (int digits = 2; ; digits++)
+            for (int digitCount = 2; ; digitCount++)
             {
-                int digitSum = Factorials[9] * digits;
+                sum = Factorials[9] * digitCount;
+                int[] digitsOfSum = Maths.Digits(sum);
 
-                if (digitSum.ToString(CultureInfo.InvariantCulture).Length <= digits)
+                if (digitsOfSum.Length <= digitCount)
                 {
-                    upperBound = digitSum;
+                    upperBound = sum;
                     break;
                 }
             }
 
-            int sum = 0;
+            sum = 0;
 
             for (int n = 3; n < upperBound; n++)
             {
