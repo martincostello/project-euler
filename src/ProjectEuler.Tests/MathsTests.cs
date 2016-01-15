@@ -26,6 +26,27 @@ namespace MartinCostello.ProjectEuler
         }
 
         [Theory]
+        [InlineData(0, 1)]
+        [InlineData(1, 1)]
+        [InlineData(2, 2)]
+        [InlineData(3, 6)]
+        [InlineData(4, 24)]
+        [InlineData(5, 120)]
+        [InlineData(6, 720)]
+        [InlineData(7, 5040)]
+        [InlineData(8, 40320)]
+        [InlineData(9, 362880)]
+        [InlineData(10, 3628800)]
+        public static void Maths_Factorial_Returns_Correct_Value(int value, int expected)
+        {
+            // Act
+            int actual = Maths.Factorial(value);
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
         [InlineData(1, new long[] { 1 })]
         [InlineData(2, new long[] { 1, 2 })]
         [InlineData(3, new long[] { 1, 3 })]

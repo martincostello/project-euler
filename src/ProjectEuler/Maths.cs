@@ -70,6 +70,30 @@ namespace MartinCostello.ProjectEuler
         }
 
         /// <summary>
+        /// Returns the factorial (<c>value!</c>) of the specified value.
+        /// </summary>
+        /// <param name="value">The value to get the factorial for.</param>
+        /// <returns>
+        /// The factorial of <paramref name="value"/>.
+        /// </returns>
+        internal static int Factorial(int value)
+        {
+            if (value == 0)
+            {
+                return 1;
+            }
+
+            int result = value;
+
+            for (int i = value - 1; i > 1; i--)
+            {
+                result *= i;
+            }
+
+            return result;
+        }
+
+        /// <summary>
         /// Returns the factors of the specified number.
         /// </summary>
         /// <param name="value">The value to get the factors for.</param>
