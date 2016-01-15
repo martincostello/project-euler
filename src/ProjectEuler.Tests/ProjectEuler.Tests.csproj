@@ -90,6 +90,7 @@
     <Compile Include="Puzzles\Puzzle034Tests.cs" />
     <Compile Include="Puzzles\Puzzle035Tests.cs" />
     <Compile Include="Puzzles\Puzzle036Tests.cs" />
+    <Compile Include="Puzzles\Puzzle037Tests.cs" />
     <Compile Include="Puzzles\Puzzles.cs" />
     <Compile Include="PuzzleTests.cs" />
   </ItemGroup>

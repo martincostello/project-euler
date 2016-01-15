@@ -4,6 +4,7 @@
 namespace MartinCostello.ProjectEuler
 {
     using System;
+    using System.Collections.Concurrent;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -12,6 +13,11 @@ namespace MartinCostello.ProjectEuler
     /// </summary>
     internal static class Maths
     {
+        /// <summary>
+        /// A cache of values for which being prime has been computed. This field is read-only.
+        /// </summary>
+        private static readonly IDictionary<long, bool> _primes = new ConcurrentDictionary<long, bool>();
+
         /// <summary>
         /// Adds the two numbers specified as strings and returns the result.
         /// </summary>
@@ -25,8 +31,8 @@ namespace MartinCostello.ProjectEuler
             string longest = x.Length <= y.Length ? y : x;
             string shortest = x.Length <= y.Length ? x : y;
 
-            Stack<int> first = new Stack<int>(Digits(longest));
-            Stack<int> second = new Stack<int>();
+            var first = new Stack<int>(Digits(longest));
+            var second = new Stack<int>();
 
             // Pad the second value with the shortest number to have a
             // stack of characters the same length as the longest one.
@@ -40,7 +46,7 @@ namespace MartinCostello.ProjectEuler
                 second.Push(i);
             }
 
-            Stack<char> result = new Stack<char>();
+            var result = new Stack<char>();
 
             int carry = 0;
 
@@ -144,6 +150,27 @@ namespace MartinCostello.ProjectEuler
         }
 
         /// <summary>
+        /// Returns the 32-bit integer represented by the specified digits.
+        /// </summary>
+        /// <param name="collection">The digits of the number.</param>
+        /// <returns>
+        /// The <see cref="int"/> represented by the digits in <paramref name="collection"/>.
+        /// </returns>
+        internal static int FromDigits(IList<int> collection)
+        {
+            int result = 0;
+
+            for (int j = 0; j < collection.Count - 1; j++)
+            {
+                result += collection[j] * (int)Math.Pow(10, collection.Count - j - 1);
+            }
+
+            result += collection[collection.Count - 1];
+
+            return result;
+        }
+
+        /// <summary>
         /// Returns the factors of the specified number.
         /// </summary>
         /// <param name="value">The value to get the factors for.</param>
@@ -168,10 +195,7 @@ namespace MartinCostello.ProjectEuler
         /// <returns>
         /// <see langword="true"/> if <paramref name="value"/> is an abundant number; otherwise <see langword="false"/>.
         /// </returns>
-        internal static bool IsAbundantNumber(long value)
-        {
-            return GetProperDivisors(value).Sum() > value;
-        }
+        internal static bool IsAbundantNumber(long value) => GetProperDivisors(value).Sum() > value;
 
         /// <summary>
         /// Returns whether the specified number is a perfect number.
@@ -180,10 +204,7 @@ namespace MartinCostello.ProjectEuler
         /// <returns>
         /// <see langword="true"/> if <paramref name="value"/> is a perfect number; otherwise <see langword="false"/>.
         /// </returns>
-        internal static bool IsPerfectNumber(long value)
-        {
-            return GetProperDivisors(value).Sum() == value;
-        }
+        internal static bool IsPerfectNumber(long value) => GetProperDivisors(value).Sum() == value;
 
         /// <summary>
         /// Returns whether the specified value is a prime number.
@@ -199,17 +220,27 @@ namespace MartinCostello.ProjectEuler
                 return false;
             }
 
+            bool result;
+
+            if (_primes.TryGetValue(value, out result))
+            {
+                return result;
+            }
+
             long sqrt = (long)Math.Sqrt(value);
+
+            result = true;
 
             for (long i = sqrt; i > 1; i--)
             {
                 if (value % i == 0)
                 {
-                    return false;
+                    result = false;
+                    break;
                 }
             }
 
-            return true;
+            return _primes[value] = result;
         }
 
         /// <summary>
@@ -220,10 +251,7 @@ namespace MartinCostello.ProjectEuler
         /// <returns>
         /// An <see cref="IEnumerable{T}"/> that returns the permutations of <paramref name="collection"/>.
         /// </returns>
-        internal static IEnumerable<IEnumerable<T>> Permutations<T>(ICollection<T> collection)
-        {
-            return Permutations(collection, collection.Count);
-        }
+        internal static IEnumerable<IEnumerable<T>> Permutations<T>(ICollection<T> collection) => Permutations(collection, collection.Count);
 
         /// <summary>
         /// Returns all the permutations of the specified collection of values.

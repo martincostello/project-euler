@@ -74,7 +74,6 @@ namespace MartinCostello.ProjectEuler.Puzzles
                 return -1;
             }
 
-            var primes = new List<int>();
             var circularPrimes = new List<int>();
 
             for (int n = 2; n < maximum; n++)
@@ -87,16 +86,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
 
                     foreach (int value in rotations)
                     {
-                        if (primes.Contains(value))
-                        {
-                            continue;
-                        }
-
-                        if (Maths.IsPrime(value))
-                        {
-                            primes.Add(value);
-                        }
-                        else
+                        if (!Maths.IsPrime(value))
                         {
                             isCircularPrime = false;
                             break;

@@ -100,6 +100,28 @@ namespace MartinCostello.ProjectEuler
         }
 
         [Theory]
+        [InlineData(new[] { 0 }, 0)]
+        [InlineData(new[] { 1 }, 1)]
+        [InlineData(new[] { 2 }, 2)]
+        [InlineData(new[] { 9 }, 9)]
+        [InlineData(new[] { 1, 0 }, 10)]
+        [InlineData(new[] { 9, 9 }, 99)]
+        [InlineData(new[] { 1, 0, 0 }, 100)]
+        [InlineData(new[] { 1, 0, 1 }, 101)]
+        [InlineData(new[] { 9, 9, 9 }, 999)]
+        [InlineData(new[] { 1, 0, 0, 0 }, 1000)]
+        [InlineData(new[] { 1, 0, 0, 1 }, 1001)]
+        [InlineData(new[] { 1, 0, 0, 2 }, 1002)]
+        public static void Maths_FromDigits_Returns_Correct_Value(IList<int> collection, int expected)
+        {
+            // Act
+            var actual = Maths.FromDigits(collection);
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
         [InlineData(1, new long[] { 1 })]
         [InlineData(2, new long[] { 1, 2 })]
         [InlineData(3, new long[] { 1, 3 })]
