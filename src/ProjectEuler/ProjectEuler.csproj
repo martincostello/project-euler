@@ -46,6 +46,7 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Helpers.cs" />
     <Compile Include="IPuzzle.cs" />
     <Compile Include="Maths.cs" />
     <Compile Include="Program.cs" />

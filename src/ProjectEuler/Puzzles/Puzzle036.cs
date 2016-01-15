@@ -20,18 +20,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
         /// <returns>
         /// <see langword="true"/> if <paramref name="value"/> is a palindrome; otherwise <see langword="false"/>.
         /// </returns>
-        internal static bool IsPalindromic(string value)
-        {
-            for (int i = 0; i < value.Length / 2; i++)
-            {
-                if (value[i] != value[value.Length - i - 1])
-                {
-                    return false;
-                }
-            }
-
-            return true;
-        }
+        internal static bool IsPalindromic(string value) => Helpers.IsPalindromic(value.ToCharArray());
 
         /// <inheritdoc />
         protected override int SolveCore(string[] args)

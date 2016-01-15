@@ -38,18 +38,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
                     int product = i * j;
                     int[] digits = Maths.Digits(product);
 
-                    bool isPalindromic = true;
-
-                    for (int k = 0; k < digits.Length / 2; k++)
-                    {
-                        if (digits[k] != digits[digits.Length - k - 1])
-                        {
-                            isPalindromic = false;
-                            break;
-                        }
-                    }
-
-                    if (isPalindromic)
+                    if (Helpers.IsPalindromic(digits))
                     {
                         palindromes.Add(product);
                     }
