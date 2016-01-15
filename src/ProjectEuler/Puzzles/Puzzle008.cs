@@ -25,23 +25,24 @@ namespace MartinCostello.ProjectEuler.Puzzles
         /// <inheritdoc />
         protected override int SolveCore(string[] args)
         {
-            int digits;
+            int digitCount;
 
-            if (!TryParseInt32(args[0], out digits) || digits < 2)
+            if (!TryParseInt32(args[0], out digitCount) || digitCount < 2)
             {
                 Console.Error.WriteLine("The specified number is invalid.");
                 return -1;
             }
 
             var products = new List<long>();
+            var digits = Maths.Digits(OneThousandDigitNumber);
 
-            for (int i = 0; i < (1000 - digits); i++)
+            for (int i = 0; i < (1000 - digitCount); i++)
             {
-                long product = OneThousandDigitNumber[i] - '0';
+                long product = digits[i];
 
-                for (int j = 1; j < digits; j++)
+                for (int j = 1; j < digitCount; j++)
                 {
-                    product *= OneThousandDigitNumber[i + j] - '0';
+                    product *= digits[i + j];
                 }
 
                 products.Add(product);

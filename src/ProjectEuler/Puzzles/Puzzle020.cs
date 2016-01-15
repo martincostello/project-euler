@@ -48,8 +48,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
                 }
             }
 
-            Answer = factorial
-                .Select((p) => p - '0')
+            Answer = Maths.Digits(factorial)
                 .DefaultIfEmpty(1)
                 .Sum();
 

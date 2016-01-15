@@ -28,20 +28,19 @@ namespace MartinCostello.ProjectEuler.Puzzles
                 return -1;
             }
 
-            string digits = string.Empty;
+            string number = string.Empty;
 
             if (power > 0)
             {
-                digits = "2";
+                number = "2";
 
                 for (int i = 2; i <= power; i++)
                 {
-                    digits = Maths.Add(digits, digits);
+                    number = Maths.Add(number, number);
                 }
             }
 
-            Answer = digits
-                .Select((p) => p - '0')
+            Answer = Maths.Digits(number)
                 .DefaultIfEmpty(1)
                 .Sum();
 

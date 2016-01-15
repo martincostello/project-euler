@@ -25,19 +25,19 @@ namespace MartinCostello.ProjectEuler
             string longest = x.Length <= y.Length ? y : x;
             string shortest = x.Length <= y.Length ? x : y;
 
-            Stack<char> first = new Stack<char>(longest);
-            Stack<char> second = new Stack<char>();
+            Stack<int> first = new Stack<int>(Digits(longest));
+            Stack<int> second = new Stack<int>();
 
             // Pad the second value with the shortest number to have a
             // stack of characters the same length as the longest one.
             for (int i = 0; i < longest.Length - shortest.Length; i++)
             {
-                second.Push('0');
+                second.Push(0);
             }
 
-            foreach (char ch in shortest)
+            foreach (int i in Digits(shortest))
             {
-                second.Push(ch);
+                second.Push(i);
             }
 
             Stack<char> result = new Stack<char>();
@@ -46,9 +46,8 @@ namespace MartinCostello.ProjectEuler
 
             while (first.Count > 0)
             {
-                // Get the next numbers from the digits' next character
-                int firstNumber = first.Pop() - '0';
-                int secondNumber = second.Pop() - '0';
+                int firstNumber = first.Pop();
+                int secondNumber = second.Pop();
 
                 // Add the numbers and include the tens carry over from the last iteration
                 int sum = firstNumber + secondNumber + carry;
@@ -67,6 +66,25 @@ namespace MartinCostello.ProjectEuler
             }
 
             return new string(result.ToArray());
+        }
+
+        /// <summary>
+        /// Returns the digits of the specified value in base 10.
+        /// </summary>
+        /// <param name="value">The value to get the digits for.</param>
+        /// <returns>
+        /// The digits of <paramref name="value"/> in base 10.
+        /// </returns>
+        internal static int[] Digits(string value)
+        {
+            var digits = new List<int>();
+
+            foreach (char ch in value.TrimStart('-'))
+            {
+                digits.Add(ch - '0');
+            }
+
+            return digits.ToArray();
         }
 
         /// <summary>
