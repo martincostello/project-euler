@@ -41,5 +41,25 @@ namespace MartinCostello.ProjectEuler.Puzzles
             // Act and Assert
             Puzzles.AssertSolution<Puzzle030>(args, expected);
         }
+
+        [Fact]
+        public static void Puzzle030_Returns_Minus_One_If_Power_Is_Invalid()
+        {
+            // Arrange
+            string[] args = new[] { "a" };
+
+            // Act and Assert
+            Puzzles.AssertInvalid<Puzzle030>(args);
+        }
+
+        [Fact]
+        public static void Puzzle030_Returns_Minus_One_If_Power_Is_Too_Small()
+        {
+            // Arrange
+            string[] args = new[] { "-1" };
+
+            // Act and Assert
+            Puzzles.AssertInvalid<Puzzle030>(args);
+        }
     }
 }
