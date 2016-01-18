@@ -89,7 +89,7 @@ namespace MartinCostello.ProjectEuler
             Type thisType = GetType();
             string name = FormattableString.Invariant($"{thisType.FullName}.Data.txt");
 
-            return thisType.Assembly.GetManifestResourceStream(name) ?? Stream.Null;
+            return thisType.Assembly.GetManifestResourceStream(name);
         }
 
         /// <summary>
