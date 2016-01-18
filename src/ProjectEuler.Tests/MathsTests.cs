@@ -293,5 +293,20 @@ namespace MartinCostello.ProjectEuler
             Assert.Equal(new[] { "c", "a", "b" }, actual[4]);
             Assert.Equal(new[] { "c", "b", "a" }, actual[5]);
         }
+
+        [Theory]
+        [InlineData("9", "0", "0")]
+        [InlineData("2", "2", "4")]
+        [InlineData("2", "9", "18")]
+        [InlineData("3", "9", "27")]
+        [InlineData("612", "24", "14688")]
+        public static void Maths_Product_Returns_Correct_Value(string x, string y, string expected)
+        {
+            // Act
+            string actual = Maths.Product(x, y);
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
     }
 }

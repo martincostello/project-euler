@@ -274,6 +274,40 @@ namespace MartinCostello.ProjectEuler
         }
 
         /// <summary>
+        /// Returns the product of two specified values.
+        /// </summary>
+        /// <param name="a">The first value.</param>
+        /// <param name="b">The second value.</param>
+        /// <returns>
+        /// A <see cref="string"/> representing the product of <paramref name="a"/> and <paramref name="b"/>.
+        /// </returns>
+        internal static string Product(string a, string b)
+        {
+            if (string.Equals(a, "0", StringComparison.Ordinal) || string.Equals(b, "0", StringComparison.Ordinal))
+            {
+                return "0";
+            }
+
+            var valuesToSum = new List<string>();
+            int[] digits = Digits(b);
+
+            for (int i = digits.Length - 1; i >= 0; i--)
+            {
+                string current = a;
+                int y = digits[i] * (int)Math.Pow(10, digits.Length - i - 1);
+
+                for (int j = 1; j < y; j++)
+                {
+                    current = Add(current, a);
+                }
+
+                valuesToSum.Add(current);
+            }
+
+            return valuesToSum.Aggregate((x, y) => Add(x, y));
+        }
+
+        /// <summary>
         /// Returns the factors of the specified number.
         /// </summary>
         /// <param name="value">The value to get the factors for.</param>
