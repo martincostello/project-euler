@@ -36,15 +36,9 @@ namespace MartinCostello.ProjectEuler.Puzzles
                 factorial = number.ToString(CultureInfo.InvariantCulture);
 
                 // For n -> 0
-                for (int n = number; n > 0; n--)
+                for (int n = number - 1; n > 0; n--)
                 {
-                    string current = factorial;
-
-                    // Add n to the result n-1 times
-                    for (int j = 1; j < n - 1; j++)
-                    {
-                        factorial = Maths.Add(factorial, current);
-                    }
+                    factorial = Maths.Product(factorial, n.ToString(CultureInfo.InvariantCulture));
                 }
             }
 

@@ -28,21 +28,9 @@ namespace MartinCostello.ProjectEuler.Puzzles
                 return -1;
             }
 
-            string number = string.Empty;
+            string value = Maths.Pow("2", power);
 
-            if (power > 0)
-            {
-                number = "2";
-
-                for (int i = 2; i <= power; i++)
-                {
-                    number = Maths.Add(number, number);
-                }
-            }
-
-            Answer = Maths.Digits(number)
-                .DefaultIfEmpty(1)
-                .Sum();
+            Answer = Maths.Digits(value).Sum();
 
             return 0;
         }
