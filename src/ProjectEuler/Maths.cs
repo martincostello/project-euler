@@ -19,14 +19,14 @@ namespace MartinCostello.ProjectEuler
         private static readonly IDictionary<long, bool> _primes = new ConcurrentDictionary<long, bool>();
 
         /// <summary>
-        /// Adds the two numbers specified as strings and returns the result.
+        /// Returns the sum of two numbers specified as strings and returns the result.
         /// </summary>
         /// <param name="x">The first number.</param>
         /// <param name="y">The second number.</param>
         /// <returns>
-        /// A <see cref="string"/> containing the result of adding <paramref name="x"/> and <paramref name="y"/>.
+        /// A <see cref="string"/> containing the sum of <paramref name="x"/> and <paramref name="y"/>.
         /// </returns>
-        internal static string Add(string x, string y)
+        internal static string Sum(string x, string y)
         {
             string longest = x.Length <= y.Length ? y : x;
             string shortest = x.Length <= y.Length ? x : y;
@@ -325,14 +325,14 @@ namespace MartinCostello.ProjectEuler
                 {
                     for (int j = 1; j < times; j++)
                     {
-                        current = Add(current, a);
+                        current = Sum(current, a);
                     }
 
                     valuesToSum.Add(current);
                 }
             }
 
-            return valuesToSum.Aggregate((x, y) => Add(x, y));
+            return valuesToSum.Aggregate((x, y) => Sum(x, y));
         }
 
         /// <summary>

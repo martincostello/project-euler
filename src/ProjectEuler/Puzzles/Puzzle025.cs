@@ -29,7 +29,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
 
             while (true)
             {
-                string next = Maths.Add(x, y);
+                string next = Maths.Sum(x, y);
 
                 yield return next;
 

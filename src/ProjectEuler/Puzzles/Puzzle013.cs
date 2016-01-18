@@ -23,7 +23,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
         protected override int SolveCore(string[] args)
         {
             Answer = Numbers
-                .Aggregate((x, y) => Maths.Add(x, y))
+                .Aggregate((x, y) => Maths.Sum(x, y))
                 .Substring(0, 10);
 
             return 0;

@@ -17,10 +17,10 @@ namespace MartinCostello.ProjectEuler
         [InlineData("9", "9", "18")]
         [InlineData("15", "999", "1014")]
         [InlineData("100", "0", "100")]
-        public static void Maths_Add_Returns_Correct_Value(string x, string y, string expected)
+        public static void Maths_Sum_Returns_Correct_Value(string x, string y, string expected)
         {
             // Act
-            string actual = Maths.Add(x, y);
+            string actual = Maths.Sum(x, y);
 
             // Assert
             Assert.Equal(expected, actual);
