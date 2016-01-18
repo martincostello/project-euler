@@ -295,10 +295,32 @@ namespace MartinCostello.ProjectEuler
         }
 
         [Theory]
+        [InlineData("2", 0, "1")]
+        [InlineData("2", 1, "2")]
+        [InlineData("2", 2, "4")]
+        [InlineData("2", 3, "8")]
+        [InlineData("2", 4, "16")]
+        [InlineData("10", 0, "1")]
+        [InlineData("10", 1, "10")]
+        [InlineData("10", 2, "100")]
+        [InlineData("10", 3, "1000")]
+        [InlineData("10", 4, "10000")]
+        public static void Maths_Pow_Returns_Correct_Value(string x, int y, string expected)
+        {
+            // Act
+            string actual = Maths.Pow(x, y);
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
         [InlineData("9", "0", "0")]
         [InlineData("2", "2", "4")]
         [InlineData("2", "9", "18")]
         [InlineData("3", "9", "27")]
+        [InlineData("10", "10", "100")]
+        [InlineData("100", "100", "10000")]
         [InlineData("612", "24", "14688")]
         public static void Maths_Product_Returns_Correct_Value(string x, string y, string expected)
         {

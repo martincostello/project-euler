@@ -281,6 +281,31 @@ namespace MartinCostello.ProjectEuler
         /// <returns>
         /// A <see cref="string"/> representing the product of <paramref name="a"/> and <paramref name="b"/>.
         /// </returns>
+        internal static string Pow(string a, int b)
+        {
+            if (b == 0)
+            {
+                return "1";
+            }
+
+            string current = a;
+
+            for (int n = 0; n < b - 1; n++)
+            {
+                current = Product(current, a);
+            }
+
+            return current;
+        }
+
+        /// <summary>
+        /// Returns the product of two specified values.
+        /// </summary>
+        /// <param name="a">The first value.</param>
+        /// <param name="b">The second value.</param>
+        /// <returns>
+        /// A <see cref="string"/> representing the product of <paramref name="a"/> and <paramref name="b"/>.
+        /// </returns>
         internal static string Product(string a, string b)
         {
             if (string.Equals(a, "0", StringComparison.Ordinal) || string.Equals(b, "0", StringComparison.Ordinal))
@@ -294,14 +319,17 @@ namespace MartinCostello.ProjectEuler
             for (int i = digits.Length - 1; i >= 0; i--)
             {
                 string current = a;
-                int y = digits[i] * (int)Math.Pow(10, digits.Length - i - 1);
+                int times = digits[i] * (int)Math.Pow(10, digits.Length - i - 1);
 
-                for (int j = 1; j < y; j++)
+                if (times > 0)
                 {
-                    current = Add(current, a);
-                }
+                    for (int j = 1; j < times; j++)
+                    {
+                        current = Add(current, a);
+                    }
 
-                valuesToSum.Add(current);
+                    valuesToSum.Add(current);
+                }
             }
 
             return valuesToSum.Aggregate((x, y) => Add(x, y));
