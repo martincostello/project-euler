@@ -47,5 +47,15 @@ namespace MartinCostello.ProjectEuler.Puzzles
             // Act and Assert
             Puzzles.AssertSolution<Puzzle029>(args, expected);
         }
+
+        [Fact]
+        public static void Puzzle029_Returns_Minus_One_If_Number_Is_Invalid()
+        {
+            // Arrange
+            string[] args = new[] { "a" };
+
+            // Act and Assert
+            Puzzles.AssertInvalid<Puzzle029>(args);
+        }
     }
 }
