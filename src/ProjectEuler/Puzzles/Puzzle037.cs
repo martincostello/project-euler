@@ -29,31 +29,9 @@ namespace MartinCostello.ProjectEuler.Puzzles
                 return false;
             }
 
-            int truncated = value;
-
-            while (truncated > 9)
-            {
-                truncated = Truncate(truncated, true);
-
-                if (!Maths.IsPrime(truncated))
-                {
-                    return false;
-                }
-            }
-
-            truncated = value;
-
-            while (truncated > 9)
-            {
-                truncated = Truncate(truncated, false);
-
-                if (!Maths.IsPrime(truncated))
-                {
-                    return false;
-                }
-            }
-
-            return true;
+            return
+                AllTruncatedValuesArePrime(value, removeLeft: true) &&
+                AllTruncatedValuesArePrime(value, removeLeft: false);
         }
 
         /// <summary>
@@ -90,6 +68,32 @@ namespace MartinCostello.ProjectEuler.Puzzles
             Answer = truncatablePrimes.Sum();
 
             return 0;
+        }
+
+        /// <summary>
+        /// Returns whether continuous truncation of the specified value (both to
+        /// the left and to the right) results in values that are all prime numbers.
+        /// </summary>
+        /// <param name="value">The value to test.</param>
+        /// <param name="removeLeft">Whether to remove the left-most digit.</param>
+        /// <returns>
+        /// <see langword="true"/> if all the truncated values are prime; otherwise <see langword="false"/>.
+        /// </returns>
+        private static bool AllTruncatedValuesArePrime(int value, bool removeLeft)
+        {
+            int truncated = value;
+
+            while (truncated > 9)
+            {
+                truncated = Truncate(truncated, removeLeft);
+
+                if (!Maths.IsPrime(truncated))
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
     }
 }
