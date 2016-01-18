@@ -162,6 +162,9 @@ namespace MartinCostello.ProjectEuler
         }
 
         [Theory]
+        [InlineData(-2, false)]
+        [InlineData(-1, false)]
+        [InlineData(0, false)]
         [InlineData(1, false)]
         [InlineData(2, true)]
         [InlineData(3, true)]

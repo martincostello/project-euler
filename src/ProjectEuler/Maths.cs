@@ -215,7 +215,7 @@ namespace MartinCostello.ProjectEuler
         /// </returns>
         internal static bool IsPrime(long value)
         {
-            if (value == 1)
+            if (value < 2)
             {
                 return false;
             }
