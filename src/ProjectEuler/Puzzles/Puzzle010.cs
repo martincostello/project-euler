@@ -29,7 +29,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
 
             long sum = 0;
 
-            for (int n = 2; n < max - 2; n++)
+            for (int n = 2; n < max; n++)
             {
                 if (Maths.IsPrime(n))
                 {
