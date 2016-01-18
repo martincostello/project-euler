@@ -75,6 +75,7 @@
     <Compile Include="Puzzles\Puzzle023.cs" />
     <Compile Include="Puzzles\Puzzle024.cs" />
     <Compile Include="Puzzles\Puzzle025.cs" />
+    <Compile Include="Puzzles\Puzzle027.cs" />
     <Compile Include="Puzzles\Puzzle034.cs" />
     <Compile Include="Puzzles\Puzzle035.cs" />
     <Compile Include="Puzzles\Puzzle036.cs" />
