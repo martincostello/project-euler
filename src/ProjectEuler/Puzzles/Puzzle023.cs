@@ -29,27 +29,30 @@ namespace MartinCostello.ProjectEuler.Puzzles
                 {
                     abundantNumbers.Add(n);
                 }
+            }
 
-                bool canExpressAsSumOfTwoAbundantNumbers = false;
+            var canBeWrittenAsAbundantSum = new bool[UpperLimit + 1];
 
-                if (n % 2 == 0 && abundantNumbers.Contains(n / 2))
+            for (int i = 0; i < abundantNumbers.Count; i++)
+            {
+                for (int j = i; j < abundantNumbers.Count; j++)
                 {
-                    canExpressAsSumOfTwoAbundantNumbers = true;
-                }
+                    int abundantSum = abundantNumbers[i] + abundantNumbers[j];
 
-                if (!canExpressAsSumOfTwoAbundantNumbers)
-                {
-                    foreach (int value in abundantNumbers)
+                    if (abundantSum <= UpperLimit)
                     {
-                        if (abundantNumbers.Contains(n - value))
-                        {
-                            canExpressAsSumOfTwoAbundantNumbers = true;
-                            break;
-                        }
+                        canBeWrittenAsAbundantSum[abundantSum] = true;
+                    }
+                    else
+                    {
+                        break;
                     }
                 }
+            }
 
-                if (!canExpressAsSumOfTwoAbundantNumbers)
+            for (int n = 1; n <= UpperLimit; n++)
+            {
+                if (!canBeWrittenAsAbundantSum[n])
                 {
                     sum += n;
                 }
