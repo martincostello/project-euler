@@ -22,7 +22,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
             Puzzles.AssertSolution<Puzzle035>(args, expected);
         }
 
-        [Theory]
+        [NotCITheory]
         [InlineData(1000000, 55)]
         public static void Puzzle035_Returns_Correct_Solution_Slow(string maximum, int expected)
         {
