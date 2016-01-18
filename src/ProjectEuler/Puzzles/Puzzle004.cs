@@ -29,7 +29,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
                 return -1;
             }
 
-            var palindromes = new List<int>();
+            var palindromes = new SortedSet<int>();
 
             for (int i = (int)Math.Pow(10, digitCount - 1); i < Math.Pow(10, digitCount); i++)
             {
@@ -45,7 +45,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
                 }
             }
 
-            Answer = palindromes.Max();
+            Answer = palindromes.Max;
 
             return 0;
         }

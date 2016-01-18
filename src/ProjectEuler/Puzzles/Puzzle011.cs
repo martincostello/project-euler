@@ -53,9 +53,14 @@ namespace MartinCostello.ProjectEuler.Puzzles
                 }
             }
 
-            Answer = sequences
-                .Select((p) => p.Aggregate((x, y) => x * y))
-                .Max();
+            var set = new SortedSet<int>();
+
+            foreach (var sequence in sequences)
+            {
+                set.Add(sequence.Aggregate((x, y) => x * y));
+            }
+
+            Answer = set.Max;
 
             return 0;
         }
