@@ -21,16 +21,17 @@ namespace MartinCostello.ProjectEuler.Puzzles
         }
 
         [Theory]
-        [InlineData(0L, new long[] { })]
-        [InlineData(1L, new long[] { 1 })]
-        [InlineData(2L, new long[] { 2, 1 })]
-        [InlineData(3L, new long[] { 3, 10, 5, 16, 8, 4, 2, 1 })]
-        [InlineData(4L, new long[] { 4, 2, 1 })]
-        [InlineData(13L, new long[] { 13, 40, 20, 10, 5, 16, 8, 4, 2, 1 })]
-        public static void Puzzle014_GetCollatzSequence_Returns_Correct_Sequence(long start, long[] expected)
+        [InlineData(-1L, 0)]
+        [InlineData(0L, 0)]
+        [InlineData(1L, 1)]
+        [InlineData(2L, 2)]
+        [InlineData(3L, 8)]
+        [InlineData(4L, 3)]
+        [InlineData(13L, 10)]
+        public static void Puzzle014_GetCollatzSequenceLength_Returns_Correct_Value(long start, int expected)
         {
             // Act
-            var actual = Puzzle014.GetCollatzSequence(start);
+            int actual = Puzzle014.GetCollatzSequenceLength(start);
 
             // Assert
             Assert.Equal(expected, actual);

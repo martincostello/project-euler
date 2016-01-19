@@ -11,58 +11,85 @@ namespace MartinCostello.ProjectEuler.Puzzles
     /// </summary>
     internal sealed class Puzzle014 : Puzzle
     {
+        /// <summary>
+        /// The cache of Collatz sequence lengths from a specified number. This field is read-only.
+        /// </summary>
+        private static readonly IDictionary<long, int> _cache = new Dictionary<long, int>();
+
         /// <inheritdoc />
         public override string Question => "Which starting number, under one million, produces the longest chain?";
 
         /// <summary>
-        /// Gets the Collatz sequence that starts at the specified value.
+        /// Gets the length of the Collatz sequence that starts at the specified value.
         /// </summary>
         /// <param name="start">The start value.</param>
         /// <returns>
-        /// An <see cref="IEnumerable{T}"/> that returns the Collatz sequence starting at <paramref name="start"/>.
+        /// Returns the length of the Collatz sequence starting at <paramref name="start"/>.
         /// </returns>
-        internal static IEnumerable<long> GetCollatzSequence(long start)
+        internal static int GetCollatzSequenceLength(long start)
         {
-            if (start > 0)
+            int length = 0;
+
+            if (!_cache.TryGetValue(start, out length))
             {
-                long current = start;
-
-                while (current != 1)
+                if (start > 0)
                 {
-                    yield return current;
+                    long current = start;
+                    int remainingLength;
 
-                    if (current % 2 == 0)
+                    bool cacheHit = false;
+
+                    while (current != 1 && !cacheHit)
                     {
-                        current /= 2;
+                        if (_cache.TryGetValue(current, out remainingLength))
+                        {
+                            length += remainingLength;
+                            cacheHit = true;
+                            break;
+                        }
+
+                        length++;
+
+                        if (current % 2 == 0)
+                        {
+                            current /= 2;
+                        }
+                        else
+                        {
+                            current = (3 * current) + 1;
+                        }
                     }
-                    else
+
+                    if (!cacheHit)
                     {
-                        current = (3 * current) + 1;
+                        length++;
                     }
                 }
 
-                yield return current;
+                _cache[start] = length;
             }
+
+            return length;
         }
 
         /// <inheritdoc />
         protected override int SolveCore(string[] args)
         {
             int longestChain = 0;
-            int longestChainSeed = 0;
+            int longestStartValue = 0;
 
-            for (int i = 1; i < 1000000; i++)
+            for (int n = 1; n < 1000000; n++)
             {
-                int chainLength = GetCollatzSequence(i).Count();
+                int length = GetCollatzSequenceLength(n);
 
-                if (chainLength > longestChain)
+                if (length > longestChain)
                 {
-                    longestChain = chainLength;
-                    longestChainSeed = i;
+                    longestChain = length;
+                    longestStartValue = n;
                 }
             }
 
-            Answer = longestChainSeed;
+            Answer = longestStartValue;
 
             return 0;
         }
