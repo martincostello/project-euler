@@ -150,19 +150,19 @@ namespace MartinCostello.ProjectEuler
         }
 
         /// <summary>
-        /// Returns the 32-bit integer represented by the specified digits.
+        /// Returns the 64-bit integer represented by the specified digits.
         /// </summary>
         /// <param name="collection">The digits of the number.</param>
         /// <returns>
-        /// The <see cref="int"/> represented by the digits in <paramref name="collection"/>.
+        /// The <see cref="long"/> represented by the digits in <paramref name="collection"/>.
         /// </returns>
-        internal static int FromDigits(IList<int> collection)
+        internal static long FromDigits(IList<int> collection)
         {
-            int result = 0;
+            long result = 0;
 
             for (int j = 0; j < collection.Count - 1; j++)
             {
-                result += collection[j] * (int)Math.Pow(10, collection.Count - j - 1);
+                result += collection[j] * (long)Math.Pow(10, collection.Count - j - 1);
             }
 
             result += collection[collection.Count - 1];

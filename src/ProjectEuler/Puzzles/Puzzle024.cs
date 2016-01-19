@@ -21,9 +21,10 @@ namespace MartinCostello.ProjectEuler.Puzzles
             var millionthPermutation = Maths.Permutations(collection)
                 .Skip(999999)
                 .Take(1)
-                .First();
+                .First()
+                .ToList();
 
-            Answer = string.Join(string.Empty, millionthPermutation);
+            Answer = Maths.FromDigits(millionthPermutation);
 
             return 0;
         }

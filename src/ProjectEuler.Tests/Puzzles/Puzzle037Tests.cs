@@ -35,10 +35,10 @@ namespace MartinCostello.ProjectEuler.Puzzles
         [InlineData(3797, false, 379)]
         [InlineData(379, false, 37)]
         [InlineData(37, false, 3)]
-        public static void Puzzle037_Truncate_Returns_Correct_Result(int value, bool removeLeft, int expected)
+        public static void Puzzle037_Truncate_Returns_Correct_Result(long value, bool removeLeft, long expected)
         {
             // Act
-            int actual = Puzzle037.Truncate(value, removeLeft);
+            long actual = Puzzle037.Truncate(value, removeLeft);
 
             // Assert
             Assert.Equal(expected, actual);

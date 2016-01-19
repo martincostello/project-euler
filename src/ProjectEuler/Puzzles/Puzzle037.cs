@@ -42,7 +42,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
         /// <returns>
         /// The truncated representation of <paramref name="value"/> after either the left or right digit is removed.
         /// </returns>
-        internal static int Truncate(int value, bool removeLeft)
+        internal static long Truncate(long value, bool removeLeft)
         {
             var digits = new List<int>(Maths.Digits(value));
 
@@ -81,7 +81,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
         /// </returns>
         private static bool AllTruncatedValuesArePrime(int value, bool removeLeft)
         {
-            int truncated = value;
+            long truncated = value;
 
             while (truncated > 9)
             {

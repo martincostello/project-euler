@@ -14,7 +14,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
         public static void Puzzle024_Returns_Correct_Solution()
         {
             // Arrange
-            string expected = "2783915460";
+            long expected = 2783915460;
 
             // Act and Assert
             Puzzles.AssertSolution<Puzzle024>(expected);
