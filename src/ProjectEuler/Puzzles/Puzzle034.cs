@@ -69,8 +69,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
                 }
             }
 
-            Answer = Enumerable.Range(3, upperBound - 3)
-                .AsParallel()
+            Answer = ParallelEnumerable.Range(3, upperBound - 3)
                 .Where((p) => IsCurious(p))
                 .Sum();
 

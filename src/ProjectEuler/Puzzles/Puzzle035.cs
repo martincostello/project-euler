@@ -75,8 +75,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
                 return -1;
             }
 
-            Answer = Enumerable.Range(2, maximum - 2)
-                .AsParallel()
+            Answer = ParallelEnumerable.Range(2, maximum - 2)
                 .Where((p) => Maths.IsPrime(p))
                 .Select((p) => GetRotations(p))
                 .Where((p) => p.All((r) => Maths.IsPrime(r)))

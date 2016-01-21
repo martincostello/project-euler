@@ -30,7 +30,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
 
             for (int i = 1; ; i++)
             {
-                long triangleNumber = Enumerable.Range(1, i)
+                long triangleNumber = ParallelEnumerable.Range(1, i)
                     .Select((p) => (long)p)
                     .Sum();
 
