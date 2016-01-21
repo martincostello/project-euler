@@ -3,6 +3,8 @@
 
 namespace MartinCostello.ProjectEuler.Puzzles
 {
+    using System.Linq;
+
     /// <summary>
     /// A class representing the solution to <c>https://projecteuler.net/problem=34</c>. This class cannot be inherited.
     /// </summary>
@@ -67,17 +69,10 @@ namespace MartinCostello.ProjectEuler.Puzzles
                 }
             }
 
-            sum = 0;
-
-            for (int n = 3; n < upperBound; n++)
-            {
-                if (IsCurious(n))
-                {
-                    sum += n;
-                }
-            }
-
-            Answer = sum;
+            Answer = Enumerable.Range(3, upperBound - 3)
+                .AsParallel()
+                .Where((p) => IsCurious(p))
+                .Sum();
 
             return 0;
         }
