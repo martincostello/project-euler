@@ -28,8 +28,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
                 return -1;
             }
 
-            Answer = Enumerable.Range(2, max - 2)
-                .AsParallel()
+            Answer = ParallelEnumerable.Range(2, max - 2)
                 .Where((p) => Maths.IsPrime(p))
                 .Select((p) => (long)p)
                 .Sum();
