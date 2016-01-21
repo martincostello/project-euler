@@ -5,6 +5,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
 
     /// <summary>
     /// A class representing the solution to <c>https://projecteuler.net/problem=35</c>. This class cannot be inherited.
@@ -74,33 +75,12 @@ namespace MartinCostello.ProjectEuler.Puzzles
                 return -1;
             }
 
-            var circularPrimes = new List<int>();
-
-            for (int n = 2; n < maximum; n++)
-            {
-                if (Maths.IsPrime(n))
-                {
-                    var rotations = GetRotations(n);
-
-                    bool isCircularPrime = true;
-
-                    foreach (int value in rotations)
-                    {
-                        if (!Maths.IsPrime(value))
-                        {
-                            isCircularPrime = false;
-                            break;
-                        }
-                    }
-
-                    if (isCircularPrime)
-                    {
-                        circularPrimes.Add(n);
-                    }
-                }
-            }
-
-            Answer = circularPrimes.Count;
+            Answer = Enumerable.Range(2, maximum - 2)
+                .AsParallel()
+                .Where((p) => Maths.IsPrime(p))
+                .Select((p) => GetRotations(p))
+                .Where((p) => p.All((r) => Maths.IsPrime(r)))
+                .Count();
 
             return 0;
         }
