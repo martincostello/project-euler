@@ -4,6 +4,7 @@
 namespace MartinCostello.ProjectEuler.Puzzles
 {
     using System;
+    using System.Linq;
 
     /// <summary>
     /// A class representing the solution to <c>https://projecteuler.net/problem=10</c>. This class cannot be inherited.
@@ -27,17 +28,11 @@ namespace MartinCostello.ProjectEuler.Puzzles
                 return -1;
             }
 
-            long sum = 0;
-
-            for (int n = 2; n < max; n++)
-            {
-                if (Maths.IsPrime(n))
-                {
-                    sum += n;
-                }
-            }
-
-            Answer = sum;
+            Answer = Enumerable.Range(2, max - 2)
+                .AsParallel()
+                .Where((p) => Maths.IsPrime(p))
+                .Select((p) => (long)p)
+                .Sum();
 
             return 0;
         }
