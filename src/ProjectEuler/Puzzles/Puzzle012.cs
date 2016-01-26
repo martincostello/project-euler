@@ -28,11 +28,11 @@ namespace MartinCostello.ProjectEuler.Puzzles
                 return -1;
             }
 
-            for (int i = 1; ; i++)
+            long triangleNumber = 0;
+
+            for (int n = 1; ; n++)
             {
-                long triangleNumber = ParallelEnumerable.Range(1, i)
-                    .Select((p) => (long)p)
-                    .Sum();
+                triangleNumber += n;
 
                 int numberOfFactors = Maths.GetFactors(triangleNumber).Count();
 
