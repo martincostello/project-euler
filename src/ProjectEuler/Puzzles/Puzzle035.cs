@@ -25,11 +25,11 @@ namespace MartinCostello.ProjectEuler.Puzzles
         /// <returns>
         /// An <see cref="IList{T}"/> containing the rotations of <paramref name="value"/>.
         /// </returns>
-        internal static IList<int> GetRotations(int value)
+        internal static IList<long> GetRotations(int value)
         {
             int[] digits = Maths.Digits(value);
 
-            var result = new List<int>()
+            var result = new List<long>()
             {
                 value,
             };
@@ -49,16 +49,16 @@ namespace MartinCostello.ProjectEuler.Puzzles
                     rotationDigits[index++] = digits[j];
                 }
 
-                int rotation = 0;
+                double rotation = 0;
 
                 for (int j = 0; j < rotationDigits.Length - 1; j++)
                 {
-                    rotation += rotationDigits[j] * (int)Math.Pow(10, rotationDigits.Length - j - 1);
+                    rotation += rotationDigits[j] * Math.Pow(10, rotationDigits.Length - j - 1);
                 }
 
                 rotation += rotationDigits[rotationDigits.Length - 1];
 
-                result.Add(rotation);
+                result.Add((long)rotation);
             }
 
             return result;

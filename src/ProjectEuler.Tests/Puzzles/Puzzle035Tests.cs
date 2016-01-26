@@ -34,11 +34,11 @@ namespace MartinCostello.ProjectEuler.Puzzles
         }
 
         [Theory]
-        [InlineData(197, new[] { 197, 971, 719 })]
-        public static void Puzzle035_GetRotations_Returns_Correct_Values(int value, IEnumerable<int> expected)
+        [InlineData(197, new long[] { 197, 971, 719 })]
+        public static void Puzzle035_GetRotations_Returns_Correct_Values(int value, IEnumerable<long> expected)
         {
             // Act
-            IEnumerable<int> actual = Puzzle035.GetRotations(value);
+            IEnumerable<long> actual = Puzzle035.GetRotations(value);
 
             // Assert
             Assert.Equal(expected, actual);
