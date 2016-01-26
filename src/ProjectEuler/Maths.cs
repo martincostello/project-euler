@@ -177,7 +177,7 @@ namespace MartinCostello.ProjectEuler
         /// <returns>
         /// An <see cref="IEnumerable{T}"/> which enumerates the factors of <paramref name="value"/>.
         /// </returns>
-        internal static IEnumerable<long> GetFactors(long value) => GetFactorsInternal(value).OrderBy((p) => p);
+        internal static IEnumerable<long> GetFactors(long value) => GetFactorsUnordered(value).OrderBy((p) => p);
 
         /// <summary>
         /// Returns the proper divisors of the specified number.
@@ -345,7 +345,7 @@ namespace MartinCostello.ProjectEuler
         /// <remarks>
         /// The values returned are unsorted.
         /// </remarks>
-        private static IEnumerable<long> GetFactorsInternal(long value)
+        internal static IEnumerable<long> GetFactorsUnordered(long value)
         {
             for (int i = 1; i * i <= value; i++)
             {

@@ -34,7 +34,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
             {
                 triangleNumber += n;
 
-                int numberOfFactors = Maths.GetFactors(triangleNumber).Count();
+                int numberOfFactors = Maths.GetFactorsUnordered(triangleNumber).Count();
 
                 if (numberOfFactors >= divisors)
                 {
