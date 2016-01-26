@@ -30,11 +30,11 @@ namespace MartinCostello.ProjectEuler.Puzzles
 
             var divisors = Enumerable.Range(1, max).ToList();
 
-            for (int i = 1; i < int.MaxValue; i++)
+            for (int n = max; ; n++)
             {
-                if (divisors.All((p) => i % p == 0))
+                if (divisors.All((p) => n % p == 0))
                 {
-                    Answer = i;
+                    Answer = n;
                     break;
                 }
             }
