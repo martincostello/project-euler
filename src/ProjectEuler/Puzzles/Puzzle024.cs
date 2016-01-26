@@ -20,7 +20,6 @@ namespace MartinCostello.ProjectEuler.Puzzles
 
             var millionthPermutation = Maths.Permutations(collection)
                 .Skip(999999)
-                .Take(1)
                 .First()
                 .ToList();
 
