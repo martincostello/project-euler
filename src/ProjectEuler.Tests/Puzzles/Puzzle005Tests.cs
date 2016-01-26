@@ -11,6 +11,9 @@ namespace MartinCostello.ProjectEuler.Puzzles
     public static class Puzzle005Tests
     {
         [NotCITheory]
+        [InlineData("2", 2)]
+        [InlineData("3", 6)]
+        [InlineData("4", 12)]
         [InlineData("10", 2520)]
         [InlineData("20", 232792560)]
         public static void Puzzle005_Returns_Correct_Solution(string max, int expected)
