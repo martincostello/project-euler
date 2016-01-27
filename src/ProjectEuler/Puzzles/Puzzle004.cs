@@ -36,7 +36,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
                 for (int j = (int)Math.Pow(10, digitCount - 1); j < i + 1; j++)
                 {
                     int product = i * j;
-                    int[] digits = Maths.Digits(product);
+                    IList<int> digits = Maths.Digits(product);
 
                     if (Helpers.IsPalindromic(digits))
                     {

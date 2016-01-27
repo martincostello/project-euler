@@ -81,7 +81,7 @@ namespace MartinCostello.ProjectEuler
         /// <returns>
         /// The digits of <paramref name="value"/> in base 10.
         /// </returns>
-        internal static int[] Digits(string value)
+        internal static IList<int> Digits(string value)
         {
             var digits = new List<int>();
 
@@ -90,7 +90,7 @@ namespace MartinCostello.ProjectEuler
                 digits.Add(ch - '0');
             }
 
-            return digits.ToArray();
+            return digits;
         }
 
         /// <summary>
@@ -100,7 +100,7 @@ namespace MartinCostello.ProjectEuler
         /// <returns>
         /// The digits of <paramref name="value"/> in base 10.
         /// </returns>
-        internal static int[] Digits(long value)
+        internal static IList<int> Digits(long value)
         {
             if (value < 0)
             {
@@ -122,7 +122,7 @@ namespace MartinCostello.ProjectEuler
                 digits.Reverse();
             }
 
-            return digits.ToArray();
+            return digits;
         }
 
         /// <summary>
@@ -324,12 +324,12 @@ namespace MartinCostello.ProjectEuler
             }
 
             var valuesToSum = new List<string>();
-            int[] digits = Digits(b);
+            IList<int> digits = Digits(b);
 
-            for (int i = digits.Length - 1; i >= 0; i--)
+            for (int i = digits.Count - 1; i >= 0; i--)
             {
                 string current = a;
-                int times = digits[i] * (int)Math.Pow(10, digits.Length - i - 1);
+                int times = digits[i] * (int)Math.Pow(10, digits.Count - i - 1);
 
                 if (times > 0)
                 {

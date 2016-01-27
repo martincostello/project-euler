@@ -4,6 +4,7 @@
 namespace MartinCostello.ProjectEuler.Puzzles
 {
     using System;
+    using System.Collections.Generic;
 
     /// <summary>
     /// A class representing the solution to <c>https://projecteuler.net/problem=30</c>. This class cannot be inherited.
@@ -29,9 +30,9 @@ namespace MartinCostello.ProjectEuler.Puzzles
         /// </returns>
         internal static bool IsSumOfDigitPowers(int value, int power)
         {
-            int[] digits = Maths.Digits(value);
+            IList<int> digits = Maths.Digits(value);
 
-            int sum = 0;
+            double sum = 0;
 
             foreach (int digit in digits)
             {
@@ -40,10 +41,10 @@ namespace MartinCostello.ProjectEuler.Puzzles
                     return false;
                 }
 
-                sum += (int)Math.Pow(digit, power);
+                sum += Math.Pow(digit, power);
             }
 
-            return sum == value;
+            return (int)sum == value;
         }
 
         /// <inheritdoc />
@@ -64,9 +65,9 @@ namespace MartinCostello.ProjectEuler.Puzzles
             for (int digitCount = 2; ; digitCount++)
             {
                 sum = digitCount * nineToThePower;
-                int[] digitsOfSum = Maths.Digits(sum);
+                IList<int> digitsOfSum = Maths.Digits(sum);
 
-                if (digitsOfSum.Length <= digitCount)
+                if (digitsOfSum.Count <= digitCount)
                 {
                     upperBound = sum;
                     break;

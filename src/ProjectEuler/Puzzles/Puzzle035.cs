@@ -38,14 +38,14 @@ namespace MartinCostello.ProjectEuler.Puzzles
                 return result;
             }
 
-            int[] digits = Maths.Digits(value);
+            IList<int> digits = Maths.Digits(value);
 
-            for (int i = 0; i < digits.Length - 1; i++)
+            for (int i = 0; i < digits.Count - 1; i++)
             {
-                var rotationDigits = new int[digits.Length];
+                var rotationDigits = new int[digits.Count];
                 int index = 0;
 
-                for (int j = i + 1; j < digits.Length; j++)
+                for (int j = i + 1; j < digits.Count; j++)
                 {
                     rotationDigits[index++] = digits[j];
                 }
