@@ -29,7 +29,6 @@ namespace MartinCostello.ProjectEuler.Puzzles
             }
 
             long sum = ParallelEnumerable.Range(3, max - 3)
-                .Where((p) => p % 2 != 0)
                 .Where((p) => Maths.IsPrime(p))
                 .Select((p) => (long)p)
                 .Sum();
