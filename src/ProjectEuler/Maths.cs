@@ -220,6 +220,16 @@ namespace MartinCostello.ProjectEuler
                 return false;
             }
 
+            if (value == 2)
+            {
+                return true;
+            }
+
+            if (value % 2 == 0)
+            {
+                return false;
+            }
+
             bool result;
 
             if (_primes.TryGetValue(value, out result))
