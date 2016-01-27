@@ -16,18 +16,8 @@ namespace MartinCostello.ProjectEuler.Puzzles
         [InlineData("6", 2L + 3L + 5L)]
         [InlineData("7", 2L + 3L + 5L)]
         [InlineData("10", 2L + 3L + 5L + 7L)]
-        public static void Puzzle010_Returns_Correct_Solution(string value, long expected)
-        {
-            // Arrange
-            string[] args = new[] { value };
-
-            // Act and Assert
-            Puzzles.AssertSolution<Puzzle010>(args, expected);
-        }
-
-        [NotCITheory]
         [InlineData("2000000", 142913828922L)]
-        public static void Puzzle010_Returns_Correct_Solution_Slow(string value, long expected)
+        public static void Puzzle010_Returns_Correct_Solution(string value, long expected)
         {
             // Arrange
             string[] args = new[] { value };

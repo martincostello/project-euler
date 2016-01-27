@@ -309,6 +309,59 @@ namespace MartinCostello.ProjectEuler
         }
 
         /// <summary>
+        /// Enumerates the prime numbers below the specified value.
+        /// </summary>
+        /// <param name="maximum">The maximum prime number.</param>
+        /// <returns>
+        /// An <see cref="IEnumerable{T}"/> that returns all the prime numbers below <paramref name="maximum"/>.
+        /// </returns>
+        internal static IEnumerable<int> Primes(int maximum)
+        {
+            // Based on https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes#Algorithm_and_variants
+            if (maximum < 2)
+            {
+                yield break;
+            }
+
+            // Array of prime candidates. A value of false at an
+            // index means that the value of the index is prime.
+            bool[] primeCandidates = new bool[maximum];
+
+            // 0 and 1 are not prime
+            primeCandidates[0] = true;
+            primeCandidates[1] = true;
+
+            int root = (int)Math.Sqrt(maximum);
+
+            for (int i = 2; i <= root; i++)
+            {
+                if (!primeCandidates[i])
+                {
+                    // Mark all values i^2 * ij up to the maximum as not prime
+                    for (int j = 0; ; j++)
+                    {
+                        int k = (i * i) + (i * j);
+
+                        if (k >= maximum)
+                        {
+                            break;
+                        }
+
+                        primeCandidates[k] = true;
+                    }
+                }
+            }
+
+            for (int i = 2; i < primeCandidates.Length; i++)
+            {
+                if (!primeCandidates[i])
+                {
+                    yield return i;
+                }
+            }
+        }
+
+        /// <summary>
         /// Returns the product of two specified values.
         /// </summary>
         /// <param name="a">The first value.</param>

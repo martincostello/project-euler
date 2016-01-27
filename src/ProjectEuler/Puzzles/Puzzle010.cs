@@ -20,20 +20,18 @@ namespace MartinCostello.ProjectEuler.Puzzles
         /// <inheritdoc />
         protected override int SolveCore(string[] args)
         {
-            int max;
+            int maximum;
 
-            if (!TryParseInt32(args[0], out max) || max < 2)
+            if (!TryParseInt32(args[0], out maximum) || maximum < 2)
             {
                 Console.Error.WriteLine("The specified number is invalid.");
                 return -1;
             }
 
-            long sum = ParallelEnumerable.Range(3, max - 3)
-                .Where((p) => Maths.IsPrime(p))
+            Answer = Maths.Primes(maximum)
+                .AsParallel()
                 .Select((p) => (long)p)
                 .Sum();
-
-            Answer = sum + 2;
 
             return 0;
         }

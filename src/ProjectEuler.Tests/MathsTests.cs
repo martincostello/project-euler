@@ -330,5 +330,53 @@ namespace MartinCostello.ProjectEuler
             // Assert
             Assert.Equal(expected, actual);
         }
+
+        [Theory]
+        [InlineData(-2, new int[0])]
+        [InlineData(-1, new int[0])]
+        [InlineData(0, new int[0])]
+        [InlineData(1, new int[0])]
+        [InlineData(2, new int[0])]
+        [InlineData(3, new[] { 2 })]
+        [InlineData(4, new[] { 2, 3 })]
+        [InlineData(5, new[] { 2, 3 })]
+        [InlineData(6, new[] { 2, 3, 5 })]
+        [InlineData(7, new[] { 2, 3, 5 })]
+        [InlineData(8, new[] { 2, 3, 5, 7 })]
+        [InlineData(9, new[] { 2, 3, 5, 7 })]
+        [InlineData(10, new[] { 2, 3, 5, 7 })]
+        [InlineData(11, new[] { 2, 3, 5, 7 })]
+        [InlineData(12, new[] { 2, 3, 5, 7, 11 })]
+        [InlineData(13, new[] { 2, 3, 5, 7, 11 })]
+        [InlineData(14, new[] { 2, 3, 5, 7, 11, 13 })]
+        [InlineData(15, new[] { 2, 3, 5, 7, 11, 13 })]
+        [InlineData(16, new[] { 2, 3, 5, 7, 11, 13 })]
+        [InlineData(17, new[] { 2, 3, 5, 7, 11, 13 })]
+        [InlineData(18, new[] { 2, 3, 5, 7, 11, 13, 17 })]
+        [InlineData(19, new[] { 2, 3, 5, 7, 11, 13, 17 })]
+        [InlineData(20, new[] { 2, 3, 5, 7, 11, 13, 17, 19 })]
+        [InlineData(21, new[] { 2, 3, 5, 7, 11, 13, 17, 19 })]
+        [InlineData(22, new[] { 2, 3, 5, 7, 11, 13, 17, 19 })]
+        [InlineData(23, new[] { 2, 3, 5, 7, 11, 13, 17, 19 })]
+        [InlineData(24, new[] { 2, 3, 5, 7, 11, 13, 17, 19, 23 })]
+        [InlineData(25, new[] { 2, 3, 5, 7, 11, 13, 17, 19, 23 })]
+        [InlineData(26, new[] { 2, 3, 5, 7, 11, 13, 17, 19, 23 })]
+        [InlineData(27, new[] { 2, 3, 5, 7, 11, 13, 17, 19, 23 })]
+        [InlineData(28, new[] { 2, 3, 5, 7, 11, 13, 17, 19, 23 })]
+        [InlineData(29, new[] { 2, 3, 5, 7, 11, 13, 17, 19, 23 })]
+        [InlineData(30, new[] { 2, 3, 5, 7, 11, 13, 17, 19, 23, 29 })]
+        [InlineData(31, new[] { 2, 3, 5, 7, 11, 13, 17, 19, 23, 29 })]
+        [InlineData(37, new[] { 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31 })]
+        [InlineData(41, new[] { 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37 })]
+        [InlineData(43, new[] { 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41 })]
+        [InlineData(47, new[] { 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43 })]
+        public static void Maths_Primes_Returns_Correct_Sequence(int maximum, IEnumerable<int> expected)
+        {
+            // Act
+            IEnumerable<int> actual = Maths.Primes(maximum);
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
     }
 }
