@@ -28,10 +28,13 @@ namespace MartinCostello.ProjectEuler.Puzzles
                 return -1;
             }
 
-            Answer = ParallelEnumerable.Range(2, max - 2)
+            long sum = ParallelEnumerable.Range(3, max - 3)
+                .Where((p) => p % 2 != 0)
                 .Where((p) => Maths.IsPrime(p))
                 .Select((p) => (long)p)
                 .Sum();
+
+            Answer = sum + 2;
 
             return 0;
         }
