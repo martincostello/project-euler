@@ -10,7 +10,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
     /// </summary>
     public static class Puzzle007Tests
     {
-        [NotCITheory]
+        [Theory]
         [InlineData("6", 13)]
         [InlineData("10001", 104743)]
         public static void Puzzle007_Returns_Correct_Solution(string value, int expected)
