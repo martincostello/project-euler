@@ -237,8 +237,6 @@ namespace MartinCostello.ProjectEuler
                 return result;
             }
 
-            long sqrt = (long)Math.Sqrt(value);
-
             result = true;
 
             long i = 5;
