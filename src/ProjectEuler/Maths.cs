@@ -220,12 +220,12 @@ namespace MartinCostello.ProjectEuler
                 return false;
             }
 
-            if (value == 2)
+            if (value < 4)
             {
                 return true;
             }
 
-            if (value % 2 == 0)
+            if (value % 2 == 0 || value % 3 == 0)
             {
                 return false;
             }
@@ -241,13 +241,17 @@ namespace MartinCostello.ProjectEuler
 
             result = true;
 
-            for (long i = sqrt; i > 1; i--)
+            long i = 5;
+
+            while (i * i <= value)
             {
-                if (value % i == 0)
+                if (value % i == 0 || value % (i + 2) == 0)
                 {
                     result = false;
                     break;
                 }
+
+                i += 6;
             }
 
             return _primes[value] = result;
