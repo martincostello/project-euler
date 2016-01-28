@@ -359,6 +359,15 @@ namespace MartinCostello.ProjectEuler
                     yield return i;
                 }
             }
+
+            // Only odd values are prime (except 2)
+            for (int i = 3; i < primeCandidates.Length; i += 2)
+            {
+                if (!primeCandidates[i])
+                {
+                    _primes[i] = true;
+                }
+            }
         }
 
         /// <summary>
