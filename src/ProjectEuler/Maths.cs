@@ -19,6 +19,27 @@ namespace MartinCostello.ProjectEuler
         private static readonly IDictionary<long, bool> _primes = new ConcurrentDictionary<long, bool>();
 
         /// <summary>
+        /// Returns the binomial coefficient for the specified values.
+        /// </summary>
+        /// <param name="n">The number of values/</param>
+        /// <param name="k">The number of values to select.</param>
+        /// <returns>
+        /// The value of the binomial coefficient for <paramref name="n"/> and <paramref name="k"/>.
+        /// </returns>
+        internal static long Binomial(int n, int k)
+        {
+            double result = 1;
+
+            for (int i = 1; i <= k; i++)
+            {
+                result *= n - (k - i);
+                result /= i;
+            }
+
+            return (long)result;
+        }
+
+        /// <summary>
         /// Returns the sum of two numbers specified as strings and returns the result.
         /// </summary>
         /// <param name="x">The first number.</param>
