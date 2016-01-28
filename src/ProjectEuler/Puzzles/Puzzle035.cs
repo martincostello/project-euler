@@ -81,8 +81,8 @@ namespace MartinCostello.ProjectEuler.Puzzles
                 return -1;
             }
 
-            Answer = ParallelEnumerable.Range(2, maximum - 2)
-                .Where((p) => Maths.IsPrime(p))
+            Answer = Maths.Primes(maximum)
+                .AsParallel()
                 .Select((p) => GetRotations(p))
                 .Where((p) => p.All(Maths.IsPrime))
                 .Count();
