@@ -64,6 +64,7 @@
     <Compile Include="NotCITheoryAttribute.cs" />
     <Compile Include="ProgramTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Puzzles\MaximumPathPuzzleTests.cs" />
     <Compile Include="Puzzles\Puzzle001Tests.cs" />
     <Compile Include="Puzzles\Puzzle002Tests.cs" />
     <Compile Include="Puzzles\Puzzle003Tests.cs" />
@@ -81,6 +82,7 @@
     <Compile Include="Puzzles\Puzzle015Tests.cs" />
     <Compile Include="Puzzles\Puzzle016Tests.cs" />
     <Compile Include="Puzzles\Puzzle017Tests.cs" />
+    <Compile Include="Puzzles\Puzzle018Tests.cs" />
     <Compile Include="Puzzles\Puzzle019Tests.cs" />
     <Compile Include="Puzzles\Puzzle020Tests.cs" />
     <Compile Include="Puzzles\Puzzle021Tests.cs" />
@@ -95,6 +97,7 @@
     <Compile Include="Puzzles\Puzzle035Tests.cs" />
     <Compile Include="Puzzles\Puzzle036Tests.cs" />
     <Compile Include="Puzzles\Puzzle037Tests.cs" />
+    <Compile Include="Puzzles\Puzzle067Tests.cs" />
     <Compile Include="Puzzles\Puzzles.cs" />
     <Compile Include="PuzzleTests.cs" />
   </ItemGroup>
