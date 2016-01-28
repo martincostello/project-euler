@@ -35,7 +35,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
         [System.Diagnostics.CodeAnalysis.SuppressMessage(
             "Microsoft.Usage",
             "CA2202:Do not dispose objects multiple times",
-            Justification = "The stream is not disposed of multip[l")]
+            Justification = "The stream is not disposed of multiple times.")]
         internal IList<string> ReadNames()
         {
             string namesText;
