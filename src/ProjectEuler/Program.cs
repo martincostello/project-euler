@@ -52,7 +52,7 @@ namespace MartinCostello.ProjectEuler
         /// </returns>
         internal static int SolvePuzzle(Type type, string[] args)
         {
-            IPuzzle puzzle = Activator.CreateInstance(type, nonPublic: true) as IPuzzle;
+            IPuzzle puzzle = Activator.CreateInstance(type) as IPuzzle;
 
             Console.WriteLine();
             Console.WriteLine("Project Euler - Puzzle {0}", type.Name.Replace("Puzzle", string.Empty).TrimStart('0'));

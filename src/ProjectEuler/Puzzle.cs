@@ -7,6 +7,7 @@ namespace MartinCostello.ProjectEuler
     using System.Collections.Generic;
     using System.Globalization;
     using System.IO;
+    using System.Reflection;
 
     /// <summary>
     /// The base class for puzzles.
@@ -86,7 +87,7 @@ namespace MartinCostello.ProjectEuler
         /// </returns>
         protected Stream ReadResource()
         {
-            Type thisType = GetType();
+            var thisType = GetType().GetTypeInfo();
             string name = FormattableString.Invariant($"{thisType.FullName}.Data.txt");
 
             return thisType.Assembly.GetManifestResourceStream(name);

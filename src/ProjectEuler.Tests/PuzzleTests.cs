@@ -5,6 +5,7 @@ namespace MartinCostello.ProjectEuler
 {
     using System;
     using System.Linq;
+    using System.Reflection;
     using Xunit;
 
     /// <summary>
@@ -42,9 +43,9 @@ namespace MartinCostello.ProjectEuler
             // Arrange
             var puzzleType = typeof(IPuzzle);
 
-            var puzzleTypes = puzzleType.Assembly
+            var puzzleTypes = puzzleType.GetTypeInfo().Assembly
                 .GetTypes()
-                .Where((p) => !p.IsAbstract)
+                .Where((p) => !p.GetTypeInfo().IsAbstract)
                 .Where((p) => puzzleType.IsAssignableFrom(p))
                 .ToList();
 
