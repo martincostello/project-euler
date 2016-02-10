@@ -11,7 +11,8 @@ namespace MartinCostello.ProjectEuler.Puzzles
     public static class Puzzle048Tests
     {
         [Theory]
-        [InlineData("10", "10405071317")]
+        [InlineData("10", "0405071317")]
+        [InlineData("1000", "9110846700")]
         public static void Puzzle048_Returns_Correct_Solution(string maximum, string expected)
         {
             // Arrange

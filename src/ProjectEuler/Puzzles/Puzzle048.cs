@@ -6,6 +6,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
     using System;
     using System.Globalization;
     using System.Linq;
+    using System.Numerics;
 
     /// <summary>
     /// A class representing the solution to <c>https://projecteuler.net/problem=48</c>. This class cannot be inherited.
@@ -29,9 +30,17 @@ namespace MartinCostello.ProjectEuler.Puzzles
                 return -1;
             }
 
-            Answer = Enumerable.Range(1, n)
-                .Select((p) => Maths.Pow(p.ToString(CultureInfo.InvariantCulture), p))
-                .Aggregate((x, y) => Maths.Sum(x, y));
+            BigInteger value = 0;
+
+            foreach (int exponent in Enumerable.Range(1, n))
+            {
+                value += BigInteger.Pow(exponent, exponent);
+            }
+
+            string result = value.ToString(CultureInfo.InvariantCulture);
+            result = result.Substring(Math.Max(0, result.Length - 10), 10);
+
+            Answer = result;
 
             return 0;
         }
