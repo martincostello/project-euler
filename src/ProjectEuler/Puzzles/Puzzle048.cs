@@ -30,7 +30,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
                 return -1;
             }
 
-            BigInteger value = 0;
+            BigInteger value = BigInteger.Zero;
 
             foreach (int exponent in Enumerable.Range(1, n))
             {
