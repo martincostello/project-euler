@@ -7,6 +7,7 @@ namespace MartinCostello.ProjectEuler
     using System.Collections.Concurrent;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Numerics;
 
     /// <summary>
     /// A class containing mathematics-related methods. This class cannot be inherited.
@@ -40,73 +41,22 @@ namespace MartinCostello.ProjectEuler
         }
 
         /// <summary>
-        /// Returns the sum of two numbers specified as strings and returns the result.
-        /// </summary>
-        /// <param name="x">The first number.</param>
-        /// <param name="y">The second number.</param>
-        /// <returns>
-        /// A <see cref="string"/> containing the sum of <paramref name="x"/> and <paramref name="y"/>.
-        /// </returns>
-        internal static string Sum(string x, string y)
-        {
-            string longest = x.Length <= y.Length ? y : x;
-            string shortest = x.Length <= y.Length ? x : y;
-
-            var first = new Stack<int>(Digits(longest));
-            var second = new Stack<int>();
-
-            // Pad the second value with the shortest number to have a
-            // stack of characters the same length as the longest one.
-            for (int i = 0; i < longest.Length - shortest.Length; i++)
-            {
-                second.Push(0);
-            }
-
-            foreach (int i in Digits(shortest))
-            {
-                second.Push(i);
-            }
-
-            var result = new Stack<char>();
-
-            int carry = 0;
-
-            while (first.Count > 0)
-            {
-                int firstNumber = first.Pop();
-                int secondNumber = second.Pop();
-
-                // Add the numbers and include the tens carry over from the last iteration
-                int sum = firstNumber + secondNumber + carry;
-
-                // Carry over the tens
-                carry = sum / 10;
-
-                // Add the ones to the result
-                result.Push((char)((sum % 10) + '0'));
-            }
-
-            // Add the digit for any left over carry value
-            if (carry != 0)
-            {
-                result.Push((char)(carry + '0'));
-            }
-
-            return new string(result.ToArray());
-        }
-
-        /// <summary>
         /// Returns the digits of the specified value in base 10.
         /// </summary>
         /// <param name="value">The value to get the digits for.</param>
         /// <returns>
         /// The digits of <paramref name="value"/> in base 10.
         /// </returns>
-        internal static IList<int> Digits(string value)
+        internal static IList<int> Digits(BigInteger value)
         {
+            if (value < BigInteger.Zero)
+            {
+                value = BigInteger.Negate(value);
+            }
+
             var digits = new List<int>();
 
-            foreach (char ch in value.TrimStart('-'))
+            foreach (char ch in value.ToString())
             {
                 digits.Add(ch - '0');
             }
@@ -307,31 +257,6 @@ namespace MartinCostello.ProjectEuler
         }
 
         /// <summary>
-        /// Returns the product of two specified values.
-        /// </summary>
-        /// <param name="a">The first value.</param>
-        /// <param name="b">The second value.</param>
-        /// <returns>
-        /// A <see cref="string"/> representing the product of <paramref name="a"/> and <paramref name="b"/>.
-        /// </returns>
-        internal static string Pow(string a, int b)
-        {
-            if (b == 0)
-            {
-                return "1";
-            }
-
-            string current = a;
-
-            for (int n = 0; n < b - 1; n++)
-            {
-                current = Product(current, a);
-            }
-
-            return current;
-        }
-
-        /// <summary>
         /// Enumerates the prime numbers below the specified value.
         /// </summary>
         /// <param name="maximum">The maximum prime number.</param>
@@ -391,43 +316,6 @@ namespace MartinCostello.ProjectEuler
                     _primes[i] = true;
                 }
             }
-        }
-
-        /// <summary>
-        /// Returns the product of two specified values.
-        /// </summary>
-        /// <param name="a">The first value.</param>
-        /// <param name="b">The second value.</param>
-        /// <returns>
-        /// A <see cref="string"/> representing the product of <paramref name="a"/> and <paramref name="b"/>.
-        /// </returns>
-        internal static string Product(string a, string b)
-        {
-            if (string.Equals(a, "0", StringComparison.Ordinal) || string.Equals(b, "0", StringComparison.Ordinal))
-            {
-                return "0";
-            }
-
-            var valuesToSum = new List<string>();
-            IList<int> digits = Digits(b);
-
-            for (int i = digits.Count - 1; i >= 0; i--)
-            {
-                string current = a;
-                int times = digits[i] * (int)Math.Pow(10, digits.Count - i - 1);
-
-                if (times > 0)
-                {
-                    for (int j = 1; j < times; j++)
-                    {
-                        current = Sum(current, a);
-                    }
-
-                    valuesToSum.Add(current);
-                }
-            }
-
-            return valuesToSum.Aggregate((x, y) => Sum(x, y));
         }
 
         /// <summary>

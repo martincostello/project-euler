@@ -4,6 +4,7 @@
 namespace MartinCostello.ProjectEuler.Puzzles
 {
     using System.Linq;
+    using System.Numerics;
     using Xunit;
 
     /// <summary>
@@ -25,7 +26,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
         public static void Puzzle025_Fibonacci_Returns_Correct_Sequence()
         {
             // Arrange
-            var expected = new[] { "1", "1", "2", "3", "5", "8", "13", "21", "34", "55", "89", "144" };
+            var expected = new BigInteger[] { 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144 };
 
             // Act
             var actual = Puzzle025.Fibonacci()

@@ -5,6 +5,7 @@ namespace MartinCostello.ProjectEuler
 {
     using System.Collections.Generic;
     using System.Linq;
+    using System.Numerics;
     using Xunit;
 
     /// <summary>
@@ -12,20 +13,6 @@ namespace MartinCostello.ProjectEuler
     /// </summary>
     public static class MathsTests
     {
-        [Theory]
-        [InlineData("1", "1", "2")]
-        [InlineData("9", "9", "18")]
-        [InlineData("15", "999", "1014")]
-        [InlineData("100", "0", "100")]
-        public static void Maths_Sum_Returns_Correct_Value(string x, string y, string expected)
-        {
-            // Act
-            string actual = Maths.Sum(x, y);
-
-            // Assert
-            Assert.Equal(expected, actual);
-        }
-
         [Theory]
         [InlineData("-11", new[] { 1, 1 })]
         [InlineData("-10", new[] { 1, 0 })]
@@ -45,8 +32,11 @@ namespace MartinCostello.ProjectEuler
         [InlineData("1002", new[] { 1, 0, 0, 2 })]
         public static void Maths_Digits_Returns_Correct_Value(string value, IEnumerable<int> expected)
         {
+            // Arrange
+            BigInteger parsed = BigInteger.Parse(value);
+
             // Act
-            var actual = Maths.Digits(value);
+            var actual = Maths.Digits(parsed);
 
             // Assert
             Assert.Equal(expected, actual);
@@ -292,43 +282,6 @@ namespace MartinCostello.ProjectEuler
             Assert.Equal(new[] { "b", "c", "a" }, actual[3]);
             Assert.Equal(new[] { "c", "a", "b" }, actual[4]);
             Assert.Equal(new[] { "c", "b", "a" }, actual[5]);
-        }
-
-        [Theory]
-        [InlineData("2", 0, "1")]
-        [InlineData("2", 1, "2")]
-        [InlineData("2", 2, "4")]
-        [InlineData("2", 3, "8")]
-        [InlineData("2", 4, "16")]
-        [InlineData("10", 0, "1")]
-        [InlineData("10", 1, "10")]
-        [InlineData("10", 2, "100")]
-        [InlineData("10", 3, "1000")]
-        [InlineData("10", 4, "10000")]
-        public static void Maths_Pow_Returns_Correct_Value(string x, int y, string expected)
-        {
-            // Act
-            string actual = Maths.Pow(x, y);
-
-            // Assert
-            Assert.Equal(expected, actual);
-        }
-
-        [Theory]
-        [InlineData("9", "0", "0")]
-        [InlineData("2", "2", "4")]
-        [InlineData("2", "9", "18")]
-        [InlineData("3", "9", "27")]
-        [InlineData("10", "10", "100")]
-        [InlineData("100", "100", "10000")]
-        [InlineData("612", "24", "14688")]
-        public static void Maths_Product_Returns_Correct_Value(string x, string y, string expected)
-        {
-            // Act
-            string actual = Maths.Product(x, y);
-
-            // Assert
-            Assert.Equal(expected, actual);
         }
 
         [Theory]

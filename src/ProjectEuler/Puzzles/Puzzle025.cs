@@ -4,32 +4,38 @@
 namespace MartinCostello.ProjectEuler.Puzzles
 {
     using System.Collections.Generic;
+    using System.Numerics;
 
     /// <summary>
     /// A class representing the solution to <c>https://projecteuler.net/problem=25</c>. This class cannot be inherited.
     /// </summary>
     internal sealed class Puzzle025 : Puzzle
     {
+        /// <summary>
+        /// The <see cref="BigInteger"/> that is the first number with 1,000 digits. This field is read-only.
+        /// </summary>
+        private static readonly BigInteger Limit = BigInteger.Parse("1" + new string('0', 999));
+
         /// <inheritdoc />
         public override string Question => "What is the number of the first term in the Fibonacci sequence to contain 1,000 digits?";
 
         /// <summary>
-        /// Returns an <see cref="IEnumerable{T}"/> of <see cref="string"/> that enumerates the Fibonacci sequence.
+        /// Returns an <see cref="IEnumerable{T}"/> of <see cref="BigInteger"/> that enumerates the Fibonacci sequence.
         /// </summary>
         /// <returns>
-        /// An <see cref="IEnumerable{T}"/> of <see cref="string"/> that enumerates the Fibonacci sequence.
+        /// An <see cref="IEnumerable{T}"/> of <see cref="BigInteger"/> that enumerates the Fibonacci sequence.
         /// </returns>
-        internal static IEnumerable<string> Fibonacci()
+        internal static IEnumerable<BigInteger> Fibonacci()
         {
-            string x = "1";
-            string y = "1";
+            BigInteger x = 1;
+            BigInteger y = 1;
 
             yield return x;
             yield return y;
 
             while (true)
             {
-                string next = Maths.Sum(x, y);
+                BigInteger next = x + y;
 
                 yield return next;
 
@@ -43,11 +49,11 @@ namespace MartinCostello.ProjectEuler.Puzzles
         {
             int index = 0;
 
-            foreach (string value in Fibonacci())
+            foreach (BigInteger value in Fibonacci())
             {
                 index++;
 
-                if (value.Length == 1000)
+                if (value >= Limit)
                 {
                     Answer = index;
                     break;

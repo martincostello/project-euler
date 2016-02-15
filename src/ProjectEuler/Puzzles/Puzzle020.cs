@@ -4,8 +4,8 @@
 namespace MartinCostello.ProjectEuler.Puzzles
 {
     using System;
-    using System.Globalization;
     using System.Linq;
+    using System.Numerics;
 
     /// <summary>
     /// A class representing the solution to <c>https://projecteuler.net/problem=20</c>. This class cannot be inherited.
@@ -29,16 +29,16 @@ namespace MartinCostello.ProjectEuler.Puzzles
                 return -1;
             }
 
-            string factorial = string.Empty;
+            BigInteger factorial = 1;
 
             if (number > 0)
             {
-                factorial = number.ToString(CultureInfo.InvariantCulture);
+                factorial = number;
 
                 // For n -> 0
                 for (int n = number - 1; n > 0; n--)
                 {
-                    factorial = Maths.Product(factorial, n.ToString(CultureInfo.InvariantCulture));
+                    factorial = factorial * n;
                 }
             }
 

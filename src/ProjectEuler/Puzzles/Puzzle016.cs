@@ -5,6 +5,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
 {
     using System;
     using System.Linq;
+    using System.Numerics;
 
     /// <summary>
     /// A class representing the solution to <c>https://projecteuler.net/problem=16</c>. This class cannot be inherited.
@@ -28,7 +29,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
                 return -1;
             }
 
-            string value = Maths.Pow("2", power);
+            BigInteger value = BigInteger.Pow(2, power);
 
             Answer = Maths.Digits(value).Sum();
 
