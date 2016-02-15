@@ -4,8 +4,6 @@
 namespace MartinCostello.ProjectEuler.Puzzles
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
 
     /// <summary>
     /// A class representing the solution to <c>https://projecteuler.net/problem=15</c>. This class cannot be inherited.
