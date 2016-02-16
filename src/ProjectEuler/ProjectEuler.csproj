@@ -84,6 +84,7 @@
     <Compile Include="Puzzles\Puzzle028.cs" />
     <Compile Include="Puzzles\Puzzle029.cs" />
     <Compile Include="Puzzles\Puzzle030.cs" />
+    <Compile Include="Puzzles\Puzzle031.cs" />
     <Compile Include="Puzzles\Puzzle034.cs" />
     <Compile Include="Puzzles\Puzzle035.cs" />
     <Compile Include="Puzzles\Puzzle036.cs" />
