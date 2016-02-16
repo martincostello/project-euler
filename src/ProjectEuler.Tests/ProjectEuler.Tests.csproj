@@ -91,6 +91,7 @@
     <Compile Include="Puzzles\Puzzle023Tests.cs" />
     <Compile Include="Puzzles\Puzzle024Tests.cs" />
     <Compile Include="Puzzles\Puzzle025Tests.cs" />
+    <Compile Include="Puzzles\Puzzle026Tests.cs" />
     <Compile Include="Puzzles\Puzzle027Tests.cs" />
     <Compile Include="Puzzles\Puzzle028Tests.cs" />
     <Compile Include="Puzzles\Puzzle029Tests.cs" />
