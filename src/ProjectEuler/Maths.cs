@@ -130,16 +130,16 @@ namespace MartinCostello.ProjectEuler
         /// </returns>
         internal static long FromDigits(IList<int> collection)
         {
-            long result = 0;
+            double result = 0;
 
             for (int j = 0; j < collection.Count - 1; j++)
             {
-                result += collection[j] * (long)Math.Pow(10, collection.Count - j - 1);
+                result += collection[j] * Math.Pow(10, collection.Count - j - 1);
             }
 
             result += collection[collection.Count - 1];
 
-            return result;
+            return (long)result;
         }
 
         /// <summary>
