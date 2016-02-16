@@ -6,6 +6,7 @@ namespace MartinCostello.ProjectEuler
     using System;
     using System.Collections.Concurrent;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.Linq;
     using System.Numerics;
 
@@ -56,7 +57,7 @@ namespace MartinCostello.ProjectEuler
 
             var digits = new List<int>();
 
-            foreach (char ch in value.ToString())
+            foreach (char ch in value.ToString(CultureInfo.InvariantCulture))
             {
                 digits.Add(ch - '0');
             }
