@@ -3,7 +3,7 @@
 
 namespace MartinCostello.ProjectEuler.Puzzles
 {
-    using System;
+    using NodaTime;
 
     /// <summary>
     /// A class representing the solution to <c>https://projecteuler.net/problem=19</c>. This class cannot be inherited.
@@ -16,19 +16,19 @@ namespace MartinCostello.ProjectEuler.Puzzles
         /// <inheritdoc />
         protected override int SolveCore(string[] args)
         {
-            DateTime date = new DateTime(1901, 1, 1, 0, 0, 0, DateTimeKind.Utc);
-            DateTime max = date.AddYears(100);
+            var date = new LocalDate(1901, 1, 1);
+            var max = date.PlusYears(100);
 
             int sundaysOnTheFirstOfTheMonth = 0;
 
             while (date < max)
             {
-                if (date.DayOfWeek == DayOfWeek.Sunday)
+                if (date.IsoDayOfWeek == IsoDayOfWeek.Sunday)
                 {
                     sundaysOnTheFirstOfTheMonth++;
                 }
 
-                date = date.AddMonths(1);
+                date = date.PlusMonths(1);
             }
 
             Answer = sundaysOnTheFirstOfTheMonth;
