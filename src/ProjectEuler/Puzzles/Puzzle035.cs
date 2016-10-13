@@ -77,7 +77,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
 
             if (!TryParseInt32(args[0], out maximum) || maximum < 2)
             {
-                Console.Error.WriteLine("The specified number is invalid.");
+                Console.WriteLine("The specified number is invalid.");
                 return -1;
             }
 

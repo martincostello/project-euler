@@ -25,7 +25,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
 
             if (!TryParseInt32(args[0], out digitCount) || digitCount < 2)
             {
-                Console.Error.WriteLine("The specified number of digits is invalid.");
+                Console.WriteLine("The specified number of digits is invalid.");
                 return -1;
             }
 
