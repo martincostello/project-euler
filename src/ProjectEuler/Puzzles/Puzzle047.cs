@@ -24,7 +24,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
 
             if (!TryParseInt32(args[0], out factors) || factors < 2)
             {
-                Console.Error.WriteLine("The specified number of factors is invalid.");
+                Console.WriteLine("The specified number of factors is invalid.");
                 return -1;
             }
 

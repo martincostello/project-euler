@@ -23,7 +23,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
 
             if (!TryParseInt32(args[0], out sides) || sides < 1 || sides % 2 == 0)
             {
-                Console.Error.WriteLine("The specified number of sides is invalid.");
+                Console.WriteLine("The specified number of sides is invalid.");
                 return -1;
             }
 

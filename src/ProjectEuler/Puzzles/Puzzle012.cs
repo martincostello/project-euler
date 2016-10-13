@@ -24,7 +24,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
 
             if (!TryParseInt32(args[0], out divisors) || divisors < 1)
             {
-                Console.Error.WriteLine("The specified number of divisors is invalid.");
+                Console.WriteLine("The specified number of divisors is invalid.");
                 return -1;
             }
 

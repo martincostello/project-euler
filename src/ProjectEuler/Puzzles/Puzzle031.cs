@@ -29,7 +29,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
 
             if (!TryParseInt32(args[0], out target) || target < 1)
             {
-                Console.Error.WriteLine("The specified total is invalid.");
+                Console.WriteLine("The specified total is invalid.");
                 return -1;
             }
 

@@ -24,7 +24,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
 
             if (!TryParseInt32(args[0], out max) || max < 2)
             {
-                Console.Error.WriteLine("The specified maximum number is invalid.");
+                Console.WriteLine("The specified maximum number is invalid.");
                 return -1;
             }
 

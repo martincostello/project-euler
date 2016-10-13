@@ -22,7 +22,7 @@ namespace MartinCostello.ProjectEuler
         {
             if (args == null || args.Length < 1)
             {
-                Console.Error.WriteLine("No puzzle specified.");
+                Console.WriteLine("No puzzle specified.");
                 return -1;
             }
 
@@ -33,7 +33,7 @@ namespace MartinCostello.ProjectEuler
                 puzzle < 1 ||
                 (type = GetPuzzleType(puzzle)) == null)
             {
-                Console.Error.WriteLine("The puzzle number specified is invalid.");
+                Console.WriteLine("The puzzle number specified is invalid.");
                 return -1;
             }
 

@@ -30,7 +30,7 @@ namespace MartinCostello.ProjectEuler
         {
             if (!EnsureArguments(args, MinimumArguments))
             {
-                Console.Error.WriteLine(
+                Console.WriteLine(
                     "At least {0:N0} argument{1} {2} required.",
                     MinimumArguments,
                     MinimumArguments == 1 ? string.Empty : "s",
@@ -88,7 +88,7 @@ namespace MartinCostello.ProjectEuler
         protected Stream ReadResource()
         {
             var thisType = GetType().GetTypeInfo();
-            string name = FormattableString.Invariant($"{thisType.FullName}.Data.txt");
+            string name = FormattableString.Invariant($"{thisType.Assembly.GetName().Name}.Puzzles.{thisType.Name}.Data.txt");
 
             return thisType.Assembly.GetManifestResourceStream(name);
         }
