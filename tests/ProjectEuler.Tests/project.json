@@ -1,0 +1,59 @@
+﻿{
+  "authors": [ "Martin Costello" ],
+  "copyright": "Martin Costello (c) 2015",
+  "description": "Tests for ProjectEuler.",
+  "title": "ProjectEuler.Tests",
+  "version": "1.0.0-*",
+
+  "buildOptions": {
+    "additionalArguments": [ "/ruleset:../../ProjectEuler.ruleset", "/additionalfile:../../stylecop.json" ],
+    "compile": {
+      "includeFiles": [ "../../AssemblyVersion.cs", "../../CommonAssemblyInfo.cs" ]
+    },
+    "copyToOutput": {
+      "include": [ "xunit.runner.json" ]
+    },
+    "keyFile": "../../ProjectEuler.snk",
+    "warningsAsErrors": true,
+    "xmlDoc": false
+  },
+
+  "dependencies": {
+    "Microsoft.NETCore.App": {
+      "type": "platform",
+      "version": "1.0.0"
+    },
+    "dotnet-test-xunit": "2.2.0-preview2-build1029",
+    "NodaTime": "2.0.0-alpha20160729",
+    "NodaTime.Testing": "2.0.0-alpha20160729",
+    "StyleCop.Analyzers": {
+      "version": "1.0.0",
+      "type": "build"
+    },
+    "ProjectEuler": "1.0.0-*",
+    "xunit": "2.2.0-beta3-build3402"
+  },
+
+  "frameworks": {
+    "netcoreapp1.0": {
+      "imports": "dotnet5.6"
+    }
+  },
+
+  "packOptions": {
+    "iconUrl": "https://martincostello.com/favicon.ico",
+    "licenseUrl": "https://github.com/martincostello/project-euler/blob/master/LICENSE",
+    "owners": [ "Martin Costello" ],
+    "projectUrl": "https://github.com/martincostello/project-euler",
+    "releaseNotes": "https://github.com/martincostello/project-euler/releases",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/martincostello/project-euler.git"
+    },
+    "requireLicenseAcceptance": false,
+    "summary": "Tests for ProjectEuler.",
+    "tags": [ ]
+  },
+
+  "testRunner": "xunit"
+}

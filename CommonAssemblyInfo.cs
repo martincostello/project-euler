@@ -12,7 +12,6 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyCopyright("Copyright © Martin Costello, 2015.")]
 [assembly: AssemblyProduct("ProjectEuler")]
 [assembly: AssemblyTrademark("")]
-
 [assembly: CLSCompliant(false)]
 [assembly: ComVisible(false)]
 [assembly: NeutralResourcesLanguage("en-US")]

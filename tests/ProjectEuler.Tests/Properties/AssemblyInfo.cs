@@ -4,6 +4,4 @@
 using System.Reflection;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("ProjectEuler.Tests")]
-[assembly: AssemblyDescription("Tests for ProjectEuler.")]
 [assembly: Guid("afc24fe9-7588-49bb-98c3-d3fde4ed85f3")]

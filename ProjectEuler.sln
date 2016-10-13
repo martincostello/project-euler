@@ -1,41 +1,35 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectEuler", "ProjectEuler\ProjectEuler.csproj", "{A1E75A22-FDDD-4A3A-AC69-37E840690168}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B3FF2840-474C-4F9E-B3ED-99C39B461C22}"
 	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitignore = .gitignore
+		.travis.yml = .travis.yml
+		appveyor.yml = appveyor.yml
 		AssemblyVersion.cs = AssemblyVersion.cs
+		Build.ps1 = Build.ps1
+		build.sh = build.sh
 		CommonAssemblyInfo.cs = CommonAssemblyInfo.cs
-		FxCopDictionary.xml = FxCopDictionary.xml
-		ProjectEuler.Common.targets = ProjectEuler.Common.targets
-		ProjectEuler.msbuild = ProjectEuler.msbuild
+		global.json = global.json
+		LICENSE = LICENSE
 		ProjectEuler.ruleset = ProjectEuler.ruleset
 		ProjectEuler.snk = ProjectEuler.snk
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{55207590-427D-4789-8228-7C4C25D84B00}"
-	ProjectSection(SolutionItems) = preProject
-		.nuget\packages.config = .nuget\packages.config
+		README.md = README.md
+		stylecop.json = stylecop.json
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{DA33743B-B807-45B7-BE57-FCC11AE42263}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGet", "NuGet", "{63D7071C-7593-4C00-839A-5A9F20D88450}"
-	ProjectSection(SolutionItems) = preProject
-		Tools\NuGet\NuGet.config = Tools\NuGet\NuGet.config
-		Tools\NuGet\NuGet.exe = Tools\NuGet\NuGet.exe
-	EndProjectSection
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{E3E76692-0D20-468B-A0D9-19F2057527F8}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "StyleCop", "StyleCop", "{90E29777-2B61-42A6-AECE-3D9A58D4B03F}"
-	ProjectSection(SolutionItems) = preProject
-		Tools\StyleCop\stylecop.json = Tools\StyleCop\stylecop.json
-		Tools\StyleCop\StyleCop.Targets = Tools\StyleCop\StyleCop.Targets
-	EndProjectSection
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{30407F9D-80FD-45D0-9DE6-623F1600A070}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectEuler.Tests", "ProjectEuler.Tests\ProjectEuler.Tests.csproj", "{AFC24FE9-7588-49BB-98C3-D3FDE4ED85F3}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "ProjectEuler", "src\ProjectEuler\ProjectEuler.xproj", "{A1E75A22-FDDD-4A3A-AC69-37E840690168}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "ProjectEuler.Tests", "tests\ProjectEuler.Tests\ProjectEuler.Tests.xproj", "{AFC24FE9-7588-49BB-98C3-D3FDE4ED85F3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -56,9 +50,8 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{55207590-427D-4789-8228-7C4C25D84B00} = {B3FF2840-474C-4F9E-B3ED-99C39B461C22}
 		{DA33743B-B807-45B7-BE57-FCC11AE42263} = {B3FF2840-474C-4F9E-B3ED-99C39B461C22}
-		{63D7071C-7593-4C00-839A-5A9F20D88450} = {DA33743B-B807-45B7-BE57-FCC11AE42263}
-		{90E29777-2B61-42A6-AECE-3D9A58D4B03F} = {DA33743B-B807-45B7-BE57-FCC11AE42263}
+		{A1E75A22-FDDD-4A3A-AC69-37E840690168} = {E3E76692-0D20-468B-A0D9-19F2057527F8}
+		{AFC24FE9-7588-49BB-98C3-D3FDE4ED85F3} = {30407F9D-80FD-45D0-9DE6-623F1600A070}
 	EndGlobalSection
 EndGlobal
