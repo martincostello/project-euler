@@ -3,7 +3,7 @@
 | | Linux | Windows |
 |:-:|:-:|:-:|
 | **Build Status** | [![Build status](https://img.shields.io/travis/martincostello/project-euler/master.svg)](https://travis-ci.org/martincostello/project-euler) | [![Build status](https://img.shields.io/appveyor/ci/martincostello/project-euler/master.svg)](https://ci.appveyor.com/project/martincostello/project-euler) |
-| **Build History** | [![Build history](https://ci-buildstats.azurewebsites.net/travisci/chart/martincostello/project-euler?branch=master&includeBuildsFromPullRequest=false)](https://travis-ci.org/martincostello/project-euler) |  [![Build history](https://ci-buildstats.azurewebsites.net/appveyor/chart/martincostello/project-euler?branch=master&includeBuildsFromPullRequest=false)](https://ci.appveyor.com/project/martincostello/project-euler) |
+| **Build History** | [![Build history](https://buildstats.info/travisci/chart/martincostello/project-euler?branch=master&includeBuildsFromPullRequest=false)](https://travis-ci.org/martincostello/project-euler) |  [![Build history](https://buildstats.info/appveyor/chart/martincostello/project-euler?branch=master&includeBuildsFromPullRequest=false)](https://ci.appveyor.com/project/martincostello/project-euler) |
 
 ## Overview
 
