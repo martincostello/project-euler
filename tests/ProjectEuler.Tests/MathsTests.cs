@@ -221,6 +221,28 @@ namespace MartinCostello.ProjectEuler
         }
 
         [Theory]
+        [InlineData(0, false)]
+        [InlineData(1, true)]
+        [InlineData(2, false)]
+        [InlineData(12, true)]
+        [InlineData(20, false)]
+        [InlineData(21, true)]
+        [InlineData(22, false)]
+        [InlineData(123, true)]
+        [InlineData(234, false)]
+        [InlineData(321, true)]
+        [InlineData(123456789, true)]
+        [InlineData(987654321, true)]
+        public static void Maths_IsPandigital_Returns_Correct_Value(long value, bool expected)
+        {
+            // Act
+            bool actual = Maths.IsPandigital(value);
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
         [InlineData(2, false)]
         [InlineData(3, false)]
         [InlineData(4, false)]
