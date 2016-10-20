@@ -3,6 +3,8 @@
 
 namespace MartinCostello.ProjectEuler.Puzzles
 {
+    using System.Linq;
+
     /// <summary>
     /// A class representing the solution to <c>https://projecteuler.net/problem=41</c>. This class cannot be inherited.
     /// </summary>
@@ -14,9 +16,21 @@ namespace MartinCostello.ProjectEuler.Puzzles
         /// <inheritdoc />
         protected override int SolveCore(string[] args)
         {
+            // 1..n is divisble by 3 (and hence not prime)
+            // if the sum of the digits is divisble by 3.
+            // Determine the maximum number of digits for
+            // a pandigital that is not divisible by 3.
+            int maxDigits = Enumerable.Range(2, 9 - 2)
+                .Select((p) => Enumerable.Range(1, p))
+                .Where((p) => p.Sum() % 3 != 0)
+                .SelectMany((p) => p)
+                .Max();
+
+            int upperLimit = (int)Maths.FromDigits(Enumerable.Repeat(9, maxDigits).ToArray());
+
             int current = 0;
 
-            foreach (int value in Maths.Primes(999999999))
+            foreach (int value in Maths.Primes(upperLimit))
             {
                 if (value > current && Maths.IsPandigital(value))
                 {
