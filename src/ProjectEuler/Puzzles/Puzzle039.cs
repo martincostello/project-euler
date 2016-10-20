@@ -16,7 +16,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
     internal sealed class Puzzle039 : Puzzle
     {
         /// <inheritdoc />
-        public override string Question => "For which value of p ≤ 1000, is the number of solutions for a right-angled triangle with perimeter p maximised?";
+        public override string Question => "For which value of p <= 1000, is the number of solutions for a right-angled triangle with perimeter p maximised?";
 
         /// <summary>
         /// Returns the solutions for a right-angled triangle with the specified perimeter.
