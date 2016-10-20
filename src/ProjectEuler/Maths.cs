@@ -16,6 +16,11 @@ namespace MartinCostello.ProjectEuler
     internal static class Maths
     {
         /// <summary>
+        /// An array containing the non-zero digits for base10. This field is read-only.
+        /// </summary>
+        private static readonly int[] NonzeroBase10Digits = Enumerable.Range(1, 9).ToArray();
+
+        /// <summary>
         /// A cache of values for which being prime has been computed. This field is read-only.
         /// </summary>
         private static readonly IDictionary<long, bool> _primes = new ConcurrentDictionary<long, bool>();
@@ -170,6 +175,27 @@ namespace MartinCostello.ProjectEuler
         internal static bool IsAbundantNumber(long value) => GetProperDivisors(value).Sum() > value;
 
         /// <summary>
+        /// Returns whether the specified value is pandigital.
+        /// </summary>
+        /// <param name="value">The value to test for being pandigital.</param>
+        /// <returns>
+        /// <see langword="true"/> if <paramref name="value"/> is pandigital; otherwise <see langword="false"/>.
+        /// </returns>
+        internal static bool IsPandigital(long value)
+        {
+            IList<int> digits = Digits(value);
+
+            if (digits.Contains(0))
+            {
+                return false;
+            }
+
+            IList<int> distinctDigits = digits.Distinct().ToArray();
+
+            return digits.Count == distinctDigits.Count && !distinctDigits.Except(NonzeroBase10Digits.Take(digits.Count)).Any();
+        }
+
+        /// <summary>
         /// Returns whether the specified number is a perfect number.
         /// </summary>
         /// <param name="value">The number to test for being a perfect number.</param>
@@ -267,7 +293,7 @@ namespace MartinCostello.ProjectEuler
         internal static IEnumerable<int> Primes(int maximum)
         {
             // Based on https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes#Algorithm_and_variants
-            if (maximum < 2)
+            if (maximum < 3)
             {
                 yield break;
             }

@@ -56,8 +56,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
 
                     if (pandigital.Length == TargetLength)
                     {
-                        // Does the pandigital only contain the digits 1-9?
-                        if (pandigital.Distinct().Count() == TargetLength && !pandigital.Contains('0'))
+                        if (Maths.IsPandigital(long.Parse(pandigital, NumberStyles.Integer, CultureInfo.InvariantCulture)))
                         {
                             pandigitals.Add(pandigital);
                         }
