@@ -26,7 +26,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
                 .SelectMany((p) => p)
                 .Max();
 
-            int upperLimit = (int)Maths.FromDigits(Enumerable.Repeat(9, maxDigits).ToArray());
+            int upperLimit = (int)Maths.FromDigits(Enumerable.Range(1, maxDigits).Reverse().ToArray());
 
             int current = 0;
 
