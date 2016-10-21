@@ -28,10 +28,21 @@ namespace MartinCostello.ProjectEuler.Puzzles
                 return -1;
             }
 
-            var divisors = Enumerable.Range(1, max).ToList();
+            // Do not need to bother testing for divisibility by 1, plus the
+            // for loop below only tests even numbers so can also exclude 2.
+            var divisors = Enumerable.Range(3, max - 2).ToList();
 
             for (int n = max % 2 == 0 ? max : max - 1; ; n += 2)
             {
+                if (max >= 10)
+                {
+                    // Fast path for large numbers
+                    if (n % 3 != 0 || n % 5 != 0 || n % 10 != 0)
+                    {
+                        continue;
+                    }
+                }
+
                 if (divisors.All((p) => n % p == 0))
                 {
                     Answer = n;

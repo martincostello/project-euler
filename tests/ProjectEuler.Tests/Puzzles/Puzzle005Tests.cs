@@ -15,18 +15,8 @@ namespace MartinCostello.ProjectEuler.Puzzles
         [InlineData("3", 6)]
         [InlineData("4", 12)]
         [InlineData("10", 2520)]
-        public static void Puzzle005_Returns_Correct_Solution(string max, int expected)
-        {
-            // Arrange
-            string[] args = new[] { max };
-
-            // Act and Assert
-            Puzzles.AssertSolution<Puzzle005>(args, expected);
-        }
-
-        [Theory]
         [InlineData("20", 232792560)]
-        public static void Puzzle005_Returns_Correct_Solution_Slow(string max, int expected)
+        public static void Puzzle005_Returns_Correct_Solution(string max, int expected)
         {
             // Arrange
             string[] args = new[] { max };
