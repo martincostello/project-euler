@@ -16,9 +16,9 @@ namespace MartinCostello.ProjectEuler
     internal static class Maths
     {
         /// <summary>
-        /// An array containing the non-zero digits for base10. This field is read-only.
+        /// An array containing the digits for base10. This field is read-only.
         /// </summary>
-        private static readonly int[] NonzeroBase10Digits = Enumerable.Range(1, 9).ToArray();
+        private static readonly int[] Base10Digits = Enumerable.Range(0, 10).ToArray();
 
         /// <summary>
         /// A cache of values for which being prime has been computed. This field is read-only.
@@ -178,21 +178,25 @@ namespace MartinCostello.ProjectEuler
         /// Returns whether the specified value is pandigital.
         /// </summary>
         /// <param name="value">The value to test for being pandigital.</param>
+        /// <param name="allowZero">Whether zero is allowed.</param>
         /// <returns>
         /// <see langword="true"/> if <paramref name="value"/> is pandigital; otherwise <see langword="false"/>.
         /// </returns>
-        internal static bool IsPandigital(long value)
+        internal static bool IsPandigital(long value, bool allowZero = false)
         {
             IList<int> digits = Digits(value);
+            IList<int> distinctDigits = digits.Distinct().ToArray();
 
-            if (digits.Contains(0))
+            if (digits.Count != distinctDigits.Count)
             {
                 return false;
             }
 
-            IList<int> distinctDigits = digits.Distinct().ToArray();
+            IEnumerable<int> expectedDigits = Base10Digits
+                .Skip(allowZero ? 0 : 1)
+                .Take(digits.Count);
 
-            return digits.Count == distinctDigits.Count && !distinctDigits.Except(NonzeroBase10Digits.Take(digits.Count)).Any();
+            return !distinctDigits.Except(expectedDigits).Any();
         }
 
         /// <summary>
