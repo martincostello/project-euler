@@ -87,6 +87,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
 
             // Assert
             Assert.Equal(0, result);
+            Assert.NotNull(puzzle.Answer);
             Assert.Equal(expected, puzzle.Answer);
         }
     }
