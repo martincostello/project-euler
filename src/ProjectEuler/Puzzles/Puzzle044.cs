@@ -3,8 +3,6 @@
 
 namespace MartinCostello.ProjectEuler.Puzzles
 {
-    using System;
-
     /// <summary>
     /// A class representing the solution to <c>https://projecteuler.net/problem=44</c>. This class cannot be inherited.
     /// </summary>
@@ -13,36 +11,18 @@ namespace MartinCostello.ProjectEuler.Puzzles
         /// <inheritdoc />
         public override string Question => "Find the pair of pentagonal numbers, Pj and Pk, for which their sum and difference are pentagonal and D = |Pk - Pj| is minimised; what is the value of D?";
 
-        /// <summary>
-        /// Returns whether the specified number is a pentagonal number.
-        /// </summary>
-        /// <param name="x">The value to test for being pentagonal.</param>
-        /// <returns>
-        /// <see langword="true"/> if <paramref name="x"/> is a pentagonal number; otherwise <see langword="false"/>.
-        /// </returns>
-        internal static bool IsPentagonal(int x) => Math.IEEERemainder(Math.Sqrt((24 * x) + 1) + 1, 6) == 0;
-
-        /// <summary>
-        /// Returns the pentagonal number for the specified value.
-        /// </summary>
-        /// <param name="n">The value to calculate the pentagonal number for.</param>
-        /// <returns>
-        /// The pentagonal number of <paramref name="n"/>.
-        /// </returns>
-        internal static int Pentagonal(int n) => n * ((3 * n) - 1) / 2;
-
         /// <inheritdoc />
         protected override int SolveCore(string[] args)
         {
-            for (int k = 1; Answer == null; k++)
+            for (long k = 1; Answer == null; k++)
             {
-                int pk = Pentagonal(k);
+                long pk = Maths.Pentagonal(k);
 
-                for (int j = k - 1; j > 0; j--)
+                for (long j = k - 1; j > 0; j--)
                 {
-                    int pj = Pentagonal(j);
+                    long pj = Maths.Pentagonal(j);
 
-                    if (IsPentagonal(pj + pk) && IsPentagonal(pk - pj))
+                    if (Maths.IsPentagonal(pj + pk) && Maths.IsPentagonal(pk - pj))
                     {
                         Answer = pk - pj;
                         break;

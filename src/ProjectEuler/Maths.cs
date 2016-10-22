@@ -166,6 +166,15 @@ namespace MartinCostello.ProjectEuler
         internal static IEnumerable<long> GetProperDivisors(long value) => GetFactors(value).TakeWhile((p) => p != value);
 
         /// <summary>
+        /// Returns the hexagonal number for the specified value.
+        /// </summary>
+        /// <param name="n">The value to calculate the hexagonal number for.</param>
+        /// <returns>
+        /// The hexagonal number of <paramref name="n"/>.
+        /// </returns>
+        internal static long Hexagonal(long n) => n * ((2 * n) - 1);
+
+        /// <summary>
         /// Returns whether the specified number is an abundant number.
         /// </summary>
         /// <param name="value">The number to test for being an abundant number.</param>
@@ -173,6 +182,15 @@ namespace MartinCostello.ProjectEuler
         /// <see langword="true"/> if <paramref name="value"/> is an abundant number; otherwise <see langword="false"/>.
         /// </returns>
         internal static bool IsAbundantNumber(long value) => GetProperDivisors(value).Sum() > value;
+
+        /// <summary>
+        /// Returns whether the specified number is an hexagonal number.
+        /// </summary>
+        /// <param name="x">The value to test for being hexagonal.</param>
+        /// <returns>
+        /// <see langword="true"/> if <paramref name="x"/> is an hexagonal number; otherwise <see langword="false"/>.
+        /// </returns>
+        internal static bool IsHexagonal(long x) => Math.IEEERemainder(1 + Math.Sqrt(1 + (8 * x)), 4) == 0;
 
         /// <summary>
         /// Returns whether the specified value is pandigital.
@@ -200,6 +218,24 @@ namespace MartinCostello.ProjectEuler
         }
 
         /// <summary>
+        /// Returns whether the specified number is a pentagonal number.
+        /// </summary>
+        /// <param name="x">The value to test for being pentagonal.</param>
+        /// <returns>
+        /// <see langword="true"/> if <paramref name="x"/> is a pentagonal number; otherwise <see langword="false"/>.
+        /// </returns>
+        internal static bool IsPentagonal(long x) => Math.IEEERemainder(Math.Sqrt((24 * x) + 1) + 1, 6) == 0;
+
+        /// <summary>
+        /// Returns whether the specified number is a triangular number.
+        /// </summary>
+        /// <param name="x">The value to test for being triangular.</param>
+        /// <returns>
+        /// <see langword="true"/> if <paramref name="x"/> is a triangular number; otherwise <see langword="false"/>.
+        /// </returns>
+        internal static bool IsTriangular(long x) => IsPerfectSquare((8 * x) + 1);
+
+        /// <summary>
         /// Returns whether the specified number is a perfect number.
         /// </summary>
         /// <param name="value">The number to test for being a perfect number.</param>
@@ -207,6 +243,15 @@ namespace MartinCostello.ProjectEuler
         /// <see langword="true"/> if <paramref name="value"/> is a perfect number; otherwise <see langword="false"/>.
         /// </returns>
         internal static bool IsPerfectNumber(long value) => GetProperDivisors(value).Sum() == value;
+
+        /// <summary>
+        /// Returns whether the specified number is a perfect square.
+        /// </summary>
+        /// <param name="value">The number to test for being a perfect square.</param>
+        /// <returns>
+        /// <see langword="true"/> if <paramref name="value"/> is a perfect square; otherwise <see langword="false"/>.
+        /// </returns>
+        internal static bool IsPerfectSquare(long value) => GetProperDivisors(value).Any((p) => p * p == value);
 
         /// <summary>
         /// Returns whether the specified value is a prime number.
@@ -256,6 +301,15 @@ namespace MartinCostello.ProjectEuler
 
             return _primes[value] = result;
         }
+
+        /// <summary>
+        /// Returns the pentagonal number for the specified value.
+        /// </summary>
+        /// <param name="n">The value to calculate the pentagonal number for.</param>
+        /// <returns>
+        /// The pentagonal number of <paramref name="n"/>.
+        /// </returns>
+        internal static long Pentagonal(long n) => n * ((3 * n) - 1) / 2;
 
         /// <summary>
         /// Returns all the permutations of the specified collection of values.
@@ -374,5 +428,14 @@ namespace MartinCostello.ProjectEuler
                 }
             }
         }
+
+        /// <summary>
+        /// Returns the triangular number for the specified value.
+        /// </summary>
+        /// <param name="n">The value to calculate the triangular number for.</param>
+        /// <returns>
+        /// The triangular number of <paramref name="n"/>.
+        /// </returns>
+        internal static long Triangular(long n) => (n * (n + 1)) / 2;
     }
 }

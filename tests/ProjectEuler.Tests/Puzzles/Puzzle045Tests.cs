@@ -6,18 +6,18 @@ namespace MartinCostello.ProjectEuler.Puzzles
     using Xunit;
 
     /// <summary>
-    /// A class containing tests for the <see cref="Puzzle044"/> class. This class cannot be inherited.
+    /// A class containing tests for the <see cref="Puzzle045"/> class. This class cannot be inherited.
     /// </summary>
-    public static class Puzzle044Tests
+    public static class Puzzle045Tests
     {
         [Fact]
-        public static void Puzzle044_Returns_Correct_Solution()
+        public static void Puzzle045_Returns_Correct_Solution()
         {
             // Arrange
-            long expected = 5482660;
+            long expected = 1533776805;
 
             // Act and Assert
-            Puzzles.AssertSolution<Puzzle044>(expected);
+            Puzzles.AssertSolution<Puzzle045>(expected);
         }
     }
 }

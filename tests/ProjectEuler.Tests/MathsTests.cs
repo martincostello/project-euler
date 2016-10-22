@@ -152,6 +152,22 @@ namespace MartinCostello.ProjectEuler
         }
 
         [Theory]
+        [InlineData(1, 1)]
+        [InlineData(2, 6)]
+        [InlineData(3, 15)]
+        [InlineData(4, 28)]
+        [InlineData(5, 45)]
+        [InlineData(143, 40755)]
+        public static void Maths_Hexagonal_Returns_Correct_Value(long n, long expected)
+        {
+            // Act
+            long actual = Maths.Hexagonal(n);
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
         [InlineData(-2, false)]
         [InlineData(-1, false)]
         [InlineData(0, false)]
@@ -221,6 +237,26 @@ namespace MartinCostello.ProjectEuler
         }
 
         [Theory]
+        [InlineData(1, true)]
+        [InlineData(2, false)]
+        [InlineData(3, false)]
+        [InlineData(4, false)]
+        [InlineData(5, false)]
+        [InlineData(6, true)]
+        [InlineData(15, true)]
+        [InlineData(28, true)]
+        [InlineData(45, true)]
+        [InlineData(40755, true)]
+        public static void Maths_IsHexagonal_Returns_Correct_Value(int x, bool expected)
+        {
+            // Act
+            bool actual = Maths.IsHexagonal(x);
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
         [InlineData(0, false)]
         [InlineData(1, true)]
         [InlineData(2, false)]
@@ -243,6 +279,29 @@ namespace MartinCostello.ProjectEuler
         }
 
         [Theory]
+        [InlineData(1, true)]
+        [InlineData(2, false)]
+        [InlineData(3, false)]
+        [InlineData(4, false)]
+        [InlineData(5, true)]
+        [InlineData(12, true)]
+        [InlineData(22, true)]
+        [InlineData(35, true)]
+        [InlineData(51, true)]
+        [InlineData(70, true)]
+        [InlineData(92, true)]
+        [InlineData(117, true)]
+        [InlineData(145, true)]
+        public static void Maths_IsPentagonal_Returns_Correct_Value(int x, bool expected)
+        {
+            // Act
+            bool actual = Maths.IsPentagonal(x);
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
         [InlineData(2, false)]
         [InlineData(3, false)]
         [InlineData(4, false)]
@@ -251,6 +310,70 @@ namespace MartinCostello.ProjectEuler
         {
             // Act
             bool actual = Maths.IsPerfectNumber(value);
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData(1, false)]
+        [InlineData(2, false)]
+        [InlineData(3, false)]
+        [InlineData(4, true)]
+        [InlineData(5, false)]
+        [InlineData(6, false)]
+        [InlineData(7, false)]
+        [InlineData(8, false)]
+        [InlineData(9, true)]
+        [InlineData(16, true)]
+        [InlineData(25, true)]
+        [InlineData(36, true)]
+        [InlineData(49, true)]
+        [InlineData(64, true)]
+        public static void Maths_IsPerfectSquare_Returns_Correct_Value(long value, bool expected)
+        {
+            // Act
+            bool actual = Maths.IsPerfectSquare(value);
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData(1, true)]
+        [InlineData(2, false)]
+        [InlineData(3, true)]
+        [InlineData(4, false)]
+        [InlineData(5, false)]
+        [InlineData(6, true)]
+        [InlineData(10, true)]
+        [InlineData(15, true)]
+        [InlineData(40755, true)]
+        public static void Maths_Triangular_Returns_Correct_Value(int x, bool expected)
+        {
+            // Act
+            bool actual = Maths.IsTriangular(x);
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData(1, 1)]
+        [InlineData(2, 5)]
+        [InlineData(3, 12)]
+        [InlineData(4, 22)]
+        [InlineData(5, 35)]
+        [InlineData(6, 51)]
+        [InlineData(7, 70)]
+        [InlineData(8, 92)]
+        [InlineData(9, 117)]
+        [InlineData(10, 145)]
+        [InlineData(165, 40755)]
+        public static void Maths_Pentagonal_Returns_Correct_Value(long n, long expected)
+        {
+            // Act
+            long actual = Maths.Pentagonal(n);
 
             // Assert
             Assert.Equal(expected, actual);
@@ -349,6 +472,22 @@ namespace MartinCostello.ProjectEuler
         {
             // Act
             IEnumerable<int> actual = Maths.Primes(maximum);
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData(1, 1)]
+        [InlineData(2, 3)]
+        [InlineData(3, 6)]
+        [InlineData(4, 10)]
+        [InlineData(5, 15)]
+        [InlineData(285, 40755)]
+        public static void Maths_Triangular_Returns_Correct_Value(long n, long expected)
+        {
+            // Act
+            long actual = Maths.Triangular(n);
 
             // Assert
             Assert.Equal(expected, actual);
