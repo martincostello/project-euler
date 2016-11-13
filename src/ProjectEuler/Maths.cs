@@ -47,6 +47,24 @@ namespace MartinCostello.ProjectEuler
         }
 
         /// <summary>
+        /// Returns the cumulative sum for the specified values.
+        /// </summary>
+        /// <param name="collection">The values to compute the cumulative sum for.</param>
+        /// <returns>
+        /// An <see cref="IEnumerable{T}"/> containing the cumulative sum for <paramref name="collection"/>.
+        /// </returns>
+        internal static IEnumerable<int> CumulativeSum(IEnumerable<int> collection)
+        {
+            int sum = 0;
+
+            foreach (int value in collection)
+            {
+                sum += value;
+                yield return sum;
+            }
+        }
+
+        /// <summary>
         /// Returns the digits of the specified value in base 10.
         /// </summary>
         /// <param name="value">The value to get the digits for.</param>

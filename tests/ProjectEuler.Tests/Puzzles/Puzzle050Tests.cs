@@ -13,7 +13,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
         [Theory]
         [InlineData("6", 5)]
         [InlineData("100", 41)]
-        /*[InlineData("1000000", 0)]*/
+        [InlineData("1000000", 997651)]
         public static void Puzzle050_Returns_Correct_Solution(string maximum, int expected)
         {
             // Arrange

@@ -29,49 +29,29 @@ namespace MartinCostello.ProjectEuler.Puzzles
                 return -1;
             }
 
-            IList<int> primes = Maths.Primes(maximum)
-                .Reverse()
-                .ToList();
+            IList<int> primes = Maths.Primes(maximum).ToList();
+            IList<int> cumulativeSum = new[] { 0 }.Concat(Maths.CumulativeSum(primes)).ToList();
 
+            int primeCount = 0;
             int answer = 0;
-            int longestSum = 0;
 
-            foreach (int prime in primes)
+            for (int i = primeCount; i < cumulativeSum.Count; i++)
             {
-                IList<int> lesserPrimes = primes
-                    .Where((p) => p < prime)
-                    .ToList();
-
-                if (lesserPrimes.Count < 2 ||
-                    (longestSum != 0 && lesserPrimes.Count < longestSum))
+                for (int j = i - (primeCount + 1); j >= 0; j--)
                 {
-                    break;
-                }
+                    int prime1 = cumulativeSum[i];
+                    int prime2 = cumulativeSum[j];
+                    int delta = prime1 - prime2;
 
-                if (lesserPrimes.Count > longestSum)
-                {
-                    for (int i = 0; i < lesserPrimes.Count; i++)
+                    if (delta > maximum)
                     {
-                        IList<int> slice = lesserPrimes
-                            .Skip(i)
-                            .Reverse()
-                            .ToList();
+                        break;
+                    }
 
-                        int sum = prime;
-                        int used = 0;
-
-                        for (int j = 0; j < slice.Count && sum > 0; j++)
-                        {
-                            sum -= slice[j];
-                            used++;
-                        }
-
-                        if (sum == 0 && used > longestSum)
-                        {
-                            answer = prime;
-                            longestSum = used;
-                            break;
-                        }
+                    if (primes.Contains(delta))
+                    {
+                        primeCount = i - j;
+                        answer = delta;
                     }
                 }
             }
