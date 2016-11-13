@@ -58,18 +58,10 @@ namespace MartinCostello.ProjectEuler.Puzzles
         /// </returns>
         private static bool ArePermutations(long x, long y)
         {
-            int[] digitsX = Maths.Digits(x).OrderBy((p) => p).ToArray();
-            int[] digitsY = Maths.Digits(y).OrderBy((p) => p).ToArray();
+            var first = Maths.Digits(x).OrderBy((p) => p);
+            var second = Maths.Digits(y).OrderBy((p) => p);
 
-            for (int i = 0; i < digitsX.Length; i++)
-            {
-                if (digitsX[i] != digitsY[i])
-                {
-                    return false;
-                }
-            }
-
-            return true;
+            return first.SequenceEqual(second);
         }
     }
 }
