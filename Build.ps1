@@ -78,7 +78,7 @@ $projects = @(
 )
 
 $testProjects = @(
-    (Join-Path $solutionPath "tests\ProjectEuler.Tests\ProjectEuler.csproj")
+    (Join-Path $solutionPath "tests\ProjectEuler.Tests\ProjectEuler.Tests.csproj")
 )
 
 if ($RestorePackages -eq $true) {
