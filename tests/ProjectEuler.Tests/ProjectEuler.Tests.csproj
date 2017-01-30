@@ -13,7 +13,6 @@
     <!--
     <AdditionalFiles Include="..\..\stylecop.json" />
     -->
-    <CodeAnalysisRuleSet Include="..\..\ProjectEuler.ruleset" />
     <Compile Include="..\..\AssemblyVersion.cs;..\..\CommonAssemblyInfo.cs" />
     <Content Include="xunit.runner.json" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>

@@ -8,8 +8,9 @@
     <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
 
     <DefineConstants>$(DefineConstants)</DefineConstants>
+    <CodeAnalysisRuleSet>../../ProjectEuler.ruleset</CodeAnalysisRuleSet>
     <GenerateDocumentationFile>false</GenerateDocumentationFile>
-    <NoWarn>$(NoWarn);SA1100;SA1101;SA1129;SA1309;SA1609;SA1633;SA1652</NoWarn>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
 
     <Authors>Martin Costello</Authors>
     <Company>https://github.com/martincostello/project-euler</Company>
