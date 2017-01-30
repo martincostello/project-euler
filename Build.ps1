@@ -12,7 +12,7 @@ $ErrorActionPreference = "Stop"
 $solutionPath  = Split-Path $MyInvocation.MyCommand.Definition
 $framework     = "netcoreapp1.0"
 $getDotNet     = Join-Path $solutionPath "tools\install.ps1"
-$dotnetVersion = "1.0.0-preview2-003121"
+$dotnetVersion = "1.0.0-rc3-004530"
 
 if ($OutputPath -eq "") {
     $OutputPath = "$(Convert-Path "$PSScriptRoot")\artifacts"
@@ -73,12 +73,12 @@ if ($PatchVersion -eq $true) {
 }
 
 $projects = @(
-    (Join-Path $solutionPath "src\ProjectEuler\project.json"),
-    (Join-Path $solutionPath "tests\ProjectEuler.Tests\project.json")
+    (Join-Path $solutionPath "src\ProjectEuler\ProjectEuler.csproj"),
+    (Join-Path $solutionPath "tests\ProjectEuler.Tests\ProjectEuler.Tests.csproj")
 )
 
 $testProjects = @(
-    (Join-Path $solutionPath "tests\ProjectEuler.Tests\project.json")
+    (Join-Path $solutionPath "tests\ProjectEuler.Tests\ProjectEuler.csproj")
 )
 
 if ($RestorePackages -eq $true) {

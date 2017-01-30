@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0">
+  <Import Project="..\..\ProjectEuler.Common.props" />
+  <PropertyGroup>
+    <AssemblyName>ProjectEuler.Tests</AssemblyName>
+    <AssemblyTitle>ProjectEuler.Tests</AssemblyTitle>
+    <Description>Tests for ProjectEuler.</Description>
+    <PackageId>ProjectEuler.Tests</PackageId>
+    <PackageTargetFallback>$(PackageTargetFallback);dotnet5.6</PackageTargetFallback>
+    <Summary>Tests for ProjectEuler.</Summary>
+  </PropertyGroup>
+  <ItemGroup>
+    <!--
+    <AdditionalFiles Include="..\..\stylecop.json" />
+    -->
+    <CodeAnalysisRuleSet Include="..\..\ProjectEuler.ruleset" />
+    <Compile Include="..\..\AssemblyVersion.cs;..\..\CommonAssemblyInfo.cs" />
+    <Content Include="xunit.runner.json" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\ProjectEuler\ProjectEuler.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.0.0-preview-20170106-08" />
+    <PackageReference Include="NodaTime" Version="2.0.0-beta20170123" />
+    <PackageReference Include="NodaTime.Testing" Version="2.0.0-beta20170123" />
+    <PackageReference Include="StyleCop.Analyzers" Version="1.0.0" PrivateAssets="All" />
+    <PackageReference Include="xunit" Version="2.2.0-beta5-build3474" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.2.0-beta5-build1225" />
+  </ItemGroup>
+</Project>
