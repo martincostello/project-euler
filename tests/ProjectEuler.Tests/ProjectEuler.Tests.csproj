@@ -7,6 +7,7 @@
     <PackageId>ProjectEuler.Tests</PackageId>
     <PackageTargetFallback>$(PackageTargetFallback);dotnet5.6</PackageTargetFallback>
     <Summary>Tests for ProjectEuler.</Summary>
+    <ProjectGuid>{E012A77F-90D9-4CB7-8C69-A28FBD212D1B}</ProjectGuid>
   </PropertyGroup>
   <ItemGroup>
     <!--
@@ -26,5 +27,8 @@
     <PackageReference Include="StyleCop.Analyzers" Version="1.0.0" PrivateAssets="All" />
     <PackageReference Include="xunit" Version="2.2.0-beta5-build3474" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.2.0-beta5-build1225" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
 </Project>
