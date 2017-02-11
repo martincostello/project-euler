@@ -1,38 +1,32 @@
 ﻿<Project>
+  <ItemGroup>
+    <AdditionalFiles Include="$(MSBuildThisFileDirectory)stylecop.json" Link="stylecop.json" />
+  </ItemGroup>
   <PropertyGroup>
-    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
-    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
-    <GenerateAssemblyCopyrightAttribute>false</GenerateAssemblyCopyrightAttribute>
-    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
-    <GenerateNeutralResourcesLanguageAttribute>false</GenerateNeutralResourcesLanguageAttribute>
-    <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
-
-    <DefineConstants>$(DefineConstants)</DefineConstants>
-    <CodeAnalysisRuleSet>../../ProjectEuler.ruleset</CodeAnalysisRuleSet>
-    <GenerateDocumentationFile>false</GenerateDocumentationFile>
-    <RunCodeAnalysis>true</RunCodeAnalysis>
-
+    <AssemblyOriginatorKeyFile>../../ProjectEuler.snk</AssemblyOriginatorKeyFile>
     <Authors>Martin Costello</Authors>
+    <CodeAnalysisRuleSet>../../ProjectEuler.ruleset</CodeAnalysisRuleSet>
     <Company>https://github.com/martincostello/project-euler</Company>
     <Copyright>Martin Costello (c) 2015-2017</Copyright>
+    <DefineConstants>$(DefineConstants)</DefineConstants>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+    <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
     <NeutralLanguage>en-US</NeutralLanguage>
-    <TargetFramework>netcoreapp1.0</TargetFramework>
-    <VersionPrefix>1.0.0</VersionPrefix>
-    <VersionSuffix></VersionSuffix>
-    <WarningsAsErrors>true</WarningsAsErrors>
-
     <PackageIconUrl>https://martincostello.com/favicon.ico</PackageIconUrl>
     <PackageProjectUrl>https://github.com/martincostello/project-euler</PackageProjectUrl>
     <PackageLicenseUrl>$(PackageProjectUrl)/blob/master/LICENSE</PackageLicenseUrl>
     <PackageReleaseNotes>$(PackageProjectUrl)/releases</PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageTags>project euler</PackageTags>
+    <PublicSign Condition=" '$(OS)' != 'Windows_NT' ">true</PublicSign>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>$(PackageProjectUrl).git</RepositoryUrl>
-
-    <AssemblyOriginatorKeyFile>../../ProjectEuler.snk</AssemblyOriginatorKeyFile>
-    <PublicSign Condition=" '$(OS)' != 'Windows_NT' ">true</PublicSign>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
     <SignAssembly>true</SignAssembly>
-
+    <TargetFramework>netcoreapp1.0</TargetFramework>
+    <VersionPrefix>1.0.0</VersionPrefix>
+    <VersionSuffix></VersionSuffix>
+    <WarningsAsErrors>true</WarningsAsErrors>
   </PropertyGroup>
 </Project>
