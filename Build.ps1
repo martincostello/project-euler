@@ -10,7 +10,7 @@ param(
 $ErrorActionPreference = "Stop"
 
 $solutionPath  = Split-Path $MyInvocation.MyCommand.Definition
-$framework     = "netcoreapp1.0"
+$framework     = "netcoreapp1.1"
 $dotnetVersion = "1.0.0-rc4-004788"
 
 if ($OutputPath -eq "") {
