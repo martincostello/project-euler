@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26127.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B3FF2840-474C-4F9E-B3ED-99C39B461C22}"
 	ProjectSection(SolutionItems) = preProject
@@ -15,6 +15,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		CommonAssemblyInfo.cs = CommonAssemblyInfo.cs
 		global.json = global.json
 		LICENSE = LICENSE
+		ProjectEuler.Common.props = ProjectEuler.Common.props
 		ProjectEuler.ruleset = ProjectEuler.ruleset
 		ProjectEuler.snk = ProjectEuler.snk
 		README.md = README.md
@@ -27,9 +28,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{E3E76692-0D2
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{30407F9D-80FD-45D0-9DE6-623F1600A070}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "ProjectEuler", "src\ProjectEuler\ProjectEuler.xproj", "{A1E75A22-FDDD-4A3A-AC69-37E840690168}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectEuler", "src\ProjectEuler\ProjectEuler.csproj", "{056F340E-16C5-4B5E-AB18-86CC481427A4}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "ProjectEuler.Tests", "tests\ProjectEuler.Tests\ProjectEuler.Tests.xproj", "{AFC24FE9-7588-49BB-98C3-D3FDE4ED85F3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectEuler.Tests", "tests\ProjectEuler.Tests\ProjectEuler.Tests.csproj", "{E012A77F-90D9-4CB7-8C69-A28FBD212D1B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,21 +38,21 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{A1E75A22-FDDD-4A3A-AC69-37E840690168}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A1E75A22-FDDD-4A3A-AC69-37E840690168}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A1E75A22-FDDD-4A3A-AC69-37E840690168}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A1E75A22-FDDD-4A3A-AC69-37E840690168}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AFC24FE9-7588-49BB-98C3-D3FDE4ED85F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AFC24FE9-7588-49BB-98C3-D3FDE4ED85F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AFC24FE9-7588-49BB-98C3-D3FDE4ED85F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AFC24FE9-7588-49BB-98C3-D3FDE4ED85F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{056F340E-16C5-4B5E-AB18-86CC481427A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{056F340E-16C5-4B5E-AB18-86CC481427A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{056F340E-16C5-4B5E-AB18-86CC481427A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{056F340E-16C5-4B5E-AB18-86CC481427A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E012A77F-90D9-4CB7-8C69-A28FBD212D1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E012A77F-90D9-4CB7-8C69-A28FBD212D1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E012A77F-90D9-4CB7-8C69-A28FBD212D1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E012A77F-90D9-4CB7-8C69-A28FBD212D1B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{DA33743B-B807-45B7-BE57-FCC11AE42263} = {B3FF2840-474C-4F9E-B3ED-99C39B461C22}
-		{A1E75A22-FDDD-4A3A-AC69-37E840690168} = {E3E76692-0D20-468B-A0D9-19F2057527F8}
-		{AFC24FE9-7588-49BB-98C3-D3FDE4ED85F3} = {30407F9D-80FD-45D0-9DE6-623F1600A070}
+		{056F340E-16C5-4B5E-AB18-86CC481427A4} = {E3E76692-0D20-468B-A0D9-19F2057527F8}
+		{E012A77F-90D9-4CB7-8C69-A28FBD212D1B} = {30407F9D-80FD-45D0-9DE6-623F1600A070}
 	EndGlobalSection
 EndGlobal

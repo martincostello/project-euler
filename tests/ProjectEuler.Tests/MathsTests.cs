@@ -349,7 +349,7 @@ namespace MartinCostello.ProjectEuler
         [InlineData(10, true)]
         [InlineData(15, true)]
         [InlineData(40755, true)]
-        public static void Maths_Triangular_Returns_Correct_Value(int x, bool expected)
+        public static void Maths_IsTriangular_Returns_Correct_Value(int x, bool expected)
         {
             // Act
             bool actual = Maths.IsTriangular(x);

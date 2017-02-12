@@ -23,7 +23,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
 
             while (date < max)
             {
-                if (date.IsoDayOfWeek == IsoDayOfWeek.Sunday)
+                if (date.DayOfWeek == IsoDayOfWeek.Sunday)
                 {
                     sundaysOnTheFirstOfTheMonth++;
                 }
