@@ -1,14 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0">
   <Import Project="..\..\ProjectEuler.Common.props" />
   <PropertyGroup>
-    <AssemblyName>ProjectEuler</AssemblyName>
-    <AssemblyTitle>ProjectEuler</AssemblyTitle>
     <Description>Solutions for Project Euler.</Description>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <OutputType>Exe</OutputType>
-    <PackageId>ProjectEuler</PackageId>
     <PackageTargetFallback>$(PackageTargetFallback);dotnet5.6;portable-net45+win8</PackageTargetFallback>
     <PreserveCompilationContext>true</PreserveCompilationContext>
+    <RootNamespace>MartinCostello.ProjectEuler</RootNamespace>
+    <TargetFramework>netcoreapp1.1</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="..\..\AssemblyVersion.cs;..\..\CommonAssemblyInfo.cs" />
