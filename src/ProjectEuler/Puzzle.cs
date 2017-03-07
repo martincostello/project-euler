@@ -88,7 +88,7 @@ namespace MartinCostello.ProjectEuler
         protected Stream ReadResource()
         {
             var thisType = GetType().GetTypeInfo();
-            string name = FormattableString.Invariant($"{thisType.Assembly.GetName().Name}.Puzzles.{thisType.Name}.Data.txt");
+            string name = FormattableString.Invariant($"MartinCostello.{thisType.Assembly.GetName().Name}.Puzzles.{thisType.Name}.Data.txt");
 
             return thisType.Assembly.GetManifestResourceStream(name);
         }
