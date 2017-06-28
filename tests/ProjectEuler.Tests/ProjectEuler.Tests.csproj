@@ -2,7 +2,6 @@
   <Import Project="..\..\ProjectEuler.Common.props" />
   <PropertyGroup>
     <Description>Tests for ProjectEuler.</Description>
-    <PackageTargetFallback>$(PackageTargetFallback);dotnet5.6</PackageTargetFallback>
     <RootNamespace>MartinCostello.ProjectEuler</RootNamespace>
     <Summary>Tests for ProjectEuler.</Summary>
     <TargetFramework>netcoreapp2.0</TargetFramework>
