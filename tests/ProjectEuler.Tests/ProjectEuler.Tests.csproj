@@ -2,10 +2,9 @@
   <Import Project="..\..\ProjectEuler.Common.props" />
   <PropertyGroup>
     <Description>Tests for ProjectEuler.</Description>
-    <PackageTargetFallback>$(PackageTargetFallback);dotnet5.6</PackageTargetFallback>
     <RootNamespace>MartinCostello.ProjectEuler</RootNamespace>
     <Summary>Tests for ProjectEuler.</Summary>
-    <TargetFramework>netcoreapp1.1</TargetFramework>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="..\..\AssemblyVersion.cs;..\..\CommonAssemblyInfo.cs" />
@@ -15,9 +14,9 @@
     <ProjectReference Include="..\..\src\ProjectEuler\ProjectEuler.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.0.0" />
-    <PackageReference Include="NodaTime" Version="2.0.0-beta20170123" />
-    <PackageReference Include="NodaTime.Testing" Version="2.0.0-beta20170123" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.3.0" />
+    <PackageReference Include="NodaTime" Version="2.0.2" />
+    <PackageReference Include="NodaTime.Testing" Version="2.0.2" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.0.0" PrivateAssets="All" />
     <PackageReference Include="xunit" Version="2.2.0" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.2.0" />
