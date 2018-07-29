@@ -1,9 +1,10 @@
-﻿// Copyright (c) Martin Costello, 2015. All rights reserved.
+// Copyright (c) Martin Costello, 2015. All rights reserved.
 // Licensed under the Apache 2.0 license. See the LICENSE file in the project root for full license information.
 
 namespace MartinCostello.ProjectEuler.Puzzles
 {
     using System.Collections.Generic;
+    using System.Globalization;
     using System.Numerics;
 
     /// <summary>
@@ -14,7 +15,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
         /// <summary>
         /// The <see cref="BigInteger"/> that is the first number with 1,000 digits. This field is read-only.
         /// </summary>
-        private static readonly BigInteger Limit = BigInteger.Parse("1" + new string('0', 999));
+        private static readonly BigInteger Limit = BigInteger.Parse("1" + new string('0', 999), CultureInfo.InvariantCulture);
 
         /// <inheritdoc />
         public override string Question => "What is the number of the first term in the Fibonacci sequence to contain 1,000 digits?";

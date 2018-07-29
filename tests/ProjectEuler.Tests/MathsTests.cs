@@ -1,9 +1,10 @@
-﻿// Copyright (c) Martin Costello, 2015. All rights reserved.
+// Copyright (c) Martin Costello, 2015. All rights reserved.
 // Licensed under the Apache 2.0 license. See the LICENSE file in the project root for full license information.
 
 namespace MartinCostello.ProjectEuler
 {
     using System.Collections.Generic;
+    using System.Globalization;
     using System.Linq;
     using System.Numerics;
     using Xunit;
@@ -30,10 +31,10 @@ namespace MartinCostello.ProjectEuler
         [InlineData("1000", new[] { 1, 0, 0, 0 })]
         [InlineData("1001", new[] { 1, 0, 0, 1 })]
         [InlineData("1002", new[] { 1, 0, 0, 2 })]
-        public static void Maths_Digits_Returns_Correct_Value(string value, IEnumerable<int> expected)
+        public static void Maths_Digits_Returns_Correct_Value_String(string value, IEnumerable<int> expected)
         {
             // Arrange
-            BigInteger parsed = BigInteger.Parse(value);
+            BigInteger parsed = BigInteger.Parse(value, CultureInfo.InvariantCulture);
 
             // Act
             var actual = Maths.Digits(parsed);
@@ -59,7 +60,7 @@ namespace MartinCostello.ProjectEuler
         [InlineData(1000, new[] { 1, 0, 0, 0 })]
         [InlineData(1001, new[] { 1, 0, 0, 1 })]
         [InlineData(1002, new[] { 1, 0, 0, 2 })]
-        public static void Maths_Digits_Returns_Correct_Value(long value, IEnumerable<int> expected)
+        public static void Maths_Digits_Returns_Correct_Value_Long(long value, IEnumerable<int> expected)
         {
             // Act
             var actual = Maths.Digits(value);

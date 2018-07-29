@@ -1,37 +1,48 @@
 param(
-    [Parameter(Mandatory = $false)][switch] $RestorePackages,
     [Parameter(Mandatory = $false)][string] $Configuration = "Release",
     [Parameter(Mandatory = $false)][string] $VersionSuffix = "",
     [Parameter(Mandatory = $false)][string] $OutputPath = "",
-    [Parameter(Mandatory = $false)][switch] $PatchVersion,
     [Parameter(Mandatory = $false)][switch] $SkipTests
 )
 
 $ErrorActionPreference = "Stop"
 
 $solutionPath = Split-Path $MyInvocation.MyCommand.Definition
-$solutionFile = Join-Path $solutionPath "ProjectEuler.sln"
-$dotnetVersion = "2.0.0"
+$sdkFile = Join-Path $solutionPath "global.json"
+
+$testProjects = @(
+    (Join-Path $solutionPath "tests\ProjectEuler.Tests\ProjectEuler.Tests.csproj")
+)
+
+$dotnetVersion = (Get-Content $sdkFile | Out-String | ConvertFrom-Json).sdk.version
 
 if ($OutputPath -eq "") {
     $OutputPath = Join-Path "$(Convert-Path "$PSScriptRoot")" "artifacts"
 }
 
-if ($env:CI -ne $null) {
-    $RestorePackages = $true
-    $PatchVersion = $true
+if ($null -ne $env:CI) {
+    if (($VersionSuffix -eq "" -and $env:APPVEYOR_REPO_TAG -eq "false" -and $env:APPVEYOR_BUILD_NUMBER -ne "") -eq $true) {
+        $ThisVersion = $env:APPVEYOR_BUILD_NUMBER -as [int]
+        $VersionSuffix = "beta" + $ThisVersion.ToString("0000")
+    }
 }
 
 $installDotNetSdk = $false;
 
-if (((Get-Command "dotnet.exe" -ErrorAction SilentlyContinue) -eq $null) -and ((Get-Command "dotnet" -ErrorAction SilentlyContinue) -eq $null)) {
+if (($null -eq (Get-Command "dotnet.exe" -ErrorAction SilentlyContinue)) -and ($null -eq (Get-Command "dotnet" -ErrorAction SilentlyContinue))) {
     Write-Host "The .NET Core SDK is not installed."
     $installDotNetSdk = $true
 }
 else {
-    $installedDotNetVersion = (dotnet --version | Out-String).Trim()
+    Try {
+        $installedDotNetVersion = (dotnet --version 2>&1 | Out-String).Trim()
+    }
+    Catch {
+        $installedDotNetVersion = "?"
+    }
+
     if ($installedDotNetVersion -ne $dotnetVersion) {
-        Write-Host "The required version of the .NET Core SDK is not installed. Expected $dotnetVersion but $installedDotNetVersion was found."
+        Write-Host "The required version of the .NET Core SDK is not installed. Expected $dotnetVersion."
         $installDotNetSdk = $true
     }
 }
@@ -41,87 +52,25 @@ if ($installDotNetSdk -eq $true) {
 
     if (!(Test-Path $env:DOTNET_INSTALL_DIR)) {
         mkdir $env:DOTNET_INSTALL_DIR | Out-Null
+        $installScript = Join-Path $env:DOTNET_INSTALL_DIR "install.ps1"
+        Invoke-WebRequest "https://raw.githubusercontent.com/dotnet/cli/v$dotnetVersion/scripts/obtain/dotnet-install.ps1" -OutFile $installScript -UseBasicParsing
+        & $installScript -Version "$dotnetVersion" -InstallDir "$env:DOTNET_INSTALL_DIR" -NoPath
     }
 
-    $installScript = Join-Path $env:DOTNET_INSTALL_DIR "install.ps1"
-    Invoke-WebRequest "https://raw.githubusercontent.com/dotnet/cli/release/2.0.0/scripts/obtain/dotnet-install.ps1" -OutFile $installScript
-    & $installScript -Version "$dotnetVersion" -InstallDir "$env:DOTNET_INSTALL_DIR" -NoPath
-
     $env:PATH = "$env:DOTNET_INSTALL_DIR;$env:PATH"
-    $dotnet = Join-Path "$env:DOTNET_INSTALL_DIR" "dotnet"
+    $dotnet = Join-Path "$env:DOTNET_INSTALL_DIR" "dotnet.exe"
 }
 else {
     $dotnet = "dotnet"
 }
 
-function DotNetRestore {
-    param([string]$Project)
-    & $dotnet restore $Project --verbosity minimal
-    if ($LASTEXITCODE -ne 0) {
-        throw "dotnet restore failed with exit code $LASTEXITCODE"
-    }
-}
+Write-Host "Building solution..." -ForegroundColor Green
 
-function DotNetBuild {
-    param([string]$Project)
-    if ($VersionSuffix) {
-        & $dotnet build $Project --output $OutputPath --configuration $Configuration --version-suffix "$VersionSuffix"
-    }
-    else {
-        & $dotnet build $Project --output $OutputPath --configuration $Configuration
-    }
-    if ($LASTEXITCODE -ne 0) {
-        throw "dotnet build failed with exit code $LASTEXITCODE"
-    }
-}
-
-function DotNetTest {
-    param([string]$Project)
-    & $dotnet test $Project --output $OutputPath --no-build
-    if ($LASTEXITCODE -ne 0) {
-        throw "dotnet test failed with exit code $LASTEXITCODE"
-    }
-}
-
-if ($PatchVersion -eq $true) {
-
-    $gitBranch = $env:BUILD_SOURCEBRANCHNAME
-
-    if ([string]::IsNullOrEmpty($gitBranch)) {
-        $gitBranch = (git rev-parse --abbrev-ref HEAD | Out-String).Trim()
-    }
-
-    $gitRevision = (git rev-parse HEAD | Out-String).Trim()
-    $timestamp = [DateTime]::UtcNow.ToString("yyyy-MM-ddTHH:mm:ssK")
-
-    $assemblyVersion = Get-Content ".\AssemblyVersion.cs" -Raw
-    $assemblyVersionWithMetadata = "{0}using System.Reflection;`r`n`r`n[assembly: AssemblyMetadata(""CommitHash"", ""{1}"")]`r`n[assembly: AssemblyMetadata(""CommitBranch"", ""{2}"")]`r`n[assembly: AssemblyMetadata(""BuildTimestamp"", ""{3}"")]" -f $assemblyVersion, $gitRevision, $gitBranch, $timestamp
-
-    Set-Content ".\AssemblyVersion.cs" $assemblyVersionWithMetadata -Encoding utf8
-}
-
-if ($RestorePackages -eq $true) {
-    Write-Host "Restoring NuGet packages for solution..." -ForegroundColor Green
-    DotNetRestore $solutionFile
-}
-
-# Will compile the main project by extension
-$testProjects = @(
-    (Join-Path $solutionPath "tests\ProjectEuler.Tests\ProjectEuler.Tests.csproj")
-)
-
-Write-Host "Building $($testProjects.Count) projects..." -ForegroundColor Green
-ForEach ($project in $testProjects) {
-    DotNetBuild $project $Configuration $PrereleaseSuffix
-}
+& $dotnet build ./ProjectEuler.sln --output $OutputPath --configuration $Configuration
 
 if ($SkipTests -eq $false) {
-    Write-Host "Testing $($testProjects.Count) project(s)..." -ForegroundColor Green
-    ForEach ($project in $testProjects) {
-        DotNetTest $project
+    Write-Host "Running tests..." -ForegroundColor Green
+    ForEach ($testProject in $testProjects) {
+        & $dotnet test $testProject --output $OutputPath --configuration $Configuration
     }
-}
-
-if ($PatchVersion -eq $true) {
-    Set-Content ".\AssemblyVersion.cs" $assemblyVersion -Encoding utf8
 }

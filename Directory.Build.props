@@ -1,0 +1,42 @@
+<Project>
+  <ItemGroup>
+    <AdditionalFiles Include="$(MSBuildThisFileDirectory)stylecop.json" Link="stylecop.json" />
+    <Compile Include="$(MSBuildThisFileDirectory)CommonAssemblyInfo.cs" />
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.6.1" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.CodeQuality.Analyzers" Version="2.6.1" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.NetCore.Analyzers" Version="2.6.1" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0-beta-63102-01" PrivateAssets="All" />
+    <PackageReference Include="StyleCop.Analyzers" Version="1.0.2" PrivateAssets="All" />
+    <PackageReference Include="Text.Analyzers" Version="2.6.1" PrivateAssets="All" />
+  </ItemGroup>
+  <PropertyGroup>
+    <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
+    <AssemblyOriginatorKeyFile>$(MSBuildThisFileDirectory)ProjectEuler.snk</AssemblyOriginatorKeyFile>
+    <Authors>Martin Costello</Authors>
+    <CodeAnalysisRuleSet>$(MSBuildThisFileDirectory)ProjectEuler.ruleset</CodeAnalysisRuleSet>
+    <Company>https://github.com/martincostello/project-euler</Company>
+    <Copyright>Martin Costello (c) 2015-$([System.DateTime]::UtcNow.ToString(yyyy))</Copyright>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+    <GenerateGitMetadata Condition=" ('$(CI)' != '' or '$(TF_BUILD)' != '') and '$(GenerateGitMetadata)' == '' ">true</GenerateGitMetadata>
+    <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
+    <LangVersion>latest</LangVersion>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <NoWarn>$(NoWarn);CA1016;CA1054;CA1055;CA1056;CA1812;CA1819;CS1591;CA2007</NoWarn>
+    <PackageIconUrl>https://cdn.martincostello.com/favicon.ico</PackageIconUrl>
+    <PackageProjectUrl>https://github.com/martincostello/project-euler</PackageProjectUrl>
+    <PackageLicenseUrl>$(PackageProjectUrl)/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageReleaseNotes>$(PackageProjectUrl)/releases</PackageReleaseNotes>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageTags>project euler</PackageTags>
+    <PublicSign Condition=" '$(OS)' != 'Windows_NT' ">true</PublicSign>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>$(PackageProjectUrl).git</RepositoryUrl>
+    <SignAssembly>true</SignAssembly>
+    <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+    <VersionPrefix>2.1.0</VersionPrefix>
+    <VersionSuffix></VersionSuffix>
+  </PropertyGroup>
+</Project>

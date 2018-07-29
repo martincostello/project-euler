@@ -1,4 +1,4 @@
-﻿// Copyright (c) Martin Costello, 2015. All rights reserved.
+// Copyright (c) Martin Costello, 2015. All rights reserved.
 // Licensed under the Apache 2.0 license. See the LICENSE file in the project root for full license information.
 
 namespace MartinCostello.ProjectEuler.Puzzles
@@ -12,8 +12,8 @@ namespace MartinCostello.ProjectEuler.Puzzles
     public static class Puzzle035Tests
     {
         [Theory]
-        [InlineData(100, 13)]
-        [InlineData(1000000, 55)]
+        [InlineData("100", 13)]
+        [InlineData("1000000", 55)]
         public static void Puzzle035_Returns_Correct_Solution(string maximum, int expected)
         {
             // Arrange

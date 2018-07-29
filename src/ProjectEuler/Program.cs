@@ -1,4 +1,4 @@
-﻿// Copyright (c) Martin Costello, 2015. All rights reserved.
+// Copyright (c) Martin Costello, 2015. All rights reserved.
 // Licensed under the Apache 2.0 license. See the LICENSE file in the project root for full license information.
 
 namespace MartinCostello.ProjectEuler
@@ -26,10 +26,9 @@ namespace MartinCostello.ProjectEuler
                 return -1;
             }
 
-            int puzzle;
             Type type = null;
 
-            if (!int.TryParse(args[0], NumberStyles.Integer & ~NumberStyles.AllowLeadingSign, CultureInfo.InvariantCulture, out puzzle) ||
+            if (!int.TryParse(args[0], NumberStyles.Integer & ~NumberStyles.AllowLeadingSign, CultureInfo.InvariantCulture, out int puzzle) ||
                 puzzle < 1 ||
                 (type = GetPuzzleType(puzzle)) == null)
             {
@@ -55,7 +54,7 @@ namespace MartinCostello.ProjectEuler
             IPuzzle puzzle = Activator.CreateInstance(type) as IPuzzle;
 
             Console.WriteLine();
-            Console.WriteLine("Project Euler - Puzzle {0}", type.Name.Replace("Puzzle", string.Empty).TrimStart('0'));
+            Console.WriteLine("Project Euler - Puzzle {0}", type.Name.Replace("Puzzle", string.Empty, StringComparison.Ordinal).TrimStart('0'));
             Console.WriteLine();
 
             Console.WriteLine(puzzle.Question);

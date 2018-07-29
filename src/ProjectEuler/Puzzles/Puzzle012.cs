@@ -1,4 +1,4 @@
-﻿// Copyright (c) Martin Costello, 2015. All rights reserved.
+// Copyright (c) Martin Costello, 2015. All rights reserved.
 // Licensed under the Apache 2.0 license. See the LICENSE file in the project root for full license information.
 
 namespace MartinCostello.ProjectEuler.Puzzles
@@ -20,9 +20,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
         /// <inheritdoc />
         protected override int SolveCore(string[] args)
         {
-            int divisors;
-
-            if (!TryParseInt32(args[0], out divisors) || divisors < 1)
+            if (!TryParseInt32(args[0], out int divisors) || divisors < 1)
             {
                 Console.WriteLine("The specified number of divisors is invalid.");
                 return -1;

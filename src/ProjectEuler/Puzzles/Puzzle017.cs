@@ -1,4 +1,4 @@
-﻿// Copyright (c) Martin Costello, 2015. All rights reserved.
+// Copyright (c) Martin Costello, 2015. All rights reserved.
 // Licensed under the Apache 2.0 license. See the LICENSE file in the project root for full license information.
 
 namespace MartinCostello.ProjectEuler.Puzzles
@@ -61,9 +61,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
         /// </returns>
         internal static string ToEnglish(int value)
         {
-            string result;
-
-            if (NumberWords.TryGetValue(value, out result))
+            if (NumberWords.TryGetValue(value, out string result))
             {
                 return result;
             }
@@ -149,9 +147,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
         /// <inheritdoc />
         protected override int SolveCore(string[] args)
         {
-            int max;
-
-            if (!TryParseInt32(args[0], out max) || max < 1)
+            if (!TryParseInt32(args[0], out int max) || max < 1)
             {
                 Console.WriteLine("The specified number is invalid.");
                 return -1;
@@ -162,8 +158,8 @@ namespace MartinCostello.ProjectEuler.Puzzles
             for (int i = 1; i <= max; i++)
             {
                 sum += ToEnglish(i)
-                    .Replace(" ", string.Empty)
-                    .Replace("-", string.Empty)
+                    .Replace(" ", string.Empty, StringComparison.Ordinal)
+                    .Replace("-", string.Empty, StringComparison.Ordinal)
                     .Length;
             }
 

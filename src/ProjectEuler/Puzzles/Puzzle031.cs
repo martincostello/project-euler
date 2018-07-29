@@ -1,4 +1,4 @@
-﻿// Copyright (c) Martin Costello, 2015. All rights reserved.
+// Copyright (c) Martin Costello, 2015. All rights reserved.
 // Licensed under the Apache 2.0 license. See the LICENSE file in the project root for full license information.
 
 namespace MartinCostello.ProjectEuler.Puzzles
@@ -25,9 +25,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
         /// <inheritdoc />
         protected override int SolveCore(string[] args)
         {
-            int target;
-
-            if (!TryParseInt32(args[0], out target) || target < 1)
+            if (!TryParseInt32(args[0], out int target) || target < 1)
             {
                 Console.WriteLine("The specified total is invalid.");
                 return -1;
