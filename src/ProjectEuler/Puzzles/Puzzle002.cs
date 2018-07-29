@@ -4,7 +4,6 @@
 namespace MartinCostello.ProjectEuler.Puzzles
 {
     using System;
-    using System.Collections.Generic;
 
     /// <summary>
     /// A class representing the solution to <c>https://projecteuler.net/problem=2</c>. This class cannot be inherited.
@@ -26,34 +25,29 @@ namespace MartinCostello.ProjectEuler.Puzzles
                 return -1;
             }
 
-            var fibonacciValues = new List<int>() { 1, 2 };
+            int first = 1;
+            int second = 2;
+            int sum = second;
 
             while (true)
             {
-                int count = fibonacciValues.Count;
-                int next = fibonacciValues[count - 1] + fibonacciValues[count - 2];
+                int next = first + second;
 
                 if (next > max)
                 {
                     break;
                 }
 
-                fibonacciValues.Add(next);
-            }
-
-            int answer = 0;
-
-            for (int i = 0; i < fibonacciValues.Count; i++)
-            {
-                int number = fibonacciValues[i];
-
-                if (number % 2 == 0)
+                if (next % 2 == 0)
                 {
-                    answer += number;
+                    sum += next;
                 }
+
+                first = second;
+                second = next;
             }
 
-            Answer = answer;
+            Answer = sum;
 
             return 0;
         }
