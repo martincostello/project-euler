@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <Description>Benchmarks for ProjectEuler.</Description>
+    <NoWarn>$(NoWarn);CA1056;CA2007</NoWarn>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>MartinCostello.ProjectEuler.Benchmarks</RootNamespace>
+    <Summary>Benchmarks for ProjectEuler.</Summary>
+    <TargetFrameworks>netcoreapp2.1</TargetFrameworks>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\ProjectEuler\ProjectEuler.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="BenchmarkDotNet" Version="0.11.0" />
+  </ItemGroup>
+</Project>

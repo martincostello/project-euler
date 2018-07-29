@@ -1,4 +1,4 @@
-﻿// Copyright (c) Martin Costello, 2015. All rights reserved.
+// Copyright (c) Martin Costello, 2015. All rights reserved.
 // Licensed under the Apache 2.0 license. See the LICENSE file in the project root for full license information.
 
 namespace MartinCostello.ProjectEuler.Puzzles
@@ -8,7 +8,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
     /// <summary>
     /// A class representing the solution to <c>https://projecteuler.net/problem=3</c>. This class cannot be inherited.
     /// </summary>
-    internal sealed class Puzzle003 : Puzzle
+    public sealed class Puzzle003 : Puzzle
     {
         /// <inheritdoc />
         public override string Question => "What is the largest prime factor of the specified number?";
@@ -19,9 +19,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
         /// <inheritdoc />
         protected override int SolveCore(string[] args)
         {
-            long max;
-
-            if (!TryParseInt64(args[0], out max) || max < 1)
+            if (!TryParseInt64(args[0], out long max) || max < 1)
             {
                 Console.WriteLine("The specified maximum value is invalid.");
                 return -1;
