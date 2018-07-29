@@ -1,8 +1,9 @@
-﻿// Copyright (c) Martin Costello, 2015. All rights reserved.
+// Copyright (c) Martin Costello, 2015. All rights reserved.
 // Licensed under the Apache 2.0 license. See the LICENSE file in the project root for full license information.
 
 namespace MartinCostello.ProjectEuler.Puzzles
 {
+    using System;
     using Xunit;
 
     /// <summary>
@@ -50,7 +51,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
         internal static T AssertSolution<T>(object expected)
             where T : IPuzzle, new()
         {
-            return AssertSolution<T>(new string[0], expected);
+            return AssertSolution<T>(Array.Empty<string>(), expected);
         }
 
         /// <summary>

@@ -1,20 +1,16 @@
-﻿<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0">
-  <Import Project="..\..\ProjectEuler.Common.props" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <Description>Solutions for Project Euler.</Description>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <OutputType>Exe</OutputType>
     <PreserveCompilationContext>true</PreserveCompilationContext>
     <RootNamespace>MartinCostello.ProjectEuler</RootNamespace>
-    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="..\..\AssemblyVersion.cs;..\..\CommonAssemblyInfo.cs" />
-    <Content Include="appsettings.json" CopyToOutputDirectory="PreserveNewest" />
-    <EmbeddedResource Include="Puzzles\**\*.txt" Exclude="bin\**;obj\**;packages\**;@(EmbeddedResource)" />
+    <EmbeddedResource Include="Puzzles\**\*.txt" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="NodaTime" Version="2.0.2" />
-    <PackageReference Include="StyleCop.Analyzers" Version="1.0.0" PrivateAssets="All" />
+    <PackageReference Include="NodaTime" Version="2.3.0" />
   </ItemGroup>
 </Project>
