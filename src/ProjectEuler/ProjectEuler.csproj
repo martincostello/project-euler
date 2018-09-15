@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <Description>Solutions for Project Euler.</Description>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
@@ -11,6 +11,6 @@
     <EmbeddedResource Include="Puzzles\**\*.txt" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="NodaTime" Version="2.3.0" />
+    <PackageReference Include="NodaTime" Version="2.4.0" />
   </ItemGroup>
 </Project>
