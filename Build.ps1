@@ -69,9 +69,9 @@ if ($SkipTests -eq $false) {
     ForEach ($testProject in $testProjects) {
         if ($null -ne $env:TF_BUILD) {
             & $dotnet test $testProject --output $OutputPath --configuration $Configuration --logger trx
-	    }
-	    else {
-	        & $dotnet test $testProject --output $OutputPath --configuration $Configuration
-	    }
+        }
+        else {
+            & $dotnet test $testProject --output $OutputPath --configuration $Configuration
+        }
     }
 }
