@@ -12,7 +12,7 @@
   <PropertyGroup>
     <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
     <AssemblyOriginatorKeyFile>$(MSBuildThisFileDirectory)ProjectEuler.snk</AssemblyOriginatorKeyFile>
-    <Authors>Martin Costello</Authors>
+    <Authors>martin_costello</Authors>
     <CodeAnalysisRuleSet>$(MSBuildThisFileDirectory)ProjectEuler.ruleset</CodeAnalysisRuleSet>
     <Company>https://github.com/martincostello/project-euler</Company>
     <Copyright>Martin Costello (c) 2015-$([System.DateTime]::UtcNow.ToString(yyyy))</Copyright>
@@ -25,8 +25,8 @@
     <NeutralLanguage>en-US</NeutralLanguage>
     <NoWarn>$(NoWarn);CA1016;CA1054;CA1055;CA1056;CA1812;CA1819;CS1591;CA2007</NoWarn>
     <PackageIconUrl>https://cdn.martincostello.com/favicon.ico</PackageIconUrl>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/martincostello/project-euler</PackageProjectUrl>
-    <PackageLicenseUrl>$(PackageProjectUrl)/blob/master/LICENSE</PackageLicenseUrl>
     <PackageReleaseNotes>See $(PackageProjectUrl)/releases for details.</PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageTags>project euler</PackageTags>
@@ -35,8 +35,9 @@
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>$(PackageProjectUrl).git</RepositoryUrl>
     <SignAssembly>true</SignAssembly>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <VersionPrefix>2.1.0</VersionPrefix>
+    <VersionPrefix>2.2.0</VersionPrefix>
     <VersionSuffix></VersionSuffix>
   </PropertyGroup>
 </Project>
