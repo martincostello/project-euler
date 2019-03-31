@@ -11,7 +11,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
     /// <summary>
     /// A class representing the solution to <c>https://projecteuler.net/problem=22</c>. This class cannot be inherited.
     /// </summary>
-    internal sealed class Puzzle022 : Puzzle
+    public sealed class Puzzle022 : Puzzle
     {
         /// <inheritdoc />
         public override string Question => "What is the total of all the name scores in the names data?";
@@ -24,7 +24,8 @@ namespace MartinCostello.ProjectEuler.Puzzles
         /// <returns>
         /// The score of <paramref name="name"/> when at <paramref name="position"/>
         /// </returns>
-        internal static int Score(string name, int position) => name.Sum((p) => p - 'A' + 1) * position;
+        internal static int Score(string name, int position)
+            => name.Sum((p) => p - 'A' + 1) * position;
 
         /// <summary>
         /// Reads the sorted list of names from the data associated with the puzzle.
@@ -42,7 +43,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
 
             using (Stream stream = ReadResource())
             {
-                using (StreamReader reader = new StreamReader(stream))
+                using (var reader = new StreamReader(stream))
                 {
                     namesText = reader.ReadToEnd();
                 }
@@ -52,7 +53,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
             var trimChars = new[] { '"', '\r', '\n' };
 
             return namesText
-                .Split(new[] { ',' })
+                .Split(',')
                 .Select((p) => p.Trim(trimChars).ToUpperInvariant())
                 .OrderBy((p) => p, StringComparer.Ordinal)
                 .ToList();

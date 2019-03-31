@@ -10,7 +10,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
     /// <summary>
     /// A class representing the solution to <c>https://projecteuler.net/problem=20</c>. This class cannot be inherited.
     /// </summary>
-    internal sealed class Puzzle020 : Puzzle
+    public sealed class Puzzle020 : Puzzle
     {
         /// <inheritdoc />
         public override string Question => "Find the sum of the digits in the factorial for the specified number (i.e. N!).";
@@ -21,9 +21,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
         /// <inheritdoc />
         protected override int SolveCore(string[] args)
         {
-            int number;
-
-            if (!TryParseInt32(args[0], out number) || number < 0)
+            if (!TryParseInt32(args[0], out int number) || number < 0)
             {
                 Console.WriteLine("The specified number is invalid.");
                 return -1;

@@ -9,7 +9,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
     /// <summary>
     /// A class representing the solution to <c>https://projecteuler.net/problem=11</c>. This class cannot be inherited.
     /// </summary>
-    internal sealed class Puzzle011 : Puzzle
+    public sealed class Puzzle011 : Puzzle
     {
         /// <summary>
         /// The two-dimensional grid of values. This field is read-only.

@@ -8,7 +8,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
     /// <summary>
     /// A class representing the solution to <c>https://projecteuler.net/problem=46</c>. This class cannot be inherited.
     /// </summary>
-    internal sealed class Puzzle046 : Puzzle
+    public sealed class Puzzle046 : Puzzle
     {
         /// <inheritdoc />
         public override string Question => "What is the smallest odd composite that cannot be written as the sum of a prime and twice a square?";

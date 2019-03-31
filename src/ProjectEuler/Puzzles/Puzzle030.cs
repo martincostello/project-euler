@@ -1,4 +1,4 @@
-// Copyright (c) Martin Costello, 2015. All rights reserved.
+﻿// Copyright (c) Martin Costello, 2015. All rights reserved.
 // Licensed under the Apache 2.0 license. See the LICENSE file in the project root for full license information.
 
 namespace MartinCostello.ProjectEuler.Puzzles
@@ -9,7 +9,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
     /// <summary>
     /// A class representing the solution to <c>https://projecteuler.net/problem=30</c>. This class cannot be inherited.
     /// </summary>
-    internal sealed class Puzzle030 : Puzzle
+    public sealed class Puzzle030 : Puzzle
     {
         /// <inheritdoc />
         public override string Question => "Find the sum of all the numbers that can be written as the sum of their digits raised to the specified ordinal power.";

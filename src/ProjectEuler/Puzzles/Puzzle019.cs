@@ -8,7 +8,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
     /// <summary>
     /// A class representing the solution to <c>https://projecteuler.net/problem=19</c>. This class cannot be inherited.
     /// </summary>
-    internal sealed class Puzzle019 : Puzzle
+    public sealed class Puzzle019 : Puzzle
     {
         /// <inheritdoc />
         public override string Question => "How many Sundays fell on the first of the month during the twentieth century (1 Jan 1901 to 31 Dec 2000)?";

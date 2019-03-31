@@ -6,7 +6,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
     /// <summary>
     /// A class representing the solution to <c>https://projecteuler.net/problem=26</c>. This class cannot be inherited.
     /// </summary>
-    internal sealed class Puzzle026 : Puzzle
+    public sealed class Puzzle026 : Puzzle
     {
         /// <inheritdoc />
         public override string Question => "Find the value of d < 1000 for which 1/d contains the longest recurring cycle in its decimal fraction part.";

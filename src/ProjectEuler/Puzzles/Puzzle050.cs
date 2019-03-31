@@ -1,16 +1,15 @@
-// Copyright (c) Martin Costello, 2015. All rights reserved.
+﻿// Copyright (c) Martin Costello, 2015. All rights reserved.
 // Licensed under the Apache 2.0 license. See the LICENSE file in the project root for full license information.
 
 namespace MartinCostello.ProjectEuler.Puzzles
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
 
     /// <summary>
     /// A class representing the solution to <c>https://projecteuler.net/problem=50</c>. This class cannot be inherited.
     /// </summary>
-    internal sealed class Puzzle050 : Puzzle
+    public sealed class Puzzle050 : Puzzle
     {
         /// <inheritdoc />
         public override string Question => "Which prime, below the specified value, can be written as the sum of the most consecutive primes?";
@@ -27,8 +26,8 @@ namespace MartinCostello.ProjectEuler.Puzzles
                 return -1;
             }
 
-            IList<int> primes = Maths.Primes(maximum).ToList();
-            IList<int> cumulativeSum = new[] { 0 }.Concat(Maths.CumulativeSum(primes)).ToList();
+            var primes = Maths.Primes(maximum).ToList();
+            var cumulativeSum = new[] { 0 }.Concat(Maths.CumulativeSum(primes)).ToList();
 
             int primeCount = 0;
             int answer = 0;

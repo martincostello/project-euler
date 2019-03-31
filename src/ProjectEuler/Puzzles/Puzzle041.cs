@@ -8,7 +8,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
     /// <summary>
     /// A class representing the solution to <c>https://projecteuler.net/problem=41</c>. This class cannot be inherited.
     /// </summary>
-    internal sealed class Puzzle041 : Puzzle
+    public sealed class Puzzle041 : Puzzle
     {
         /// <inheritdoc />
         public override string Question => "What is the largest n-digit pandigital prime that exists?";

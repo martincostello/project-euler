@@ -5,12 +5,11 @@ namespace MartinCostello.ProjectEuler.Puzzles
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
 
     /// <summary>
     /// A class representing the solution to <c>https://projecteuler.net/problem=4</c>. This class cannot be inherited.
     /// </summary>
-    internal sealed class Puzzle004 : Puzzle
+    public sealed class Puzzle004 : Puzzle
     {
         /// <inheritdoc />
         public override string Question => "What is the largest palindrome made from the product of two numbers with the specified number of digits?";
@@ -21,9 +20,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
         /// <inheritdoc />
         protected override int SolveCore(string[] args)
         {
-            int digitCount;
-
-            if (!TryParseInt32(args[0], out digitCount) || digitCount < 2)
+            if (!TryParseInt32(args[0], out int digitCount) || digitCount < 2)
             {
                 Console.WriteLine("The specified number of digits is invalid.");
                 return -1;
@@ -31,9 +28,12 @@ namespace MartinCostello.ProjectEuler.Puzzles
 
             var palindromes = new SortedSet<int>();
 
-            for (int i = (int)Math.Pow(10, digitCount - 1); i < Math.Pow(10, digitCount); i++)
+            int seed = (int)Math.Pow(10, digitCount - 1);
+            int limit = (int)Math.Pow(10, digitCount);
+
+            for (int i = seed; i < limit; i++)
             {
-                for (int j = (int)Math.Pow(10, digitCount - 1); j < i + 1; j++)
+                for (int j = seed; j < i + 1; j++)
                 {
                     int product = i * j;
                     IList<int> digits = Maths.Digits(product);

@@ -8,7 +8,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
     /// <summary>
     /// A class representing the solution to <c>https://projecteuler.net/problem=27</c>. This class cannot be inherited.
     /// </summary>
-    internal sealed class Puzzle027 : Puzzle
+    public sealed class Puzzle027 : Puzzle
     {
         /// <inheritdoc />
         public override string Question => "Find the product of the coefficients, a and b, for the quadratic expression that produces the maximum number of primes for consecutive values of n, starting with n = 0.";
@@ -50,9 +50,11 @@ namespace MartinCostello.ProjectEuler.Puzzles
             int bestCount = 0;
             int product = 0;
 
-            for (int a = (Maximum - 1) * -1; a < Maximum; a++)
+            int seed = (Maximum - 1) * -1;
+
+            for (int a = seed; a < Maximum; a++)
             {
-                for (int b = (Maximum - 1) * -1; b < Maximum; b++)
+                for (int b = seed; b < Maximum; b++)
                 {
                     int count = PrimesForQuadraticCoefficients(a, b);
 

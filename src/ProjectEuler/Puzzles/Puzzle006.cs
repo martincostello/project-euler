@@ -9,7 +9,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
     /// <summary>
     /// A class representing the solution to <c>https://projecteuler.net/problem=6</c>. This class cannot be inherited.
     /// </summary>
-    internal sealed class Puzzle006 : Puzzle
+    public sealed class Puzzle006 : Puzzle
     {
         /// <inheritdoc />
         public override string Question => "What is the difference between the sum of the squares of the specified number of natural numbers and the square of their sum?";
@@ -20,9 +20,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
         /// <inheritdoc />
         protected override int SolveCore(string[] args)
         {
-            int numbers;
-
-            if (!TryParseInt32(args[0], out numbers) || numbers < 1)
+            if (!TryParseInt32(args[0], out int numbers) || numbers < 1)
             {
                 Console.WriteLine("The specified number is invalid.");
                 return -1;

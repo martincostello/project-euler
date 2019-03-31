@@ -6,7 +6,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
     /// <summary>
     /// A class representing the solution to <c>https://projecteuler.net/problem=44</c>. This class cannot be inherited.
     /// </summary>
-    internal sealed class Puzzle044 : Puzzle
+    public sealed class Puzzle044 : Puzzle
     {
         /// <inheritdoc />
         public override string Question => "Find the pair of pentagonal numbers, Pj and Pk, for which their sum and difference are pentagonal and D = |Pk - Pj| is minimised; what is the value of D?";

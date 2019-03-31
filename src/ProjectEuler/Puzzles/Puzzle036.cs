@@ -8,7 +8,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
     /// <summary>
     /// A class representing the solution to <c>https://projecteuler.net/problem=36</c>. This class cannot be inherited.
     /// </summary>
-    internal sealed class Puzzle036 : Puzzle
+    public sealed class Puzzle036 : Puzzle
     {
         /// <inheritdoc />
         public override string Question => "Find the sum of all numbers, less than one million, which are palindromic in base 10 and base 2.";
