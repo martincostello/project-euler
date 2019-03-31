@@ -8,7 +8,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
     /// <summary>
     /// A class representing the solution to <c>https://projecteuler.net/problem=28</c>. This class cannot be inherited.
     /// </summary>
-    internal sealed class Puzzle028 : Puzzle
+    public sealed class Puzzle028 : Puzzle
     {
         /// <inheritdoc />
         public override string Question => "What is the sum of the numbers on the diagonals in a square spiral with the specified number of sides?";
@@ -19,9 +19,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
         /// <inheritdoc />
         protected override int SolveCore(string[] args)
         {
-            int sides;
-
-            if (!TryParseInt32(args[0], out sides) || sides < 1 || sides % 2 == 0)
+            if (!TryParseInt32(args[0], out int sides) || sides < 1 || sides % 2 == 0)
             {
                 Console.WriteLine("The specified number of sides is invalid.");
                 return -1;

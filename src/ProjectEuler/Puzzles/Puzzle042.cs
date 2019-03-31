@@ -10,7 +10,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
     /// <summary>
     /// A class representing the solution to <c>https://projecteuler.net/problem=42</c>. This class cannot be inherited.
     /// </summary>
-    internal sealed class Puzzle042 : Puzzle
+    public sealed class Puzzle042 : Puzzle
     {
         /// <inheritdoc />
         public override string Question => "How many are triangle words are in the word data?";

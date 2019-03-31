@@ -1,4 +1,4 @@
-// Copyright (c) Martin Costello, 2015. All rights reserved.
+﻿// Copyright (c) Martin Costello, 2015. All rights reserved.
 // Licensed under the Apache 2.0 license. See the LICENSE file in the project root for full license information.
 
 namespace MartinCostello.ProjectEuler.Puzzles
@@ -8,7 +8,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
     /// <summary>
     /// A class representing the solution to <c>https://projecteuler.net/problem=15</c>. This class cannot be inherited.
     /// </summary>
-    internal sealed class Puzzle015 : Puzzle
+    public sealed class Puzzle015 : Puzzle
     {
         /// <inheritdoc />
         public override string Question => "How many routes are there through a square grid with the specified number of sides?";

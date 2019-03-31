@@ -6,7 +6,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
     /// <summary>
     /// A class representing the solution to <c>https://projecteuler.net/problem=18</c>. This class cannot be inherited.
     /// </summary>
-    internal sealed class Puzzle018 : MaximumPathPuzzle
+    public sealed class Puzzle018 : MaximumPathPuzzle
     {
     }
 }

@@ -12,7 +12,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
     /// <summary>
     /// The base class for the maximum path sum puzzles.
     /// </summary>
-    internal abstract class MaximumPathPuzzle : Puzzle
+    public abstract class MaximumPathPuzzle : Puzzle
     {
         /// <inheritdoc />
         public override string Question => "Find the maximum total from top to bottom of the triangle.";
@@ -72,13 +72,13 @@ namespace MartinCostello.ProjectEuler.Puzzles
             Justification = "The stream is not disposed of multiple times.")]
         protected int[][] LoadTriangle()
         {
-            List<int[]> triangle = new List<int[]>();
+            var triangle = new List<int[]>();
 
             int lines = 0;
 
             using (Stream stream = ReadResource())
             {
-                using (StreamReader reader = new StreamReader(stream))
+                using (var reader = new StreamReader(stream))
                 {
                     string line = null;
 

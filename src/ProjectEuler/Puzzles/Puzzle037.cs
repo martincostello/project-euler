@@ -9,7 +9,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
     /// <summary>
     /// A class representing the solution to <c>https://projecteuler.net/problem=37</c>. This class cannot be inherited.
     /// </summary>
-    internal sealed class Puzzle037 : Puzzle
+    public sealed class Puzzle037 : Puzzle
     {
         /// <inheritdoc />
         public override string Question => "Find the sum of the only eleven primes that are both truncatable from left to right and right to left.";

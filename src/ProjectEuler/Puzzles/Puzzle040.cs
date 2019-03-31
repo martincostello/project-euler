@@ -9,7 +9,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
     /// <summary>
     /// A class representing the solution to <c>https://projecteuler.net/problem=40</c>. This class cannot be inherited.
     /// </summary>
-    internal sealed class Puzzle040 : Puzzle
+    public sealed class Puzzle040 : Puzzle
     {
         /// <inheritdoc />
         public override string Question => "Find the value of the following expression with respect to Champernowne's constant: d1 * d10 * d100 * d1000 * d10000 * d100000 * d1000000";
@@ -17,8 +17,8 @@ namespace MartinCostello.ProjectEuler.Puzzles
         /// <inheritdoc />
         protected override int SolveCore(string[] args)
         {
-            IList<int> digitsToFind = new[] { 1, 10, 100, 1000, 10000, 100000, 1000000 };
-            IList<int> foundDigits = new List<int>();
+            var digitsToFind = new[] { 1, 10, 100, 1000, 10000, 100000, 1000000 };
+            var foundDigits = new List<int>();
 
             int currentIndex = 0;
             int limit = digitsToFind.Max();

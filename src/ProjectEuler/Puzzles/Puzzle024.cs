@@ -8,7 +8,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
     /// <summary>
     /// A class representing the solution to <c>https://projecteuler.net/problem=24</c>. This class cannot be inherited.
     /// </summary>
-    internal sealed class Puzzle024 : Puzzle
+    public sealed class Puzzle024 : Puzzle
     {
         /// <inheritdoc />
         public override string Question => "What is the millionth lexicographic permutation of the digits 0-9?";

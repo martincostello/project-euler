@@ -13,7 +13,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
     /// <summary>
     /// A class representing the solution to <c>https://projecteuler.net/problem=39</c>. This class cannot be inherited.
     /// </summary>
-    internal sealed class Puzzle039 : Puzzle
+    public sealed class Puzzle039 : Puzzle
     {
         /// <inheritdoc />
         public override string Question => "For which value of p <= 1000, is the number of solutions for a right-angled triangle with perimeter p maximised?";

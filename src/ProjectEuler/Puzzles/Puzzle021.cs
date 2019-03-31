@@ -9,7 +9,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
     /// <summary>
     /// A class representing the solution to <c>https://projecteuler.net/problem=21</c>. This class cannot be inherited.
     /// </summary>
-    internal sealed class Puzzle021 : Puzzle
+    public sealed class Puzzle021 : Puzzle
     {
         /// <summary>
         /// A cache of the result of invocations of <see cref="D(long)"/>. This field is read-only.
@@ -59,9 +59,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
         /// </returns>
         private static long D(long value)
         {
-            long result;
-
-            if (_cache.TryGetValue(value, out result))
+            if (_cache.TryGetValue(value, out long result))
             {
                 return result;
             }

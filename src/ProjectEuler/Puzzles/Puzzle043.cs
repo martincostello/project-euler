@@ -10,7 +10,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
     /// <summary>
     /// A class representing the solution to <c>https://projecteuler.net/problem=43</c>. This class cannot be inherited.
     /// </summary>
-    internal sealed class Puzzle043 : Puzzle
+    public sealed class Puzzle043 : Puzzle
     {
         /// <summary>
         /// An array containing the indexes and divisors to search the digit

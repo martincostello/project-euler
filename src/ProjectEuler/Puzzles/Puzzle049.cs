@@ -9,7 +9,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
     /// <summary>
     /// A class representing the solution to <c>https://projecteuler.net/problem=49</c>. This class cannot be inherited.
     /// </summary>
-    internal sealed class Puzzle049 : Puzzle
+    public sealed class Puzzle049 : Puzzle
     {
         /// <inheritdoc />
         public override string Question => "What 12-digit number do you form by concatenating the three terms in the puzzle sequence other than for 1487?";

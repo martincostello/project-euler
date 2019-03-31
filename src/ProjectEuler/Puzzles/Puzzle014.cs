@@ -4,12 +4,11 @@
 namespace MartinCostello.ProjectEuler.Puzzles
 {
     using System.Collections.Generic;
-    using System.Linq;
 
     /// <summary>
     /// A class representing the solution to <c>https://projecteuler.net/problem=14</c>. This class cannot be inherited.
     /// </summary>
-    internal sealed class Puzzle014 : Puzzle
+    public sealed class Puzzle014 : Puzzle
     {
         /// <summary>
         /// The cache of Collatz sequence lengths from a specified number. This field is read-only.
@@ -28,20 +27,17 @@ namespace MartinCostello.ProjectEuler.Puzzles
         /// </returns>
         internal static int GetCollatzSequenceLength(long start)
         {
-            int length = 0;
-
-            if (!_cache.TryGetValue(start, out length))
+            if (!_cache.TryGetValue(start, out int length))
             {
                 if (start > 0)
                 {
                     long current = start;
-                    int remainingLength;
 
                     bool cacheHit = false;
 
                     while (current != 1 && !cacheHit)
                     {
-                        if (_cache.TryGetValue(current, out remainingLength))
+                        if (_cache.TryGetValue(current, out int remainingLength))
                         {
                             length += remainingLength;
                             cacheHit = true;

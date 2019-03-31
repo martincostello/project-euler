@@ -11,7 +11,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
     /// <summary>
     /// A class representing the solution to <c>https://projecteuler.net/problem=38</c>. This class cannot be inherited.
     /// </summary>
-    internal sealed class Puzzle038 : Puzzle
+    public sealed class Puzzle038 : Puzzle
     {
         /// <inheritdoc />
         public override string Question => "What is the largest 1 to 9 pandigital 9-digit number that can be formed as the concatenated product of an integer with (1,2, ... , n) where n > 1?";

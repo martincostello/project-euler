@@ -9,7 +9,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
     /// <summary>
     /// A class representing the solution to <c>https://projecteuler.net/problem=33</c>. This class cannot be inherited.
     /// </summary>
-    internal sealed class Puzzle033 : Puzzle
+    public sealed class Puzzle033 : Puzzle
     {
         /// <inheritdoc />
         public override string Question => "If the product of the four non-trivial curious fractions less than one with two digits in the numerator and denominator is given in its lowest common terms, what is the value of the denominator?";

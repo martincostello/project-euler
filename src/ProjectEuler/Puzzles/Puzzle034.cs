@@ -9,7 +9,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
     /// <summary>
     /// A class representing the solution to <c>https://projecteuler.net/problem=34</c>. This class cannot be inherited.
     /// </summary>
-    internal sealed class Puzzle034 : Puzzle
+    public sealed class Puzzle034 : Puzzle
     {
         /// <summary>
         /// An array containing the factorials of single digit numbers. This field is read-only.

@@ -8,7 +8,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
     /// <summary>
     /// A class representing the solution to <c>https://projecteuler.net/problem=23</c>. This class cannot be inherited.
     /// </summary>
-    internal sealed class Puzzle023 : Puzzle
+    public sealed class Puzzle023 : Puzzle
     {
         /// <inheritdoc />
         public override string Question => "Find the sum of all the positive integers which cannot be written as the sum of two abundant numbers.";
