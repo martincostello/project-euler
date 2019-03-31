@@ -53,7 +53,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
             var trimChars = new[] { '"', '\r', '\n' };
 
             return namesText
-                .Split(new[] { ',' })
+                .Split(',')
                 .Select((p) => p.Trim(trimChars).ToUpperInvariant())
                 .OrderBy((p) => p, StringComparer.Ordinal)
                 .ToList();

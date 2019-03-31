@@ -27,8 +27,9 @@ namespace MartinCostello.ProjectEuler.Puzzles
 
             int sum = 1;
             int ringStart = 2;
+            int limit = sides * sides;
 
-            for (int sideLength = 3; ringStart < sides * sides; sideLength += 2)
+            for (int sideLength = 3; ringStart < limit; sideLength += 2)
             {
                 int lastCorner = sideLength * sideLength;
                 int thirdCorner = lastCorner - sideLength + 1;

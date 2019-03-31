@@ -1,4 +1,4 @@
-// Copyright (c) Martin Costello, 2015. All rights reserved.
+﻿// Copyright (c) Martin Costello, 2015. All rights reserved.
 // Licensed under the Apache 2.0 license. See the LICENSE file in the project root for full license information.
 
 namespace MartinCostello.ProjectEuler
@@ -78,9 +78,10 @@ namespace MartinCostello.ProjectEuler
                 value = BigInteger.Negate(value);
             }
 
-            var digits = new List<int>();
+            string valueAsString = value.ToString(CultureInfo.InvariantCulture);
+            var digits = new List<int>(valueAsString.Length);
 
-            foreach (char ch in value.ToString(CultureInfo.InvariantCulture))
+            foreach (char ch in valueAsString)
             {
                 digits.Add(ch - '0');
             }

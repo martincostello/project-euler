@@ -50,9 +50,11 @@ namespace MartinCostello.ProjectEuler.Puzzles
             int bestCount = 0;
             int product = 0;
 
-            for (int a = (Maximum - 1) * -1; a < Maximum; a++)
+            int seed = (Maximum - 1) * -1;
+
+            for (int a = seed; a < Maximum; a++)
             {
-                for (int b = (Maximum - 1) * -1; b < Maximum; b++)
+                for (int b = seed; b < Maximum; b++)
                 {
                     int count = PrimesForQuadraticCoefficients(a, b);
 

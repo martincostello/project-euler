@@ -33,10 +33,12 @@ namespace MartinCostello.ProjectEuler.Puzzles
                 return -1;
             }
 
-            var products = new List<long>();
+            int limit = 1000 - digitCount;
+
+            var products = new List<long>(limit);
             var digits = Maths.Digits(OneThousandDigitNumber);
 
-            for (int i = 0; i < (1000 - digitCount); i++)
+            for (int i = 0; i < limit; i++)
             {
                 long product = digits[i];
 

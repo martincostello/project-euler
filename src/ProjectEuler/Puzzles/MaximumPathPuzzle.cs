@@ -26,18 +26,20 @@ namespace MartinCostello.ProjectEuler.Puzzles
         /// </returns>
         internal static int ComputeMaximumPathSum(int[][] triangle)
         {
-            List<int[]> working = triangle.ToList();
+            var working = triangle
+                .Select((p) => p as IList<int>)
+                .ToList();
 
             // Work through the triangle from the bottom up until there is one number left
             while (working.Count > 1)
             {
                 // Get the bottom two rows of the triangle
-                int[] upper = working[working.Count - 2];
-                int[] lower = working[working.Count - 1];
+                var upper = working[working.Count - 2];
+                var lower = working[working.Count - 1];
 
-                List<int> maximums = new List<int>();
+                var maximums = new List<int>(upper.Count);
 
-                for (int i = 0; i < upper.Length; i++)
+                for (int i = 0; i < upper.Count; i++)
                 {
                     // Find the maximum value of two adjacent values
                     int max = Math.Max(lower[i], lower[i + 1]);
@@ -53,7 +55,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
                 working.RemoveAt(working.Count - 1);
 
                 // Add the maximums as the new bottom row
-                working.Add(maximums.ToArray());
+                working.Add(maximums);
             }
 
             // The single value left is the maximum path sum

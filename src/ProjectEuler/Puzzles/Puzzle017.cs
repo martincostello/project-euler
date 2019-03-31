@@ -79,7 +79,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
             int tens = justTheTens / 10;
             int ones = justTheTens % 10;
 
-            StringBuilder builder = new StringBuilder();
+            var builder = new StringBuilder();
 
             if (thousands > 0)
             {

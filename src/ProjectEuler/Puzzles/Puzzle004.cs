@@ -28,9 +28,12 @@ namespace MartinCostello.ProjectEuler.Puzzles
 
             var palindromes = new SortedSet<int>();
 
-            for (int i = (int)Math.Pow(10, digitCount - 1); i < Math.Pow(10, digitCount); i++)
+            int seed = (int)Math.Pow(10, digitCount - 1);
+            int limit = (int)Math.Pow(10, digitCount);
+
+            for (int i = seed; i < limit; i++)
             {
-                for (int j = (int)Math.Pow(10, digitCount - 1); j < i + 1; j++)
+                for (int j = seed; j < i + 1; j++)
                 {
                     int product = i * j;
                     IList<int> digits = Maths.Digits(product);

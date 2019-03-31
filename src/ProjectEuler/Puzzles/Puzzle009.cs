@@ -16,13 +16,15 @@ namespace MartinCostello.ProjectEuler.Puzzles
         /// <inheritdoc />
         protected override int SolveCore(string[] args)
         {
-            for (int a = 1; a < 1000; a++)
+            const int Limit = 1000;
+
+            for (int a = 1; a < Limit; a++)
             {
-                for (int b = 1; b < 1000; b++)
+                for (int b = 1; b < Limit; b++)
                 {
-                    if (Math.Pow(a, 2) + Math.Pow(b, 2) == Math.Pow(1000 - a - b, 2))
+                    if (Math.Pow(a, 2) + Math.Pow(b, 2) == Math.Pow(Limit - a - b, 2))
                     {
-                        Answer = a * b * (1000 - a - b);
+                        Answer = a * b * (Limit - a - b);
                         break;
                     }
                 }
