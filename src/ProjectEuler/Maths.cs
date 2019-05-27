@@ -28,7 +28,7 @@ namespace MartinCostello.ProjectEuler
         /// <summary>
         /// Returns the binomial coefficient for the specified values.
         /// </summary>
-        /// <param name="n">The number of values/</param>
+        /// <param name="n">The number of values.</param>
         /// <param name="k">The number of values to select.</param>
         /// <returns>
         /// The value of the binomial coefficient for <paramref name="n"/> and <paramref name="k"/>.

@@ -34,7 +34,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
         /// <summary>
         /// Returns whether a specified number is a curious number.
         /// </summary>
-        /// <param name="value">The value to test for curiosity,</param>
+        /// <param name="value">The value to test for curiosity.</param>
         /// <returns>
         /// <see langword="true"/> if <paramref name="value"/> is a curious number; otherwise <see langword="false"/>.
         /// </returns>
