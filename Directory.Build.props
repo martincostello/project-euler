@@ -6,7 +6,7 @@
   </ItemGroup>
   <ItemGroup Condition=" '$(UseSharedCompilation)' != 'false' and '$(BuildInParallel)' != 'false' ">
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.1" PrivateAssets="All" />
-    <PackageReference Include="Microsoft.CodeQuality.Analyzers" Version="2.9.1" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.CodeQuality.Analyzers" Version="2.9.2" PrivateAssets="All" />
     <PackageReference Include="Microsoft.NetCore.Analyzers" Version="2.9.1" PrivateAssets="All" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.0.2" PrivateAssets="All" />
     <PackageReference Include="Text.Analyzers" Version="2.6.3" PrivateAssets="All" />
