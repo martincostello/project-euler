@@ -22,7 +22,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
         /// <param name="name">The name to get the score for.</param>
         /// <param name="position">The original position of the name in the set it belongs to.</param>
         /// <returns>
-        /// The score of <paramref name="name"/> when at <paramref name="position"/>
+        /// The score of <paramref name="name"/> when at <paramref name="position"/>.
         /// </returns>
         internal static int Score(string name, int position)
             => name.Sum((p) => p - 'A' + 1) * position;
