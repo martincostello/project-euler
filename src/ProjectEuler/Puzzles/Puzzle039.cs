@@ -5,10 +5,8 @@ namespace MartinCostello.ProjectEuler.Puzzles
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics;
     using System.Globalization;
     using System.Linq;
-    using System.Text;
 
     /// <summary>
     /// A class representing the solution to <c>https://projecteuler.net/problem=39</c>. This class cannot be inherited.
@@ -40,7 +38,13 @@ namespace MartinCostello.ProjectEuler.Puzzles
 
                     if (a + b + c == perimeter)
                     {
-                        string solution = $"{{{string.Join(",", new[] { a, b, c }.OrderBy((p) => p))}}}";
+                        // https://devblogs.microsoft.com/dotnet/floating-point-parsing-and-formatting-improvements-in-net-core-3-0/
+                        var sides = new[] { a, b, c }
+                            .OrderBy((p) => p)
+                            .Select((p) => p.ToString("G15", CultureInfo.InvariantCulture))
+                            .ToArray();
+
+                        string solution = "{" + string.Join(",", sides) + "}";
 
                         if (!solutions.Contains(solution))
                         {

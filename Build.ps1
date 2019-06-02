@@ -28,7 +28,7 @@ if (($null -eq (Get-Command "dotnet.exe" -ErrorAction SilentlyContinue)) -and ($
 }
 else {
     Try {
-        $installedDotNetVersion = (dotnet --version 2>&1 | Out-String).Trim()
+        $installedDotNetVersion = (dotnet.exe --version 2>&1 | Out-String).Trim()
     }
     Catch {
         $installedDotNetVersion = "?"
@@ -49,6 +49,7 @@ if ($installDotNetSdk -eq $true) {
             mkdir $env:DOTNET_INSTALL_DIR | Out-Null
         }
         $installScript = Join-Path $env:DOTNET_INSTALL_DIR "install.ps1"
+        [Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor "Tls12"
         Invoke-WebRequest "https://dot.net/v1/dotnet-install.ps1" -OutFile $installScript -UseBasicParsing
         & $installScript -Version "$dotnetVersion" -InstallDir "$env:DOTNET_INSTALL_DIR" -NoPath
     }
@@ -57,7 +58,7 @@ if ($installDotNetSdk -eq $true) {
     $dotnet = Join-Path "$env:DOTNET_INSTALL_DIR" "dotnet.exe"
 }
 else {
-    $dotnet = "dotnet"
+    $dotnet = "dotnet.exe"
 }
 
 Write-Host "Building solution..." -ForegroundColor Green
