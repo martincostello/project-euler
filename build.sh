@@ -54,4 +54,4 @@ if [ $skipTests == 0 ]; then
     fi
 fi
 
-more "perf-log.txt"
+more "/home/travis/build/martincostello/project-euler/tests/ProjectEuler.Tests/perf-log.txt"
