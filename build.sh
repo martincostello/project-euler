@@ -50,6 +50,8 @@ if [ $skipTests == 0 ]; then
     if [ "$TF_BUILD" != "" ]; then
         dotnet test ./tests/ProjectEuler.Tests/ProjectEuler.Tests.csproj --output $artifacts --configuration $configuration --no-build --logger trx || exit 1
     else
-        dotnet test ./tests/ProjectEuler.Tests/ProjectEuler.Tests.csproj --output $artifacts --configuration $configuration --no-build || exit 1
+        dotnet test ./tests/ProjectEuler.Tests/ProjectEuler.Tests.csproj --output $artifacts --configuration $configuration --no-build --diag:perf-log.txt || exit 1
     fi
 fi
+
+echo "$(perf-log.txt)"
