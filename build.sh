@@ -54,4 +54,4 @@ if [ $skipTests == 0 ]; then
     fi
 fi
 
-echo "$(perf-log.txt)"
+more "perf-log.txt"
