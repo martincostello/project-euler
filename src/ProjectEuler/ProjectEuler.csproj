@@ -11,6 +11,6 @@
     <EmbeddedResource Include="Puzzles\**\*.txt" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="NodaTime" Version="2.4.5" />
+    <PackageReference Include="NodaTime" Version="2.4.6" />
   </ItemGroup>
 </Project>
