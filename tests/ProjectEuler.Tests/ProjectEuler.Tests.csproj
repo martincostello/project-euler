@@ -4,7 +4,7 @@
     <NoWarn>$(NoWarn);CA1707;CA1812;CA2007</NoWarn>
     <RootNamespace>MartinCostello.ProjectEuler</RootNamespace>
     <Summary>Tests for ProjectEuler.</Summary>
-    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
     <Content Include="xunit.runner.json" CopyToOutputDirectory="PreserveNewest" />

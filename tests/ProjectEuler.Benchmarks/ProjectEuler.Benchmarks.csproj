@@ -5,7 +5,7 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>MartinCostello.ProjectEuler.Benchmarks</RootNamespace>
     <Summary>Benchmarks for ProjectEuler.</Summary>
-    <TargetFrameworks>netcoreapp2.2</TargetFrameworks>
+    <TargetFrameworks>netcoreapp3.0</TargetFrameworks>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\ProjectEuler\ProjectEuler.csproj" />

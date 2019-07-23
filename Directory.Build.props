@@ -42,7 +42,7 @@
     <SignAssembly>true</SignAssembly>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <VersionPrefix>2.2.0</VersionPrefix>
+    <VersionPrefix>3.0.0</VersionPrefix>
     <VersionSuffix></VersionSuffix>
   </PropertyGroup>
 </Project>
