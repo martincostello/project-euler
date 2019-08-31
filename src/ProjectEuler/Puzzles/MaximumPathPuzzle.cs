@@ -78,22 +78,19 @@ namespace MartinCostello.ProjectEuler.Puzzles
 
             int lines = 0;
 
-            using (Stream stream = ReadResource())
+            using var stream = ReadResource();
+            using var reader = new StreamReader(stream);
+
+            string line = null;
+
+            while (!string.IsNullOrEmpty(line = reader.ReadLine()))
             {
-                using (var reader = new StreamReader(stream))
-                {
-                    string line = null;
+                string[] split = line.Split(' ');
 
-                    while (!string.IsNullOrEmpty(line = reader.ReadLine()))
-                    {
-                        string[] split = line.Split(' ');
+                var values = split.Select((p) => int.Parse(p, CultureInfo.InvariantCulture)).ToArray();
 
-                        var values = split.Select((p) => int.Parse(p, CultureInfo.InvariantCulture)).ToArray();
-
-                        triangle.Add(values);
-                        lines++;
-                    }
-                }
+                triangle.Add(values);
+                lines++;
             }
 
             return triangle.ToArray();

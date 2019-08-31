@@ -39,15 +39,10 @@ namespace MartinCostello.ProjectEuler.Puzzles
             Justification = "The stream is not disposed of multiple times.")]
         internal IList<string> ReadNames()
         {
-            string namesText;
+            using var stream = ReadResource();
+            using var reader = new StreamReader(stream);
 
-            using (Stream stream = ReadResource())
-            {
-                using (var reader = new StreamReader(stream))
-                {
-                    namesText = reader.ReadToEnd();
-                }
-            }
+            string namesText = reader.ReadToEnd();
 
             // Remove quotes and any rogue new-line characters
             var trimChars = new[] { '"', '\r', '\n' };

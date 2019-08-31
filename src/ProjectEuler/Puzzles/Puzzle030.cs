@@ -56,8 +56,8 @@ namespace MartinCostello.ProjectEuler.Puzzles
                 return -1;
             }
 
-            int sum = 0;
-            int upperBound = 0;
+            int sum;
+            int upperBound;
             int nineToThePower = (int)Math.Pow(9, power);
 
             for (int digitCount = 2; ; digitCount++)
