@@ -20,7 +20,7 @@ namespace MartinCostello.ProjectEuler
             "Microsoft.Performance",
             "CA1819:PropertiesShouldNotReturnArrays",
             Justification = "Required for use by xunit.")]
-        public static object[][] Args
+        public static IEnumerable<object[]> Args
         {
             get
             {
