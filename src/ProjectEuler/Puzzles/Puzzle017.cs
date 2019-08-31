@@ -61,7 +61,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
         /// </returns>
         internal static string ToEnglish(int value)
         {
-            if (NumberWords.TryGetValue(value, out string result))
+            if (NumberWords.TryGetValue(value, out string? result))
             {
                 return result;
             }

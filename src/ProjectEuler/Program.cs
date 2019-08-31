@@ -6,7 +6,6 @@ namespace MartinCostello.ProjectEuler
     using System;
     using System.Diagnostics;
     using System.Globalization;
-    using System.Linq;
 
     /// <summary>
     /// A console application that solves puzzles for <c>https://projecteuler.net/</c>. This class cannot be inherited.
@@ -26,7 +25,7 @@ namespace MartinCostello.ProjectEuler
                 return -1;
             }
 
-            Type type;
+            Type? type;
 
             if (!int.TryParse(args[0], NumberStyles.Integer & ~NumberStyles.AllowLeadingSign, CultureInfo.InvariantCulture, out int puzzle) ||
                 puzzle < 1 ||
@@ -51,15 +50,15 @@ namespace MartinCostello.ProjectEuler
         /// </returns>
         internal static int SolvePuzzle(Type type, string[] args)
         {
-            IPuzzle puzzle = Activator.CreateInstance(type) as IPuzzle;
+            IPuzzle? puzzle = Activator.CreateInstance(type) as IPuzzle;
 
             Console.WriteLine();
             Console.WriteLine("Project Euler - Puzzle {0}", type.Name.Replace("Puzzle", string.Empty, StringComparison.Ordinal).TrimStart('0'));
             Console.WriteLine();
 
-            Console.WriteLine(puzzle.Question);
+            Console.WriteLine(puzzle!.Question);
 
-            Stopwatch stopwatch = Stopwatch.StartNew();
+            var stopwatch = Stopwatch.StartNew();
 
             int result = puzzle.Solve(args);
 
@@ -93,7 +92,7 @@ namespace MartinCostello.ProjectEuler
         /// <returns>
         /// The <see cref="Type"/> for the specified puzzle number, if found; otherwise <see langword="null"/>.
         /// </returns>
-        private static Type GetPuzzleType(int number)
+        private static Type? GetPuzzleType(int number)
         {
             string typeName = string.Format(
                 CultureInfo.InvariantCulture,

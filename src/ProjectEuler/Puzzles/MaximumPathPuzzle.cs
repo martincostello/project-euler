@@ -81,7 +81,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
             using var stream = ReadResource();
             using var reader = new StreamReader(stream);
 
-            string line = null;
+            string? line = null;
 
             while (!string.IsNullOrEmpty(line = reader.ReadLine()))
             {
