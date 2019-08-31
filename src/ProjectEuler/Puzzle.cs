@@ -18,7 +18,7 @@ namespace MartinCostello.ProjectEuler
         public abstract string Question { get; }
 
         /// <inheritdoc />
-        public object Answer { get; protected set; }
+        public object? Answer { get; protected set; }
 
         /// <summary>
         /// Gets the minimum number of arguments required to solve the puzzle.
@@ -90,7 +90,9 @@ namespace MartinCostello.ProjectEuler
             var thisType = GetType().GetTypeInfo();
             string name = FormattableString.Invariant($"MartinCostello.{thisType.Assembly.GetName().Name}.Puzzles.{thisType.Name}.Data.txt");
 
-            return thisType.Assembly.GetManifestResourceStream(name);
+            // HACK Work around https://github.com/DotNetAnalyzers/StyleCopAnalyzers/issues/2968
+            var stream = thisType.Assembly.GetManifestResourceStream(name);
+            return stream!;
         }
 
         /// <summary>

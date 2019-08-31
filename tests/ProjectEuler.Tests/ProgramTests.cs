@@ -4,6 +4,7 @@
 namespace MartinCostello.ProjectEuler
 {
     using System;
+    using System.Collections.Generic;
     using Puzzles;
     using Xunit;
 
@@ -19,7 +20,7 @@ namespace MartinCostello.ProjectEuler
             "Microsoft.Performance",
             "CA1819:PropertiesShouldNotReturnArrays",
             Justification = "Required for use by xunit.")]
-        public static object[][] Args
+        public static IEnumerable<object[]> Args
         {
             get
             {
@@ -106,10 +107,10 @@ namespace MartinCostello.ProjectEuler
         public static void Program_Exits_If_Null_Arguments()
         {
             // Arrange
-            string[] args = null;
+            var args = null as string[];
 
             // Act
-            int actual = Program.Main(args);
+            int actual = Program.Main(args!);
 
             // Assert
             Assert.Equal(-1, actual);

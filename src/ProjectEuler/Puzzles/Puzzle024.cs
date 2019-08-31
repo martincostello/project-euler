@@ -28,7 +28,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
                 int rangeSize = Maths.Factorial(targetLength - i);
 
                 int nextDigitIndex = remaining / rangeSize;
-                remaining = remaining % rangeSize;
+                remaining %= rangeSize;
 
                 usedDigits.Add(nextDigits[nextDigitIndex]);
                 nextDigits.RemoveAt(nextDigitIndex);

@@ -58,7 +58,7 @@ namespace MartinCostello.ProjectEuler
 
                 // Assert
                 Assert.NotNull(puzzle);
-                Assert.NotNull(puzzle.Question);
+                Assert.NotNull(puzzle!.Question);
                 Assert.NotEmpty(puzzle.Question);
             }
         }

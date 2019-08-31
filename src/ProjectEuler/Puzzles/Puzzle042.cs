@@ -46,15 +46,10 @@ namespace MartinCostello.ProjectEuler.Puzzles
         /// </returns>
         internal IList<string> ReadWords()
         {
-            string rawWords;
+            using var stream = ReadResource();
+            using var reader = new StreamReader(stream);
 
-            using (Stream stream = ReadResource())
-            {
-                using (TextReader reader = new StreamReader(stream))
-                {
-                    rawWords = reader.ReadToEnd();
-                }
-            }
+            string rawWords = reader.ReadToEnd();
 
             string[] split = rawWords.Split(',');
             char[] quote = new[] { '\"' };

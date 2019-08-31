@@ -16,7 +16,7 @@ namespace MartinCostello.ProjectEuler
         /// <summary>
         /// Gets the answer to the puzzle.
         /// </summary>
-        object Answer { get; }
+        object? Answer { get; }
 
         /// <summary>
         /// Solves the puzzle given the specified arguments.

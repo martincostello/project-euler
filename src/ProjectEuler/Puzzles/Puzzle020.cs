@@ -36,7 +36,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
                 // For n -> 0
                 for (int n = number - 1; n > 0; n--)
                 {
-                    factorial = factorial * n;
+                    factorial *= n;
                 }
             }
 

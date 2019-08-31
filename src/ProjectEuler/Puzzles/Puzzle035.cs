@@ -62,7 +62,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
                     rotation += rotationDigits[j] * Math.Pow(10, rotationDigits.Length - j - 1);
                 }
 
-                rotation += rotationDigits[rotationDigits.Length - 1];
+                rotation += rotationDigits[^1];
 
                 result.Add((long)rotation);
             }

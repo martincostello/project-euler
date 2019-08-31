@@ -22,7 +22,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
                 .Select((p) => (long)p)
                 .ToList();
 
-            IList<long> factors = null;
+            IList<long>? factors = null;
 
             for (int i = 0; i < primes.Count && factors == null; i++)
             {

@@ -1,6 +1,6 @@
 <Project>
   <PropertyGroup>
-    <AnalyzersVersion>2.9.3</AnalyzersVersion>
+    <AnalyzersVersion>2.9.4</AnalyzersVersion>
   </PropertyGroup>
   <ItemGroup>
     <AdditionalFiles Include="$(MSBuildThisFileDirectory)stylecop.json" Link="stylecop.json" />
@@ -10,7 +10,6 @@
   <ItemGroup Condition=" '$(UseSharedCompilation)' != 'false' and '$(BuildInParallel)' != 'false' ">
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="$(AnalyzersVersion)" PrivateAssets="All" />
     <PackageReference Include="Microsoft.CodeQuality.Analyzers" Version="$(AnalyzersVersion)" PrivateAssets="All" />
-    <PackageReference Include="Microsoft.NetCore.Analyzers" Version="$(AnalyzersVersion)" PrivateAssets="All" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.1.118" PrivateAssets="All" />
   </ItemGroup>
   <PropertyGroup>
@@ -29,6 +28,7 @@
     <NeutralLanguage>en-US</NeutralLanguage>
     <NoWarn>$(NoWarn);CS1591</NoWarn>
     <NoWarn Condition=" '$(GenerateDocumentationFile)' != 'true' ">$(NoWarn);SA0001</NoWarn>
+    <Nullable>enable</Nullable>
     <PackageIconUrl>https://cdn.martincostello.com/favicon.ico</PackageIconUrl>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/martincostello/project-euler</PackageProjectUrl>
@@ -42,7 +42,7 @@
     <SignAssembly>true</SignAssembly>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <VersionPrefix>2.2.0</VersionPrefix>
+    <VersionPrefix>3.0.0</VersionPrefix>
     <VersionSuffix></VersionSuffix>
   </PropertyGroup>
 </Project>
