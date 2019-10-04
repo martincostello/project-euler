@@ -5,7 +5,12 @@ param(
     [Parameter(Mandatory = $false)][switch] $SkipTests
 )
 
+# These make CI builds faster
+$env:DOTNET_SKIP_FIRST_TIME_EXPERIENCE = "true"
+$env:NUGET_XMLDOC_MODE = "skip"
+
 $ErrorActionPreference = "Stop"
+$ProgressPreference = "SilentlyContinue"
 
 $solutionPath = Split-Path $MyInvocation.MyCommand.Definition
 $sdkFile = Join-Path $solutionPath "global.json"
@@ -28,7 +33,7 @@ if (($null -eq (Get-Command "dotnet.exe" -ErrorAction SilentlyContinue)) -and ($
 }
 else {
     Try {
-        $installedDotNetVersion = (dotnet.exe --version 2>&1 | Out-String).Trim()
+        $installedDotNetVersion = (dotnet --version 2>&1 | Out-String).Trim()
     }
     Catch {
         $installedDotNetVersion = "?"
@@ -41,10 +46,17 @@ else {
 }
 
 if ($installDotNetSdk -eq $true) {
-    $env:DOTNET_INSTALL_DIR = Join-Path "$(Convert-Path "$PSScriptRoot")" ".dotnetcli"
+
+    if (($null -ne $env:TF_BUILD)) {
+        $env:DOTNET_INSTALL_DIR = Join-Path $env:ProgramFiles "dotnet"
+    }
+    else {
+        $env:DOTNET_INSTALL_DIR = Join-Path "$(Convert-Path "$PSScriptRoot")" ".dotnetcli"
+    }
+
     $sdkPath = Join-Path $env:DOTNET_INSTALL_DIR "sdk\$dotnetVersion"
 
-    if (!(Test-Path $sdkPath)) {
+    if (($null -ne $env:TF_BUILD) -or (!(Test-Path $sdkPath))) {
         if (!(Test-Path $env:DOTNET_INSTALL_DIR)) {
             mkdir $env:DOTNET_INSTALL_DIR | Out-Null
         }
@@ -53,12 +65,15 @@ if ($installDotNetSdk -eq $true) {
         Invoke-WebRequest "https://dot.net/v1/dotnet-install.ps1" -OutFile $installScript -UseBasicParsing
         & $installScript -Version "$dotnetVersion" -InstallDir "$env:DOTNET_INSTALL_DIR" -NoPath
     }
-
-    $env:PATH = "$env:DOTNET_INSTALL_DIR;$env:PATH"
-    $dotnet = Join-Path "$env:DOTNET_INSTALL_DIR" "dotnet.exe"
 }
 else {
-    $dotnet = "dotnet.exe"
+    $env:DOTNET_INSTALL_DIR = Split-Path -Path (Get-Command dotnet.exe).Path
+}
+
+$dotnet = Join-Path "$env:DOTNET_INSTALL_DIR" "dotnet.exe"
+
+if (($installDotNetSdk -eq $true) -And ($null -eq $env:TF_BUILD)) {
+    $env:PATH = "$env:DOTNET_INSTALL_DIR;$env:PATH"
 }
 
 Write-Host "Building solution..." -ForegroundColor Green
