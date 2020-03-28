@@ -1,3 +1,4 @@
+#! /usr/bin/pwsh
 param(
     [Parameter(Mandatory = $false)][string] $Configuration = "Release",
     [Parameter(Mandatory = $false)][string] $VersionSuffix = "",
@@ -27,7 +28,7 @@ if ($OutputPath -eq "") {
 
 $installDotNetSdk = $false;
 
-if (($null -eq (Get-Command "dotnet.exe" -ErrorAction SilentlyContinue)) -and ($null -eq (Get-Command "dotnet" -ErrorAction SilentlyContinue))) {
+if (($null -eq (Get-Command "dotnet" -ErrorAction SilentlyContinue)) -and ($null -eq (Get-Command "dotnet.exe" -ErrorAction SilentlyContinue))) {
     Write-Host "The .NET Core SDK is not installed."
     $installDotNetSdk = $true
 }
@@ -47,16 +48,10 @@ else {
 
 if ($installDotNetSdk -eq $true) {
 
-    if (($null -ne $env:TF_BUILD)) {
-        $env:DOTNET_INSTALL_DIR = Join-Path $env:ProgramFiles "dotnet"
-    }
-    else {
-        $env:DOTNET_INSTALL_DIR = Join-Path "$(Convert-Path "$PSScriptRoot")" ".dotnetcli"
-    }
-
+    $env:DOTNET_INSTALL_DIR = Join-Path "$(Convert-Path "$PSScriptRoot")" ".dotnetcli"
     $sdkPath = Join-Path $env:DOTNET_INSTALL_DIR "sdk\$dotnetVersion"
 
-    if (($null -ne $env:TF_BUILD) -or (!(Test-Path $sdkPath))) {
+    if (!(Test-Path $sdkPath)) {
         if (!(Test-Path $env:DOTNET_INSTALL_DIR)) {
             mkdir $env:DOTNET_INSTALL_DIR | Out-Null
         }
@@ -67,12 +62,12 @@ if ($installDotNetSdk -eq $true) {
     }
 }
 else {
-    $env:DOTNET_INSTALL_DIR = Split-Path -Path (Get-Command dotnet.exe).Path
+    $env:DOTNET_INSTALL_DIR = Split-Path -Path (Get-Command dotnet).Path
 }
 
-$dotnet = Join-Path "$env:DOTNET_INSTALL_DIR" "dotnet.exe"
+$dotnet = Join-Path "$env:DOTNET_INSTALL_DIR" "dotnet"
 
-if (($installDotNetSdk -eq $true) -And ($null -eq $env:TF_BUILD)) {
+if ($installDotNetSdk -eq $true) {
     $env:PATH = "$env:DOTNET_INSTALL_DIR;$env:PATH"
 }
 
@@ -87,12 +82,8 @@ if ($LASTEXITCODE -ne 0) {
 if ($SkipTests -eq $false) {
     Write-Host "Running tests..." -ForegroundColor Green
     ForEach ($testProject in $testProjects) {
-        if ($null -ne $env:TF_BUILD) {
-            & $dotnet test $testProject --output $OutputPath --configuration $Configuration --logger trx
-        }
-        else {
-            & $dotnet test $testProject --output $OutputPath --configuration $Configuration
-        }
+
+        & $dotnet test $testProject --output $OutputPath --configuration $Configuration
 
         if ($LASTEXITCODE -ne 0) {
             throw "dotnet test failed with exit code $LASTEXITCODE"
