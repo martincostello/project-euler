@@ -6,8 +6,10 @@ namespace MartinCostello.ProjectEuler.Benchmarks
     using System;
     using System.Collections.Generic;
     using BenchmarkDotNet.Attributes;
+    using BenchmarkDotNet.Diagnosers;
     using MartinCostello.ProjectEuler.Puzzles;
 
+    [EventPipeProfiler(EventPipeProfile.CpuSampling)]
     [MemoryDiagnoser]
     public class PuzzleBenchmarks
     {
