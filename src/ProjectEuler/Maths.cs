@@ -79,11 +79,13 @@ namespace MartinCostello.ProjectEuler
             }
 
             string valueAsString = value.ToString(CultureInfo.InvariantCulture);
-            var digits = new List<int>(valueAsString.Length);
+            int length = valueAsString.Length;
 
-            foreach (char ch in valueAsString)
+            var digits = new int[length];
+
+            for (int i = 0; i < length; i++)
             {
-                digits.Add(ch - '0');
+                digits[i] = valueAsString[i] - '0';
             }
 
             return digits;
@@ -103,22 +105,15 @@ namespace MartinCostello.ProjectEuler
                 value = Math.Abs(value);
             }
 
-            var digits = new List<int>();
+            string valueAsString = value.ToString(CultureInfo.InvariantCulture);
+            var digits = new int[valueAsString.Length];
 
-            while (value > 9)
+            for (int i = 0; i < digits.Length; i++)
             {
-                digits.Add((int)(value % 10));
-                value /= 10;
+                digits[i] = valueAsString[i] - '0';
             }
 
-            digits.Add((int)value);
-
-            if (digits.Count > 1)
-            {
-                digits.Reverse();
-            }
-
-            return digits;
+            return new List<int>(digits);
         }
 
         /// <summary>
