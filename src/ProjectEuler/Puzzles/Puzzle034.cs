@@ -44,7 +44,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
 
             int sum = 0;
 
-            for (int i = 0; i < digits.Count; i++)
+            for (int i = 0; i < digits.Count && sum <= value; i++)
             {
                 sum += Factorials[digits[i]];
             }
