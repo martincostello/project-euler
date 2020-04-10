@@ -41,7 +41,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
         /// <inheritdoc />
         protected override int SolveCore(string[] args)
         {
-            var curiousFractions = new List<Tuple<double, double>>();
+            var curiousFractions = new List<(double numerator, double denominator)>();
 
             for (double numerator = 10d; numerator < 100d; numerator++)
             {
@@ -59,18 +59,18 @@ namespace MartinCostello.ProjectEuler.Puzzles
                         continue;
                     }
 
-                    curiousFractions.Add(Tuple.Create(numerator, denominator));
+                    curiousFractions.Add((numerator, denominator));
                 }
             }
 
             double product = 1;
 
-            foreach (var fraction in curiousFractions)
+            foreach (var (numerator, denominator) in curiousFractions)
             {
-                product *= fraction.Item1 / fraction.Item2;
+                product *= numerator / denominator;
             }
 
-            Answer = ToFraction(product).Item2;
+            Answer = ToFraction(product).denominator;
 
             return 0;
         }
@@ -82,7 +82,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
         /// <returns>
         /// A <see cref="Tuple{T1, T2}"/> containing the numerator and denominator of the fraction.
         /// </returns>
-        private static Tuple<int, int> ToFraction(double value)
+        private static (int numerator, int denominator) ToFraction(double value)
         {
             double numerator = value;
             double denominator = 1;
@@ -93,7 +93,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
                 denominator *= 10;
             }
 
-            return Tuple.Create((int)numerator, (int)denominator);
+            return ((int)numerator, (int)denominator);
         }
     }
 }
