@@ -5,7 +5,6 @@ namespace MartinCostello.ProjectEuler.Puzzles
 {
     using System.Collections.Generic;
     using System.Globalization;
-    using System.Linq;
     using System.Text;
 
     /// <summary>
@@ -31,7 +30,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
             for (int i = 1; i <= n; i++)
             {
                 int product = value * i;
-                builder.AppendFormat(CultureInfo.InvariantCulture, "{0}", product);
+                builder.Append(product);
             }
 
             return builder.ToString();
@@ -46,7 +45,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
             const int TargetLength = 9;
             const int Limit = 99999 / 2;
 
-            var pandigitals = new List<string>();
+            var pandigitals = new List<string>(Limit);
 
             for (int value = 1; value < Limit; value++)
             {
@@ -69,7 +68,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
             }
 
             pandigitals.Sort();
-            Answer = int.Parse(pandigitals.Last(), NumberStyles.Integer, CultureInfo.InvariantCulture);
+            Answer = int.Parse(pandigitals[^1], NumberStyles.Integer, CultureInfo.InvariantCulture);
 
             return 0;
         }

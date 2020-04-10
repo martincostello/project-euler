@@ -44,7 +44,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
         /// </returns>
         internal static long Truncate(long value, bool removeLeft)
         {
-            var digits = Maths.Digits(value);
+            var digits = Maths.Digits(value).ToList();
 
             digits.RemoveAt(removeLeft ? 0 : digits.Count - 1);
 
@@ -54,7 +54,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
         /// <inheritdoc />
         protected override int SolveCore(string[] args)
         {
-            var truncatablePrimes = new List<int>();
+            var truncatablePrimes = new List<int>(11);
 
             // 11 is the first two digit prime. It is also the number of truncatable primes.
             for (int n = 11; truncatablePrimes.Count < 11; n++)

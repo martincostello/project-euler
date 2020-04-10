@@ -34,8 +34,8 @@ namespace MartinCostello.ProjectEuler.Puzzles
             while (working.Count > 1)
             {
                 // Get the bottom two rows of the triangle
-                var upper = working[working.Count - 2];
-                var lower = working[working.Count - 1];
+                var upper = working[^2];
+                var lower = working[^1];
 
                 var maximums = new List<int>(upper.Count);
 

@@ -5,7 +5,6 @@ namespace MartinCostello.ProjectEuler.Puzzles
 {
     using System;
     using System.Globalization;
-    using System.Linq;
     using System.Numerics;
 
     /// <summary>
@@ -24,8 +23,14 @@ namespace MartinCostello.ProjectEuler.Puzzles
         /// <inheritdoc />
         protected override int SolveCore(string[] args)
         {
-            Answer = Numbers
-                .Aggregate((x, y) => x + y)
+            BigInteger sum = BigInteger.Zero;
+
+            for (int i = 0; i < Numbers.Length; i++)
+            {
+                sum += Numbers[i];
+            }
+
+            Answer = sum
                 .ToString(CultureInfo.InvariantCulture)
                 .Substring(0, 10);
 

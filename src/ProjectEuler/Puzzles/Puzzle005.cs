@@ -28,7 +28,8 @@ namespace MartinCostello.ProjectEuler.Puzzles
 
             // Do not need to bother testing for divisibility by 1, plus the
             // for loop below only tests even numbers so can also exclude 2.
-            var divisors = Enumerable.Range(3, max - 2).ToList();
+            int[] divisors = Enumerable.Range(3, max - 2).ToArray();
+            int divisorCount = divisors.Length;
 
             for (int n = max % 2 == 0 ? max : max - 1; ; n += 2)
             {
@@ -41,7 +42,18 @@ namespace MartinCostello.ProjectEuler.Puzzles
                     }
                 }
 
-                if (divisors.All((p) => n % p == 0))
+                bool found = true;
+
+                for (int i = 0; i < divisorCount; i++)
+                {
+                    if (n % divisors[i] != 0)
+                    {
+                        found = false;
+                        break;
+                    }
+                }
+
+                if (found)
                 {
                     Answer = n;
                     break;

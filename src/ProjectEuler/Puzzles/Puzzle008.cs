@@ -35,7 +35,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
 
             int limit = 1000 - digitCount;
 
-            var products = new List<long>(limit);
+            var products = new long[limit];
             var digits = Maths.Digits(OneThousandDigitNumber);
 
             for (int i = 0; i < limit; i++)
@@ -47,12 +47,12 @@ namespace MartinCostello.ProjectEuler.Puzzles
                     product *= digits[i + j];
                 }
 
-                products.Add(product);
+                products[i] = product;
             }
 
-            products.Sort();
+            Array.Sort(products);
 
-            Answer = products[products.Count - 1];
+            Answer = products[^1];
 
             return 0;
         }

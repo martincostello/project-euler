@@ -27,7 +27,9 @@ namespace MartinCostello.ProjectEuler.Puzzles
             }
 
             var primes = Maths.Primes(maximum).ToList();
-            var cumulativeSum = new[] { 0 }.Concat(Maths.CumulativeSum(primes)).ToList();
+
+            var cumulativeSum = Maths.CumulativeSum(primes).ToList();
+            cumulativeSum.Insert(0, 0);
 
             int primeCount = 0;
             int answer = 0;

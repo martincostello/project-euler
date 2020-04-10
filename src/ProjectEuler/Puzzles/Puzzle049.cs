@@ -17,10 +17,18 @@ namespace MartinCostello.ProjectEuler.Puzzles
         /// <inheritdoc />
         protected override int SolveCore(string[] args)
         {
-            var primes = Maths.Primes(10000)
-                .SkipWhile((p) => p <= 1487)
-                .Select((p) => (long)p)
-                .ToList();
+            const int Limit = 10000;
+            var primes = new List<long>(Limit / 3);
+
+            foreach (int prime in Maths.Primes(10000))
+            {
+                if (prime <= 1487)
+                {
+                    continue;
+                }
+
+                primes.Add(prime);
+            }
 
             IList<long>? factors = null;
 
@@ -43,7 +51,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
                 }
             }
 
-            Answer = Maths.FromDigits(factors.SelectMany(Maths.Digits).ToList());
+            Answer = Maths.FromDigits(factors.SelectMany(Maths.Digits).ToArray());
 
             return 0;
         }

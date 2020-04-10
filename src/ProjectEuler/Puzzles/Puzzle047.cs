@@ -50,9 +50,19 @@ namespace MartinCostello.ProjectEuler.Puzzles
         /// </returns>
         private static bool HasPrimeFactors(int value, int count)
         {
-            return Maths.GetFactorsUnordered(value)
-                .Where(Maths.IsPrime)
-                .Count() == count;
+            using var enumerator = Maths.GetFactorsUnordered(value).GetEnumerator();
+
+            int primes = 0;
+
+            while (enumerator.MoveNext() && primes < count)
+            {
+                if (Maths.IsPrime(enumerator.Current))
+                {
+                    primes++;
+                }
+            }
+
+            return primes == count;
         }
     }
 }

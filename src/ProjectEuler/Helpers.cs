@@ -18,7 +18,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
         /// <returns>
         /// <see langword="true"/> if <paramref name="collection"/> is a palindrome; otherwise <see langword="false"/>.
         /// </returns>
-        internal static bool IsPalindromic<T>(IList<T> collection)
+        internal static bool IsPalindromic<T>(IReadOnlyList<T> collection)
         {
             IEqualityComparer<T> comparer = EqualityComparer<T>.Default;
 

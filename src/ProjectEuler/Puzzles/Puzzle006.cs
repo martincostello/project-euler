@@ -4,7 +4,6 @@
 namespace MartinCostello.ProjectEuler.Puzzles
 {
     using System;
-    using System.Linq;
 
     /// <summary>
     /// A class representing the solution to <c>https://projecteuler.net/problem=6</c>. This class cannot be inherited.
@@ -26,13 +25,17 @@ namespace MartinCostello.ProjectEuler.Puzzles
                 return -1;
             }
 
-            var range = Enumerable.Range(1, numbers);
+            double sumOfRange = 0;
+            double sumOfSquares = 0;
 
-            double sumOfSquares = range
-                .Select((p) => Math.Pow(p, 2))
-                .Sum();
+            for (int i = 0; i < numbers; i++)
+            {
+                int value = i + 1;
+                sumOfRange += value;
+                sumOfSquares += Math.Pow(value, 2);
+            }
 
-            double squareOfSum = Math.Pow(range.Sum(), 2);
+            double squareOfSum = Math.Pow(sumOfRange, 2);
 
             Answer = (int)(squareOfSum - sumOfSquares);
 

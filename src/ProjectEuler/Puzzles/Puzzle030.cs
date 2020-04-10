@@ -30,7 +30,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
         /// </returns>
         internal static bool IsSumOfDigitPowers(int value, int power)
         {
-            IList<int> digits = Maths.Digits(value);
+            IReadOnlyList<int> digits = Maths.Digits(value);
 
             double sum = 0;
 
@@ -63,7 +63,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
             for (int digitCount = 2; ; digitCount++)
             {
                 sum = digitCount * nineToThePower;
-                IList<int> digitsOfSum = Maths.Digits(sum);
+                IReadOnlyList<int> digitsOfSum = Maths.Digits(sum);
 
                 if (digitsOfSum.Count <= digitCount)
                 {

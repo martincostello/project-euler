@@ -25,7 +25,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
 
             for (long i = 1; i < limit; i++)
             {
-                IList<int> digits = Maths.Digits(i);
+                IReadOnlyList<int> digits = Maths.Digits(i);
 
                 foreach (int digit in digits)
                 {

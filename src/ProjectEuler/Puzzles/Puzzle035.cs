@@ -27,18 +27,18 @@ namespace MartinCostello.ProjectEuler.Puzzles
         /// </returns>
         internal static IList<long> GetRotations(int value)
         {
-            var result = new List<long>()
-            {
-                value,
-            };
-
             if (value < 12)
             {
                 // The only rotation for values less than 12 is the value itself
-                return result;
+                return new[] { (long)value };
             }
 
-            IList<int> digits = Maths.Digits(value);
+            IReadOnlyList<int> digits = Maths.Digits(value);
+
+            var result = new List<long>(digits.Count)
+            {
+                value,
+            };
 
             for (int i = 0; i < digits.Count - 1; i++)
             {
@@ -81,7 +81,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
 
             Answer = Maths.Primes(maximum)
                 .AsParallel()
-                .Select((p) => GetRotations(p))
+                .Select(GetRotations)
                 .Where((p) => p.All(Maths.IsPrime))
                 .Count();
 

@@ -28,8 +28,8 @@ namespace MartinCostello.ProjectEuler.Puzzles
         /// </returns>
         internal static IEnumerable<BigInteger> Fibonacci()
         {
-            BigInteger x = 1;
-            BigInteger y = 1;
+            var x = BigInteger.One;
+            var y = BigInteger.One;
 
             yield return x;
             yield return y;

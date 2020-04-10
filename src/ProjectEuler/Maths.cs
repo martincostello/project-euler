@@ -79,11 +79,13 @@ namespace MartinCostello.ProjectEuler
             }
 
             string valueAsString = value.ToString(CultureInfo.InvariantCulture);
-            var digits = new List<int>(valueAsString.Length);
+            int length = valueAsString.Length;
 
-            foreach (char ch in valueAsString)
+            var digits = new int[length];
+
+            for (int i = 0; i < length; i++)
             {
-                digits.Add(ch - '0');
+                digits[i] = valueAsString[i] - '0';
             }
 
             return digits;
@@ -96,26 +98,19 @@ namespace MartinCostello.ProjectEuler
         /// <returns>
         /// The digits of <paramref name="value"/> in base 10.
         /// </returns>
-        internal static IList<int> Digits(long value)
+        internal static IReadOnlyList<int> Digits(long value)
         {
             if (value < 0)
             {
                 value = Math.Abs(value);
             }
 
-            var digits = new List<int>();
+            string valueAsString = value.ToString(CultureInfo.InvariantCulture);
+            var digits = new int[valueAsString.Length];
 
-            while (value > 9)
+            for (int i = 0; i < digits.Length; i++)
             {
-                digits.Add((int)(value % 10));
-                value /= 10;
-            }
-
-            digits.Add((int)value);
-
-            if (digits.Count > 1)
-            {
-                digits.Reverse();
+                digits[i] = valueAsString[i] - '0';
             }
 
             return digits;
@@ -200,7 +195,19 @@ namespace MartinCostello.ProjectEuler
         /// <returns>
         /// <see langword="true"/> if <paramref name="value"/> is an abundant number; otherwise <see langword="false"/>.
         /// </returns>
-        internal static bool IsAbundantNumber(long value) => GetProperDivisors(value).Sum() > value;
+        internal static bool IsAbundantNumber(long value)
+        {
+            long sum = 0;
+
+            using var enumerator = GetProperDivisors(value).GetEnumerator();
+
+            while (enumerator.MoveNext() && sum <= value)
+            {
+                sum += enumerator.Current;
+            }
+
+            return sum > value;
+        }
 
         /// <summary>
         /// Returns whether the specified number is an hexagonal number.
@@ -221,8 +228,8 @@ namespace MartinCostello.ProjectEuler
         /// </returns>
         internal static bool IsPandigital(long value, bool allowZero = false)
         {
-            IList<int> digits = Digits(value);
-            IList<int> distinctDigits = digits.Distinct().ToArray();
+            IReadOnlyList<int> digits = Digits(value);
+            IReadOnlyList<int> distinctDigits = digits.Distinct().ToArray();
 
             if (digits.Count != distinctDigits.Count)
             {

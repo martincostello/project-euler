@@ -29,7 +29,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
         public static void Puzzle017_ToEnglish_Returns_Correct_Value(int value, string expected)
         {
             // Act
-            string actual = Puzzle017.ToEnglish(value);
+            string actual = Puzzle017.ToEnglish(value).ToString();
 
             // Assert
             Assert.Equal(expected, actual);

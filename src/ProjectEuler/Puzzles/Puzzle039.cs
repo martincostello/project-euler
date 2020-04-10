@@ -25,7 +25,11 @@ namespace MartinCostello.ProjectEuler.Puzzles
         /// </returns>
         internal static ICollection<string> Solve(int perimeter)
         {
-            var solutions = new List<string>();
+            var solutions = new SortedSet<string>();
+
+            // https://devblogs.microsoft.com/dotnet/floating-point-parsing-and-formatting-improvements-in-net-core-3-0/
+            const string Format = "G15";
+            var formatProvider = CultureInfo.InvariantCulture;
 
             for (double a = 1; a < perimeter - 2; a++)
             {
@@ -38,23 +42,19 @@ namespace MartinCostello.ProjectEuler.Puzzles
 
                     if (a + b + c == perimeter)
                     {
-                        // https://devblogs.microsoft.com/dotnet/floating-point-parsing-and-formatting-improvements-in-net-core-3-0/
-                        var sides = new[] { a, b, c }
-                            .OrderBy((p) => p)
-                            .Select((p) => p.ToString("G15", CultureInfo.InvariantCulture))
-                            .ToArray();
-
-                        string solution = "{" + string.Join(",", sides) + "}";
-
-                        if (!solutions.Contains(solution))
+                        string[] sides = new[]
                         {
-                            solutions.Add(solution);
-                        }
+                            a.ToString(Format, formatProvider),
+                            b.ToString(Format, formatProvider),
+                            c.ToString(Format, formatProvider),
+                        };
+
+                        string solution = "{" + string.Join(",", sides.OrderBy((p) => p)) + "}";
+
+                        solutions.Add(solution);
                     }
                 }
             }
-
-            solutions.Sort();
 
             return solutions;
         }

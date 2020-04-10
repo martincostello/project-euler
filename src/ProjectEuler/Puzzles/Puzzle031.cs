@@ -4,7 +4,6 @@
 namespace MartinCostello.ProjectEuler.Puzzles
 {
     using System;
-    using System.Linq;
 
     /// <summary>
     /// A class representing the solution to <c>https://projecteuler.net/problem=31</c>. This class cannot be inherited.
@@ -31,11 +30,6 @@ namespace MartinCostello.ProjectEuler.Puzzles
                 return -1;
             }
 
-            // Filter out the coins that are bigger than the target
-            int[] usefulCoins = Coins
-                .Where((p) => p <= target)
-                .ToArray();
-
             // Array containing the number of ways there are to
             // make 1p up to the target using the avaiable coins.
             int[] ways = new int[target + 1];
@@ -44,9 +38,14 @@ namespace MartinCostello.ProjectEuler.Puzzles
             ways[0] = 1;
 
             // Loop through each value of coin
-            for (int coin = 0; coin < usefulCoins.Length; coin++)
+            for (int coin = 0; coin < Coins.Length; coin++)
             {
-                int coinValue = usefulCoins[coin];
+                int coinValue = Coins[coin];
+
+                if (coinValue > target)
+                {
+                    break;
+                }
 
                 // For each value from the coin's value to the target
                 // find how many ways there are to create that value.

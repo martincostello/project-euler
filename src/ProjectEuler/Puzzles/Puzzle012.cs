@@ -4,7 +4,6 @@
 namespace MartinCostello.ProjectEuler.Puzzles
 {
     using System;
-    using System.Linq;
 
     /// <summary>
     /// A class representing the solution to <c>https://projecteuler.net/problem=12</c>. This class cannot be inherited.
@@ -32,7 +31,13 @@ namespace MartinCostello.ProjectEuler.Puzzles
             {
                 triangleNumber += n;
 
-                int numberOfFactors = Maths.GetFactorsUnordered(triangleNumber).Count();
+                int numberOfFactors = 0;
+                using var enumerator = Maths.GetFactorsUnordered(triangleNumber).GetEnumerator();
+
+                while (enumerator.MoveNext() && numberOfFactors < divisors)
+                {
+                    numberOfFactors++;
+                }
 
                 if (numberOfFactors >= divisors)
                 {
