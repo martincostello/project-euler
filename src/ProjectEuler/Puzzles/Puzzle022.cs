@@ -25,7 +25,17 @@ namespace MartinCostello.ProjectEuler.Puzzles
         /// The score of <paramref name="name"/> when at <paramref name="position"/>.
         /// </returns>
         internal static int Score(string name, int position)
-            => name.Sum((p) => p - 'A' + 1) * position;
+        {
+            int score = 0;
+            int length = name.Length;
+
+            for (int i = 0; i < length; i++)
+            {
+                score += name[i] - 'A' + 1;
+            }
+
+            return score * position;
+        }
 
         /// <summary>
         /// Reads the sorted list of names from the data associated with the puzzle.
@@ -49,7 +59,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
 
             return namesText
                 .Split(',')
-                .Select((p) => p.Trim(trimChars).ToUpperInvariant())
+                .Select((p) => p.Trim(trimChars))
                 .OrderBy((p) => p, StringComparer.Ordinal)
                 .ToList();
         }
