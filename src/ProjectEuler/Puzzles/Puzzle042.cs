@@ -24,9 +24,15 @@ namespace MartinCostello.ProjectEuler.Puzzles
         /// </returns>
         internal static int GetScore(string word)
         {
-            return word
-                .Select((p) => p - 'A' + 1)
-                .Sum();
+            int score = 0;
+            int length = word.Length;
+
+            for (int i = 0; i < length; i++)
+            {
+                score += word[i] - 'A' + 1;
+            }
+
+            return score;
         }
 
         /// <summary>
@@ -36,7 +42,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
         /// <returns>
         /// The triangle number in the sequence at the position specified by <paramref name="n"/>.
         /// </returns>
-        internal static int TriangleNumber(int n) => (int)(0.5 * n * (n + 1));
+        internal static int TriangleNumber(int n) => n * (n + 1) / 2;
 
         /// <summary>
         /// Reads the words from the data for the puzzle.
@@ -52,13 +58,12 @@ namespace MartinCostello.ProjectEuler.Puzzles
             string rawWords = reader.ReadToEnd();
 
             string[] split = rawWords.Split(',');
-            char[] quote = new[] { '\"' };
 
             IList<string> words = new List<string>();
 
             foreach (string word in split)
             {
-                words.Add(word.Trim(quote));
+                words.Add(word.Trim('\"'));
             }
 
             return words;
@@ -72,7 +77,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
             int maximumLength = words.Max((p) => p.Length);
             int maximumScore = GetScore(new string('Z', maximumLength));
 
-            IList<int> triangleNumbers = new List<int>();
+            IList<int> triangleNumbers = new List<int>(maximumScore);
 
             for (int n = 1; n <= maximumScore; n++)
             {
