@@ -16,7 +16,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
         public static void Puzzle029_GeneratePowerSequence_Returns_Correct_Sequence(int maximum, IEnumerable<double> expected)
         {
             // Act
-            IEnumerable<double> actual = Puzzle029.GeneratePowerSequence(maximum);
+            ICollection<double> actual = Puzzle029.GeneratePowerSequence(maximum);
 
             // Assert
             Assert.Equal(expected, actual);
