@@ -40,7 +40,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
         /// </returns>
         internal static bool IsCurious(int value)
         {
-            IList<int> digits = Maths.Digits(value);
+            IReadOnlyList<int> digits = Maths.Digits(value);
 
             int sum = 0;
 
@@ -61,7 +61,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
             for (int digitCount = 2; ; digitCount++)
             {
                 sum = Factorials[9] * digitCount;
-                IList<int> digitsOfSum = Maths.Digits(sum);
+                IReadOnlyList<int> digitsOfSum = Maths.Digits(sum);
 
                 if (digitsOfSum.Count <= digitCount)
                 {

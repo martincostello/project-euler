@@ -24,8 +24,8 @@ namespace MartinCostello.ProjectEuler.Puzzles
         /// </returns>
         internal static bool IsCuriousFraction(double numerator, double denominator)
         {
-            IList<int> numeratorDigits = Maths.Digits((long)numerator);
-            IList<int> denominatorDigits = Maths.Digits((long)denominator);
+            IReadOnlyList<int> numeratorDigits = Maths.Digits((long)numerator);
+            IReadOnlyList<int> denominatorDigits = Maths.Digits((long)denominator);
 
             if (numeratorDigits.Count != 2 || denominatorDigits.Count != 2 || numeratorDigits[1] != denominatorDigits[0])
             {

@@ -38,7 +38,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
                 return result;
             }
 
-            IList<int> digits = Maths.Digits(value);
+            IReadOnlyList<int> digits = Maths.Digits(value);
 
             for (int i = 0; i < digits.Count - 1; i++)
             {

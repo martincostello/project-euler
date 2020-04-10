@@ -44,7 +44,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
         /// </returns>
         internal static long Truncate(long value, bool removeLeft)
         {
-            var digits = Maths.Digits(value);
+            var digits = Maths.Digits(value).ToList();
 
             digits.RemoveAt(removeLeft ? 0 : digits.Count - 1);
 

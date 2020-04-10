@@ -98,7 +98,7 @@ namespace MartinCostello.ProjectEuler
         /// <returns>
         /// The digits of <paramref name="value"/> in base 10.
         /// </returns>
-        internal static IList<int> Digits(long value)
+        internal static IReadOnlyList<int> Digits(long value)
         {
             if (value < 0)
             {
@@ -113,7 +113,7 @@ namespace MartinCostello.ProjectEuler
                 digits[i] = valueAsString[i] - '0';
             }
 
-            return new List<int>(digits);
+            return digits;
         }
 
         /// <summary>
@@ -228,8 +228,8 @@ namespace MartinCostello.ProjectEuler
         /// </returns>
         internal static bool IsPandigital(long value, bool allowZero = false)
         {
-            IList<int> digits = Digits(value);
-            IList<int> distinctDigits = digits.Distinct().ToArray();
+            IReadOnlyList<int> digits = Digits(value);
+            IReadOnlyList<int> distinctDigits = digits.Distinct().ToArray();
 
             if (digits.Count != distinctDigits.Count)
             {
