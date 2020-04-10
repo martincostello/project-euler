@@ -195,7 +195,19 @@ namespace MartinCostello.ProjectEuler
         /// <returns>
         /// <see langword="true"/> if <paramref name="value"/> is an abundant number; otherwise <see langword="false"/>.
         /// </returns>
-        internal static bool IsAbundantNumber(long value) => GetProperDivisors(value).Sum() > value;
+        internal static bool IsAbundantNumber(long value)
+        {
+            long sum = 0;
+
+            using var enumerator = GetProperDivisors(value).GetEnumerator();
+
+            while (enumerator.MoveNext() && sum <= value)
+            {
+                sum += enumerator.Current;
+            }
+
+            return sum > value;
+        }
 
         /// <summary>
         /// Returns whether the specified number is an hexagonal number.

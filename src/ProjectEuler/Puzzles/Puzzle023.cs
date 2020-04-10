@@ -31,11 +31,12 @@ namespace MartinCostello.ProjectEuler.Puzzles
                 }
             }
 
+            int abundantNumbersCount = abundantNumbers.Count;
             var canBeWrittenAsAbundantSum = new bool[UpperLimit + 1];
 
-            for (int i = 0; i < abundantNumbers.Count; i++)
+            for (int i = 0; i < abundantNumbersCount; i++)
             {
-                for (int j = i; j < abundantNumbers.Count; j++)
+                for (int j = i; j < abundantNumbersCount; j++)
                 {
                     int abundantSum = abundantNumbers[i] + abundantNumbers[j];
 
