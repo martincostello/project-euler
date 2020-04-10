@@ -27,7 +27,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
         {
             int sum = 0;
 
-            for (int i = 1; i < 1000000; i++)
+            for (int i = 1; i < 1_000_000; i++)
             {
                 if (IsPalindromic(Convert.ToString(i, 10)) &&
                     IsPalindromic(Convert.ToString(i, 2)))
