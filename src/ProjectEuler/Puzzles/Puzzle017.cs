@@ -17,33 +17,33 @@ namespace MartinCostello.ProjectEuler.Puzzles
         /// </summary>
         private static readonly Dictionary<int, string> NumberWords = new Dictionary<int, string>()
         {
-            { 1, "one" },
-            { 2, "two" },
-            { 3, "three" },
-            { 4, "four" },
-            { 5, "five" },
-            { 6, "six" },
-            { 7, "seven" },
-            { 8, "eight" },
-            { 9, "nine" },
-            { 10, "ten" },
-            { 11, "eleven" },
-            { 12, "twelve" },
-            { 13, "thirteen" },
-            { 14, "fourteen" },
-            { 15, "fifteen" },
-            { 16, "sixteen" },
-            { 17, "seventeen" },
-            { 18, "eighteen" },
-            { 19, "nineteen" },
-            { 20, "twenty" },
-            { 30, "thirty" },
-            { 40, "forty" },
-            { 50, "fifty" },
-            { 60, "sixty" },
-            { 70, "seventy" },
-            { 80, "eighty" },
-            { 90, "ninety" },
+            [1] = "one",
+            [2] = "two",
+            [3] = "three",
+            [4] = "four",
+            [5] = "five",
+            [6] = "six",
+            [7] = "seven",
+            [8] = "eight",
+            [9] = "nine",
+            [10] = "ten",
+            [11] = "eleven",
+            [12] = "twelve",
+            [13] = "thirteen",
+            [14] = "fourteen",
+            [15] = "fifteen",
+            [16] = "sixteen",
+            [17] = "seventeen",
+            [18] = "eighteen",
+            [19] = "nineteen",
+            [20] = "twenty",
+            [30] = "thirty",
+            [40] = "forty",
+            [50] = "fifty",
+            [60] = "sixty",
+            [70] = "seventy",
+            [80] = "eighty",
+            [90] = "ninety",
         };
 
         /// <inheritdoc />
@@ -59,11 +59,11 @@ namespace MartinCostello.ProjectEuler.Puzzles
         /// <returns>
         /// he British English representation of <paramref name="value"/>.
         /// </returns>
-        internal static string ToEnglish(int value)
+        internal static StringBuilder ToEnglish(int value)
         {
             if (NumberWords.TryGetValue(value, out string? result))
             {
-                return result;
+                return new StringBuilder(result);
             }
 
             // 2345 -> 2 and 2000
@@ -141,7 +141,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
                 builder.Append(NumberWords[ones]);
             }
 
-            return builder.ToString();
+            return builder;
         }
 
         /// <inheritdoc />
@@ -158,8 +158,8 @@ namespace MartinCostello.ProjectEuler.Puzzles
             for (int i = 1; i <= max; i++)
             {
                 sum += ToEnglish(i)
-                    .Replace(" ", string.Empty, StringComparison.Ordinal)
-                    .Replace("-", string.Empty, StringComparison.Ordinal)
+                    .Replace(" ", string.Empty)
+                    .Replace("-", string.Empty)
                     .Length;
             }
 
