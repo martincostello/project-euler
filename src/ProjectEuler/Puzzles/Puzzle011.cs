@@ -22,10 +22,10 @@ namespace MartinCostello.ProjectEuler.Puzzles
         /// <inheritdoc />
         protected override int SolveCore(string[] args)
         {
-            var sequences = new List<int[]>();
-
             int width = Grid.Length;
             int height = Grid[0].Length;
+
+            var sequences = new List<int[]>(width * height * 4);
 
             for (int x = 0; x < width; x++)
             {
