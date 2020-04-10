@@ -70,7 +70,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
         /// <inheritdoc />
         protected override int SolveCore(string[] args)
         {
-            var pandigitals = Maths.Permutations(Enumerable.Range(0, 10).ToArray());
+            var pandigitals = Maths.Permutations(new[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 });
             var pandigitalsWithProperty = new List<long>();
 
             foreach (var pandigital in pandigitals)
@@ -84,7 +84,15 @@ namespace MartinCostello.ProjectEuler.Puzzles
                 }
             }
 
-            Answer = pandigitalsWithProperty.Sum();
+            long sum = 0;
+            int count = pandigitalsWithProperty.Count;
+
+            for (int i = 0; i < count; i++)
+            {
+                sum += pandigitalsWithProperty[i];
+            }
+
+            Answer = sum;
 
             return 0;
         }
