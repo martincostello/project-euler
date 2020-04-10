@@ -54,7 +54,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
         /// <inheritdoc />
         protected override int SolveCore(string[] args)
         {
-            var truncatablePrimes = new List<int>();
+            var truncatablePrimes = new List<int>(11);
 
             // 11 is the first two digit prime. It is also the number of truncatable primes.
             for (int n = 11; truncatablePrimes.Count < 11; n++)
