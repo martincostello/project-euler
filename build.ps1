@@ -47,7 +47,6 @@ else {
 }
 
 if ($installDotNetSdk -eq $true) {
-
     $env:DOTNET_INSTALL_DIR = Join-Path "$(Convert-Path "$PSScriptRoot")" ".dotnetcli"
     $sdkPath = Join-Path $env:DOTNET_INSTALL_DIR "sdk\$dotnetVersion"
 
@@ -55,10 +54,18 @@ if ($installDotNetSdk -eq $true) {
         if (!(Test-Path $env:DOTNET_INSTALL_DIR)) {
             mkdir $env:DOTNET_INSTALL_DIR | Out-Null
         }
-        $installScript = Join-Path $env:DOTNET_INSTALL_DIR "install.ps1"
         [Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor "Tls12"
-        Invoke-WebRequest "https://dot.net/v1/dotnet-install.ps1" -OutFile $installScript -UseBasicParsing
-        & $installScript -Version "$dotnetVersion" -InstallDir "$env:DOTNET_INSTALL_DIR" -NoPath
+        if (($PSVersionTable.PSVersion.Major -ge 6) -And !$IsWindows) {
+            $installScript = Join-Path $env:DOTNET_INSTALL_DIR "install.sh"
+            Invoke-WebRequest "https://dot.net/v1/dotnet-install.sh" -OutFile $installScript -UseBasicParsing
+            chmod +x $installScript
+            & $installScript --version "$dotnetVersion" --install-dir "$env:DOTNET_INSTALL_DIR" --no-path
+        }
+        else {
+            $installScript = Join-Path $env:DOTNET_INSTALL_DIR "install.ps1"
+            Invoke-WebRequest "https://dot.net/v1/dotnet-install.ps1" -OutFile $installScript -UseBasicParsing
+            & $installScript -Version "$dotnetVersion" -InstallDir "$env:DOTNET_INSTALL_DIR" -NoPath
+        }
     }
 }
 else {
