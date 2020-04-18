@@ -20,6 +20,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		ProjectEuler.snk = ProjectEuler.snk
 		README.md = README.md
 		stylecop.json = stylecop.json
+		update-dotnet-sdk.ps1 = update-dotnet-sdk.ps1
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{E3E76692-0D20-468B-A0D9-19F2057527F8}"
@@ -37,6 +38,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{AD52E729-49AF-4F5C-9611-DD51EFED3727}"
 	ProjectSection(SolutionItems) = preProject
 		.github\workflows\build.yml = .github\workflows\build.yml
+		.github\workflows\update-dotnet-sdk.yml = .github\workflows\update-dotnet-sdk.yml
 	EndProjectSection
 EndProject
 Global
