@@ -3,6 +3,7 @@
 
 namespace MartinCostello.ProjectEuler.Puzzles
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -30,9 +31,9 @@ namespace MartinCostello.ProjectEuler.Puzzles
                 primes.Add(prime);
             }
 
-            IList<long>? factors = null;
+            long[] factors = Array.Empty<long>();
 
-            for (int i = 0; i < primes.Count && factors == null; i++)
+            for (int i = 0; i < primes.Count && factors.Length == 0; i++)
             {
                 for (int j = i + 1; j < primes.Count; j++)
                 {
