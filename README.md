@@ -1,6 +1,6 @@
 # Project Euler
 
-[![Build status](https://github.com/martincostello/project-euler/workflows/build/badge.svg?branch=master&event=push)](https://github.com/martincostello/project-euler/actions?query=workflow%3Abuild+branch%3Amaster+event%3Apush)
+[![Build status](https://github.com/martincostello/project-euler/workflows/build/badge.svg?branch=main&event=push)](https://github.com/martincostello/project-euler/actions?query=workflow%3Abuild+branch%3Amain+event%3Apush)
 
 ## Overview
 
@@ -16,7 +16,7 @@ The repository is hosted in [GitHub](https://github.com/martincostello/project-e
 
 ## License
 
-This project is licensed under the [Apache 2.0](https://github.com/martincostello/project-euler/blob/master/LICENSE) license.
+This project is licensed under the [Apache 2.0](https://github.com/martincostello/project-euler/blob/main/LICENSE) license.
 
 ## Building and Testing
 
