@@ -105,13 +105,15 @@ namespace MartinCostello.ProjectEuler
                 value = Math.Abs(value);
             }
 
-            string valueAsString = value.ToString(CultureInfo.InvariantCulture);
-            var digits = new int[valueAsString.Length];
+            var digits = new List<int>();
 
-            for (int i = 0; i < digits.Length; i++)
+            while (value > 0)
             {
-                digits[i] = valueAsString[i] - '0';
+                digits.Add((int)(value % 10));
+                value /= 10;
             }
+
+            digits.Reverse();
 
             return digits;
         }
