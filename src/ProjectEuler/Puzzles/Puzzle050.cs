@@ -4,6 +4,7 @@
 namespace MartinCostello.ProjectEuler.Puzzles
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
 
     /// <summary>
@@ -26,7 +27,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
                 return -1;
             }
 
-            var primes = Maths.Primes(maximum).ToList();
+            var primes = new HashSet<int>(Maths.Primes(maximum));
 
             var cumulativeSum = Maths.CumulativeSum(primes).ToList();
             cumulativeSum.Insert(0, 0);

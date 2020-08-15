@@ -25,9 +25,9 @@ namespace MartinCostello.ProjectEuler.Puzzles
         {
             double limit = Math.Sqrt(value / 2);
 
-            for (int i = 1; i < limit; i++)
+            for (long i = 1; i < limit; i++)
             {
-                int candidate = value - (2 * (int)Math.Pow(i, 2));
+                long candidate = value - (2 * i * i);
 
                 if (Maths.IsPrime(candidate))
                 {

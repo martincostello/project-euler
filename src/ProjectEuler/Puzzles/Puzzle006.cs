@@ -32,10 +32,10 @@ namespace MartinCostello.ProjectEuler.Puzzles
             {
                 int value = i + 1;
                 sumOfRange += value;
-                sumOfSquares += Math.Pow(value, 2);
+                sumOfSquares += value * value;
             }
 
-            double squareOfSum = Math.Pow(sumOfRange, 2);
+            double squareOfSum = sumOfRange * sumOfRange;
 
             Answer = (int)(squareOfSum - sumOfSquares);
 

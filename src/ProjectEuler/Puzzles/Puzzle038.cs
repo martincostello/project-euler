@@ -25,7 +25,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
         /// </returns>
         internal static string Pandigital(int value, int n)
         {
-            var builder = new StringBuilder();
+            var builder = new StringBuilder(n);
 
             for (int i = 1; i <= n; i++)
             {

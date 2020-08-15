@@ -3,8 +3,6 @@
 
 namespace MartinCostello.ProjectEuler.Puzzles
 {
-    using System;
-
     /// <summary>
     /// A class representing the solution to <c>https://projecteuler.net/problem=9</c>. This class cannot be inherited.
     /// </summary>
@@ -20,11 +18,18 @@ namespace MartinCostello.ProjectEuler.Puzzles
 
             for (int a = 1; a < Limit; a++)
             {
+                int squareOfA = a * a;
+
                 for (int b = 1; b < Limit; b++)
                 {
-                    if (Math.Pow(a, 2) + Math.Pow(b, 2) == Math.Pow(Limit - a - b, 2))
+                    int c = Limit - a - b;
+
+                    int squareOfB = b * b;
+                    int squareOfC = c * c;
+
+                    if (squareOfA + squareOfB == squareOfC)
                     {
-                        Answer = a * b * (Limit - a - b);
+                        Answer = a * b * c;
                         break;
                     }
                 }

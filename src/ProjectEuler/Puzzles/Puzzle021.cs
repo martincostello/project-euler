@@ -22,7 +22,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
         /// <inheritdoc />
         protected override int SolveCore(string[] args)
         {
-            var amicableNumbers = new List<long>();
+            var amicableNumbers = new HashSet<long>();
 
             for (int a = 1; a < 10000; a++)
             {

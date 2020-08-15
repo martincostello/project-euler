@@ -15,7 +15,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
         /// <summary>
         /// A dictionary containing the English words for numbers keyed by their value. This field is read-only.
         /// </summary>
-        private static readonly Dictionary<int, string> NumberWords = new Dictionary<int, string>()
+        private static readonly Dictionary<int, string> NumberWords = new Dictionary<int, string>(27)
         {
             [1] = "one",
             [2] = "two",
@@ -79,7 +79,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
             int tens = justTheTens / 10;
             int ones = justTheTens % 10;
 
-            var builder = new StringBuilder();
+            var builder = new StringBuilder(128);
 
             if (thousands > 0)
             {

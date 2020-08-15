@@ -59,7 +59,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
 
             string[] split = rawWords.Split(',');
 
-            IList<string> words = new List<string>();
+            IList<string> words = new List<string>(split.Length);
 
             foreach (string word in split)
             {
@@ -77,7 +77,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
             int maximumLength = words.Max((p) => p.Length);
             int maximumScore = GetScore(new string('Z', maximumLength));
 
-            IList<int> triangleNumbers = new List<int>(maximumScore);
+            var triangleNumbers = new HashSet<int>(maximumScore);
 
             for (int n = 1; n <= maximumScore; n++)
             {
