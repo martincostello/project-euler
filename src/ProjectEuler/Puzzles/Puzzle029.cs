@@ -27,7 +27,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
         /// </returns>
         internal static ICollection<double> GeneratePowerSequence(int maximum)
         {
-            var sequence = new SortedSet<double>();
+            var sequence = new HashSet<double>(maximum * maximum);
 
             for (int a = 2; a <= maximum; a++)
             {

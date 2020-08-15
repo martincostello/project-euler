@@ -18,7 +18,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
         {
             var collection = new[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
             var nextDigits = new List<int>(collection);
-            var usedDigits = new List<int>();
+            var usedDigits = new List<int>(collection.Length);
 
             int targetLength = collection.Length;
             int remaining = 1000000 - 1;

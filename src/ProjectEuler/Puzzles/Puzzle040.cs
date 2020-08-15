@@ -18,10 +18,11 @@ namespace MartinCostello.ProjectEuler.Puzzles
         protected override int SolveCore(string[] args)
         {
             var digitsToFind = new[] { 1, 10, 100, 1000, 10000, 100000, 1000000 };
-            var foundDigits = new List<int>();
 
             int currentIndex = 0;
             int limit = digitsToFind.Max();
+
+            var foundDigits = new List<int>(limit);
 
             for (long i = 1; i < limit; i++)
             {

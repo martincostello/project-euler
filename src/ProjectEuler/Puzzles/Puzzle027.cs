@@ -3,8 +3,6 @@
 
 namespace MartinCostello.ProjectEuler.Puzzles
 {
-    using System;
-
     /// <summary>
     /// A class representing the solution to <c>https://projecteuler.net/problem=27</c>. This class cannot be inherited.
     /// </summary>
@@ -80,6 +78,6 @@ namespace MartinCostello.ProjectEuler.Puzzles
         /// <returns>
         /// The result of the formula for <paramref name="n"/>, <paramref name="a"/> and <paramref name="b"/>.
         /// </returns>
-        private static int Quadratic(int n, int a, int b) => (int)Math.Pow(n, 2) + (a * n) + b;
+        private static int Quadratic(int n, int a, int b) => (n * n) + (a * n) + b;
     }
 }

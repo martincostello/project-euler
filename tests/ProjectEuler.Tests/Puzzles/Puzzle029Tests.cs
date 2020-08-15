@@ -4,6 +4,7 @@
 namespace MartinCostello.ProjectEuler.Puzzles
 {
     using System.Collections.Generic;
+    using System.Linq;
     using Xunit;
 
     /// <summary>
@@ -19,7 +20,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
             ICollection<double> actual = Puzzle029.GeneratePowerSequence(maximum);
 
             // Assert
-            Assert.Equal(expected, actual);
+            Assert.Equal(expected, actual.OrderBy((p) => p));
         }
 
         [Theory]

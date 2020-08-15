@@ -13,7 +13,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
         /// <summary>
         /// The cache of Collatz sequence lengths from a specified number. This field is read-only.
         /// </summary>
-        private static readonly IDictionary<long, int> _cache = new Dictionary<long, int>();
+        private static readonly IDictionary<long, int> _cache = new Dictionary<long, int>(1000000);
 
         /// <inheritdoc />
         public override string Question => "Which starting number, under one million, produces the longest chain?";

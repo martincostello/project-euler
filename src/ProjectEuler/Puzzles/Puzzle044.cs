@@ -14,7 +14,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
         /// <inheritdoc />
         protected override int SolveCore(string[] args)
         {
-            for (long k = 1; Answer == null; k++)
+            for (long k = 1; Answer is null; k++)
             {
                 long pk = Maths.Pentagonal(k);
 
