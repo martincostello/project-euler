@@ -100,10 +100,12 @@ namespace MartinCostello.ProjectEuler
         /// </returns>
         internal static IReadOnlyList<int> Digits(long value)
         {
-            if (value < 0)
+            if (value == 0)
             {
-                value = Math.Abs(value);
+                return new[] { 0 };
             }
+
+            value = Math.Abs(value);
 
             var digits = new List<int>();
 
