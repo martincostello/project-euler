@@ -5,7 +5,7 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>MartinCostello.ProjectEuler.Benchmarks</RootNamespace>
     <Summary>Benchmarks for ProjectEuler.</Summary>
-    <TargetFrameworks>netcoreapp3.1</TargetFrameworks>
+    <TargetFrameworks>net5.0</TargetFrameworks>
     <!-- Workaround for https://github.com/dotnet/BenchmarkDotNet/pull/1420 -->
     <LangVersion>8.0</LangVersion>
   </PropertyGroup>
