@@ -6,7 +6,6 @@ namespace MartinCostello.ProjectEuler
     using System;
     using System.Collections.Concurrent;
     using System.Collections.Generic;
-    using System.Globalization;
     using System.Linq;
     using System.Numerics;
 
@@ -73,20 +72,25 @@ namespace MartinCostello.ProjectEuler
         /// </returns>
         internal static IList<int> Digits(BigInteger value)
         {
+            if (value == BigInteger.Zero)
+            {
+                return new[] { 0 };
+            }
+
             if (value < BigInteger.Zero)
             {
                 value = BigInteger.Negate(value);
             }
 
-            string valueAsString = value.ToString(CultureInfo.InvariantCulture);
-            int length = valueAsString.Length;
+            var digits = new List<int>();
 
-            var digits = new int[length];
-
-            for (int i = 0; i < length; i++)
+            while (value > 0)
             {
-                digits[i] = valueAsString[i] - '0';
+                digits.Add((int)(value % 10));
+                value /= 10;
             }
+
+            digits.Reverse();
 
             return digits;
         }
@@ -100,18 +104,22 @@ namespace MartinCostello.ProjectEuler
         /// </returns>
         internal static IReadOnlyList<int> Digits(long value)
         {
-            if (value < 0)
+            if (value == 0)
             {
-                value = Math.Abs(value);
+                return new[] { 0 };
             }
 
-            string valueAsString = value.ToString(CultureInfo.InvariantCulture);
-            var digits = new int[valueAsString.Length];
+            value = Math.Abs(value);
 
-            for (int i = 0; i < digits.Length; i++)
+            var digits = new List<int>();
+
+            while (value > 0)
             {
-                digits[i] = valueAsString[i] - '0';
+                digits.Add((int)(value % 10));
+                value /= 10;
             }
+
+            digits.Reverse();
 
             return digits;
         }
