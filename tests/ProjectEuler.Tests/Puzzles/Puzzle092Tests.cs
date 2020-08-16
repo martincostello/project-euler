@@ -11,7 +11,7 @@ namespace MartinCostello.ProjectEuler.Puzzles
     public static class Puzzle092Tests
     {
         [Fact(Skip = "Too slow.")]
-        public static void Puzzle052_Returns_Correct_Solution()
+        public static void Puzzle092_Returns_Correct_Solution()
         {
             // Arrange
             int expected = 8581146;
