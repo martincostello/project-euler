@@ -64,7 +64,13 @@ namespace MartinCostello.ProjectEuler.Benchmarks
             yield return new PuzzleInput<Puzzle048>("1000");
             yield return new PuzzleInput<Puzzle049>();
             yield return new PuzzleInput<Puzzle050>("1000000");
+            yield return new PuzzleInput<Puzzle052>();
+            yield return new PuzzleInput<Puzzle054>();
+            yield return new PuzzleInput<Puzzle055>();
+            yield return new PuzzleInput<Puzzle056>();
+            yield return new PuzzleInput<Puzzle059>();
             yield return new PuzzleInput<Puzzle067>();
+            yield return new PuzzleInput<Puzzle092>();
         }
 
         [Benchmark]
