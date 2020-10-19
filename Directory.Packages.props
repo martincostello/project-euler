@@ -1,6 +1,6 @@
 <Project>
   <PropertyGroup>
-    <NodaTimeVersion>3.0.1</NodaTimeVersion>
+    <NodaTimeVersion>3.0.2</NodaTimeVersion>
   </PropertyGroup>
   <ItemGroup>
     <PackageVersion Include="BenchmarkDotNet" Version="0.12.1" />
