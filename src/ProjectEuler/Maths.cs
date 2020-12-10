@@ -370,7 +370,7 @@ namespace MartinCostello.ProjectEuler
             }
 
             return Permutations(collection, count - 1)
-                .SelectMany((p) => collection.Where((r) => !p.Contains(r)), (set, value) => set.Concat(new[] { value }));
+                .SelectMany((p) => collection.Where((r) => !p.Contains(r)), (set, value) => set.Append(value));
         }
 
         /// <summary>
