@@ -1,12 +1,12 @@
 // Copyright (c) Martin Costello, 2015. All rights reserved.
 // Licensed under the Apache 2.0 license. See the LICENSE file in the project root for full license information.
 
+using System;
+using System.Diagnostics;
+using System.Globalization;
+
 namespace MartinCostello.ProjectEuler
 {
-    using System;
-    using System.Diagnostics;
-    using System.Globalization;
-
     /// <summary>
     /// A console application that solves puzzles for <c>https://projecteuler.net/</c>. This class cannot be inherited.
     /// </summary>
