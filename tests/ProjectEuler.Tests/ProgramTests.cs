@@ -1,13 +1,13 @@
 // Copyright (c) Martin Costello, 2015. All rights reserved.
 // Licensed under the Apache 2.0 license. See the LICENSE file in the project root for full license information.
 
+using System;
+using System.Collections.Generic;
+using MartinCostello.ProjectEuler.Puzzles;
+using Xunit;
+
 namespace MartinCostello.ProjectEuler
 {
-    using System;
-    using System.Collections.Generic;
-    using Puzzles;
-    using Xunit;
-
     /// <summary>
     /// A class containing tests for the <see cref="Program"/> class. This class cannot be inherited.
     /// </summary>

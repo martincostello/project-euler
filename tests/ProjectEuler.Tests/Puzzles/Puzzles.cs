@@ -1,11 +1,11 @@
 // Copyright (c) Martin Costello, 2015. All rights reserved.
 // Licensed under the Apache 2.0 license. See the LICENSE file in the project root for full license information.
 
+using System;
+using Xunit;
+
 namespace MartinCostello.ProjectEuler.Puzzles
 {
-    using System;
-    using Xunit;
-
     /// <summary>
     /// A class containing methods for helping to test puzzles. This class cannot be inherited.
     /// </summary>
