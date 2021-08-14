@@ -6,9 +6,11 @@
       "type": "coreclr",
       "request": "launch",
       "preLaunchTask": "build",
-      "program": "${workspaceRoot}/tests/ProjectEuler.Tests/bin/Debug/net5.0/ProjectEuler.Tests.dll",
-      "args": [],
-      "cwd": "${workspaceRoot}/tests/ProjectEuler.Tests",
+      "program": "dotnet",
+      "args": [
+        "test"
+      ],
+      "cwd": "${workspaceFolder}/tests/ProjectEuler.Tests",
       "console": "internalConsole",
       "stopAtEntry": false,
       "internalConsoleOptions": "openOnSessionStart"
