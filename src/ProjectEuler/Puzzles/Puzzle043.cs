@@ -44,16 +44,17 @@ namespace MartinCostello.ProjectEuler.Puzzles
 
             bool hasProperty = true;
 
-            foreach (var range in _ranges)
+            foreach (var (start, divisor) in _ranges)
             {
+                int end = start + 3;
+
                 IList<int> subdigits = digits
-                    .Skip(range.Item1)
-                    .Take(3)
+                    .Take(start..end)
                     .ToList();
 
                 long subvalue = Maths.FromDigits(subdigits);
 
-                if (subvalue % range.Item2 != 0)
+                if (subvalue % divisor != 0)
                 {
                     hasProperty = false;
                     break;
