@@ -3,18 +3,17 @@
 
 using BenchmarkDotNet.Running;
 
-namespace MartinCostello.ProjectEuler.Benchmarks
+namespace MartinCostello.ProjectEuler.Benchmarks;
+
+/// <summary>
+/// A console application that runs performance benchmarks for the puzzles. This class cannot be inherited.
+/// </summary>
+internal static class Program
 {
     /// <summary>
-    /// A console application that runs performance benchmarks for the puzzles. This class cannot be inherited.
+    /// The main entry-point to the application.
     /// </summary>
-    internal static class Program
-    {
-        /// <summary>
-        /// The main entry-point to the application.
-        /// </summary>
-        /// <param name="args">The arguments to the application.</param>
-        internal static void Main(string[] args)
-            => BenchmarkRunner.Run<PuzzleBenchmarks>(args: args);
-    }
+    /// <param name="args">The arguments to the application.</param>
+    internal static void Main(string[] args)
+        => BenchmarkRunner.Run<PuzzleBenchmarks>(args: args);
 }

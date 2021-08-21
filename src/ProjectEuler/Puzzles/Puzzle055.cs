@@ -1,57 +1,56 @@
-﻿// Copyright (c) Martin Costello, 2015. All rights reserved.
+// Copyright (c) Martin Costello, 2015. All rights reserved.
 // Licensed under the Apache 2.0 license. See the LICENSE file in the project root for full license information.
 
-namespace MartinCostello.ProjectEuler.Puzzles
+namespace MartinCostello.ProjectEuler.Puzzles;
+
+/// <summary>
+/// A class representing the solution to <c>https://projecteuler.net/problem=55</c>. This class cannot be inherited.
+/// </summary>
+public sealed class Puzzle055 : Puzzle
 {
-    /// <summary>
-    /// A class representing the solution to <c>https://projecteuler.net/problem=55</c>. This class cannot be inherited.
-    /// </summary>
-    public sealed class Puzzle055 : Puzzle
+    /// <inheritdoc />
+    public override string Question => "How many Lychrel numbers are there below ten-thousand?";
+
+    /// <inheritdoc />
+    protected override int SolveCore(string[] args)
     {
-        /// <inheritdoc />
-        public override string Question => "How many Lychrel numbers are there below ten-thousand?";
+        int lychrelNumbers = 0;
 
-        /// <inheritdoc />
-        protected override int SolveCore(string[] args)
+        const int Iterations = 50;
+        const int Limit = 10_000;
+
+        for (long i = 1; i < Limit; i++)
         {
-            int lychrelNumbers = 0;
+            long number = i;
 
-            const int Iterations = 50;
-            const int Limit = 10_000;
+            bool found = false;
 
-            for (long i = 1; i < Limit; i++)
+            for (int j = 0; j < Iterations; j++)
             {
-                long number = i;
+                var digits = Maths.Digits(number);
+                var reverse = digits.Reverse().ToArray();
 
-                bool found = false;
+                long sum = number + Maths.FromDigits(reverse);
 
-                for (int j = 0; j < Iterations; j++)
+                digits = Maths.Digits(sum);
+
+                if (Helpers.IsPalindromic(digits))
                 {
-                    var digits = Maths.Digits(number);
-                    var reverse = digits.Reverse().ToArray();
-
-                    long sum = number + Maths.FromDigits(reverse);
-
-                    digits = Maths.Digits(sum);
-
-                    if (Helpers.IsPalindromic(digits))
-                    {
-                        found = true;
-                        break;
-                    }
-
-                    number = sum;
+                    found = true;
+                    break;
                 }
 
-                if (!found)
-                {
-                    lychrelNumbers++;
-                }
+                number = sum;
             }
 
-            Answer = lychrelNumbers;
-
-            return 0;
+            if (!found)
+            {
+                lychrelNumbers++;
+            }
         }
+
+        Answer = lychrelNumbers;
+
+        return 0;
     }
 }

@@ -1,21 +1,20 @@
-﻿// Copyright (c) Martin Costello, 2015. All rights reserved.
+// Copyright (c) Martin Costello, 2015. All rights reserved.
 // Licensed under the Apache 2.0 license. See the LICENSE file in the project root for full license information.
 
-namespace MartinCostello.ProjectEuler.Puzzles
-{
-    /// <summary>
-    /// A class containing tests for the <see cref="Puzzle049"/> class. This class cannot be inherited.
-    /// </summary>
-    public static class Puzzle049Tests
-    {
-        [Fact]
-        public static void Puzzle049_Returns_Correct_Solution()
-        {
-            // Arrange
-            long expected = 296962999629;
+namespace MartinCostello.ProjectEuler.Puzzles;
 
-            // Act and Assert
-            Puzzles.AssertSolution<Puzzle049>(expected);
-        }
+/// <summary>
+/// A class containing tests for the <see cref="Puzzle049"/> class. This class cannot be inherited.
+/// </summary>
+public static class Puzzle049Tests
+{
+    [Fact]
+    public static void Puzzle049_Returns_Correct_Solution()
+    {
+        // Arrange
+        long expected = 296962999629;
+
+        // Act and Assert
+        Puzzles.AssertSolution<Puzzle049>(expected);
     }
 }
