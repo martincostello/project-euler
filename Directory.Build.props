@@ -35,7 +35,7 @@
     <SignAssembly>true</SignAssembly>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <VersionPrefix>3.0.0</VersionPrefix>
+    <VersionPrefix>6.0.0</VersionPrefix>
     <VersionSuffix></VersionSuffix>
   </PropertyGroup>
   <ItemGroup>
