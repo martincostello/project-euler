@@ -1,102 +1,72 @@
-// Copyright (c) Martin Costello, 2015. All rights reserved.
+﻿// Copyright (c) Martin Costello, 2015. All rights reserved.
 // Licensed under the Apache 2.0 license. See the LICENSE file in the project root for full license information.
 
 using System.Diagnostics;
+using MartinCostello.ProjectEuler;
 
-namespace MartinCostello.ProjectEuler;
-
-/// <summary>
-/// A console application that solves puzzles for <c>https://projecteuler.net/</c>. This class cannot be inherited.
-/// </summary>
-internal static class Program
+if (args == null || args.Length < 1)
 {
-    /// <summary>
-    /// The main entry-point to the application.
-    /// </summary>
-    /// <param name="args">The arguments to the application.</param>
-    /// <returns>The exit code from the application.</returns>
-    internal static int Main(string[] args)
+    Console.WriteLine("No puzzle specified.");
+    return -1;
+}
+
+Type? type;
+
+if (!int.TryParse(args[0], NumberStyles.Integer & ~NumberStyles.AllowLeadingSign, CultureInfo.InvariantCulture, out int puzzle) ||
+    puzzle < 1 ||
+    (type = GetPuzzleType(puzzle)) == null)
+{
+    Console.WriteLine("The puzzle number specified is invalid.");
+    return -1;
+}
+
+args = args[1..];
+
+return SolvePuzzle(type, args);
+
+static int SolvePuzzle(Type type, string[] args)
+{
+    IPuzzle? puzzle = Activator.CreateInstance(type) as IPuzzle;
+
+    Console.WriteLine();
+    Console.WriteLine("Project Euler - Puzzle {0}", type.Name.Replace("Puzzle", string.Empty, StringComparison.Ordinal).TrimStart('0'));
+    Console.WriteLine();
+
+    Console.WriteLine(puzzle!.Question);
+
+    var stopwatch = Stopwatch.StartNew();
+
+    int result = puzzle.Solve(args);
+
+    if (result == 0)
     {
-        if (args == null || args.Length < 1)
-        {
-            Console.WriteLine("No puzzle specified.");
-            return -1;
-        }
-
-        Type? type;
-
-        if (!int.TryParse(args[0], NumberStyles.Integer & ~NumberStyles.AllowLeadingSign, CultureInfo.InvariantCulture, out int puzzle) ||
-            puzzle < 1 ||
-            (type = GetPuzzleType(puzzle)) == null)
-        {
-            Console.WriteLine("The puzzle number specified is invalid.");
-            return -1;
-        }
-
-        args = args[1..];
-
-        return SolvePuzzle(type, args);
-    }
-
-    /// <summary>
-    /// Solves the puzzle associated with the specified type.
-    /// </summary>
-    /// <param name="type">The type of the puzzle.</param>
-    /// <param name="args">The arguments to pass to the puzzle.</param>
-    /// <returns>
-    /// The value returned by <see cref="IPuzzle.Solve"/>.
-    /// </returns>
-    internal static int SolvePuzzle(Type type, string[] args)
-    {
-        IPuzzle? puzzle = Activator.CreateInstance(type) as IPuzzle;
+        stopwatch.Stop();
 
         Console.WriteLine();
-        Console.WriteLine("Project Euler - Puzzle {0}", type.Name.Replace("Puzzle", string.Empty, StringComparison.Ordinal).TrimStart('0'));
+        Console.WriteLine("Answer: {0}", puzzle.Answer);
         Console.WriteLine();
 
-        Console.WriteLine(puzzle!.Question);
-
-        var stopwatch = Stopwatch.StartNew();
-
-        int result = puzzle.Solve(args);
-
-        if (result == 0)
+        if (stopwatch.Elapsed.TotalSeconds < 0.01f)
         {
-            stopwatch.Stop();
-
-            Console.WriteLine();
-            Console.WriteLine("Answer: {0}", puzzle.Answer);
-            Console.WriteLine();
-
-            if (stopwatch.Elapsed.TotalSeconds < 0.01f)
-            {
-                Console.WriteLine("Took <0.01 seconds.");
-            }
-            else
-            {
-                Console.WriteLine("Took {0:N2} seconds.", stopwatch.Elapsed.TotalSeconds);
-            }
-
-            Console.WriteLine();
+            Console.WriteLine("Took <0.01 seconds.");
+        }
+        else
+        {
+            Console.WriteLine("Took {0:N2} seconds.", stopwatch.Elapsed.TotalSeconds);
         }
 
-        return result;
+        Console.WriteLine();
     }
 
-    /// <summary>
-    /// Gets the puzzle type to use for the specified number.
-    /// </summary>
-    /// <param name="number">The number of the puzzle to get the type for.</param>
-    /// <returns>
-    /// The <see cref="Type"/> for the specified puzzle number, if found; otherwise <see langword="null"/>.
-    /// </returns>
-    private static Type? GetPuzzleType(int number)
-    {
-        string typeName = string.Format(
-            CultureInfo.InvariantCulture,
-            "MartinCostello.ProjectEuler.Puzzles.Puzzle{0:000}",
-            number);
+    return result;
+}
 
-        return Type.GetType(typeName);
-    }
+static Type? GetPuzzleType(int number)
+{
+    string typeName = string.Format(
+        CultureInfo.InvariantCulture,
+        "MartinCostello.ProjectEuler.Puzzles.Puzzle{0:000}",
+        number);
+
+    return Type.GetType(typeName);
 }
