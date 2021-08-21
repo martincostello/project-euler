@@ -1,4 +1,4 @@
-// Copyright (c) Martin Costello, 2015. All rights reserved.
+﻿// Copyright (c) Martin Costello, 2015. All rights reserved.
 // Licensed under the Apache 2.0 license. See the LICENSE file in the project root for full license information.
 
 namespace MartinCostello.ProjectEuler.Puzzles;
@@ -38,7 +38,7 @@ public sealed class Puzzle033 : Puzzle
     /// <inheritdoc />
     protected override int SolveCore(string[] args)
     {
-        var curiousFractions = new List<(double numerator, double denominator)>();
+        var curiousFractions = new List<(double Numerator, double Denominator)>();
 
         for (double numerator = 10d; numerator < 100d; numerator++)
         {
@@ -67,7 +67,7 @@ public sealed class Puzzle033 : Puzzle
             product *= numerator / denominator;
         }
 
-        Answer = ToFraction(product).denominator;
+        Answer = ToFraction(product).Denominator;
 
         return 0;
     }
@@ -79,7 +79,7 @@ public sealed class Puzzle033 : Puzzle
     /// <returns>
     /// A <see cref="Tuple{T1, T2}"/> containing the numerator and denominator of the fraction.
     /// </returns>
-    private static (int numerator, int denominator) ToFraction(double value)
+    private static (int Numerator, int Denominator) ToFraction(double value)
     {
         double numerator = value;
         double denominator = 1;
