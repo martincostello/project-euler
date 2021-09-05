@@ -86,9 +86,7 @@ public abstract class Puzzle : IPuzzle
         var thisType = GetType().GetTypeInfo();
         string name = FormattableString.Invariant($"MartinCostello.{thisType.Assembly.GetName().Name}.Puzzles.{thisType.Name}.Data.txt");
 
-        // HACK Work around https://github.com/DotNetAnalyzers/StyleCopAnalyzers/issues/2968
-        var stream = thisType.Assembly.GetManifestResourceStream(name);
-        return stream!;
+        return thisType.Assembly.GetManifestResourceStream(name)!;
     }
 
     /// <summary>
