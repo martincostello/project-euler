@@ -38,10 +38,6 @@ public sealed class Puzzle022 : Puzzle
     /// <returns>
     /// An <see cref="IList{T}"/> that returns the sorted list of names.
     /// </returns>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage(
-        "Microsoft.Usage",
-        "CA2202:Do not dispose objects multiple times",
-        Justification = "The stream is not disposed of multiple times.")]
     internal IList<string> ReadNames()
     {
         using var stream = ReadResource();

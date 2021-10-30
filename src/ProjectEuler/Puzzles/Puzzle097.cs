@@ -22,8 +22,8 @@ public sealed class Puzzle097 : Puzzle
 
         for (int i = 0; i < 10; i++)
         {
-            digits.Add((int)(value % 10));
-            value /= 10;
+            value = BigInteger.DivRem(value, 10, out var rem);
+            digits.Add((int)rem);
         }
 
         digits.Reverse();

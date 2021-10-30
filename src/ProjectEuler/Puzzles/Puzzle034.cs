@@ -11,7 +11,7 @@ public sealed class Puzzle034 : Puzzle
     /// <summary>
     /// An array containing the factorials of single digit numbers. This field is read-only.
     /// </summary>
-    private static readonly int[] Factorials = new[]
+    private static readonly int[] Factorials =
     {
         Maths.Factorial(0),
         Maths.Factorial(1),

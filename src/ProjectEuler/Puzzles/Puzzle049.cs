@@ -17,7 +17,7 @@ public sealed class Puzzle049 : Puzzle
         const int Limit = 10000;
         var primes = new List<long>(Limit / 3);
 
-        foreach (int prime in Maths.Primes(10000))
+        foreach (int prime in Maths.Primes(Limit))
         {
             if (prime <= 1487)
             {

@@ -11,7 +11,7 @@ public sealed class Puzzle021 : Puzzle
     /// <summary>
     /// A cache of the result of invocations of <see cref="D(long)"/>. This field is read-only.
     /// </summary>
-    private static readonly IDictionary<long, long> _cache = new Dictionary<long, long>();
+    private static readonly Dictionary<long, long> _cache = new();
 
     /// <inheritdoc />
     public override string Question => "Evaluate the sum of all the amicable numbers under 10,000.";
@@ -21,7 +21,7 @@ public sealed class Puzzle021 : Puzzle
     {
         var amicableNumbers = new HashSet<long>();
 
-        for (int a = 1; a < 10000; a++)
+        for (int a = 1; a < 10_000; a++)
         {
             long b = D(a);
 

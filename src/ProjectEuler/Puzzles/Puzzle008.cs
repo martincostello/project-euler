@@ -30,7 +30,7 @@ public sealed class Puzzle008 : Puzzle
             return -1;
         }
 
-        int limit = 1000 - digitCount;
+        int limit = 1_000 - digitCount;
 
         var products = new long[limit];
         var digits = Maths.Digits(OneThousandDigitNumber);

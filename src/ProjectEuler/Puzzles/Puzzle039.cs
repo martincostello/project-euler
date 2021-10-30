@@ -57,11 +57,11 @@ public sealed class Puzzle039 : Puzzle
     /// <inheritdoc />
     protected override int SolveCore(string[] args)
     {
-        const int Limit = 1000;
+        const int Limit = 1_000;
 
         var solutions = new Dictionary<int, int>(Limit);
 
-        for (int p = 3; p <= 1000; p++)
+        for (int p = 3; p <= Limit; p++)
         {
             solutions[p] = Solve(p).Count;
         }

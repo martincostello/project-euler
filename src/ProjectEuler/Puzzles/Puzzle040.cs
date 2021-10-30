@@ -14,7 +14,7 @@ public sealed class Puzzle040 : Puzzle
     /// <inheritdoc />
     protected override int SolveCore(string[] args)
     {
-        var digitsToFind = new[] { 1, 10, 100, 1000, 10000, 100000, 1000000 };
+        int[] digitsToFind = { 1, 10, 100, 1000, 10000, 100000, 1000000 };
 
         int currentIndex = 0;
         int limit = digitsToFind.Max();

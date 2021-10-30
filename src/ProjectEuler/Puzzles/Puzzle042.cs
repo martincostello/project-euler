@@ -71,7 +71,7 @@ public sealed class Puzzle042 : Puzzle
         IList<string> words = ReadWords();
 
         int maximumLength = words.Max((p) => p.Length);
-        int maximumScore = GetScore(new string('Z', maximumLength));
+        int maximumScore = GetScore(new('Z', maximumLength));
 
         var triangleNumbers = new HashSet<int>(maximumScore);
 

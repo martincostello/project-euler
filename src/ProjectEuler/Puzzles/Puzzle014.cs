@@ -11,7 +11,7 @@ public sealed class Puzzle014 : Puzzle
     /// <summary>
     /// The cache of Collatz sequence lengths from a specified number. This field is read-only.
     /// </summary>
-    private static readonly IDictionary<long, int> _cache = new Dictionary<long, int>(1000000);
+    private static readonly Dictionary<long, int> _cache = new(1_000_000);
 
     /// <inheritdoc />
     public override string Question => "Which starting number, under one million, produces the longest chain?";
@@ -44,9 +44,11 @@ public sealed class Puzzle014 : Puzzle
 
                     length++;
 
-                    if (current % 2 == 0)
+                    (long div, long rem) = Math.DivRem(current, 2);
+
+                    if (rem == 0)
                     {
-                        current /= 2;
+                        current = div;
                     }
                     else
                     {
@@ -72,7 +74,7 @@ public sealed class Puzzle014 : Puzzle
         int longestChain = 0;
         int longestStartValue = 0;
 
-        for (int n = 1; n < 1000000; n++)
+        for (int n = 1; n < 1_000_000; n++)
         {
             int length = GetCollatzSequenceLength(n);
 

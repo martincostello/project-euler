@@ -24,7 +24,7 @@ public sealed class Puzzle056 : Puzzle
         {
             for (int b = 0; b < Limit; b++)
             {
-                BigInteger value = BigInteger.Pow(a, b);
+                var value = BigInteger.Pow(a, b);
 
                 var digits = Maths.Digits(value);
 

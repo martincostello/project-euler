@@ -28,7 +28,9 @@ public sealed class Puzzle055 : Puzzle
             for (int j = 0; j < Iterations; j++)
             {
                 var digits = Maths.Digits(number);
-                var reverse = digits.Reverse().ToArray();
+                var reverse = digits.ToArray();
+
+                Array.Reverse(reverse);
 
                 long sum = number + Maths.FromDigits(reverse);
 

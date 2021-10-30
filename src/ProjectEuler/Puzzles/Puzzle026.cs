@@ -17,7 +17,7 @@ public sealed class Puzzle026 : Puzzle
         int answer = 0;
         int maximumLength = 0;
 
-        for (int i = 1000; i > 1; i--)
+        for (int i = 1_000; i > 1; i--)
         {
             if (maximumLength >= i)
             {

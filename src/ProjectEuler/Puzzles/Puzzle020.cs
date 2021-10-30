@@ -25,7 +25,7 @@ public sealed class Puzzle020 : Puzzle
             return -1;
         }
 
-        BigInteger factorial = 1;
+        var factorial = BigInteger.One;
 
         if (number > 0)
         {

@@ -25,7 +25,7 @@ public sealed class Puzzle016 : Puzzle
             return -1;
         }
 
-        BigInteger value = BigInteger.Pow(2, power);
+        var value = BigInteger.Pow(2, power);
 
         Answer = Maths.Digits(value).Sum();
 

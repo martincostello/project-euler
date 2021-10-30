@@ -14,7 +14,7 @@ public sealed class Puzzle009 : Puzzle
     /// <inheritdoc />
     protected override int SolveCore(string[] args)
     {
-        const int Limit = 1000;
+        const int Limit = 1_000;
 
         for (int a = 1; a < Limit; a++)
         {

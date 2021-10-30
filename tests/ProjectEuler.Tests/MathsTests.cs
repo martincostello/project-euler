@@ -30,7 +30,7 @@ public static class MathsTests
     public static void Maths_Digits_Returns_Correct_Value_String(string value, IEnumerable<int> expected)
     {
         // Arrange
-        BigInteger parsed = BigInteger.Parse(value, CultureInfo.InvariantCulture);
+        var parsed = BigInteger.Parse(value, CultureInfo.InvariantCulture);
 
         // Act
         var actual = Maths.Digits(parsed);

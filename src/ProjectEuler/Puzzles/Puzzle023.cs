@@ -19,7 +19,7 @@ public sealed class Puzzle023 : Puzzle
         var abundantNumbers = new List<int>();
 
         // All integers greater than 28,123 can be written as the sum of two abundant numbers
-        const int UpperLimit = 28123;
+        const int UpperLimit = 28_123;
 
         for (int n = 1; n <= UpperLimit; n++)
         {

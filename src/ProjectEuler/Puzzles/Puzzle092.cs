@@ -15,6 +15,7 @@ public sealed class Puzzle092 : Puzzle
     protected override int SolveCore(string[] args)
     {
         const int Limit = 10_000_000;
+        const int Target = 89;
 
         int count = 0;
 
@@ -22,14 +23,12 @@ public sealed class Puzzle092 : Puzzle
         {
             int value = i;
 
-            while (value != 1 && value != 89)
+            while (value != 1 && value != Target)
             {
-                value = Maths.Digits(value)
-                    .Select((p) => p * p)
-                    .Sum();
+                value = Maths.Digits(value).Aggregate((x, y) => (x * x) + y);
             }
 
-            if (value == 89)
+            if (value == Target)
             {
                 count++;
             }

@@ -43,7 +43,7 @@ public sealed class Puzzle027 : Puzzle
     /// <inheritdoc />
     protected override int SolveCore(string[] args)
     {
-        const int Maximum = 1000;
+        const int Maximum = 1_000;
 
         int bestCount = 0;
         int product = 0;

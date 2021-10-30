@@ -34,12 +34,11 @@ public sealed class Puzzle025 : Puzzle
 
         while (true)
         {
-            BigInteger next = x + y;
+            var next = x + y;
 
             yield return next;
 
-            x = y;
-            y = next;
+            (x, y) = (y, next);
         }
     }
 
