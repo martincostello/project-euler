@@ -25,7 +25,7 @@ public sealed class Puzzle092 : Puzzle
 
             while (value != 1 && value != Target)
             {
-                value = Maths.Digits(value).Aggregate((x, y) => (x * x) + y);
+                value = Maths.Digits(value).Sum((p) => p * p);
             }
 
             if (value == Target)
