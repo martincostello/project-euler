@@ -1,4 +1,4 @@
-// Copyright (c) Martin Costello, 2015. All rights reserved.
+﻿// Copyright (c) Martin Costello, 2015. All rights reserved.
 // Licensed under the Apache 2.0 license. See the LICENSE file in the project root for full license information.
 
 namespace MartinCostello.ProjectEuler.Puzzles;
@@ -15,6 +15,7 @@ public sealed class Puzzle092 : Puzzle
     protected override int SolveCore(string[] args)
     {
         const int Limit = 10_000_000;
+        const int Target = 89;
 
         int count = 0;
 
@@ -22,14 +23,12 @@ public sealed class Puzzle092 : Puzzle
         {
             int value = i;
 
-            while (value != 1 && value != 89)
+            while (value != 1 && value != Target)
             {
-                value = Maths.Digits(value)
-                    .Select((p) => p * p)
-                    .Sum();
+                value = Maths.Digits(value).Sum((p) => p * p);
             }
 
-            if (value == 89)
+            if (value == Target)
             {
                 count++;
             }

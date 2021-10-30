@@ -11,6 +11,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\ProjectEuler\ProjectEuler.csproj" />
+    <ProjectReference Include="..\ProjectEuler.Benchmarks\ProjectEuler.Benchmarks.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" />

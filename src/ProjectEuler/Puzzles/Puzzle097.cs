@@ -1,4 +1,4 @@
-// Copyright (c) Martin Costello, 2015. All rights reserved.
+﻿// Copyright (c) Martin Costello, 2015. All rights reserved.
 // Licensed under the Apache 2.0 license. See the LICENSE file in the project root for full license information.
 
 using System.Numerics;
@@ -22,8 +22,8 @@ public sealed class Puzzle097 : Puzzle
 
         for (int i = 0; i < 10; i++)
         {
-            digits.Add((int)(value % 10));
-            value /= 10;
+            value = BigInteger.DivRem(value, 10, out var rem);
+            digits.Add((int)rem);
         }
 
         digits.Reverse();

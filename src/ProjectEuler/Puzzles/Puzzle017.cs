@@ -1,4 +1,4 @@
-// Copyright (c) Martin Costello, 2015. All rights reserved.
+﻿// Copyright (c) Martin Costello, 2015. All rights reserved.
 // Licensed under the Apache 2.0 license. See the LICENSE file in the project root for full license information.
 
 using System.Text;
@@ -13,7 +13,7 @@ public sealed class Puzzle017 : Puzzle
     /// <summary>
     /// A dictionary containing the English words for numbers keyed by their value. This field is read-only.
     /// </summary>
-    private static readonly Dictionary<int, string> NumberWords = new Dictionary<int, string>(27)
+    private static readonly Dictionary<int, string> NumberWords = new(27)
     {
         [1] = "one",
         [2] = "two",
@@ -65,8 +65,8 @@ public sealed class Puzzle017 : Puzzle
         }
 
         // 2345 -> 2 and 2000
-        int thousands = value / 1000;
-        int justTheThousands = thousands * 1000;
+        int thousands = value / 1_000;
+        int justTheThousands = thousands * 1_000;
 
         // 2345 -> 3 and 300
         int hundreds = (value - justTheThousands) / 100;
@@ -74,8 +74,8 @@ public sealed class Puzzle017 : Puzzle
 
         // 2345 -> 4, 40 and 5
         int justTheTens = value - justTheThousands - justTheHundreds;
-        int tens = justTheTens / 10;
-        int ones = justTheTens % 10;
+
+        (int tens, int ones) = Math.DivRem(justTheTens, 10);
 
         var builder = new StringBuilder(128);
 

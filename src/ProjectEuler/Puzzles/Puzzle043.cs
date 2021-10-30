@@ -1,4 +1,4 @@
-// Copyright (c) Martin Costello, 2015. All rights reserved.
+﻿// Copyright (c) Martin Costello, 2015. All rights reserved.
 // Licensed under the Apache 2.0 license. See the LICENSE file in the project root for full license information.
 
 namespace MartinCostello.ProjectEuler.Puzzles;
@@ -12,7 +12,7 @@ public sealed class Puzzle043 : Puzzle
     /// An array containing the indexes and divisors to search the digit
     /// groups of in the 0-9 pandigital numbers. This field is read-only.
     /// </summary>
-    private static readonly IList<Tuple<int, int>> _ranges = new[]
+    private static readonly Tuple<int, int>[] _ranges =
     {
         Tuple.Create(3 - 1, 3),
         Tuple.Create(4 - 1, 5),

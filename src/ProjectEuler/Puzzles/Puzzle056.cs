@@ -1,4 +1,4 @@
-// Copyright (c) Martin Costello, 2015. All rights reserved.
+﻿// Copyright (c) Martin Costello, 2015. All rights reserved.
 // Licensed under the Apache 2.0 license. See the LICENSE file in the project root for full license information.
 
 using System.Numerics;
@@ -24,7 +24,7 @@ public sealed class Puzzle056 : Puzzle
         {
             for (int b = 0; b < Limit; b++)
             {
-                BigInteger value = BigInteger.Pow(a, b);
+                var value = BigInteger.Pow(a, b);
 
                 var digits = Maths.Digits(value);
 

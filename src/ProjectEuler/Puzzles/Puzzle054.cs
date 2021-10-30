@@ -124,11 +124,11 @@ public sealed class Puzzle054 : Puzzle
             return false;
         }
 
-        if (hand.Count((p) => IsValue(p, 'T')) == 1 &&
-            hand.Count((p) => IsValue(p, 'J')) == 1 &&
-            hand.Count((p) => IsValue(p, 'Q')) == 1 &&
-            hand.Count((p) => IsValue(p, 'K')) == 1 &&
-            hand.Count((p) => IsValue(p, 'A')) == 1)
+        if ((hand.SingleOrDefault((p) => IsValue(p, 'T')) != null) &&
+            (hand.SingleOrDefault((p) => IsValue(p, 'J')) != null) &&
+            (hand.SingleOrDefault((p) => IsValue(p, 'Q')) != null) &&
+            (hand.SingleOrDefault((p) => IsValue(p, 'K')) != null) &&
+            (hand.SingleOrDefault((p) => IsValue(p, 'A')) != null))
         {
             highCard = 'A';
             return true;

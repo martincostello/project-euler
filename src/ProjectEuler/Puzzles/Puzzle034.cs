@@ -1,4 +1,4 @@
-// Copyright (c) Martin Costello, 2015. All rights reserved.
+﻿// Copyright (c) Martin Costello, 2015. All rights reserved.
 // Licensed under the Apache 2.0 license. See the LICENSE file in the project root for full license information.
 
 namespace MartinCostello.ProjectEuler.Puzzles;
@@ -11,7 +11,7 @@ public sealed class Puzzle034 : Puzzle
     /// <summary>
     /// An array containing the factorials of single digit numbers. This field is read-only.
     /// </summary>
-    private static readonly int[] Factorials = new[]
+    private static readonly int[] Factorials =
     {
         Maths.Factorial(0),
         Maths.Factorial(1),

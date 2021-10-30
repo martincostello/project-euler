@@ -1,4 +1,4 @@
-// Copyright (c) Martin Costello, 2015. All rights reserved.
+﻿// Copyright (c) Martin Costello, 2015. All rights reserved.
 // Licensed under the Apache 2.0 license. See the LICENSE file in the project root for full license information.
 
 namespace MartinCostello.ProjectEuler.Puzzles;
@@ -57,11 +57,11 @@ public sealed class Puzzle039 : Puzzle
     /// <inheritdoc />
     protected override int SolveCore(string[] args)
     {
-        const int Limit = 1000;
+        const int Limit = 1_000;
 
         var solutions = new Dictionary<int, int>(Limit);
 
-        for (int p = 3; p <= 1000; p++)
+        for (int p = 3; p <= Limit; p++)
         {
             solutions[p] = Solve(p).Count;
         }

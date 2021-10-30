@@ -62,10 +62,6 @@ public abstract class MaximumPathPuzzle : Puzzle
     /// <returns>
     /// A jagged array representing the values of the path triangle for the puzzle.
     /// </returns>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage(
-        "Microsoft.Usage",
-        "CA2202:Do not dispose objects multiple times",
-        Justification = "The stream is not disposed of multiple times.")]
     protected int[][] LoadTriangle()
     {
         var triangle = new List<int[]>();

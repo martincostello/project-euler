@@ -1,4 +1,4 @@
-// Copyright (c) Martin Costello, 2015. All rights reserved.
+﻿// Copyright (c) Martin Costello, 2015. All rights reserved.
 // Licensed under the Apache 2.0 license. See the LICENSE file in the project root for full license information.
 
 namespace MartinCostello.ProjectEuler.Puzzles;
@@ -17,7 +17,7 @@ public sealed class Puzzle026 : Puzzle
         int answer = 0;
         int maximumLength = 0;
 
-        for (int i = 1000; i > 1; i--)
+        for (int i = 1_000; i > 1; i--)
         {
             if (maximumLength >= i)
             {

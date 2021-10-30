@@ -1,4 +1,4 @@
-// Copyright (c) Martin Costello, 2015. All rights reserved.
+﻿// Copyright (c) Martin Costello, 2015. All rights reserved.
 // Licensed under the Apache 2.0 license. See the LICENSE file in the project root for full license information.
 
 using System.Collections.Concurrent;
@@ -19,7 +19,7 @@ internal static class Maths
     /// <summary>
     /// A cache of values for which being prime has been computed. This field is read-only.
     /// </summary>
-    private static readonly IDictionary<long, bool> _primes = new ConcurrentDictionary<long, bool>();
+    private static readonly ConcurrentDictionary<long, bool> _primes = new();
 
     /// <summary>
     /// Returns the binomial coefficient for the specified values.
@@ -83,8 +83,10 @@ internal static class Maths
 
         while (value > 0)
         {
-            digits.Add((int)(value % 10));
-            value /= 10;
+            var div = BigInteger.DivRem(value, 10, out var rem);
+
+            digits.Add((int)rem);
+            value = div;
         }
 
         digits.Reverse();
@@ -112,8 +114,10 @@ internal static class Maths
 
         while (value > 0)
         {
-            digits.Add((int)(value % 10));
-            value /= 10;
+            (long div, long rem) = Math.DivRem(value, 10);
+
+            digits.Add((int)rem);
+            value = div;
         }
 
         digits.Reverse();
@@ -446,13 +450,15 @@ internal static class Maths
     {
         for (int i = 1; i * i <= value; i++)
         {
-            if (value % i == 0)
+            (long div, long rem) = Math.DivRem(value, i);
+
+            if (rem == 0)
             {
                 yield return i;
 
                 if (i * i != value)
                 {
-                    yield return value / i;
+                    yield return div;
                 }
             }
         }
@@ -465,5 +471,5 @@ internal static class Maths
     /// <returns>
     /// The triangular number of <paramref name="n"/>.
     /// </returns>
-    internal static long Triangular(long n) => (n * (n + 1)) / 2;
+    internal static long Triangular(long n) => n * (n + 1) / 2;
 }

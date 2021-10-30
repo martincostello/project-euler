@@ -1,4 +1,4 @@
-// Copyright (c) Martin Costello, 2015. All rights reserved.
+﻿// Copyright (c) Martin Costello, 2015. All rights reserved.
 // Licensed under the Apache 2.0 license. See the LICENSE file in the project root for full license information.
 
 namespace MartinCostello.ProjectEuler.Puzzles;
@@ -11,7 +11,7 @@ public sealed class Puzzle031 : Puzzle
     /// <summary>
     /// The coins, in pence, available in GBP. This field is read-only.
     /// </summary>
-    private static readonly int[] Coins = new[] { 1, 2, 5, 10, 20, 50, 100, 200 };
+    private static readonly int[] Coins = { 1, 2, 5, 10, 20, 50, 100, 200 };
 
     /// <inheritdoc />
     public override string Question => "How many different ways can the specified amount of money, in pence, be made using any number of coins?";
