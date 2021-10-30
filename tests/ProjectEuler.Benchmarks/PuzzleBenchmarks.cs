@@ -50,11 +50,9 @@ public class PuzzleBenchmarks
         yield return new PuzzleInput<Puzzle036>();
         yield return new PuzzleInput<Puzzle037>();
         yield return new PuzzleInput<Puzzle038>();
-        yield return new PuzzleInput<Puzzle039>();
         yield return new PuzzleInput<Puzzle040>();
         yield return new PuzzleInput<Puzzle041>();
         yield return new PuzzleInput<Puzzle042>();
-        yield return new PuzzleInput<Puzzle043>();
         yield return new PuzzleInput<Puzzle044>();
         yield return new PuzzleInput<Puzzle045>();
         yield return new PuzzleInput<Puzzle046>();
@@ -68,7 +66,6 @@ public class PuzzleBenchmarks
         yield return new PuzzleInput<Puzzle056>();
         yield return new PuzzleInput<Puzzle059>();
         yield return new PuzzleInput<Puzzle067>();
-        yield return new PuzzleInput<Puzzle092>();
         yield return new PuzzleInput<Puzzle097>();
     }
 
