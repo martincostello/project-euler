@@ -14,6 +14,7 @@
     <ProjectReference Include="..\ProjectEuler.Benchmarks\ProjectEuler.Benchmarks.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="GitHubActionsTestLogger" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" />
     <PackageReference Include="NodaTime.Testing" />
     <PackageReference Include="xunit" />
