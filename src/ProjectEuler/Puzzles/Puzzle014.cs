@@ -13,6 +13,8 @@ public sealed class Puzzle014 : Puzzle
     /// </summary>
     private static readonly Dictionary<long, int> _cache = new(1_000_000);
 
+    private static readonly object _lock = new();
+
     /// <inheritdoc />
     public override string Question => "Which starting number, under one million, produces the longest chain?";
 
@@ -25,47 +27,50 @@ public sealed class Puzzle014 : Puzzle
     /// </returns>
     internal static int GetCollatzSequenceLength(long start)
     {
-        if (!_cache.TryGetValue(start, out int length))
+        lock (_lock)
         {
-            if (start > 0)
+            if (!_cache.TryGetValue(start, out int length))
             {
-                long current = start;
-
-                bool cacheHit = false;
-
-                while (current != 1 && !cacheHit)
+                if (start > 0)
                 {
-                    if (_cache.TryGetValue(current, out int remainingLength))
+                    long current = start;
+
+                    bool cacheHit = false;
+
+                    while (current != 1 && !cacheHit)
                     {
-                        length += remainingLength;
-                        cacheHit = true;
-                        break;
+                        if (_cache.TryGetValue(current, out int remainingLength))
+                        {
+                            length += remainingLength;
+                            cacheHit = true;
+                            break;
+                        }
+
+                        length++;
+
+                        (long div, long rem) = Math.DivRem(current, 2);
+
+                        if (rem == 0)
+                        {
+                            current = div;
+                        }
+                        else
+                        {
+                            current = (3 * current) + 1;
+                        }
                     }
 
-                    length++;
-
-                    (long div, long rem) = Math.DivRem(current, 2);
-
-                    if (rem == 0)
+                    if (!cacheHit)
                     {
-                        current = div;
-                    }
-                    else
-                    {
-                        current = (3 * current) + 1;
+                        length++;
                     }
                 }
 
-                if (!cacheHit)
-                {
-                    length++;
-                }
+                _cache[start] = length;
             }
 
-            _cache[start] = length;
+            return length;
         }
-
-        return length;
     }
 
     /// <inheritdoc />
