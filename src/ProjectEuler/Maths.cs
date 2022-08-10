@@ -177,7 +177,7 @@ internal static class Maths
     /// <returns>
     /// An <see cref="IEnumerable{T}"/> which enumerates the factors of <paramref name="value"/>.
     /// </returns>
-    internal static IEnumerable<long> GetFactors(long value) => GetFactorsUnordered(value).OrderBy((p) => p);
+    internal static IEnumerable<long> GetFactors(long value) => GetFactorsUnordered(value).Order();
 
     /// <summary>
     /// Returns the proper divisors of the specified number.
