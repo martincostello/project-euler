@@ -61,10 +61,10 @@ public sealed class Puzzle054 : Puzzle
 
             if (card1Value == card2Value)
             {
-                var otherCards1 = player1.Where((p) => p[0] != highCard1).ToArray();
-                var otherCards2 = player2.Where((p) => p[0] != highCard2).ToArray();
+                var otherCard1 = player1.Where((p) => p[0] != highCard1).ElementAt(^1);
+                var otherCard2 = player2.Where((p) => p[0] != highCard2).ElementAt(^1);
 
-                return GetCardValue(otherCards1[^1]) > GetCardValue(otherCards2[^1]);
+                return GetCardValue(otherCard1) > GetCardValue(otherCard2);
             }
             else
             {
@@ -124,11 +124,11 @@ public sealed class Puzzle054 : Puzzle
             return false;
         }
 
-        if ((hand.SingleOrDefault((p) => IsValue(p, 'T')) != null) &&
-            (hand.SingleOrDefault((p) => IsValue(p, 'J')) != null) &&
-            (hand.SingleOrDefault((p) => IsValue(p, 'Q')) != null) &&
-            (hand.SingleOrDefault((p) => IsValue(p, 'K')) != null) &&
-            (hand.SingleOrDefault((p) => IsValue(p, 'A')) != null))
+        if ((hand.SingleOrDefault((p) => IsValue(p, 'T')) is not null) &&
+            (hand.SingleOrDefault((p) => IsValue(p, 'J')) is not null) &&
+            (hand.SingleOrDefault((p) => IsValue(p, 'Q')) is not null) &&
+            (hand.SingleOrDefault((p) => IsValue(p, 'K')) is not null) &&
+            (hand.SingleOrDefault((p) => IsValue(p, 'A')) is not null))
         {
             highCard = 'A';
             return true;
