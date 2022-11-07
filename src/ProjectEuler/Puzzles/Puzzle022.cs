@@ -51,7 +51,7 @@ public sealed class Puzzle022 : Puzzle
         return namesText
             .Split(',')
             .Select((p) => p.Trim(trimChars))
-            .OrderBy((p) => p, StringComparer.Ordinal)
+            .Order(StringComparer.Ordinal)
             .ToList();
     }
 

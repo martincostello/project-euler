@@ -63,8 +63,8 @@ public sealed class Puzzle049 : Puzzle
     /// </returns>
     private static bool ArePermutations(long x, long y)
     {
-        var first = Maths.Digits(x).OrderBy((p) => p);
-        var second = Maths.Digits(y).OrderBy((p) => p);
+        var first = Maths.Digits(x).Order();
+        var second = Maths.Digits(y).Order();
 
         return first.SequenceEqual(second);
     }

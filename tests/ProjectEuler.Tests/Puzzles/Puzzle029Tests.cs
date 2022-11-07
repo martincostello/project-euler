@@ -16,7 +16,7 @@ public static class Puzzle029Tests
         ICollection<double> actual = Puzzle029.GeneratePowerSequence(maximum);
 
         // Assert
-        Assert.Equal(expected, actual.OrderBy((p) => p));
+        Assert.Equal(expected, actual.Order());
     }
 
     [Theory]
