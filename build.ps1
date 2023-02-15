@@ -80,7 +80,7 @@ if ($installDotNetSdk -eq $true) {
 
 Write-Host "Building solution..." -ForegroundColor Green
 
-& $dotnet build ./ProjectEuler.sln --output $OutputPath --configuration $Configuration
+& $dotnet build ./ProjectEuler.sln --configuration $Configuration
 
 if ($LASTEXITCODE -ne 0) {
     throw "dotnet build failed with exit code $LASTEXITCODE"
