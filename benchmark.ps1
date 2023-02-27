@@ -1,7 +1,7 @@
 #! /usr/bin/env pwsh
 param(
     [Parameter(Mandatory = $false)][string] $Configuration = "Release",
-    [Parameter(Mandatory = $false)][string] $Framework = "net7.0"
+    [Parameter(Mandatory = $false)][string] $Framework = "net8.0"
 )
 
 $ErrorActionPreference = "Stop"
