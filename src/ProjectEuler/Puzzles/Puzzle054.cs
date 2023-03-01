@@ -301,7 +301,7 @@ public sealed class Puzzle054 : Puzzle
         };
     }
 
-    private IList<string> ReadHands()
+    private List<string> ReadHands()
     {
         using var stream = ReadResource();
         using var reader = new StreamReader(stream);
