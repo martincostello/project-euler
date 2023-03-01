@@ -18,7 +18,7 @@ internal static class Helpers
     /// </returns>
     internal static bool IsPalindromic<T>(IReadOnlyList<T> collection)
     {
-        IEqualityComparer<T> comparer = EqualityComparer<T>.Default;
+        var comparer = EqualityComparer<T>.Default;
 
         for (int i = 0; i < collection.Count / 2; i++)
         {

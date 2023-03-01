@@ -55,7 +55,7 @@ public sealed class Puzzle042 : Puzzle
 
         string[] split = rawWords.Split(',');
 
-        IList<string> words = new List<string>(split.Length);
+        var words = new List<string>(split.Length);
 
         foreach (string word in split)
         {

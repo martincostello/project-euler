@@ -15,7 +15,7 @@ public static class PuzzleTests
     {
         // Arrange
         string[] args = new[] { "1" };
-        Puzzle target = new MyPuzzle(2);
+        var target = new MyPuzzle(2);
 
         // Act
         int actual = target.Solve(args);
