@@ -10,7 +10,4 @@
   <ItemGroup>
     <EmbeddedResource Include="Puzzles\**\*.txt" />
   </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="NodaTime" />
-  </ItemGroup>
 </Project>
