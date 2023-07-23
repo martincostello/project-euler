@@ -21,7 +21,7 @@ public abstract class MaximumPathPuzzle : Puzzle
     internal static int ComputeMaximumPathSum(int[][] triangle)
     {
         var working = triangle
-            .Select((p) => p as IList<int>)
+            .Select((p) => p.ToList())
             .ToList();
 
         // Work through the triangle from the bottom up until there is one number left
