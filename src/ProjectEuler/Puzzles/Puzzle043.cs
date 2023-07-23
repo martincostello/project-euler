@@ -12,14 +12,14 @@ public sealed class Puzzle043 : Puzzle
     /// An array containing the indexes and divisors to search the digit
     /// groups of in the 0-9 pandigital numbers. This field is read-only.
     /// </summary>
-    private static readonly Tuple<int, int>[] _ranges =
+    private static readonly (int Index, int Divisor)[] _ranges =
     {
-        Tuple.Create(3 - 1, 3),
-        Tuple.Create(4 - 1, 5),
-        Tuple.Create(5 - 1, 7),
-        Tuple.Create(6 - 1, 11),
-        Tuple.Create(7 - 1, 13),
-        Tuple.Create(8 - 1, 17),
+        (3 - 1, 3),
+        (4 - 1, 5),
+        (5 - 1, 7),
+        (6 - 1, 11),
+        (7 - 1, 13),
+        (8 - 1, 17),
     };
 
     /// <inheritdoc />
@@ -44,7 +44,7 @@ public sealed class Puzzle043 : Puzzle
 
         bool hasProperty = true;
 
-        foreach (var (start, divisor) in _ranges)
+        foreach ((int start, int divisor) in _ranges)
         {
             int end = start + 3;
 
