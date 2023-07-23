@@ -29,7 +29,7 @@ public sealed class Puzzle031 : Puzzle
         }
 
         // Array containing the number of ways there are to
-        // make 1p up to the target using the avaiable coins.
+        // make 1p up to the target using the available coins.
         int[] ways = new int[target + 1];
 
         // There is one way to make 1p

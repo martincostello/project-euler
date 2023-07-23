@@ -72,7 +72,7 @@ public sealed class Puzzle027 : Puzzle
     /// <summary>
     /// Returns the result of the quadratic value for the specified values.
     /// </summary>
-    /// <param name="n">The value to use for the forumula.</param>
+    /// <param name="n">The value to use for the formula.</param>
     /// <param name="a">The value of the coefficient 'a'.</param>
     /// <param name="b">The value of the coefficient 'b'.</param>
     /// <returns>
