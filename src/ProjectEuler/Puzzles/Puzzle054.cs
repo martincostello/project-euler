@@ -23,8 +23,8 @@ public sealed class Puzzle054 : Puzzle
         string[] player1 = cards[..5];
         string[] player2 = cards[5..];
 
-        player1 = player1.OrderBy((p) => GetCardValue(p)).ToArray();
-        player2 = player2.OrderBy((p) => GetCardValue(p)).ToArray();
+        player1 = player1.OrderBy(GetCardValue).ToArray();
+        player2 = player2.OrderBy(GetCardValue).ToArray();
 
         var predicates = new IsHandPredicate[]
         {
