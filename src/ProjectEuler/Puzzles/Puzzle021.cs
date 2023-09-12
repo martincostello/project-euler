@@ -31,15 +31,8 @@ public sealed class Puzzle021 : Puzzle
             {
                 if (D(b) == a)
                 {
-                    if (!amicableNumbers.Contains(a))
-                    {
-                        amicableNumbers.Add(a);
-                    }
-
-                    if (!amicableNumbers.Contains(b))
-                    {
-                        amicableNumbers.Add(b);
-                    }
+                    _ = amicableNumbers.Add(a);
+                    _ = amicableNumbers.Add(b);
                 }
             }
         }
