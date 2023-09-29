@@ -12,7 +12,7 @@ public static class Puzzle059Tests
     public static void Puzzle059_Returns_Correct_Solution()
     {
         // Arrange
-        int expected = 129448;
+        int expected = 129_448;
 
         // Act and Assert
         Puzzles.AssertSolution<Puzzle059>(expected);

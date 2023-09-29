@@ -5,6 +5,8 @@ using System.Numerics;
 
 namespace MartinCostello.ProjectEuler.Puzzles;
 
+#pragma warning disable SA1010
+
 /// <summary>
 /// A class containing tests for the <see cref="Puzzle025"/> class. This class cannot be inherited.
 /// </summary>
@@ -14,7 +16,7 @@ public static class Puzzle025Tests
     public static void Puzzle025_Returns_Correct_Solution()
     {
         // Arrange
-        int expected = 4782;
+        int expected = 4_782;
 
         // Act and Assert
         Puzzles.AssertSolution<Puzzle025>(expected);
@@ -24,7 +26,7 @@ public static class Puzzle025Tests
     public static void Puzzle025_Fibonacci_Returns_Correct_Sequence()
     {
         // Arrange
-        var expected = new BigInteger[] { 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144 };
+        BigInteger[] expected = [1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144];
 
         // Act
         var actual = Puzzle025.Fibonacci()

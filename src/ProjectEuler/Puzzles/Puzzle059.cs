@@ -30,7 +30,7 @@ public sealed class Puzzle059 : Puzzle
             {
                 for (int z = 0; z < alphabet.Length; z++)
                 {
-                    passwords.Add(new[] { alphabet[x], alphabet[y], alphabet[z] });
+                    passwords.Add([alphabet[x], alphabet[y], alphabet[z]]);
                 }
             }
         }

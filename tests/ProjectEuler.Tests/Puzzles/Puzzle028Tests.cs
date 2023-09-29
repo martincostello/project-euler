@@ -3,6 +3,8 @@
 
 namespace MartinCostello.ProjectEuler.Puzzles;
 
+#pragma warning disable SA1010
+
 /// <summary>
 /// A class containing tests for the <see cref="Puzzle028"/> class. This class cannot be inherited.
 /// </summary>
@@ -14,10 +16,12 @@ public static class Puzzle028Tests
     [InlineData("5", 101)]
     [InlineData("7", 261)]
     [InlineData("1001", 669171001)]
+#pragma warning disable xUnit1026
     public static void Puzzle028_Returns_Correct_Solution(string sides, int expected)
+#pragma warning restore xUnit1026
     {
         // Arrange
-        string[] args = new[] { sides };
+        string[] args = [sides];
 
         // Act and Assert
         Puzzles.AssertSolution<Puzzle028>(args, expected);
@@ -27,7 +31,7 @@ public static class Puzzle028Tests
     public static void Puzzle028_Returns_Minus_One_If_Sides_Value_Is_Invalid()
     {
         // Arrange
-        string[] args = new[] { "a" };
+        string[] args = ["a"];
 
         // Act and Assert
         Puzzles.AssertInvalid<Puzzle028>(args);
@@ -37,7 +41,7 @@ public static class Puzzle028Tests
     public static void Puzzle028_Returns_Minus_One_If_Sides_Value_Is_Too_Small()
     {
         // Arrange
-        string[] args = new[] { "0" };
+        string[] args = ["0"];
 
         // Act and Assert
         Puzzles.AssertInvalid<Puzzle028>(args);
@@ -47,7 +51,7 @@ public static class Puzzle028Tests
     public static void Puzzle028_Returns_Minus_One_If_Sides_Value_Is_Even()
     {
         // Arrange
-        string[] args = new[] { "2" };
+        string[] args = ["2"];
 
         // Act and Assert
         Puzzles.AssertInvalid<Puzzle028>(args);

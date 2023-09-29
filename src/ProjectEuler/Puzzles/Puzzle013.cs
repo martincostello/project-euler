@@ -44,8 +44,8 @@ public sealed class Puzzle013 : Puzzle
         static BigInteger AsBigInteger(string value)
             => BigInteger.Parse(value, CultureInfo.InvariantCulture);
 
-        return new[]
-        {
+        return
+        [
             AsBigInteger("37107287533902102798797998220837590246510135740250"),
             AsBigInteger("46376937677490009712648124896970078050417018260538"),
             AsBigInteger("74324986199524741059474233309513058123726617309629"),
@@ -146,6 +146,6 @@ public sealed class Puzzle013 : Puzzle
             AsBigInteger("72107838435069186155435662884062257473692284509516"),
             AsBigInteger("20849603980134001723930671666823555245252804609722"),
             AsBigInteger("53503534226472524250874054075591789781264330331690"),
-        };
+        ];
     }
 }

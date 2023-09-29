@@ -3,6 +3,8 @@
 
 namespace MartinCostello.ProjectEuler.Puzzles;
 
+#pragma warning disable SA1010
+
 /// <summary>
 /// A class containing tests for the <see cref="Puzzle047"/> class. This class cannot be inherited.
 /// </summary>
@@ -12,10 +14,12 @@ public static class Puzzle047Tests
     [InlineData("2", 14)]
     [InlineData("3", 644)]
     [InlineData("4", 134043)]
+#pragma warning disable xUnit1026
     public static void Puzzle047_Returns_Correct_Solution(string factors, int expected)
+#pragma warning restore xUnit1026
     {
         // Arrange
-        string[] args = new[] { factors };
+        string[] args = [factors];
 
         // Act and Assert
         Puzzles.AssertSolution<Puzzle047>(args, expected);
@@ -25,7 +29,7 @@ public static class Puzzle047Tests
     public static void Puzzle047_Returns_Minus_One_If_Factors_Value_Is_Invalid()
     {
         // Arrange
-        string[] args = new[] { "a" };
+        string[] args = ["a"];
 
         // Act and Assert
         Puzzles.AssertInvalid<Puzzle047>(args);
@@ -35,7 +39,7 @@ public static class Puzzle047Tests
     public static void Puzzle047_Returns_Minus_One_If_Factors_Value_Is_Too_Small()
     {
         // Arrange
-        string[] args = new[] { "1" };
+        string[] args = ["1"];
 
         // Act and Assert
         Puzzles.AssertInvalid<Puzzle047>(args);

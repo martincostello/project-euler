@@ -3,6 +3,8 @@
 
 namespace MartinCostello.ProjectEuler.Puzzles;
 
+#pragma warning disable SA1010
+
 /// <summary>
 /// A class representing the solution to <c>https://projecteuler.net/problem=24</c>. This class cannot be inherited.
 /// </summary>
@@ -14,7 +16,7 @@ public sealed class Puzzle024 : Puzzle
     /// <inheritdoc />
     protected override int SolveCore(string[] args)
     {
-        int[] collection = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+        int[] collection = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
         var nextDigits = new List<int>(collection);
         var usedDigits = new List<int>(collection.Length);
 

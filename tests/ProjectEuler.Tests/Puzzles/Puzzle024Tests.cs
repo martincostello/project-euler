@@ -12,7 +12,7 @@ public static class Puzzle024Tests
     public static void Puzzle024_Returns_Correct_Solution()
     {
         // Arrange
-        long expected = 2783915460;
+        long expected = 2_783_915_460;
 
         // Act and Assert
         Puzzles.AssertSolution<Puzzle024>(expected);
