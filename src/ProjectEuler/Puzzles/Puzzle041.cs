@@ -14,8 +14,8 @@ public sealed class Puzzle041 : Puzzle
     /// <inheritdoc />
     protected override int SolveCore(string[] args)
     {
-        // 1..n is divisble by 3 (and hence not prime)
-        // if the sum of the digits is divisble by 3.
+        // 1..n is divisible by 3 (and hence not prime)
+        // if the sum of the digits is divisible by 3.
         // Determine the maximum number of digits for
         // a pandigital that is not divisible by 3.
         int maxDigits = Enumerable.Range(2, 9 - 2)

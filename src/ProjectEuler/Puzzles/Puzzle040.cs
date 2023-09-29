@@ -3,6 +3,8 @@
 
 namespace MartinCostello.ProjectEuler.Puzzles;
 
+#pragma warning disable SA1010
+
 /// <summary>
 /// A class representing the solution to <c>https://projecteuler.net/problem=40</c>. This class cannot be inherited.
 /// </summary>
@@ -14,7 +16,7 @@ public sealed class Puzzle040 : Puzzle
     /// <inheritdoc />
     protected override int SolveCore(string[] args)
     {
-        int[] digitsToFind = { 1, 10, 100, 1000, 10000, 100000, 1000000 };
+        int[] digitsToFind = [1, 10, 100, 1000, 10000, 100000, 1000000];
 
         int currentIndex = 0;
         int limit = digitsToFind.Max();

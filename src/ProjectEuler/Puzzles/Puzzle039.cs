@@ -37,12 +37,12 @@ public sealed class Puzzle039 : Puzzle
 
                 if (a + b + c == perimeter)
                 {
-                    string[] sides = new[]
-                    {
+                    string[] sides =
+                    [
                         a.ToString(Format, formatProvider),
                         b.ToString(Format, formatProvider),
                         c.ToString(Format, formatProvider),
-                    };
+                    ];
 
                     string solution = "{" + string.Join(",", sides.Order()) + "}";
 

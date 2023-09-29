@@ -74,25 +74,15 @@ public class PuzzleBenchmarks
     public int Solve(PuzzleInput input)
         => input.Puzzle.Solve(input.Args);
 
-    public sealed class PuzzleInput<T> : PuzzleInput
+    public sealed class PuzzleInput<T>(params string[] args) : PuzzleInput(args)
         where T : IPuzzle, new()
     {
-        public PuzzleInput(params string[] args)
-            : base(args)
-        {
-        }
-
         public override IPuzzle Puzzle { get; } = new T();
     }
 
-    public abstract class PuzzleInput
+    public abstract class PuzzleInput(params string[] args)
     {
-        protected PuzzleInput(params string[] args)
-        {
-            Args = args;
-        }
-
-        public string[] Args { get; }
+        public string[] Args { get; } = args;
 
         public abstract IPuzzle Puzzle { get; }
 

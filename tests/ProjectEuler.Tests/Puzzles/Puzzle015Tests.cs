@@ -3,6 +3,8 @@
 
 namespace MartinCostello.ProjectEuler.Puzzles;
 
+#pragma warning disable SA1010
+
 /// <summary>
 /// A class containing tests for the <see cref="Puzzle015"/> class. This class cannot be inherited.
 /// </summary>
@@ -12,10 +14,12 @@ public static class Puzzle015Tests
     [InlineData("1", 2)]
     [InlineData("2", 6)]
     [InlineData("20", 137846528820)]
+#pragma warning disable xUnit1026
     public static void Puzzle015_Returns_Correct_Solution(string divisors, long expected)
+#pragma warning restore xUnit1026
     {
         // Arrange
-        string[] args = new[] { divisors };
+        string[] args = [divisors];
 
         // Act and Assert
         Puzzles.AssertSolution<Puzzle015>(args, expected);
@@ -25,7 +29,7 @@ public static class Puzzle015Tests
     public static void Puzzle015_Returns_Minus_One_If_Sides_Value_Is_Invalid()
     {
         // Arrange
-        string[] args = new[] { "a" };
+        string[] args = ["a"];
 
         // Act and Assert
         Puzzles.AssertInvalid<Puzzle015>(args);
@@ -35,7 +39,7 @@ public static class Puzzle015Tests
     public static void Puzzle015_Returns_Minus_One_If_Sides_Value_Is_Too_Small()
     {
         // Arrange
-        string[] args = new[] { "0" };
+        string[] args = ["0"];
 
         // Act and Assert
         Puzzles.AssertInvalid<Puzzle015>(args);

@@ -3,6 +3,8 @@
 
 namespace MartinCostello.ProjectEuler.Puzzles;
 
+#pragma warning disable SA1010
+
 /// <summary>
 /// A class containing tests for the <see cref="Puzzle004"/> class.
 /// </summary>
@@ -11,10 +13,12 @@ public static class Puzzle004Tests
     [Theory]
     [InlineData("2", 9009)]
     [InlineData("3", 906609)]
+#pragma warning disable xUnit1026
     public static void Puzzle004_Returns_Correct_Solution(string digits, int expected)
+#pragma warning restore xUnit1026
     {
         // Arrange
-        string[] args = new[] { digits };
+        string[] args = [digits];
 
         // Act and Assert
         Puzzles.AssertSolution<Puzzle004>(args, expected);
@@ -24,7 +28,7 @@ public static class Puzzle004Tests
     public static void Puzzle004_Returns_Minus_One_If_Maximum_Value_Is_Invalid()
     {
         // Arrange
-        string[] args = new[] { "a" };
+        string[] args = ["a"];
 
         // Act and Assert
         Puzzles.AssertInvalid<Puzzle004>(args);
@@ -34,7 +38,7 @@ public static class Puzzle004Tests
     public static void Puzzle004_Returns_Minus_One_If_Maximum_Value_Is_Too_Small()
     {
         // Arrange
-        string[] args = new[] { "1" };
+        string[] args = ["1"];
 
         // Act and Assert
         Puzzles.AssertInvalid<Puzzle004>(args);

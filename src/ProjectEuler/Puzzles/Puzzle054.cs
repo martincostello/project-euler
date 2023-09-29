@@ -3,13 +3,15 @@
 
 namespace MartinCostello.ProjectEuler.Puzzles;
 
+#pragma warning disable SA1010
+
 /// <summary>
 /// A class representing the solution to <c>https://projecteuler.net/problem=54</c>. This class cannot be inherited.
 /// </summary>
 public sealed class Puzzle054 : Puzzle
 {
-    private static readonly char[] Suits = { 'C', 'D', 'H', 'S' };
-    private static readonly char[] Values = { 'A', 'K', 'Q', 'J', 'T', '9', '8', '7', '6', '5', '4', '3', '2' };
+    private static readonly char[] Suits = ['C', 'D', 'H', 'S'];
+    private static readonly char[] Values = ['A', 'K', 'Q', 'J', 'T', '9', '8', '7', '6', '5', '4', '3', '2'];
 
     private delegate bool IsHandPredicate(string[] cards, out char highCard);
 
@@ -23,8 +25,8 @@ public sealed class Puzzle054 : Puzzle
         string[] player1 = cards[..5];
         string[] player2 = cards[5..];
 
-        player1 = player1.OrderBy(GetCardValue).ToArray();
-        player2 = player2.OrderBy(GetCardValue).ToArray();
+        player1 = [.. player1.OrderBy(GetCardValue)];
+        player2 = [.. player2.OrderBy(GetCardValue)];
 
         var predicates = new IsHandPredicate[]
         {

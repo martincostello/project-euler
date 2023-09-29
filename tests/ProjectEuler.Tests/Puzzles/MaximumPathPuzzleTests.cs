@@ -14,13 +14,13 @@ public static class MaximumPathPuzzleTests
         // Arrange
         int expected = 23;
 
-        var triangle = new[]
-        {
-            new[] { 3 },
-            new[] { 7, 4 },
-            new[] { 2, 4, 6 },
-            new[] { 8, 5, 9, 3 },
-        };
+        int[][] triangle =
+        [
+            [3],
+            [7, 4],
+            [2, 4, 6],
+            [8, 5, 9, 3],
+        ];
 
         // Act
         int actual = MaximumPathPuzzle.ComputeMaximumPathSum(triangle);

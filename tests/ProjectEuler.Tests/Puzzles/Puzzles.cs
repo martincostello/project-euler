@@ -48,7 +48,7 @@ internal static class Puzzles
     internal static T AssertSolution<T>(object expected)
         where T : IPuzzle, new()
     {
-        return AssertSolution<T>(Array.Empty<string>(), expected);
+        return AssertSolution<T>([], expected);
     }
 
     /// <summary>

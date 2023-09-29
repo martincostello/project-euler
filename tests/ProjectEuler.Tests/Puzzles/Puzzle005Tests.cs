@@ -3,6 +3,8 @@
 
 namespace MartinCostello.ProjectEuler.Puzzles;
 
+#pragma warning disable SA1010
+
 /// <summary>
 /// A class containing tests for the <see cref="Puzzle005"/> class. This class cannot be inherited.
 /// </summary>
@@ -14,10 +16,12 @@ public static class Puzzle005Tests
     [InlineData("4", 12)]
     [InlineData("10", 2520)]
     [InlineData("20", 232792560)]
+#pragma warning disable xUnit1026
     public static void Puzzle005_Returns_Correct_Solution(string max, int expected)
+#pragma warning restore xUnit1026
     {
         // Arrange
-        string[] args = new[] { max };
+        string[] args = [max];
 
         // Act and Assert
         Puzzles.AssertSolution<Puzzle005>(args, expected);
@@ -27,7 +31,7 @@ public static class Puzzle005Tests
     public static void Puzzle005_Returns_Minus_One_If_Maximum_Value_Is_Invalid()
     {
         // Arrange
-        string[] args = new[] { "a" };
+        string[] args = ["a"];
 
         // Act and Assert
         Puzzles.AssertInvalid<Puzzle005>(args);
@@ -37,7 +41,7 @@ public static class Puzzle005Tests
     public static void Puzzle005_Returns_Minus_One_If_Maximum_Value_Is_Too_Small()
     {
         // Arrange
-        string[] args = new[] { "1" };
+        string[] args = ["1"];
 
         // Act and Assert
         Puzzles.AssertInvalid<Puzzle005>(args);

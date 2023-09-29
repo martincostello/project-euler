@@ -5,6 +5,8 @@ using System.Reflection;
 
 namespace MartinCostello.ProjectEuler;
 
+#pragma warning disable SA1010
+
 /// <summary>
 /// A class containing tests for the <see cref="Puzzle"/> class. This class cannot be inherited.
 /// </summary>
@@ -14,7 +16,7 @@ public static class PuzzleTests
     public static void Puzzle_Returns_Minus_One_If_Too_Few_Arguments()
     {
         // Arrange
-        string[] args = new[] { "1" };
+        string[] args = ["1"];
         var target = new MyPuzzle(2);
 
         // Act
@@ -24,7 +26,7 @@ public static class PuzzleTests
         Assert.Equal(-1, actual);
 
         // Arrange
-        args = Array.Empty<string>();
+        args = [];
         target = new MyPuzzle(1);
 
         // Act

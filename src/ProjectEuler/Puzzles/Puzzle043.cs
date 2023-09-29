@@ -13,14 +13,14 @@ public sealed class Puzzle043 : Puzzle
     /// groups of in the 0-9 pandigital numbers. This field is read-only.
     /// </summary>
     private static readonly (int Index, int Divisor)[] _ranges =
-    {
+    [
         (3 - 1, 3),
         (4 - 1, 5),
         (5 - 1, 7),
         (6 - 1, 11),
         (7 - 1, 13),
         (8 - 1, 17),
-    };
+    ];
 
     /// <inheritdoc />
     public override string Question => "Find the sum of all 0 to 9 pandigital numbers where each ascending group of three digits from digit 2 is divisible by the ascending prime numbers.";

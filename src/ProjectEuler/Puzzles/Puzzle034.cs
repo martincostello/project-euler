@@ -12,7 +12,7 @@ public sealed class Puzzle034 : Puzzle
     /// An array containing the factorials of single digit numbers. This field is read-only.
     /// </summary>
     private static readonly int[] Factorials =
-    {
+    [
         Maths.Factorial(0),
         Maths.Factorial(1),
         Maths.Factorial(2),
@@ -23,7 +23,7 @@ public sealed class Puzzle034 : Puzzle
         Maths.Factorial(7),
         Maths.Factorial(8),
         Maths.Factorial(9),
-    };
+    ];
 
     /// <inheritdoc />
     public override string Question => "Find the sum of all numbers which are equal to the sum of the factorial of their digits.";

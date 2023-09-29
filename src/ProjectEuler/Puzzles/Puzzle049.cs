@@ -3,6 +3,8 @@
 
 namespace MartinCostello.ProjectEuler.Puzzles;
 
+#pragma warning disable SA1010
+
 /// <summary>
 /// A class representing the solution to <c>https://projecteuler.net/problem=49</c>. This class cannot be inherited.
 /// </summary>
@@ -27,7 +29,7 @@ public sealed class Puzzle049 : Puzzle
             primes.Add(prime);
         }
 
-        long[] factors = Array.Empty<long>();
+        long[] factors = [];
 
         for (int i = 0; i < primes.Count && factors.Length == 0; i++)
         {
@@ -42,7 +44,7 @@ public sealed class Puzzle049 : Puzzle
                     if (ArePermutations(a, b) &&
                         ArePermutations(a, c))
                     {
-                        factors = new[] { a, b, c };
+                        factors = [a, b, c];
                     }
                 }
             }
