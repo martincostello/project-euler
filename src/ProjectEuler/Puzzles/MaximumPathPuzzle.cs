@@ -3,8 +3,6 @@
 
 namespace MartinCostello.ProjectEuler.Puzzles;
 
-#pragma warning disable SA1010
-
 /// <summary>
 /// The base class for the maximum path sum puzzles.
 /// </summary>

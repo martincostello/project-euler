@@ -3,8 +3,6 @@
 
 namespace MartinCostello.ProjectEuler.Puzzles;
 
-#pragma warning disable SA1010
-
 /// <summary>
 /// A class containing tests for the <see cref="Puzzle035"/> class. This class cannot be inherited.
 /// </summary>
