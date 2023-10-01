@@ -5,8 +5,6 @@ using System.Reflection;
 
 namespace MartinCostello.ProjectEuler;
 
-#pragma warning disable SA1010
-
 /// <summary>
 /// A class containing tests for the <see cref="Puzzle"/> class. This class cannot be inherited.
 /// </summary>

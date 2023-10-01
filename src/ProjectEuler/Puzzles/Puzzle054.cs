@@ -3,8 +3,6 @@
 
 namespace MartinCostello.ProjectEuler.Puzzles;
 
-#pragma warning disable SA1010
-
 /// <summary>
 /// A class representing the solution to <c>https://projecteuler.net/problem=54</c>. This class cannot be inherited.
 /// </summary>
