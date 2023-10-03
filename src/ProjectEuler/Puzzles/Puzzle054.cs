@@ -8,13 +8,14 @@ namespace MartinCostello.ProjectEuler.Puzzles;
 /// </summary>
 public sealed class Puzzle054 : Puzzle
 {
-    private static readonly char[] Suits = ['C', 'D', 'H', 'S'];
-    private static readonly char[] Values = ['A', 'K', 'Q', 'J', 'T', '9', '8', '7', '6', '5', '4', '3', '2'];
-
     private delegate bool IsHandPredicate(string[] cards, out char highCard);
 
     /// <inheritdoc />
     public override string Question => "How many hands does Player 1 win?";
+
+    private static ReadOnlySpan<char> Suits => new char[] { 'C', 'D', 'H', 'S' };
+
+    private static ReadOnlySpan<char> Values => new char[] { 'A', 'K', 'Q', 'J', 'T', '9', '8', '7', '6', '5', '4', '3', '2' };
 
     internal static bool IsFirstPlayerTheWinner(string hand)
     {
@@ -185,8 +186,13 @@ public sealed class Puzzle054 : Puzzle
             return false;
         }
 
-        foreach (char value in Values.Except(new[] { threeValue }))
+        foreach (char value in Values)
         {
+            if (value == threeValue)
+            {
+                continue;
+            }
+
             if (IsPair(hand, value, out _))
             {
                 highCard = threeValue;
@@ -236,8 +242,13 @@ public sealed class Puzzle054 : Puzzle
             return false;
         }
 
-        foreach (char value in Values.Except(new[] { firstPairValue }))
+        foreach (char value in Values)
         {
+            if (value == firstPairValue)
+            {
+                continue;
+            }
+
             if (IsPair(hand, value, out char secondPairValue))
             {
                 highCard = firstPairValue > secondPairValue ? firstPairValue : secondPairValue;
