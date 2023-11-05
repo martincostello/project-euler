@@ -80,7 +80,7 @@ if ($installDotNetSdk -eq $true) {
 
 Write-Host "Building solution..." -ForegroundColor Green
 
-& $dotnet build ./ProjectEuler.sln --configuration $Configuration
+& $dotnet build ./ProjectEuler.sln --configuration $Configuration --tl
 
 if ($LASTEXITCODE -ne 0) {
     throw "dotnet build failed with exit code $LASTEXITCODE"
@@ -89,7 +89,7 @@ if ($LASTEXITCODE -ne 0) {
 if ($SkipTests -eq $false) {
     Write-Host "Running tests..." -ForegroundColor Green
 
-    $additionalArgs = @()
+    $additionalArgs = @("--tl")
 
     if (![string]::IsNullOrEmpty($env:GITHUB_SHA)) {
         $additionalArgs += "--logger"
@@ -105,4 +105,3 @@ if ($SkipTests -eq $false) {
         }
     }
 }
-
