@@ -1,19 +1,10 @@
 #! /usr/bin/env pwsh
-param(
-    [Parameter(Mandatory = $false)][string] $Configuration = "Release",
-    [Parameter(Mandatory = $false)][string] $VersionSuffix = "",
-    [Parameter(Mandatory = $false)][string] $OutputPath = "",
-    [Parameter(Mandatory = $false)][switch] $SkipTests
-)
-
-# These make CI builds faster
-$env:DOTNET_SKIP_FIRST_TIME_EXPERIENCE = "true"
-$env:NUGET_XMLDOC_MODE = "skip"
 
 if ($null -eq $env:MSBUILDTERMINALLOGGER) {
     $env:MSBUILDTERMINALLOGGER = "auto"
 }
 
+$Configuration = "Release"
 $ErrorActionPreference = "Stop"
 $ProgressPreference = "SilentlyContinue"
 
@@ -25,10 +16,6 @@ $testProjects = @(
 )
 
 $dotnetVersion = (Get-Content $sdkFile | Out-String | ConvertFrom-Json).sdk.version
-
-if ($OutputPath -eq "") {
-    $OutputPath = Join-Path $PSScriptRoot "artifacts"
-}
 
 $installDotNetSdk = $false;
 
@@ -84,28 +71,26 @@ if ($installDotNetSdk -eq $true) {
 
 Write-Host "Building solution..." -ForegroundColor Green
 
-& $dotnet build
+& $dotnet build --configuration $Configuration
 
 if ($LASTEXITCODE -ne 0) {
     throw "dotnet build failed with exit code $LASTEXITCODE"
 }
 
-if ($SkipTests -eq $false) {
-    Write-Host "Running tests..." -ForegroundColor Green
+Write-Host "Running tests..." -ForegroundColor Green
 
-    $additionalArgs = @()
+$additionalArgs = @()
 
-    if (![string]::IsNullOrEmpty($env:GITHUB_SHA)) {
-        $additionalArgs += "--logger"
-        $additionalArgs += "GitHubActions;report-warnings=false"
-    }
+if (![string]::IsNullOrEmpty($env:GITHUB_SHA)) {
+    $additionalArgs += "--logger"
+    $additionalArgs += "GitHubActions;report-warnings=false"
+}
 
-    ForEach ($testProject in $testProjects) {
+ForEach ($testProject in $testProjects) {
 
-        & $dotnet test $testProject --output $OutputPath --configuration $Configuration $additionalArgs
+    & $dotnet test $testProject --configuration $Configuration $additionalArgs
 
-        if ($LASTEXITCODE -ne 0) {
-            throw "dotnet test failed with exit code $LASTEXITCODE"
-        }
+    if ($LASTEXITCODE -ne 0) {
+        throw "dotnet test failed with exit code $LASTEXITCODE"
     }
 }
