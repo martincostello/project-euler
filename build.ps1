@@ -10,6 +10,10 @@ param(
 $env:DOTNET_SKIP_FIRST_TIME_EXPERIENCE = "true"
 $env:NUGET_XMLDOC_MODE = "skip"
 
+if ($null -eq $env:MSBUILDTERMINALLOGGER) {
+    $env:MSBUILDTERMINALLOGGER = "auto"
+}
+
 $ErrorActionPreference = "Stop"
 $ProgressPreference = "SilentlyContinue"
 
@@ -17,7 +21,7 @@ $solutionPath = $PSScriptRoot
 $sdkFile = Join-Path $solutionPath "global.json"
 
 $testProjects = @(
-    (Join-Path $solutionPath "tests\ProjectEuler.Tests\ProjectEuler.Tests.csproj")
+    (Join-Path $solutionPath "tests" "ProjectEuler.Tests" "ProjectEuler.Tests.csproj")
 )
 
 $dotnetVersion = (Get-Content $sdkFile | Out-String | ConvertFrom-Json).sdk.version
@@ -48,7 +52,7 @@ else {
 
 if ($installDotNetSdk -eq $true) {
     $env:DOTNET_INSTALL_DIR = Join-Path $PSScriptRoot ".dotnetcli"
-    $sdkPath = Join-Path $env:DOTNET_INSTALL_DIR "sdk\$dotnetVersion"
+    $sdkPath = Join-Path $env:DOTNET_INSTALL_DIR "sdk" $dotnetVersion
 
     if (!(Test-Path $sdkPath)) {
         if (!(Test-Path $env:DOTNET_INSTALL_DIR)) {
@@ -80,7 +84,7 @@ if ($installDotNetSdk -eq $true) {
 
 Write-Host "Building solution..." -ForegroundColor Green
 
-& $dotnet build ./ProjectEuler.sln --configuration $Configuration --tl
+& $dotnet build
 
 if ($LASTEXITCODE -ne 0) {
     throw "dotnet build failed with exit code $LASTEXITCODE"
@@ -89,7 +93,7 @@ if ($LASTEXITCODE -ne 0) {
 if ($SkipTests -eq $false) {
     Write-Host "Running tests..." -ForegroundColor Green
 
-    $additionalArgs = @("--tl")
+    $additionalArgs = @()
 
     if (![string]::IsNullOrEmpty($env:GITHUB_SHA)) {
         $additionalArgs += "--logger"
