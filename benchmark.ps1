@@ -1,11 +1,15 @@
 #! /usr/bin/env pwsh
 param(
-    [Parameter(Mandatory = $false)][string] $Configuration = "Release",
     [Parameter(Mandatory = $false)][string] $Framework = "net8.0"
 )
 
+$Configuration = "Release"
 $ErrorActionPreference = "Stop"
 $ProgressPreference = "SilentlyContinue"
+
+if ($null -eq $env:MSBUILDTERMINALLOGGER) {
+    $env:MSBUILDTERMINALLOGGER = "auto"
+}
 
 $solutionPath = $PSScriptRoot
 $sdkFile = Join-Path $solutionPath "global.json"
@@ -34,7 +38,7 @@ else {
 
 if ($installDotNetSdk -eq $true) {
     $env:DOTNET_INSTALL_DIR = Join-Path $PSScriptRoot ".dotnetcli"
-    $sdkPath = Join-Path $env:DOTNET_INSTALL_DIR "sdk\$dotnetVersion"
+    $sdkPath = Join-Path $env:DOTNET_INSTALL_DIR "sdk" $dotnetVersion
 
     if (!(Test-Path $sdkPath)) {
         if (!(Test-Path $env:DOTNET_INSTALL_DIR)) {
@@ -65,9 +69,8 @@ if ($installDotNetSdk -eq $true) {
     $env:PATH = "$env:DOTNET_INSTALL_DIR;$env:PATH"
 }
 
-$benchmarks = (Join-Path $solutionPath "tests\ProjectEuler.Benchmarks\ProjectEuler.Benchmarks.csproj")
+$benchmarks = (Join-Path $solutionPath "tests" "ProjectEuler.Benchmarks" "ProjectEuler.Benchmarks.csproj")
 
 Write-Host "Running benchmarks..." -ForegroundColor Green
 
 & $dotnet run --project $benchmarks --configuration $Configuration --framework $Framework
-
