@@ -1,7 +1,7 @@
 ﻿// Copyright (c) Martin Costello, 2015. All rights reserved.
 // Licensed under the Apache 2.0 license. See the LICENSE file in the project root for full license information.
 
-using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using MartinCostello.ProjectEuler;
 
 if (args == null || args.Length < 1)
@@ -10,11 +10,11 @@ if (args == null || args.Length < 1)
     return -1;
 }
 
-Type? type;
+IPuzzle? puzzle;
 
-if (!int.TryParse(args[0], NumberStyles.Integer & ~NumberStyles.AllowLeadingSign, CultureInfo.InvariantCulture, out int puzzle) ||
-    puzzle < 1 ||
-    (type = GetPuzzleType(puzzle)) == null)
+if (!int.TryParse(args[0], NumberStyles.Integer & ~NumberStyles.AllowLeadingSign, CultureInfo.InvariantCulture, out int number) ||
+    number < 1 ||
+    (puzzle = Create(number)) is null)
 {
     Console.WriteLine("The puzzle number specified is invalid.");
     return -1;
@@ -22,37 +22,45 @@ if (!int.TryParse(args[0], NumberStyles.Integer & ~NumberStyles.AllowLeadingSign
 
 args = args[1..];
 
-return SolvePuzzle(type, args);
+return Solve(puzzle, args);
 
-static int SolvePuzzle(Type type, string[] args)
+static int Solve(IPuzzle puzzle, string[] args)
 {
-    IPuzzle? puzzle = Activator.CreateInstance(type) as IPuzzle;
-
     Console.WriteLine();
-    Console.WriteLine("Project Euler - Puzzle {0}", type.Name.Replace("Puzzle", string.Empty, StringComparison.Ordinal).TrimStart('0'));
+    Console.WriteLine("Project Euler - Puzzle {0}", puzzle.GetType().Name.Replace("Puzzle", string.Empty, StringComparison.Ordinal).TrimStart('0'));
     Console.WriteLine();
 
-    Console.WriteLine(puzzle!.Question);
+    Console.WriteLine(puzzle.Question);
 
-    var stopwatch = Stopwatch.StartNew();
+    var timeProvider = TimeProvider.System;
+    long started = timeProvider.GetTimestamp();
 
     int result = puzzle.Solve(args);
 
     if (result == 0)
     {
-        stopwatch.Stop();
+        long solved = timeProvider.GetTimestamp();
+        var duration = timeProvider.GetElapsedTime(started, solved);
 
         Console.WriteLine();
         Console.WriteLine("Answer: {0}", puzzle.Answer);
         Console.WriteLine();
 
-        if (stopwatch.Elapsed.TotalSeconds < 0.01f)
+        if (duration.TotalNanoseconds < 1_000)
         {
-            Console.WriteLine("Took <0.01 seconds.");
+            Console.WriteLine($"Took {duration.Nanoseconds:N2}ns.");
+        }
+        else if (duration.TotalMicroseconds < 1_000)
+        {
+            Console.WriteLine($"Took {duration.TotalMicroseconds:N2}μs.");
+        }
+        else if (duration.TotalMilliseconds < 1_000)
+        {
+            Console.WriteLine($"Took {duration.TotalMilliseconds:N2}ms.");
         }
         else
         {
-            Console.WriteLine("Took {0:N2} seconds.", stopwatch.Elapsed.TotalSeconds);
+            Console.WriteLine($"Took {duration.TotalSeconds:N2}s.");
         }
 
         Console.WriteLine();
@@ -61,12 +69,49 @@ static int SolvePuzzle(Type type, string[] args)
     return result;
 }
 
-static Type? GetPuzzleType(int number)
+static IPuzzle? Create(int number)
 {
+    var type = GetType(number);
+
+    if (type is null)
+    {
+        return null;
+    }
+
+    return CreateForType(type);
+}
+
+static IPuzzle CreateForType(
+    [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)] Type type)
+{
+    if (Activator.CreateInstance(type) is not IPuzzle puzzle)
+    {
+        throw new InvalidOperationException("The puzzle number specified is invalid.");
+    }
+
+    return puzzle;
+}
+
+[return: DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)]
+[UnconditionalSuppressMessage("Trimmer", "IL2057", Justification = "Assembly is trim rooted.")]
+static Type? GetType(int number)
+{
+    if (number < 1)
+    {
+        return null;
+    }
+
     string typeName = string.Format(
         CultureInfo.InvariantCulture,
-        "MartinCostello.ProjectEuler.Puzzles.Puzzle{0:000}",
+        "MartinCostello.ProjectEuler.Puzzles.Puzzle{0:000}, ProjectEuler",
         number);
 
-    return Type.GetType(typeName);
+    var type = Type.GetType(typeName);
+
+    if (type is null || type.IsAssignableFrom(typeof(IPuzzle)))
+    {
+        return null;
+    }
+
+    return type;
 }
