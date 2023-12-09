@@ -2,12 +2,17 @@
   <PropertyGroup>
     <Description>Solutions for Project Euler.</Description>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <OptimizationPreference>Speed</OptimizationPreference>
     <OutputType>Exe</OutputType>
     <PreserveCompilationContext>true</PreserveCompilationContext>
+    <PublishAot>true</PublishAot>
     <RootNamespace>MartinCostello.ProjectEuler</RootNamespace>
     <TargetFramework>net8.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
     <EmbeddedResource Include="Puzzles\**\*.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <TrimmerRootAssembly Include="ProjectEuler" />
   </ItemGroup>
 </Project>
