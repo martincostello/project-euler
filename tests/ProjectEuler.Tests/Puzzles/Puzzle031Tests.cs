@@ -14,9 +14,7 @@ public static class Puzzle031Tests
     [InlineData("3", 2)]
     [InlineData("4", 3)]
     [InlineData("200", 73682)]
-#pragma warning disable xUnit1026
     public static void Puzzle031_Returns_Correct_Solution(string total, int expected)
-#pragma warning restore xUnit1026
     {
         // Arrange
         string[] args = [total];

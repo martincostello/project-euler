@@ -15,9 +15,7 @@ public static class Puzzle010Tests
     [InlineData("7", 2L + 3L + 5L)]
     [InlineData("10", 2L + 3L + 5L + 7L)]
     [InlineData("2000000", 142913828922L)]
-#pragma warning disable xUnit1026
     public static void Puzzle010_Returns_Correct_Solution(string value, long expected)
-#pragma warning restore xUnit1026
     {
         // Arrange
         string[] args = [value];

@@ -11,9 +11,7 @@ public static class Puzzle001Tests
     [Theory]
     [InlineData("10", 23)]
     [InlineData("1000", 233168)]
-#pragma warning disable xUnit1026
     public static void Puzzle001_Returns_Correct_Solution(string maximum, int expected)
-#pragma warning restore xUnit1026
     {
         // Arrange
         string[] args = [maximum];

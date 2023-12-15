@@ -22,9 +22,7 @@ public static class Puzzle029Tests
     [Theory]
     [InlineData("5", 15)]
     [InlineData("100", 9183)]
-#pragma warning disable xUnit1026
     public static void Puzzle029_Returns_Correct_Solution(string maximum, int expected)
-#pragma warning restore xUnit1026
     {
         // Arrange
         string[] args = [maximum];

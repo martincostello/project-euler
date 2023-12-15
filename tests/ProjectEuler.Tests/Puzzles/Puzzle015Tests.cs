@@ -12,9 +12,7 @@ public static class Puzzle015Tests
     [InlineData("1", 2)]
     [InlineData("2", 6)]
     [InlineData("20", 137846528820)]
-#pragma warning disable xUnit1026
     public static void Puzzle015_Returns_Correct_Solution(string divisors, long expected)
-#pragma warning restore xUnit1026
     {
         // Arrange
         string[] args = [divisors];
