@@ -12,9 +12,7 @@ public static class Puzzle047Tests
     [InlineData("2", 14)]
     [InlineData("3", 644)]
     [InlineData("4", 134043)]
-#pragma warning disable xUnit1026
     public static void Puzzle047_Returns_Correct_Solution(string factors, int expected)
-#pragma warning restore xUnit1026
     {
         // Arrange
         string[] args = [factors];

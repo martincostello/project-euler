@@ -8,12 +8,10 @@ namespace MartinCostello.ProjectEuler.Puzzles;
 /// </summary>
 public static class Puzzle048Tests
 {
-#pragma warning disable xUnit1026
     [Theory]
     [InlineData("10", "0405071317")]
     [InlineData("1000", "9110846700")]
     public static void Puzzle048_Returns_Correct_Solution(string maximum, string expected)
-#pragma warning restore xUnit1026
     {
         // Arrange
         string[] args = [maximum];
