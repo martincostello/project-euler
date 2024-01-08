@@ -1,9 +1,7 @@
 #! /usr/bin/env pwsh
 param(
-    [Parameter(Mandatory = $false)][string] $Framework = "net8.0"
 )
 
-$Configuration = "Release"
 $ErrorActionPreference = "Stop"
 $ProgressPreference = "SilentlyContinue"
 
@@ -73,4 +71,4 @@ $benchmarks = (Join-Path $solutionPath "tests" "ProjectEuler.Benchmarks" "Projec
 
 Write-Host "Running benchmarks..." -ForegroundColor Green
 
-& $dotnet run --project $benchmarks --configuration $Configuration --framework $Framework
+& $dotnet run --project $benchmarks --configuration "Release" -- --filter '*'
