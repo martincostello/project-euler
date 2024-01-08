@@ -33,6 +33,10 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjectEuler.Benchmarks", "tests\ProjectEuler.Benchmarks\ProjectEuler.Benchmarks.csproj", "{364C4448-57A2-4696-9D23-2AF1C65B9B7B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{A9BCC757-8127-4BF3-B44B-C482A2555935}"
+	ProjectSection(SolutionItems) = preProject
+		.github\actionlint-matcher.json = .github\actionlint-matcher.json
+		.github\dependabot.yml = .github\dependabot.yml
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{AD52E729-49AF-4F5C-9611-DD51EFED3727}"
 	ProjectSection(SolutionItems) = preProject

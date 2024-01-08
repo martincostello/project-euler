@@ -41,8 +41,4 @@
   <ItemGroup>
     <Using Include="System.Globalization" />
   </ItemGroup>
-  <ItemGroup Condition=" '$(IsTestProject)' == 'true' ">
-    <Using Include="Xunit" />
-    <Using Include="Xunit.Abstractions" />
-  </ItemGroup>
 </Project>
