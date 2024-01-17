@@ -15,4 +15,11 @@
   <ItemGroup>
     <TrimmerRootAssembly Include="ProjectEuler" />
   </ItemGroup>
+  <ItemGroup>
+    <AssemblyAttribute Include="System.Runtime.InteropServices.GuidAttribute">
+      <_Parameter1>a1e75a22-fddd-4a3a-ac69-37e840690168</_Parameter1>
+    </AssemblyAttribute>
+    <InternalsVisibleTo Include="ProjectEuler.Benchmarks" PublicKey="$(StrongNamePublicKey)" />
+    <InternalsVisibleTo Include="ProjectEuler.Tests" PublicKey="$(StrongNamePublicKey)" />
+  </ItemGroup>
 </Project>
