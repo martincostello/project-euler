@@ -7,7 +7,7 @@
     <PreserveCompilationContext>true</PreserveCompilationContext>
     <PublishAot>true</PublishAot>
     <RootNamespace>MartinCostello.ProjectEuler</RootNamespace>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net9.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
     <EmbeddedResource Include="Puzzles\**\*.txt" />
