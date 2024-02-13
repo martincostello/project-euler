@@ -1,9 +1,5 @@
 #! /usr/bin/env pwsh
 
-if ($null -eq $env:MSBUILDTERMINALLOGGER) {
-    $env:MSBUILDTERMINALLOGGER = "auto"
-}
-
 $Configuration = "Release"
 $ErrorActionPreference = "Stop"
 $ProgressPreference = "SilentlyContinue"
