@@ -12,10 +12,6 @@ param(
 $ErrorActionPreference = "Stop"
 $global:ProgressPreference = "SilentlyContinue"
 
-if ($null -eq ${env:MSBUILDTERMINALLOGGER}) {
-    ${env:MSBUILDTERMINALLOGGER} = "auto"
-}
-
 $additionalArgs = @()
 
 if (![string]::IsNullOrEmpty($BranchOrCommitOrTag)) {
