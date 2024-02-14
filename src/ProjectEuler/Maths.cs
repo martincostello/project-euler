@@ -238,9 +238,9 @@ internal static class Maths
     internal static bool IsPandigital(long value, bool allowZero = false)
     {
         IReadOnlyList<int> digits = Digits(value);
-        IReadOnlyList<int> distinctDigits = digits.Distinct().ToArray();
+        int[] distinctDigits = digits.Distinct().ToArray();
 
-        if (digits.Count != distinctDigits.Count)
+        if (digits.Count != distinctDigits.Length)
         {
             return false;
         }
