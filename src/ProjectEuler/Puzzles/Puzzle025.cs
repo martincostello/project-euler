@@ -45,15 +45,11 @@ public sealed class Puzzle025 : Puzzle
     /// <inheritdoc />
     protected override int SolveCore(string[] args)
     {
-        int index = 0;
-
-        foreach (BigInteger value in Fibonacci())
+        foreach ((int index, BigInteger value) in Fibonacci().Index())
         {
-            index++;
-
             if (value >= Limit)
             {
-                Answer = index;
+                Answer = index + 1;
                 break;
             }
         }
