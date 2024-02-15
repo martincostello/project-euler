@@ -8,6 +8,8 @@ namespace MartinCostello.ProjectEuler.Puzzles;
 /// </summary>
 public sealed class Puzzle022 : Puzzle
 {
+    private static readonly char[] Trimmable = ['"', '\r', '\n'];
+
     /// <inheritdoc />
     public override string Question => "What is the total of all the name scores in the names data?";
 
@@ -36,29 +38,25 @@ public sealed class Puzzle022 : Puzzle
     /// Reads the sorted list of names from the data associated with the puzzle.
     /// </summary>
     /// <returns>
-    /// An <see cref="IList{T}"/> that returns the sorted list of names.
+    /// An <see cref="List{T}"/> that returns the sorted list of names.
     /// </returns>
-    internal IList<string> ReadNames()
+    internal List<string> ReadNames()
     {
         using var stream = ReadResource();
         using var reader = new StreamReader(stream);
 
         string namesText = reader.ReadToEnd();
 
-        // Remove quotes and any rogue new-line characters
-        var trimChars = new[] { '"', '\r', '\n' };
-
-        return namesText
+        return [..namesText
             .Split(',')
-            .Select((p) => p.Trim(trimChars))
-            .Order(StringComparer.Ordinal)
-            .ToList();
+            .Select((p) => p.Trim(Trimmable))
+            .Order(StringComparer.Ordinal)];
     }
 
     /// <inheritdoc />
     protected override int SolveCore(string[] args)
     {
-        IList<string> names = ReadNames();
+        List<string> names = ReadNames();
 
         int total = 0;
 
