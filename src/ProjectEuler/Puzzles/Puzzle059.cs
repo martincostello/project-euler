@@ -1,6 +1,7 @@
 ﻿// Copyright (c) Martin Costello, 2015. All rights reserved.
 // Licensed under the Apache 2.0 license. See the LICENSE file in the project root for full license information.
 
+using System.Buffers;
 using System.Text;
 
 namespace MartinCostello.ProjectEuler.Puzzles;
@@ -35,13 +36,25 @@ public sealed class Puzzle059 : Puzzle
             }
         }
 
-        var comparisonType = StringComparison.Ordinal;
+        var encoding = Encoding.ASCII;
+
+        // Five most common English words
+        string[] commonWords =
+        [
+            " the ",
+            " of ",
+            " and ",
+            " a ",
+            " to ",
+        ];
+
+        byte[][] words = commonWords.Select(encoding.GetBytes).ToArray();
+
+        byte[] key = new byte[encrypted.Length];
+        byte[] decrypted = new byte[encrypted.Length];
 
         foreach (byte[] password in passwords)
         {
-            byte[] key = new byte[encrypted.Length];
-            byte[] decrypted = new byte[encrypted.Length];
-
             for (int i = 0; i < key.Length;)
             {
                 key[i++] = password[0];
@@ -54,14 +67,13 @@ public sealed class Puzzle059 : Puzzle
                 decrypted[i] = (byte)(encrypted[i] ^ key[i]);
             }
 
-            string plaintext = Encoding.ASCII.GetString(decrypted);
+            ReadOnlySpan<byte> plaintext = decrypted;
 
-            // Five most common English words
-            if (plaintext.Contains(" the ", comparisonType) &&
-                plaintext.Contains(" of ", comparisonType) &&
-                plaintext.Contains(" and ", comparisonType) &&
-                plaintext.Contains(" a ", comparisonType) &&
-                plaintext.Contains(" to ", comparisonType))
+            if (plaintext.IndexOf(words[0]) > -1 &&
+                plaintext.IndexOf(words[1]) > -1 &&
+                plaintext.IndexOf(words[2]) > -1 &&
+                plaintext.IndexOf(words[3]) > -1 &&
+                plaintext.IndexOf(words[4]) > -1)
             {
                 Answer = decrypted.Select((p) => (int)p).Sum();
                 break;
