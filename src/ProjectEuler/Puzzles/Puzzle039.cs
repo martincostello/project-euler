@@ -44,7 +44,7 @@ public sealed class Puzzle039 : Puzzle
                         c.ToString(Format, formatProvider),
                     ];
 
-                    string solution = "{" + string.Join(",", sides.Order()) + "}";
+                    string solution = $"{{{string.Join(",", sides.Order())}}}";
 
                     solutions.Add(solution);
                 }

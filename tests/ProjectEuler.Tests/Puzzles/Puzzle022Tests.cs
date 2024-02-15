@@ -27,7 +27,7 @@ public static class Puzzle022Tests
         var target = new Puzzle022();
 
         // Act
-        IList<string> names = target.ReadNames();
+        var names = target.ReadNames();
 
         // Assert
         Assert.True(names.Count >= index);
