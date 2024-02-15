@@ -17,7 +17,7 @@ public sealed class Puzzle031 : Puzzle
     /// <summary>
     /// Gets the coins, in pence, available in GBP.
     /// </summary>
-    private static Span<int> Coins => new int[] { 1, 2, 5, 10, 20, 50, 100, 200 };
+    private static ReadOnlySpan<int> Coins => [1, 2, 5, 10, 20, 50, 100, 200];
 
     /// <inheritdoc />
     protected override int SolveCore(string[] args)

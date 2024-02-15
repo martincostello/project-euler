@@ -26,7 +26,7 @@ public sealed class Puzzle035 : Puzzle
         if (value < 12)
         {
             // The only rotation for values less than 12 is the value itself
-            return new[] { (long)value };
+            return [(long)value];
         }
 
         IReadOnlyList<int> digits = Maths.Digits(value);

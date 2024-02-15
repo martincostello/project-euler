@@ -13,9 +13,9 @@ public sealed class Puzzle054 : Puzzle
     /// <inheritdoc />
     public override string Question => "How many hands does Player 1 win?";
 
-    private static ReadOnlySpan<char> Suits => new char[] { 'C', 'D', 'H', 'S' };
+    private static ReadOnlySpan<char> Suits => ['C', 'D', 'H', 'S'];
 
-    private static ReadOnlySpan<char> Values => new char[] { 'A', 'K', 'Q', 'J', 'T', '9', '8', '7', '6', '5', '4', '3', '2' };
+    private static ReadOnlySpan<char> Values => ['A', 'K', 'Q', 'J', 'T', '9', '8', '7', '6', '5', '4', '3', '2'];
 
     internal static bool IsFirstPlayerTheWinner(string hand)
     {
@@ -24,8 +24,8 @@ public sealed class Puzzle054 : Puzzle
         string[] player1 = cards[..5];
         string[] player2 = cards[5..];
 
-        player1 = [.. player1.OrderBy(GetCardValue)];
-        player2 = [.. player2.OrderBy(GetCardValue)];
+        player1 = [..player1.OrderBy(GetCardValue)];
+        player2 = [..player2.OrderBy(GetCardValue)];
 
         var predicates = new IsHandPredicate[]
         {

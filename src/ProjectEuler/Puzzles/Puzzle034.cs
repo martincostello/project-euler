@@ -68,7 +68,7 @@ public sealed class Puzzle034 : Puzzle
         }
 
         Answer = ParallelEnumerable.Range(3, upperBound - 3)
-            .Where((p) => IsCurious(p))
+            .Where(IsCurious)
             .Sum();
 
         return 0;

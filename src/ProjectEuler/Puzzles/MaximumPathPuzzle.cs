@@ -83,7 +83,7 @@ public abstract class MaximumPathPuzzle : Puzzle
             lines++;
         }
 
-        return [.. triangle];
+        return [..triangle];
     }
 
     /// <inheritdoc />

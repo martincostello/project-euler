@@ -67,10 +67,8 @@ public sealed class Puzzle043 : Puzzle
     /// <inheritdoc />
     protected override int SolveCore(string[] args)
     {
-#pragma warning disable CA1861
-        var pandigitals = Maths.Permutations(new[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 });
+        var pandigitals = Maths.Permutations([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]);
         var pandigitalsWithProperty = new List<long>();
-#pragma warning restore CA1861
 
         foreach (var pandigital in pandigitals)
         {
