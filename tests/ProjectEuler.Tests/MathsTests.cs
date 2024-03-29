@@ -392,7 +392,7 @@ public static class MathsTests
         Assert.Equal(new[] { "a", "b" }, actual[0]);
         Assert.Equal(new[] { "b", "a" }, actual[1]);
 
-        collection = new[] { "b", "a" };
+        collection = ["b", "a"];
 
         // Act
         actual = Maths.Permutations(collection)

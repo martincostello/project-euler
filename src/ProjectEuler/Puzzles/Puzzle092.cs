@@ -23,7 +23,7 @@ public sealed class Puzzle092 : Puzzle
         {
             int value = i;
 
-            while (value != 1 && value != Target)
+            while (value is not 1 and not Target)
             {
                 value = Maths.Digits(value).Sum((p) => p * p);
             }

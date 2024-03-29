@@ -24,11 +24,11 @@ public sealed class Puzzle054 : Puzzle
         string[] player1 = cards[..5];
         string[] player2 = cards[5..];
 
-        player1 = [..player1.OrderBy(GetCardValue)];
-        player2 = [..player2.OrderBy(GetCardValue)];
+        player1 = [.. player1.OrderBy(GetCardValue)];
+        player2 = [.. player2.OrderBy(GetCardValue)];
 
-        var predicates = new IsHandPredicate[]
-        {
+        IsHandPredicate[] predicates =
+        [
             IsRoyalFlush,
             IsStraightFlush,
             IsFourOfAKind,
@@ -38,7 +38,7 @@ public sealed class Puzzle054 : Puzzle
             IsThreeOfAKind,
             IsTwoPair,
             IsPair,
-        };
+        ];
 
         foreach (var predicate in predicates)
         {
