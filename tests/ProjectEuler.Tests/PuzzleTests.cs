@@ -43,7 +43,7 @@ public static class PuzzleTests
         var puzzleTypes = puzzleType.GetTypeInfo().Assembly
             .GetTypes()
             .Where((p) => !p.GetTypeInfo().IsAbstract)
-            .Where((p) => puzzleType.IsAssignableFrom(p))
+            .Where(puzzleType.IsAssignableFrom)
             .ToList();
 
         Assert.NotEmpty(puzzleTypes);
