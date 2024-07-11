@@ -33,6 +33,9 @@ dotnet_diagnostic.IDE0058.severity = silent
 dotnet_diagnostic.IDE0072.severity = silent
 dotnet_diagnostic.IDE0079.severity = silent
 
+# HACK Workaround for .NET 9 preview 6 trying to use collection expressions with [InlineData]
+dotnet_diagnostic.IDE0300.severity = silent
+
 # Organize usings
 dotnet_sort_system_directives_first = true
 
