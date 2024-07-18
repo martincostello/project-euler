@@ -32,7 +32,7 @@ jobs:
     - name: List files before
       if: runner.os == 'Windows'
       shell: pwsh
-      run: Get-ChildItem -Path (Join-Path ${env:DOTNET_ROOT} "sdk-manifests") -Recurse
+      run: Get-ChildItem -Path (Join-Path "C:\Program Files\dotnet" "sdk-manifests") -Recurse
 
     - name: Setup .NET SDK
       uses: actions/setup-dotnet@v4
