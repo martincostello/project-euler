@@ -30,7 +30,7 @@ jobs:
       uses: actions/checkout@v4
 
     - name: List files before
-      if: runner.os == Windows
+      if: runner.os == 'Windows'
       shell: pwsh
       run: Get-ChildItem -Path (Join-Path ${env:DOTNET_ROOT} "sdk-manifests") -Recurse
 
@@ -38,7 +38,7 @@ jobs:
       uses: actions/setup-dotnet@v4
 
     - name: List files after
-      if: runner.os == Windows
+      if: runner.os == 'Windows'
       shell: pwsh
       run: Get-ChildItem -Path (Join-Path ${env:DOTNET_ROOT} "sdk-manifests") -Recurse
 
