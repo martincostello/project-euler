@@ -89,10 +89,8 @@ public sealed class Puzzle042 : Puzzle
 
         int count = 0;
 
-        foreach (string word in words)
+        foreach (int score in words.Select(GetScore))
         {
-            int score = GetScore(word);
-
             if (triangleNumbers.Contains(score))
             {
                 count++;

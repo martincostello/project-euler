@@ -84,17 +84,7 @@ public sealed class Puzzle054 : Puzzle
     {
         var hands = ReadHands();
 
-        int winsForPlayer1 = 0;
-
-        foreach (string hand in hands)
-        {
-            if (IsFirstPlayerTheWinner(hand))
-            {
-                winsForPlayer1++;
-            }
-        }
-
-        Answer = winsForPlayer1;
+        Answer = hands.Count(IsFirstPlayerTheWinner);
 
         return 0;
     }

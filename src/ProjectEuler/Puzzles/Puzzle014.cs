@@ -50,14 +50,7 @@ public sealed class Puzzle014 : Puzzle
 
                         (long div, long rem) = Math.DivRem(current, 2);
 
-                        if (rem == 0)
-                        {
-                            current = div;
-                        }
-                        else
-                        {
-                            current = (3 * current) + 1;
-                        }
+                        current = rem == 0 ? div : (3 * current) + 1;
                     }
 
                     if (!cacheHit)

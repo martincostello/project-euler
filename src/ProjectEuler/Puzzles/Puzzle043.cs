@@ -70,15 +70,10 @@ public sealed class Puzzle043 : Puzzle
         var pandigitals = Maths.Permutations([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]);
         var pandigitalsWithProperty = new List<long>();
 
-        foreach (var pandigital in pandigitals)
+        foreach (var digits in pandigitals.Select((p) => p.ToArray()).Where(HasProperty))
         {
-            IList<int> digits = pandigital.ToArray();
-
-            if (HasProperty(digits))
-            {
-                long value = Maths.FromDigits(digits);
-                pandigitalsWithProperty.Add(value);
-            }
+            long value = Maths.FromDigits(digits);
+            pandigitalsWithProperty.Add(value);
         }
 
         long sum = 0;

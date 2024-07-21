@@ -37,13 +37,11 @@ public sealed class Puzzle049 : Puzzle
                 long b = primes[j];
                 long c = b + b - a;
 
-                if (primes.Contains(c))
+                if (primes.Contains(c) &&
+                    ArePermutations(a, b) &&
+                    ArePermutations(a, c))
                 {
-                    if (ArePermutations(a, b) &&
-                        ArePermutations(a, c))
-                    {
-                        factors = [a, b, c];
-                    }
+                    factors = [a, b, c];
                 }
             }
         }

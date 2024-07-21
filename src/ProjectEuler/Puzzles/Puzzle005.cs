@@ -30,13 +30,10 @@ public sealed class Puzzle005 : Puzzle
 
         for (int n = max % 2 == 0 ? max : max - 1; ; n += 2)
         {
-            if (max >= 10)
+            // Fast path for large numbers
+            if (max >= 10 && (n % 3 != 0 || n % 5 != 0 || n % 10 != 0))
             {
-                // Fast path for large numbers
-                if (n % 3 != 0 || n % 5 != 0 || n % 10 != 0)
-                {
-                    continue;
-                }
+                continue;
             }
 
             bool found = true;

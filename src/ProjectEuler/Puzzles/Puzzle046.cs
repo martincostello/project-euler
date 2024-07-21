@@ -21,7 +21,7 @@ public sealed class Puzzle046 : Puzzle
     /// </returns>
     internal static bool CanBeWrittenAsTheSumOfAPrimeAndTwiceASquare(int value)
     {
-        double limit = Math.Sqrt(value / 2);
+        double limit = Math.Sqrt((double)value / 2);
 
         for (long i = 1; i < limit; i++)
         {
