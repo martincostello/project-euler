@@ -30,7 +30,7 @@ public sealed class Puzzle006 : Puzzle
         {
             int value = i + 1;
             sumOfRange += value;
-            sumOfSquares += value * value;
+            sumOfSquares += Math.BigMul(value, value);
         }
 
         double squareOfSum = sumOfRange * sumOfRange;

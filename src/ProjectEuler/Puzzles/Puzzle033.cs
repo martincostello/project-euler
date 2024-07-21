@@ -32,7 +32,7 @@ public sealed class Puzzle033 : Puzzle
         var originalFraction = numerator / denominator;
         var curiousFraction = (double)numeratorDigits[0] / denominatorDigits[1];
 
-        return originalFraction == curiousFraction;
+        return Math.Abs(originalFraction - curiousFraction) < double.Epsilon;
     }
 
     /// <inheritdoc />

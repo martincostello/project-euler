@@ -21,6 +21,7 @@ public sealed class Puzzle039 : Puzzle
     internal static ICollection<string> Solve(int perimeter)
     {
         var solutions = new HashSet<string>(perimeter * perimeter);
+        double perimeterDouble = perimeter;
 
         // https://devblogs.microsoft.com/dotnet/floating-point-parsing-and-formatting-improvements-in-net-core-3-0/
         const string Format = "G15";
@@ -35,7 +36,7 @@ public sealed class Puzzle039 : Puzzle
 
                 double c = a / Math.Sin(theta);
 
-                if (a + b + c == perimeter)
+                if (Math.Abs(a + b + c - perimeterDouble) < double.Epsilon)
                 {
                     string[] sides =
                     [

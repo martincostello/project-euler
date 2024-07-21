@@ -27,13 +27,10 @@ public sealed class Puzzle021 : Puzzle
         {
             long b = D(a);
 
-            if (b != a)
+            if (b != a && D(b) == a)
             {
-                if (D(b) == a)
-                {
-                    _ = amicableNumbers.Add(a);
-                    _ = amicableNumbers.Add(b);
-                }
+                _ = amicableNumbers.Add(a);
+                _ = amicableNumbers.Add(b);
             }
         }
 

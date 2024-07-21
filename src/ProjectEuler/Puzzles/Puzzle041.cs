@@ -26,17 +26,7 @@ public sealed class Puzzle041 : Puzzle
 
         int upperLimit = (int)Maths.FromDigits(Enumerable.Range(1, maxDigits).Reverse().ToArray());
 
-        int current = 0;
-
-        foreach (int value in Maths.Primes(upperLimit))
-        {
-            if (value > current && Maths.IsPandigital(value))
-            {
-                current = value;
-            }
-        }
-
-        Answer = current;
+        Answer = Maths.Primes(upperLimit).Where((p) => Maths.IsPandigital(p)).Max();
 
         return 0;
     }

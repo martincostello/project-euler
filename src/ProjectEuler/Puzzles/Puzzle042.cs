@@ -87,19 +87,7 @@ public sealed class Puzzle042 : Puzzle
             triangleNumbers.Add(triangleNumber);
         }
 
-        int count = 0;
-
-        foreach (string word in words)
-        {
-            int score = GetScore(word);
-
-            if (triangleNumbers.Contains(score))
-            {
-                count++;
-            }
-        }
-
-        Answer = count;
+        Answer = words.Select(GetScore).Count(triangleNumbers.Contains);
 
         return 0;
     }
