@@ -68,23 +68,14 @@ public sealed class Puzzle043 : Puzzle
     protected override int SolveCore(string[] args)
     {
         var pandigitals = Maths.Permutations([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]);
-        var pandigitalsWithProperty = new List<long>();
 
-        foreach (var digits in pandigitals.Select((p) => p.ToArray()).Where(HasProperty))
-        {
-            long value = Maths.FromDigits(digits);
-            pandigitalsWithProperty.Add(value);
-        }
+        var pandigitalsWithProperty = pandigitals
+            .Select((p) => p.ToArray())
+            .Where(HasProperty)
+            .Select(Maths.FromDigits)
+            .ToList();
 
-        long sum = 0;
-        int count = pandigitalsWithProperty.Count;
-
-        for (int i = 0; i < count; i++)
-        {
-            sum += pandigitalsWithProperty[i];
-        }
-
-        Answer = sum;
+        Answer = pandigitalsWithProperty.Sum();
 
         return 0;
     }
