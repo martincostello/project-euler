@@ -36,7 +36,7 @@ public sealed class Puzzle039 : Puzzle
 
                 double c = a / Math.Sin(theta);
 
-                if (a + b + c == perimeterDouble)
+                if (Math.Abs(a + b + c - perimeterDouble) < double.Epsilon)
                 {
                     string[] sides =
                     [

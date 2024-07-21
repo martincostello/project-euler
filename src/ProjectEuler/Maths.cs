@@ -225,7 +225,7 @@ internal static class Maths
     /// <returns>
     /// <see langword="true"/> if <paramref name="x"/> is an hexagonal number; otherwise <see langword="false"/>.
     /// </returns>
-    internal static bool IsHexagonal(long x) => Math.IEEERemainder(1 + Math.Sqrt(1 + (8d * x)), 4) == 0;
+    internal static bool IsHexagonal(long x) => Math.Abs(Math.IEEERemainder(1 + Math.Sqrt(1 + (8d * x)), 4)) < double.Epsilon;
 
     /// <summary>
     /// Returns whether the specified value is pandigital.
@@ -258,7 +258,7 @@ internal static class Maths
     /// <returns>
     /// <see langword="true"/> if <paramref name="x"/> is a pentagonal number; otherwise <see langword="false"/>.
     /// </returns>
-    internal static bool IsPentagonal(long x) => Math.IEEERemainder(Math.Sqrt((24d * x) + 1) + 1, 6) == 0;
+    internal static bool IsPentagonal(long x) => Math.Abs(Math.IEEERemainder(Math.Sqrt((24d * x) + 1) + 1, 6)) < double.Epsilon;
 
     /// <summary>
     /// Returns whether the specified number is a triangular number.
