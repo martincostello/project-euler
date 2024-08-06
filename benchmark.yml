@@ -1,0 +1,17 @@
+components:
+  app:
+    script: |
+      pwsh build.ps1 -SkipTests
+    arguments: ""
+
+defaults: --config ./crank.yml
+
+profiles:
+  local:
+    description: Local
+    arguments: --profile local
+
+benchmarks:
+  microbenchmarks:
+    description: Microbenchmarks
+    arguments: --config ./crank.yml --scenario microbenchmarks

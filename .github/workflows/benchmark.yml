@@ -1,0 +1,186 @@
+name: benchmark
+
+env:
+  CRANK_VERSION: '0.2.0-*'
+  DOTNET_CLI_TELEMETRY_OPTOUT: true
+  DOTNET_NOLOGO: true
+  DOTNET_SYSTEM_CONSOLE_ALLOW_ANSI_COLOR_REDIRECTION: 1
+  NUGET_XMLDOC_MODE: skip
+  TERM: xterm
+
+on:
+  issue_comment:
+    types: [ created ]
+
+permissions:
+  contents: read
+  pull-requests: write
+  statuses: write
+
+jobs:
+  benchmark:
+    name: benchmark
+    runs-on: ubuntu-latest
+    if: |
+      github.event.repository.fork == false &&
+      github.event.issue.pull_request != '' &&
+      startsWith(github.event.comment.body, '/benchmark')
+
+    steps:
+
+    - name: Parse comment
+      uses: actions/github-script@v7
+      id: parse-comment
+      with:
+        result-encoding: string
+        script: |
+          const availableBenchmarks = {
+            "microbenchmarks": "Runs the microbenchmarks"
+          };
+
+          const owner = context.payload.repository.owner.login;
+          const repo = context.payload.repository.name;
+          const username = context.payload.comment.user.login;
+          const issue_number = context.issue.number;
+
+          try {
+            await github.rest.repos.checkCollaborator({
+              owner,
+              repo,
+              username,
+            });
+          } catch (error) {
+            const message = `@${username} You are not a repository collaborator; benchmarking is not allowed.`;
+            await github.rest.issues.createComment({
+              owner,
+              repo,
+              issue_number,
+              body: message,
+            });
+            throw new Error(message);
+          }
+
+          core.info(`Verified ${username} is a repository collaborator.`);
+
+          // Extract the benchmark arguments from the comment
+          const regex = /\/benchmark ([a-zA-Z\d\/\.\-\_]+)/;
+          const arguments = regex.exec(context.payload.comment.body);
+
+          // Generate help text with all available commands
+          if (arguments == null || arguments.length < 2 || !availableBenchmarks.hasOwnProperty(arguments[1])) {
+              let body = 'The `/benchmark` command accepts these values:\n';
+              for (const key in availableBenchmarks) {
+                body += `- \`/benchmark ${key}\`: ${availableBenchmarks[key]}\n`;
+              }
+
+              await github.rest.issues.createComment({
+                issue_number,
+                owner,
+                repo,
+                body,
+              });
+
+              throw new Error('Error: Invalid arguments, workflow stopped.');
+          }
+
+          const benchmark = arguments[1];
+          const workflowUrl = `${process.env.GITHUB_SERVER_URL}/${owner}/${repo}/actions/runs/${process.env.GITHUB_RUN_ID}`;
+
+          core.info(`Benchmark: ${benchmark}`);
+
+          await github.rest.issues.createComment({
+            owner,
+            repo,
+            issue_number,
+            body: `Started [${benchmark} benchmark](${workflowUrl}). :hourglass:`,
+          });
+
+          const { data: pull } = await github.rest.pulls.get({
+            owner,
+            repo,
+            pull_number: issue_number,
+          });
+          const sha = pull.head.sha;
+
+          await github.rest.repos.createCommitStatus({
+            owner,
+            repo,
+            sha,
+            state: 'pending',
+            target_url: workflowUrl,
+            description: `Benchmark ${benchmark} started...`,
+            context: `benchmarks / ${benchmark.toLowerCase()}`,
+          });
+
+          core.setOutput('benchmark', benchmark);
+          core.setOutput('commit-sha', sha);
+
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup .NET 8 SDK
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.0.x
+
+    - name: Setup .NET SDK
+      uses: actions/setup-dotnet@v4
+
+    - name: Install crank
+      shell: pwsh
+      run: |
+        dotnet tool install --global Microsoft.Crank.Agent --version ${env:CRANK_VERSION}
+        dotnet tool install --global Microsoft.Crank.Controller --version ${env:CRANK_VERSION}
+        dotnet tool install --global Microsoft.Crank.PullRequestBot --version ${env:CRANK_VERSION}
+
+    - name: Run crank
+      shell: pwsh
+      env:
+        ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        BENCHMARK_NAME: ${{ steps.parse-comment.outputs.benchmark }}
+        PULL_REQUEST_ID: ${{ github.event.issue.number }}
+      run: |
+        ./benchmark-crank.ps1 `
+          -Benchmark ${env:BENCHMARK_NAME} `
+          -Repository "${env:GITHUB_SERVER_URL}/${env:GITHUB_REPOSITORY}" `
+          -PullRequestId ${env:PULL_REQUEST_ID} `
+          -AccessToken ${env:ACCESS_TOKEN} `
+          -PublishResults
+
+    - name: Post result comment
+      uses: actions/github-script@v7
+      if: ${{ !cancelled() }}
+      env:
+        BENCHMARK_NAME: ${{ steps.parse-comment.outputs.benchmark }}
+        COMMIT_SHA: ${{ steps.parse-comment.outputs.commit-sha }}
+        OUTCOME: ${{ job.status }}
+      with:
+        script: |
+          const owner = context.repo.owner;
+          const repo = context.repo.repo;
+          const issue_number = context.issue.number;
+
+          const benchmark = process.env.BENCHMARK_NAME;
+          const workflowUrl = `${process.env.GITHUB_SERVER_URL}/${owner}/${repo}/actions/runs/${process.env.GITHUB_RUN_ID}`;
+
+          const succeeded = process.env.OUTCOME === 'success';
+          const outcome = succeeded ? 'succeeded' : 'failed';
+          const emoji = succeeded ? ':white_check_mark:' : ':x:';
+          const state = succeeded ? 'success' : 'failure';
+
+          await github.rest.issues.createComment({
+            owner,
+            repo,
+            issue_number,
+            body: `Benchmark [${benchmark}](${workflowUrl}) ${outcome} ${emoji}`,
+          });
+
+          await github.rest.repos.createCommitStatus({
+            owner,
+            repo,
+            sha: process.env.COMMIT_SHA,
+            state,
+            target_url: workflowUrl,
+            description: `Benchmark ${benchmark} ${outcome}.`,
+            context: `benchmarks / ${benchmark.toLowerCase()}`
+          });

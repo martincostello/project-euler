@@ -1,0 +1,22 @@
+imports:
+  - https://raw.githubusercontent.com/dotnet/crank/main/src/Microsoft.Crank.Jobs.Bombardier/bombardier.yml
+
+jobs:
+  microbenchmarks:
+    source:
+      repository: https://github.com/martincostello/project-euler
+      branchOrCommit: main
+      project: tests/ProjectEuler.Benchmarks/ProjectEuler.Benchmarks.csproj
+    arguments: --memory
+    channel: current
+    options:
+      benchmarkDotNet: true
+
+scenarios:
+  microbenchmarks:
+    application:
+      framework: net8.0
+      job: microbenchmarks
+
+profiles:
+  local: {}
