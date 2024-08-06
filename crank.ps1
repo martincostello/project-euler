@@ -40,3 +40,7 @@ try {
 finally {
     Stop-Process -InputObject $agent -Force | Out-Null
 }
+
+if ($LASTEXITCODE -ne 0) {
+    throw "crank failed with exit code $LASTEXITCODE"
+}
