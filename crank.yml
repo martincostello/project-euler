@@ -19,4 +19,10 @@ scenarios:
       job: microbenchmarks
 
 profiles:
-  local: {}
+  local:
+    variables:
+      serverAddress: localhost
+    jobs:
+      application:
+        endpoints:
+          - http://localhost:5010
