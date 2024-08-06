@@ -2,11 +2,13 @@
 // Licensed under the Apache 2.0 license. See the LICENSE file in the project root for full license information.
 
 using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Diagnosers;
 using MartinCostello.ProjectEuler.Puzzles;
 
 namespace MartinCostello.ProjectEuler.Benchmarks;
 
-[Config(typeof(CustomBenchmarkConfig))]
+[EventPipeProfiler(EventPipeProfile.CpuSampling)]
+[MemoryDiagnoser]
 public class PuzzleBenchmarks
 {
     public static IEnumerable<object> Puzzles()
