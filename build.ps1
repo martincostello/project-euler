@@ -1,5 +1,12 @@
 #! /usr/bin/env pwsh
 
+#Requires -PSEdition Core
+#Requires -Version 7
+
+param(
+    [Parameter(Mandatory = $false)][switch] $SkipTests
+)
+
 $Configuration = "Release"
 $ErrorActionPreference = "Stop"
 $ProgressPreference = "SilentlyContinue"
