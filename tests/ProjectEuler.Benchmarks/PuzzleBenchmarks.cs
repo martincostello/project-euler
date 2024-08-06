@@ -7,7 +7,6 @@ using MartinCostello.ProjectEuler.Puzzles;
 
 namespace MartinCostello.ProjectEuler.Benchmarks;
 
-[EventPipeProfiler(EventPipeProfile.CpuSampling)]
 [MemoryDiagnoser]
 public class PuzzleBenchmarks
 {
