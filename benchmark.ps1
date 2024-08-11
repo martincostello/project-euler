@@ -4,7 +4,7 @@
 #Requires -Version 7
 
 param(
-    [Parameter(Mandatory = $false)][string] $Filter = "*",
+    [Parameter(Mandatory = $false)][string] $Filter = "",
     [Parameter(Mandatory = $false)][string] $Job = ""
 )
 
@@ -20,7 +20,7 @@ $sdkFile = Join-Path $solutionPath "global.json"
 
 $dotnetVersion = (Get-Content $sdkFile | Out-String | ConvertFrom-Json).sdk.version
 
-$installDotNetSdk = $false;
+$installDotNetSdk = $false
 
 if (($null -eq (Get-Command "dotnet" -ErrorAction SilentlyContinue)) -and ($null -eq (Get-Command "dotnet.exe" -ErrorAction SilentlyContinue))) {
     Write-Host "The .NET SDK is not installed."
@@ -79,12 +79,12 @@ Write-Host "Running benchmarks..." -ForegroundColor Green
 
 $additionalArgs = @()
 
-if (![string]::IsNullOrEmpty($Filter)) {
+if (-Not [string]::IsNullOrEmpty($Filter)) {
     $additionalArgs += "--filter"
     $additionalArgs += $Filter
 }
 
-if (![string]::IsNullOrEmpty($Job)) {
+if (-Not [string]::IsNullOrEmpty($Job)) {
     $additionalArgs += "--job"
     $additionalArgs += $Job
 }
