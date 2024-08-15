@@ -13,7 +13,11 @@ public sealed class Puzzle014 : Puzzle
     /// </summary>
     private static readonly Dictionary<long, int> _cache = new(1_000_000);
 
+#if NET9_0_OR_GREATER
+    private static readonly System.Threading.Lock _lock = new();
+#else
     private static readonly object _lock = new();
+#endif
 
     /// <inheritdoc />
     public override string Question => "Which starting number, under one million, produces the longest chain?";
