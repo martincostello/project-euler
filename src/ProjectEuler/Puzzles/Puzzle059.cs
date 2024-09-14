@@ -40,7 +40,6 @@ public sealed class Puzzle059 : Puzzle
         });
 
         var encrypted = LoadText();
-        Span<char> key = stackalloc char[encrypted.Length];
         Span<char> decrypted = stackalloc char[encrypted.Length];
 
         // Five most common English words
@@ -50,16 +49,9 @@ public sealed class Puzzle059 : Puzzle
         {
             var password = passwords.Slice(i, KeyLength);
 
-            for (int j = 0; j < key.Length; j += KeyLength)
-            {
-                key[j] = password[0];
-                key[j + 1] = password[1];
-                key[j + 2] = password[2];
-            }
-
             for (int j = 0; j < decrypted.Length; j++)
             {
-                decrypted[j] = (char)(encrypted[j] ^ key[j]);
+                decrypted[j] = (char)(encrypted[j] ^ password[j % KeyLength]);
             }
 
             if (decrypted.IndexOf(commonWords[0]) > -1 &&
