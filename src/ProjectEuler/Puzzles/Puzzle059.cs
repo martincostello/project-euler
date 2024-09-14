@@ -82,17 +82,10 @@ public sealed class Puzzle059 : Puzzle
 
         return string.Create(text.Length, text, (buffer, value) =>
         {
-            int index = 0;
-
             foreach (var range in value.Split(','))
             {
-                buffer[index++] = ParseChar(value[range]);
+                buffer[length++] = (char)byte.Parse(value[range], CultureInfo.InvariantCulture);
             }
-
-            length = index;
-
-            static char ParseChar(ReadOnlySpan<char> span)
-                => (char)byte.Parse(span, CultureInfo.InvariantCulture);
         }).AsSpan()[..length];
     }
 }
