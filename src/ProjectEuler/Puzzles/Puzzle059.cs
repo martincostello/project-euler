@@ -44,7 +44,7 @@ public sealed class Puzzle059 : Puzzle
         Span<char> decrypted = stackalloc char[encrypted.Length];
 
         // Five most common English words
-        ReadOnlySpan<string> commonWords = [" the ", " of ", " and ", " a ", " to "];
+        ReadOnlySpan<string> commonWords = [" the", " of", " and", " a", " to"];
 
         for (int i = 0; i < passwords.Length; i += KeyLength)
         {
