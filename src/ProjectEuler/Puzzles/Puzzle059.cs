@@ -42,9 +42,6 @@ public sealed class Puzzle059 : Puzzle
         var encrypted = LoadText();
         Span<char> decrypted = stackalloc char[encrypted.Length];
 
-        // Five most common English words
-        ReadOnlySpan<string> commonWords = [" the", " of", " and", " a", " to"];
-
         for (int i = 0; i < passwords.Length; i += KeyLength)
         {
             var password = passwords.Slice(i, KeyLength);
@@ -56,17 +53,15 @@ public sealed class Puzzle059 : Puzzle
                 decrypted[j + 2] = (char)(encrypted[j + 2] ^ password[2]);
             }
 
-            if (decrypted.IndexOf(commonWords[0]) > -1 &&
-                decrypted.IndexOf(commonWords[1]) > -1 &&
-                decrypted.IndexOf(commonWords[2]) > -1 &&
-                decrypted.IndexOf(commonWords[3]) > -1 &&
-                decrypted.IndexOf(commonWords[4]) > -1)
+            ReadOnlySpan<char> span = decrypted;
+
+            if (span.Contains("Euler", StringComparison.Ordinal))
             {
                 int sum = 0;
 
-                for (int k = 0; k < decrypted.Length; k++)
+                for (int j = 0; j < span.Length; j++)
                 {
-                    sum += decrypted[k];
+                    sum += span[j];
                 }
 
                 Answer = sum;
