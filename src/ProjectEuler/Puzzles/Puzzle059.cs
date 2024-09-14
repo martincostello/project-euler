@@ -39,6 +39,7 @@ public sealed class Puzzle059 : Puzzle
             }
         });
 
+        var comparison = StringComparison.Ordinal;
         var encrypted = LoadText();
         Span<char> decrypted = stackalloc char[encrypted.Length];
 
@@ -56,17 +57,25 @@ public sealed class Puzzle059 : Puzzle
                 decrypted[j + 2] = (char)(encrypted[j + 2] ^ password[2]);
             }
 
-            if (decrypted.IndexOf(commonWords[0]) > -1 &&
-                decrypted.IndexOf(commonWords[1]) > -1 &&
-                decrypted.IndexOf(commonWords[2]) > -1 &&
-                decrypted.IndexOf(commonWords[3]) > -1 &&
-                decrypted.IndexOf(commonWords[4]) > -1)
+            bool found = true;
+            ReadOnlySpan<char> span = decrypted;
+
+            for (int j = 0; j < commonWords.Length; j++)
+            {
+                if (!span.Contains(commonWords[j], comparison))
+                {
+                    found = false;
+                    break;
+                }
+            }
+
+            if (found)
             {
                 int sum = 0;
 
-                for (int k = 0; k < decrypted.Length; k++)
+                for (int j = 0; j < decrypted.Length; j++)
                 {
-                    sum += decrypted[k];
+                    sum += decrypted[j];
                 }
 
                 Answer = sum;
