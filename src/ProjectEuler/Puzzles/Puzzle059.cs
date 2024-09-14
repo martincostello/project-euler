@@ -53,13 +53,15 @@ public sealed class Puzzle059 : Puzzle
                 decrypted[j + 2] = (char)(encrypted[j + 2] ^ password[2]);
             }
 
-            if (decrypted.IndexOf("Euler") is not -1)
+            ReadOnlySpan<char> span = decrypted;
+
+            if (span.Contains("Euler", StringComparison.Ordinal))
             {
                 int sum = 0;
 
-                for (int j = 0; j < decrypted.Length; j++)
+                for (int j = 0; j < span.Length; j++)
                 {
-                    sum += decrypted[j];
+                    sum += span[j];
                 }
 
                 Answer = sum;
