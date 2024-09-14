@@ -105,7 +105,7 @@ public sealed class Puzzle059 : Puzzle
 
             if (value.Length > 0)
             {
-                buffer[index++] = ParseChar(value);
+                buffer[index] = ParseChar(value);
                 length++;
             }
 
