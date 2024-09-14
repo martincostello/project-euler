@@ -39,12 +39,8 @@ public sealed class Puzzle059 : Puzzle
             }
         });
 
-        var comparison = StringComparison.Ordinal;
         var encrypted = LoadText();
         Span<char> decrypted = stackalloc char[encrypted.Length];
-
-        // Five most common English words
-        ReadOnlySpan<string> commonWords = [" the", " of", " and", " a", " to"];
 
         for (int i = 0; i < passwords.Length; i += KeyLength)
         {
@@ -57,19 +53,7 @@ public sealed class Puzzle059 : Puzzle
                 decrypted[j + 2] = (char)(encrypted[j + 2] ^ password[2]);
             }
 
-            bool found = true;
-            ReadOnlySpan<char> span = decrypted;
-
-            for (int j = 0; j < commonWords.Length; j++)
-            {
-                if (!span.Contains(commonWords[j], comparison))
-                {
-                    found = false;
-                    break;
-                }
-            }
-
-            if (found)
+            if (decrypted.IndexOf("Euler") is not -1)
             {
                 int sum = 0;
 
