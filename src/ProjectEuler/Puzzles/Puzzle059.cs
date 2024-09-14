@@ -49,9 +49,11 @@ public sealed class Puzzle059 : Puzzle
         {
             var password = passwords.Slice(i, KeyLength);
 
-            for (int j = 0; j < decrypted.Length; j++)
+            for (int j = 0; j < decrypted.Length; j += KeyLength)
             {
-                decrypted[j] = (char)(encrypted[j] ^ password[j % KeyLength]);
+                decrypted[j] = (char)(encrypted[j] ^ password[0]);
+                decrypted[j + 1] = (char)(encrypted[j + 1] ^ password[1]);
+                decrypted[j + 2] = (char)(encrypted[j + 2] ^ password[2]);
             }
 
             if (decrypted.IndexOf(commonWords[0]) > -1 &&
