@@ -82,21 +82,14 @@ public sealed class Puzzle059 : Puzzle
 
         return string.Create(text.Length, text, (buffer, value) =>
         {
-            int comma;
             int index = 0;
 
-            while ((comma = value.IndexOf(',')) > -1)
+            foreach (var range in value.Split(','))
             {
-                buffer[index++] = ParseChar(value[..comma]);
-                value = value[(comma + 1)..];
-                length++;
+                buffer[index++] = ParseChar(value[range]);
             }
 
-            if (value.Length > 0)
-            {
-                buffer[index] = ParseChar(value);
-                length++;
-            }
+            length = index;
 
             static char ParseChar(ReadOnlySpan<char> span)
                 => (char)byte.Parse(span, CultureInfo.InvariantCulture);
