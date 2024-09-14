@@ -1,9 +1,6 @@
 ﻿// Copyright (c) Martin Costello, 2015. All rights reserved.
 // Licensed under the Apache 2.0 license. See the LICENSE file in the project root for full license information.
 
-using System.Buffers;
-using System.Text;
-
 namespace MartinCostello.ProjectEuler.Puzzles;
 
 /// <summary>
@@ -17,65 +14,68 @@ public sealed class Puzzle059 : Puzzle
     /// <inheritdoc />
     protected override int SolveCore(string[] args)
     {
-        byte[] encrypted = LoadText();
+        const int AlphabetLength = 26;
+        const int KeyLength = 3;
 
-        byte[] alphabet = Enumerable.Range('a', 26)
-            .Select((p) => (byte)p)
-            .ToArray();
-
-        var passwords = new List<byte[]>((int)Math.Pow(alphabet.Length, 3));
-
-        for (int x = 0; x < alphabet.Length; x++)
+        ReadOnlySpan<char> passwords = string.Create(
+            AlphabetLength * AlphabetLength * AlphabetLength * KeyLength,
+            "abcdefghijklmnopqrstuvwxyz",
+            static (buffer, alphabet) =>
         {
-            for (int y = 0; y < alphabet.Length; y++)
+            int i = 0;
+
+            for (int x = 0; x < alphabet.Length; x++)
             {
-                for (int z = 0; z < alphabet.Length; z++)
+                for (int y = 0; y < alphabet.Length; y++)
                 {
-                    passwords.Add([alphabet[x], alphabet[y], alphabet[z]]);
+                    for (int z = 0; z < alphabet.Length; z++)
+                    {
+                        buffer[i] = alphabet[x];
+                        buffer[i + 1] = alphabet[y];
+                        buffer[i + 2] = alphabet[z];
+                        i += KeyLength;
+                    }
                 }
             }
-        }
+        });
 
-        var encoding = Encoding.ASCII;
+        var encrypted = LoadText();
+        Span<char> key = stackalloc char[encrypted.Length];
+        Span<char> decrypted = stackalloc char[encrypted.Length];
 
         // Five most common English words
-        string[] commonWords =
-        [
-            " the ",
-            " of ",
-            " and ",
-            " a ",
-            " to ",
-        ];
+        ReadOnlySpan<string> commonWords = [" the ", " of ", " and ", " a ", " to "];
 
-        byte[][] words = commonWords.Select(encoding.GetBytes).ToArray();
-
-        byte[] key = new byte[encrypted.Length];
-        byte[] decrypted = new byte[encrypted.Length];
-
-        foreach (byte[] password in passwords)
+        for (int i = 0; i < passwords.Length; i += KeyLength)
         {
-            for (int i = 0; i < key.Length;)
+            var password = passwords.Slice(i, KeyLength);
+
+            for (int j = 0; j < key.Length; j += KeyLength)
             {
-                key[i++] = password[0];
-                key[i++] = password[1];
-                key[i++] = password[2];
+                key[j] = password[0];
+                key[j + 1] = password[1];
+                key[j + 2] = password[2];
             }
 
-            for (int i = 0; i < decrypted.Length; i++)
+            for (int j = 0; j < decrypted.Length; j++)
             {
-                decrypted[i] = (byte)(encrypted[i] ^ key[i]);
+                decrypted[j] = (char)(encrypted[j] ^ key[j]);
             }
 
-            ReadOnlySpan<byte> plaintext = decrypted;
-
-            if (plaintext.IndexOf(words[0]) > -1 &&
-                plaintext.IndexOf(words[1]) > -1 &&
-                plaintext.IndexOf(words[2]) > -1 &&
-                plaintext.IndexOf(words[3]) > -1 &&
-                plaintext.IndexOf(words[4]) > -1)
+            if (decrypted.IndexOf(commonWords[0]) > -1 &&
+                decrypted.IndexOf(commonWords[1]) > -1 &&
+                decrypted.IndexOf(commonWords[2]) > -1 &&
+                decrypted.IndexOf(commonWords[3]) > -1 &&
+                decrypted.IndexOf(commonWords[4]) > -1)
             {
-                Answer = decrypted.Select((p) => (int)p).Sum();
+                int sum = 0;
+
+                for (int k = 0; k < decrypted.Length; k++)
+                {
+                    sum += decrypted[k];
+                }
+
+                Answer = sum;
                 break;
             }
         }
@@ -83,17 +83,34 @@ public sealed class Puzzle059 : Puzzle
         return 0;
     }
 
-    private byte[] LoadText()
+    private ReadOnlySpan<char> LoadText()
     {
         using var stream = ReadResource();
         using var reader = new StreamReader(stream);
 
-        string text = reader.ReadToEnd();
+        int length = 0;
+        ReadOnlySpan<char> text = reader.ReadToEnd();
 
-        string[] split = text.Split(',');
+        return string.Create(text.Length, text, (buffer, value) =>
+        {
+            int comma;
+            int index = 0;
 
-        return split
-            .Select((p) => byte.Parse(p, CultureInfo.InvariantCulture))
-            .ToArray();
+            while ((comma = value.IndexOf(',')) > -1)
+            {
+                buffer[index++] = ParseChar(value[..comma]);
+                value = value[(comma + 1)..];
+                length++;
+            }
+
+            if (value.Length > 0)
+            {
+                buffer[index++] = ParseChar(value);
+                length++;
+            }
+
+            static char ParseChar(ReadOnlySpan<char> span)
+                => (char)byte.Parse(span, CultureInfo.InvariantCulture);
+        }).AsSpan()[..length];
     }
 }
