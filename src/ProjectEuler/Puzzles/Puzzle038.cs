@@ -65,7 +65,8 @@ public sealed class Puzzle038 : Puzzle
             }
         }
 
-        Answer = int.Parse(pandigitals.Order().Last(), NumberStyles.Integer, CultureInfo.InvariantCulture);
+        pandigitals.Sort();
+        Answer = int.Parse(pandigitals[^1], NumberStyles.Integer, CultureInfo.InvariantCulture);
 
         return 0;
     }

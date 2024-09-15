@@ -45,16 +45,12 @@ public sealed class Puzzle022 : Puzzle
         using var stream = ReadResource();
         using var reader = new StreamReader(stream);
 
-        var names = new List<string>();
+        string namesText = reader.ReadToEnd();
 
-        var namesText = reader.ReadToEnd().AsSpan();
-
-        foreach (var range in namesText.Split(','))
-        {
-            names.Add(namesText[range].Trim(Trimmable).ToString());
-        }
-
-        return [.. names.Order()];
+        return [..namesText
+            .Split(',')
+            .Select((p) => p.Trim(Trimmable))
+            .Order(StringComparer.Ordinal)];
     }
 
     /// <inheritdoc />
