@@ -8,8 +8,6 @@ namespace MartinCostello.ProjectEuler.Puzzles;
 /// </summary>
 public sealed class Puzzle022 : Puzzle
 {
-    private static readonly char[] Trimmable = ['"', '\r', '\n'];
-
     /// <inheritdoc />
     public override string Question => "What is the total of all the name scores in the names data?";
 
@@ -45,12 +43,19 @@ public sealed class Puzzle022 : Puzzle
         using var stream = ReadResource();
         using var reader = new StreamReader(stream);
 
-        string namesText = reader.ReadToEnd();
+        var names = new List<string>();
 
-        return [..namesText
-            .Split(',')
-            .Select((p) => p.Trim(Trimmable))
-            .Order(StringComparer.Ordinal)];
+        var namesText = reader.ReadToEnd().AsSpan();
+
+        foreach (var range in namesText.Split(','))
+        {
+            names.Add(namesText[range].Trim(['"', '\r', '\n']).ToString());
+        }
+
+        names.TrimExcess();
+        names.Sort();
+
+        return names;
     }
 
     /// <inheritdoc />
