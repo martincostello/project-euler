@@ -51,16 +51,15 @@ public sealed class Puzzle042 : Puzzle
         using var stream = ReadResource();
         using var reader = new StreamReader(stream);
 
-        string rawWords = reader.ReadToEnd();
+        var text = reader.ReadToEnd().AsSpan();
+        var words = new List<string>();
 
-        string[] split = rawWords.Split(',');
-
-        var words = new List<string>(split.Length);
-
-        foreach (string word in split)
+        foreach (var word in text.Split(','))
         {
-            words.Add(word.Trim('\"'));
+            words.Add(text[word].Trim('\"').ToString());
         }
+
+        words.TrimExcess();
 
         return words;
     }
