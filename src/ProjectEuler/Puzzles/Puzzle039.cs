@@ -32,9 +32,9 @@ public sealed class Puzzle039 : Puzzle
             for (double b = 1; b < perimeter - a - 1; b++)
             {
                 double tangent = a / b;
-                double theta = Math.Atan(tangent);
+                double θ = Math.Atan(tangent);
 
-                double c = a / Math.Sin(theta);
+                double c = a / Math.Sin(θ);
 
                 if (Math.Abs(a + b + c - perimeterDouble) < double.Epsilon)
                 {
@@ -45,7 +45,7 @@ public sealed class Puzzle039 : Puzzle
                         c.ToString(Format, formatProvider),
                     ];
 
-                    string solution = $"{{{string.Join(",", sides.Order())}}}";
+                    string solution = '{' + string.Join(',', sides.Order()) + '}';
 
                     solutions.Add(solution);
                 }
