@@ -8,6 +8,8 @@ namespace MartinCostello.ProjectEuler.Puzzles;
 /// </summary>
 public sealed class Puzzle022 : Puzzle
 {
+    private static readonly char[] Trimmable = ['"', '\r', '\n'];
+
     /// <inheritdoc />
     public override string Question => "What is the total of all the name scores in the names data?";
 
@@ -49,13 +51,10 @@ public sealed class Puzzle022 : Puzzle
 
         foreach (var range in namesText.Split(','))
         {
-            names.Add(namesText[range].Trim(['"', '\r', '\n']).ToString());
+            names.Add(namesText[range].Trim(Trimmable).ToString());
         }
 
-        names.TrimExcess();
-        names.Sort();
-
-        return names;
+        return [.. names.Order()];
     }
 
     /// <inheritdoc />
