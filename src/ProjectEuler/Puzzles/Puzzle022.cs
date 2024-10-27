@@ -47,7 +47,7 @@ public sealed class Puzzle022 : Puzzle
 
         string namesText = reader.ReadToEnd();
 
-        return [..namesText
+        return [.. namesText
             .Split(',')
             .Select((p) => p.Trim(Trimmable))
             .Order(StringComparer.Ordinal)];
