@@ -1,9 +1,6 @@
 ﻿// Copyright (c) Martin Costello, 2015. All rights reserved.
 // Licensed under the Apache 2.0 license. See the LICENSE file in the project root for full license information.
 
-using System.Buffers;
-using System.Text;
-
 namespace MartinCostello.ProjectEuler.Puzzles;
 
 /// <summary>
@@ -17,65 +14,57 @@ public sealed class Puzzle059 : Puzzle
     /// <inheritdoc />
     protected override int SolveCore(string[] args)
     {
-        byte[] encrypted = LoadText();
+        const int AlphabetLength = 26;
+        const int KeyLength = 3;
 
-        byte[] alphabet = Enumerable.Range('a', 26)
-            .Select((p) => (byte)p)
-            .ToArray();
-
-        var passwords = new List<byte[]>((int)Math.Pow(alphabet.Length, 3));
-
-        for (int x = 0; x < alphabet.Length; x++)
+        ReadOnlySpan<char> passwords = string.Create(
+            AlphabetLength * AlphabetLength * AlphabetLength * KeyLength,
+            "abcdefghijklmnopqrstuvwxyz",
+            static (buffer, alphabet) =>
         {
-            for (int y = 0; y < alphabet.Length; y++)
+            int i = 0;
+
+            for (int x = 0; x < alphabet.Length; x++)
             {
-                for (int z = 0; z < alphabet.Length; z++)
+                for (int y = 0; y < alphabet.Length; y++)
                 {
-                    passwords.Add([alphabet[x], alphabet[y], alphabet[z]]);
+                    for (int z = 0; z < alphabet.Length; z++)
+                    {
+                        buffer[i] = alphabet[x];
+                        buffer[i + 1] = alphabet[y];
+                        buffer[i + 2] = alphabet[z];
+                        i += KeyLength;
+                    }
                 }
             }
-        }
+        });
 
-        var encoding = Encoding.ASCII;
+        var encrypted = LoadText();
+        Span<char> decrypted = stackalloc char[encrypted.Length];
 
-        // Five most common English words
-        string[] commonWords =
-        [
-            " the ",
-            " of ",
-            " and ",
-            " a ",
-            " to ",
-        ];
-
-        byte[][] words = commonWords.Select(encoding.GetBytes).ToArray();
-
-        byte[] key = new byte[encrypted.Length];
-        byte[] decrypted = new byte[encrypted.Length];
-
-        foreach (byte[] password in passwords)
+        for (int i = 0; i < passwords.Length; i += KeyLength)
         {
-            for (int i = 0; i < key.Length;)
+            var password = passwords.Slice(i, KeyLength);
+
+            for (int j = 0; j < decrypted.Length; j += KeyLength)
             {
-                key[i++] = password[0];
-                key[i++] = password[1];
-                key[i++] = password[2];
+                decrypted[j] = (char)(encrypted[j] ^ password[0]);
+                decrypted[j + 1] = (char)(encrypted[j + 1] ^ password[1]);
+                decrypted[j + 2] = (char)(encrypted[j + 2] ^ password[2]);
             }
 
-            for (int i = 0; i < decrypted.Length; i++)
-            {
-                decrypted[i] = (byte)(encrypted[i] ^ key[i]);
-            }
+            ReadOnlySpan<char> span = decrypted;
 
-            ReadOnlySpan<byte> plaintext = decrypted;
-
-            if (plaintext.IndexOf(words[0]) > -1 &&
-                plaintext.IndexOf(words[1]) > -1 &&
-                plaintext.IndexOf(words[2]) > -1 &&
-                plaintext.IndexOf(words[3]) > -1 &&
-                plaintext.IndexOf(words[4]) > -1)
+            if (span.Contains("Euler", StringComparison.Ordinal))
             {
-                Answer = decrypted.Select((p) => (int)p).Sum();
+                int sum = 0;
+
+                for (int j = 0; j < span.Length; j++)
+                {
+                    sum += span[j];
+                }
+
+                Answer = sum;
                 break;
             }
         }
@@ -83,17 +72,20 @@ public sealed class Puzzle059 : Puzzle
         return 0;
     }
 
-    private byte[] LoadText()
+    private ReadOnlySpan<char> LoadText()
     {
         using var stream = ReadResource();
         using var reader = new StreamReader(stream);
 
-        string text = reader.ReadToEnd();
+        int length = 0;
+        ReadOnlySpan<char> text = reader.ReadToEnd();
 
-        string[] split = text.Split(',');
-
-        return split
-            .Select((p) => byte.Parse(p, CultureInfo.InvariantCulture))
-            .ToArray();
+        return string.Create(text.Length, text, (buffer, value) =>
+        {
+            foreach (var range in value.Split(','))
+            {
+                buffer[length++] = (char)byte.Parse(value[range], CultureInfo.InvariantCulture);
+            }
+        }).AsSpan()[..length];
     }
 }
