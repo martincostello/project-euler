@@ -25,7 +25,7 @@ public sealed class Puzzle005 : Puzzle
 
         // Do not need to bother testing for divisibility by 1, plus the
         // for loop below only tests even numbers so can also exclude 2.
-        int[] divisors = Enumerable.Range(3, max - 2).ToArray();
+        int[] divisors = [.. Enumerable.Range(3, max - 2)];
         int divisorCount = divisors.Length;
 
         for (int n = max % 2 == 0 ? max : max - 1; ; n += 2)

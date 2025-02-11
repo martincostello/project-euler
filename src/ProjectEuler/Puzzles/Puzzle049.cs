@@ -46,7 +46,7 @@ public sealed class Puzzle049 : Puzzle
             }
         }
 
-        Answer = Maths.FromDigits(factors.SelectMany(Maths.Digits).ToArray());
+        Answer = Maths.FromDigits([.. factors.SelectMany(Maths.Digits)]);
 
         return 0;
     }
