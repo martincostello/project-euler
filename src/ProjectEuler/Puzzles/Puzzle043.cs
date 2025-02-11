@@ -48,9 +48,7 @@ public sealed class Puzzle043 : Puzzle
         {
             int end = start + 3;
 
-            IList<int> subdigits = digits
-                .Take(start..end)
-                .ToList();
+            IList<int> subdigits = [.. digits.Take(start..end)];
 
             long subvalue = Maths.FromDigits(subdigits);
 

@@ -14,7 +14,7 @@ internal static class Maths
     /// <summary>
     /// An array containing the digits for base10. This field is read-only.
     /// </summary>
-    private static readonly int[] Base10Digits = Enumerable.Range(0, 10).ToArray();
+    private static readonly int[] Base10Digits = [.. Enumerable.Range(0, 10)];
 
     /// <summary>
     /// A cache of values for which being prime has been computed. This field is read-only.
@@ -237,7 +237,7 @@ internal static class Maths
     internal static bool IsPandigital(long value)
     {
         IReadOnlyList<int> digits = Digits(value);
-        int[] distinctDigits = digits.Distinct().ToArray();
+        int[] distinctDigits = [.. digits.Distinct()];
 
         if (digits.Count != distinctDigits.Length)
         {

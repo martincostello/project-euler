@@ -24,7 +24,7 @@ public sealed class Puzzle041 : Puzzle
             .SelectMany((p) => p)
             .Max();
 
-        int upperLimit = (int)Maths.FromDigits(Enumerable.Range(1, maxDigits).Reverse().ToArray());
+        int upperLimit = (int)Maths.FromDigits([.. Enumerable.Range(1, maxDigits).Reverse()]);
 
         Answer = Maths.Primes(upperLimit).Where((p) => Maths.IsPandigital(p)).Max();
 
