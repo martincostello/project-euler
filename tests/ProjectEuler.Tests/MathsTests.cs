@@ -395,9 +395,7 @@ public static class MathsTests
         collection = ["b", "a"];
 
         // Act
-        actual = Maths.Permutations(collection)
-            .Select((p) => p.ToArray())
-            .ToArray();
+        actual = [.. Maths.Permutations(collection).Select((p) => p.ToArray())];
 
         // Assert
         Assert.Equal(2, actual.Length);
