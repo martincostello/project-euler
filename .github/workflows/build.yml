@@ -14,10 +14,15 @@ on:
       - dotnet-nightly
   workflow_dispatch:
 
+permissions: {}
+
 jobs:
   build:
     name: ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
+
+    permissions:
+      contents: read
 
     strategy:
       fail-fast: false
