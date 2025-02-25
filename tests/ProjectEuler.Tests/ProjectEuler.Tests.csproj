@@ -6,7 +6,7 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>MartinCostello.ProjectEuler</RootNamespace>
     <Summary>Tests for ProjectEuler.</Summary>
-    <TargetFramework>net9.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
     <Content Include="xunit.runner.json" CopyToOutputDirectory="PreserveNewest" />
