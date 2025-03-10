@@ -2,10 +2,8 @@
   <PropertyGroup>
     <Description>Tests for ProjectEuler.</Description>
     <JsonSerializerIsReflectionEnabledByDefault>false</JsonSerializerIsReflectionEnabledByDefault>
-    <NoWarn>$(NoWarn);CA1707;CA1812;CA1861;CA2007;SA1600</NoWarn>
     <OutputType>Exe</OutputType>
     <RootNamespace>MartinCostello.ProjectEuler</RootNamespace>
-    <Summary>Tests for ProjectEuler.</Summary>
     <TargetFramework>net9.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
@@ -20,8 +18,5 @@
     <PackageReference Include="Microsoft.NET.Test.Sdk" />
     <PackageReference Include="xunit.runner.visualstudio" />
     <PackageReference Include="xunit.v3" />
-  </ItemGroup>
-  <ItemGroup>
-    <Using Include="Xunit" />
   </ItemGroup>
 </Project>

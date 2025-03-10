@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <Description>Benchmarks for ProjectEuler.</Description>
-    <NoWarn>$(NoWarn);CA1034;CA1056;CA2007;SA1600</NoWarn>
+    <NoWarn>$(NoWarn);CA1034;SA1600</NoWarn>
     <OutputType>Exe</OutputType>
     <RootNamespace>MartinCostello.ProjectEuler.Benchmarks</RootNamespace>
     <Summary>Benchmarks for ProjectEuler.</Summary>
