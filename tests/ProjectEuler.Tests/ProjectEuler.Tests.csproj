@@ -5,10 +5,8 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>MartinCostello.ProjectEuler</RootNamespace>
     <TargetFramework>net10.0</TargetFramework>
+    <UseDefaultCodeAnalysisRuleSet>true</UseDefaultCodeAnalysisRuleSet>
   </PropertyGroup>
-  <ItemGroup>
-    <Content Include="xunit.runner.json" CopyToOutputDirectory="PreserveNewest" />
-  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\ProjectEuler\ProjectEuler.csproj" />
     <ProjectReference Include="..\ProjectEuler.Benchmarks\ProjectEuler.Benchmarks.csproj" />
