@@ -14,10 +14,6 @@ $ProgressPreference = "SilentlyContinue"
 $solutionPath = $PSScriptRoot
 $sdkFile = Join-Path $solutionPath "global.json"
 
-$testProjects = @(
-    (Join-Path $solutionPath "tests" "ProjectEuler.Tests" "ProjectEuler.Tests.csproj")
-)
-
 $dotnetVersion = (Get-Content $sdkFile | Out-String | ConvertFrom-Json).sdk.version
 
 $installDotNetSdk = $false;
@@ -90,12 +86,9 @@ if (-Not $SkipTests) {
         $additionalArgs += "GitHubActions;report-warnings=false"
     }
 
-    ForEach ($testProject in $testProjects) {
+    & $dotnet test --configuration $Configuration $additionalArgs
 
-        & $dotnet test $testProject --configuration $Configuration $additionalArgs
-
-        if ($LASTEXITCODE -ne 0) {
-            throw "dotnet test failed with exit code $LASTEXITCODE"
-        }
+    if ($LASTEXITCODE -ne 0) {
+        throw "dotnet test failed with exit code $LASTEXITCODE"
     }
 }
