@@ -30,5 +30,5 @@ To build and test the puzzles run the following command:
 [build-status]: https://github.com/martincostello/project-euler/actions/workflows/build.yml?query=branch%3Amain+event%3Apush "Continuous Integration for this project"
 [issues]: https://github.com/martincostello/project-euler/issues "Issues for this project on GitHub.com"
 [license]: https://www.apache.org/licenses/LICENSE-2.0.txt "The Apache 2.0 license"
-[project-euler]: https://projecteuler.net/
+[project-euler]: https://projecteuler.net/ "Project Euler website"
 [repo]: https://github.com/martincostello/project-euler "This project on GitHub.com"
