@@ -30,7 +30,7 @@ public sealed class Puzzle023 : Puzzle
         }
 
         int abundantNumbersCount = abundantNumbers.Count;
-        var canBeWrittenAsAbundantSum = new bool[UpperLimit + 1];
+        var canBeWrittenAsAbundantSum = new HashSet<int>(UpperLimit);
 
         for (int i = 0; i < abundantNumbersCount; i++)
         {
@@ -40,7 +40,7 @@ public sealed class Puzzle023 : Puzzle
 
                 if (abundantSum <= UpperLimit)
                 {
-                    canBeWrittenAsAbundantSum[abundantSum] = true;
+                    canBeWrittenAsAbundantSum.Add(abundantSum);
                 }
                 else
                 {
@@ -51,7 +51,7 @@ public sealed class Puzzle023 : Puzzle
 
         for (int n = 1; n <= UpperLimit; n++)
         {
-            if (!canBeWrittenAsAbundantSum[n])
+            if (!canBeWrittenAsAbundantSum.Contains(n))
             {
                 sum += n;
             }
