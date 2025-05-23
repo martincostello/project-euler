@@ -1,6 +1,8 @@
 ﻿// Copyright (c) Martin Costello, 2015. All rights reserved.
 // Licensed under the Apache 2.0 license. See the LICENSE file in the project root for full license information.
 
+using System.Collections;
+
 namespace MartinCostello.ProjectEuler.Puzzles;
 
 /// <summary>
@@ -30,7 +32,7 @@ public sealed class Puzzle023 : Puzzle
         }
 
         int abundantNumbersCount = abundantNumbers.Count;
-        var canBeWrittenAsAbundantSum = new HashSet<int>(UpperLimit);
+        var canBeWrittenAsAbundantSum = new BitArray(UpperLimit + 1);
 
         for (int i = 0; i < abundantNumbersCount; i++)
         {
@@ -40,7 +42,7 @@ public sealed class Puzzle023 : Puzzle
 
                 if (abundantSum <= UpperLimit)
                 {
-                    canBeWrittenAsAbundantSum.Add(abundantSum);
+                    canBeWrittenAsAbundantSum[abundantSum] = true;
                 }
                 else
                 {
@@ -51,7 +53,7 @@ public sealed class Puzzle023 : Puzzle
 
         for (int n = 1; n <= UpperLimit; n++)
         {
-            if (!canBeWrittenAsAbundantSum.Contains(n))
+            if (!canBeWrittenAsAbundantSum[n])
             {
                 sum += n;
             }
