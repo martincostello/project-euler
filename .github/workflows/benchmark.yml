@@ -11,10 +11,7 @@ on:
   issue_comment:
     types: [ created ]
 
-permissions:
-  contents: read
-  pull-requests: write
-  statuses: write
+permissions: {}
 
 jobs:
   benchmark:
@@ -24,6 +21,11 @@ jobs:
       github.event.repository.fork == false &&
       github.event.issue.pull_request != '' &&
       startsWith(github.event.comment.body, '/benchmark')
+
+    permissions:
+      contents: read
+      pull-requests: write
+      statuses: write
 
     steps:
 
