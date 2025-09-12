@@ -21,17 +21,17 @@ public sealed class Puzzle022 : Puzzle
     /// <returns>
     /// The score of <paramref name="name"/> when at <paramref name="position"/>.
     /// </returns>
-    internal static int Score(string name, int position)
+    internal static int Score(ReadOnlySpan<char> name, int position)
     {
         int score = 0;
         int length = name.Length;
 
         for (int i = 0; i < length; i++)
         {
-            score += name[i] - 'A' + 1;
+            score += name[i] - 'A';
         }
 
-        return score * position;
+        return (score * position) + length;
     }
 
     /// <summary>
