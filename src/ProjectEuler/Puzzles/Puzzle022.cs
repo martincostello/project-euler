@@ -28,10 +28,10 @@ public sealed class Puzzle022 : Puzzle
 
         for (int i = 0; i < length; i++)
         {
-            score += name[i] - 'A';
+            score += name[i] - 'A' + 1;
         }
 
-        return (score * position) + length;
+        return score * position;
     }
 
     /// <summary>
