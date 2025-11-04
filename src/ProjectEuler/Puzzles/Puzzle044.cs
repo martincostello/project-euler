@@ -21,10 +21,11 @@ public sealed class Puzzle044 : Puzzle
             for (long j = k - 1; j > 0; j--)
             {
                 long pj = Maths.Pentagonal(j);
+                long delta = pk - pj;
 
-                if (Maths.IsPentagonal(pj + pk) && Maths.IsPentagonal(pk - pj))
+                if (Maths.IsPentagonal(delta) && Maths.IsPentagonal(pj + pk))
                 {
-                    Answer = pk - pj;
+                    Answer = delta;
                     break;
                 }
             }
