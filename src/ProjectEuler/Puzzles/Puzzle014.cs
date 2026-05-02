@@ -11,7 +11,7 @@ public sealed class Puzzle014 : Puzzle
     /// <summary>
     /// The cache of Collatz sequence lengths from a specified number. This field is read-only.
     /// </summary>
-    private static readonly Dictionary<long, int> _cache = new(1_000_000);
+    private static readonly Dictionary<long, int> _cache = [with(1_000_000)];
 
     private static readonly System.Threading.Lock _lock = new();
 
