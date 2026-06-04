@@ -18,8 +18,12 @@ permissions: {}
 
 jobs:
   build:
-    name: ${{ matrix.os }}
-    runs-on: ${{ matrix.os }}
+    name: ${{ matrix.os-name }}
+    runs-on: ${{ matrix.runner }}
+
+    environment:
+      name: build
+      deployment: false
 
     permissions:
       contents: read
@@ -27,7 +31,16 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ macos-latest, ubuntu-latest, windows-latest ]
+        include:
+          - os-name: macos
+            # renovate: datasource=github-runners depType=github-runner
+            runner: macos-26
+          - os-name: linux
+            # renovate: datasource=github-runners depType=github-runner
+            runner: ubuntu-24.04
+          - os-name: windows
+            # renovate: datasource=github-runners depType=github-runner
+            runner: windows-2025
 
     steps:
 
