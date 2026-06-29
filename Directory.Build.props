@@ -5,6 +5,8 @@
   <PropertyGroup>
     <AssemblyIsCLSCompliant>false</AssemblyIsCLSCompliant>
     <CodeAnalysisRuleSet>$(MSBuildThisFileDirectory)ProjectEuler.ruleset</CodeAnalysisRuleSet>
+    <Features>$(Features);runtime-async=on</Features>
+    <LangVersion>preview</LangVersion>
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
     <UseArtifactsOutput>true</UseArtifactsOutput>
     <UseDefaultAssemblyOriginatorKeyFile>true</UseDefaultAssemblyOriginatorKeyFile>
