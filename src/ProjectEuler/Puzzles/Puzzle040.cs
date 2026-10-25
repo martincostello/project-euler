@@ -19,19 +19,24 @@ public sealed class Puzzle040 : Puzzle
         int currentIndex = 0;
         int limit = digitsToFind.Max();
 
-        var foundDigits = new List<int>(limit);
+        var foundDigits = new List<int>(digitsToFind.Length);
 
-        for (long i = 1; i < limit; i++)
+        int nextToFind = 0;
+
+        Span<char> digits = stackalloc char[16];
+
+        for (int i = 1; i < limit && nextToFind < digitsToFind.Length; i++)
         {
-            IReadOnlyList<int> digits = Maths.Digits(i);
+            i.TryFormat(digits, out int digitCount, default, CultureInfo.InvariantCulture);
 
-            foreach (int digit in digits)
+            for (int j = 0; j < digitCount && nextToFind < digitsToFind.Length; j++)
             {
                 currentIndex++;
 
-                if (digitsToFind.Contains(currentIndex))
+                if (currentIndex == digitsToFind[nextToFind])
                 {
-                    foundDigits.Add(digit);
+                    foundDigits.Add(digits[j] - '0');
+                    nextToFind++;
                 }
             }
         }

@@ -28,17 +28,23 @@ public sealed class Puzzle005 : Puzzle
         int[] divisors = [.. Enumerable.Range(3, max - 2)];
         int divisorCount = divisors.Length;
 
-        for (int n = max % 2 == 0 ? max : max - 1; ; n += 2)
-        {
-            // Fast path for large numbers
-            if (max >= 10 && (n % 3 != 0 || n % 5 != 0 || n % 10 != 0))
-            {
-                continue;
-            }
+        int step = 2;
+        int start = max % 2 == 0 ? max : max - 1;
 
+        // Fast path for large numbers: the answer must be divisible by
+        // 3, 5 and 10, so only multiples of 30 need to be considered.
+        if (max >= 10)
+        {
+            step = 30;
+            start = (start + step - 1) / step * step;
+        }
+
+        for (int n = start; ; n += step)
+        {
             bool found = true;
 
-            for (int i = 0; i < divisorCount; i++)
+            // Test the largest divisors first as they are the most likely to fail
+            for (int i = divisorCount - 1; i >= 0; i--)
             {
                 if (n % divisors[i] != 0)
                 {

@@ -9,61 +9,80 @@ namespace MartinCostello.ProjectEuler.Puzzles;
 public sealed class Puzzle014 : Puzzle
 {
     /// <summary>
-    /// The cache of Collatz sequence lengths from a specified number. This field is read-only.
+    /// The number of starting values to cache the sequence lengths for.
     /// </summary>
-    private static readonly Dictionary<long, int> _cache = [with(1_000_000)];
+    private const int CacheSize = 1_000_000;
 
-    private static readonly System.Threading.Lock _lock = new();
+    /// <summary>
+    /// A cache of the sequence lengths for starting values below <see cref="CacheSize"/>.
+    /// A value of zero indicates the length has not yet been computed. This field is read-only.
+    /// </summary>
+    private static readonly int[] _cache = new int[CacheSize];
 
     /// <inheritdoc />
     public override string Question => "Which starting number, under one million, produces the longest chain?";
 
     /// <summary>
-    /// Gets the length of the Collatz sequence that starts at the specified value.
+    /// Gets the length of the Collatz sequence for the specified starting value.
     /// </summary>
-    /// <param name="start">The start value.</param>
+    /// <param name="start">The starting value.</param>
     /// <returns>
-    /// Returns the length of the Collatz sequence starting at <paramref name="start"/>.
+    /// The length of the Collatz sequence for <paramref name="start"/>.
     /// </returns>
     internal static int GetCollatzSequenceLength(long start)
     {
-        lock (_lock)
+        if (start < 1)
         {
-            if (!_cache.TryGetValue(start, out int length))
+            return 0;
+        }
+
+        int[] cache = _cache;
+
+        if (start < cache.Length)
+        {
+            int cached = cache[start];
+
+            if (cached != 0)
             {
-                if (start > 0)
+                return cached;
+            }
+        }
+
+        long current = start;
+        int length = 0;
+
+        bool cacheHit = false;
+
+        while (current != 1)
+        {
+            if (current < cache.Length)
+            {
+                int remainingLength = cache[current];
+
+                if (remainingLength != 0)
                 {
-                    long current = start;
-
-                    bool cacheHit = false;
-
-                    while (current != 1 && !cacheHit)
-                    {
-                        if (_cache.TryGetValue(current, out int remainingLength))
-                        {
-                            length += remainingLength;
-                            cacheHit = true;
-                            break;
-                        }
-
-                        length++;
-
-                        (long div, long rem) = Math.DivRem(current, 2);
-
-                        current = rem == 0 ? div : (3 * current) + 1;
-                    }
-
-                    if (!cacheHit)
-                    {
-                        length++;
-                    }
+                    length += remainingLength;
+                    cacheHit = true;
+                    break;
                 }
-
-                _cache[start] = length;
             }
 
-            return length;
+            length++;
+
+            current = (current & 1) == 0 ? current >> 1 : (3 * current) + 1;
         }
+
+        if (!cacheHit)
+        {
+            length++;
+        }
+
+        if (start < cache.Length)
+        {
+            cache[start] = length;
+        }
+
+        return length;
     }
 
     /// <inheritdoc />

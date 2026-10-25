@@ -27,21 +27,19 @@ public sealed class Puzzle030 : Puzzle
     /// </returns>
     internal static bool IsSumOfDigitPowers(int value, int power)
     {
-        IReadOnlyList<int> digits = Maths.Digits(value);
+        long sum = 0;
 
-        double sum = 0;
-
-        foreach (int digit in digits)
+        for (int remaining = value; remaining > 0; remaining /= 10)
         {
             if (sum > value)
             {
                 return false;
             }
 
-            sum += Math.Pow(digit, power);
+            sum += Pow(remaining % 10, power);
         }
 
-        return (int)sum == value;
+        return sum == value;
     }
 
     /// <inheritdoc />
@@ -60,9 +58,9 @@ public sealed class Puzzle030 : Puzzle
         for (int digitCount = 2; ; digitCount++)
         {
             sum = digitCount * nineToThePower;
-            IReadOnlyList<int> digitsOfSum = Maths.Digits(sum);
+            int[] digitsOfSum = Maths.Digits(sum);
 
-            if (digitsOfSum.Count <= digitCount)
+            if (digitsOfSum.Length <= digitCount)
             {
                 upperBound = sum;
                 break;
@@ -82,5 +80,25 @@ public sealed class Puzzle030 : Puzzle
         Answer = sum;
 
         return 0;
+    }
+
+    /// <summary>
+    /// Raises the specified digit to the specified power using integer arithmetic.
+    /// </summary>
+    /// <param name="digit">The digit to raise to the power.</param>
+    /// <param name="power">The power to raise the digit to.</param>
+    /// <returns>
+    /// The value of <paramref name="digit"/> raised to <paramref name="power"/>.
+    /// </returns>
+    private static long Pow(int digit, int power)
+    {
+        long result = 1;
+
+        for (int i = 0; i < power; i++)
+        {
+            result *= digit;
+        }
+
+        return result;
     }
 }

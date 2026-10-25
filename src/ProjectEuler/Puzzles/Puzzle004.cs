@@ -33,7 +33,7 @@ public sealed class Puzzle004 : Puzzle
             for (int j = seed; j < i + 1; j++)
             {
                 int product = i * j;
-                IReadOnlyList<int> digits = Maths.Digits(product);
+                int[] digits = Maths.Digits(product);
 
                 if (Helpers.IsPalindromic(digits))
                 {

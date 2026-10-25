@@ -8,6 +8,22 @@ namespace MartinCostello.ProjectEuler.Puzzles;
 /// </summary>
 public sealed class Puzzle054 : Puzzle
 {
+    /// <summary>
+    /// The predicates to test the hands for, in descending order of rank. This field is read-only.
+    /// </summary>
+    private static readonly IsHandPredicate[] Predicates =
+    [
+        IsRoyalFlush,
+        IsStraightFlush,
+        IsFourOfAKind,
+        IsFullHouse,
+        IsFlush,
+        IsStraight,
+        IsThreeOfAKind,
+        IsTwoPair,
+        IsPair,
+    ];
+
     private delegate bool IsHandPredicate(string[] cards, out char highCard);
 
     /// <inheritdoc />
@@ -24,23 +40,10 @@ public sealed class Puzzle054 : Puzzle
         string[] player1 = cards[..5];
         string[] player2 = cards[5..];
 
-        player1 = [.. player1.OrderBy(GetCardValue)];
-        player2 = [.. player2.OrderBy(GetCardValue)];
+        Array.Sort(player1, static (x, y) => GetCardValue(x).CompareTo(GetCardValue(y)));
+        Array.Sort(player2, static (x, y) => GetCardValue(x).CompareTo(GetCardValue(y)));
 
-        IsHandPredicate[] predicates =
-        [
-            IsRoyalFlush,
-            IsStraightFlush,
-            IsFourOfAKind,
-            IsFullHouse,
-            IsFlush,
-            IsStraight,
-            IsThreeOfAKind,
-            IsTwoPair,
-            IsPair,
-        ];
-
-        foreach (var predicate in predicates)
+        foreach (var predicate in Predicates)
         {
             bool player1HasHand = predicate(player1, out char highCard1);
             bool player2HasHand = predicate(player2, out char highCard2);
@@ -62,8 +65,8 @@ public sealed class Puzzle054 : Puzzle
 
             if (card1Value == card2Value)
             {
-                var otherCard1 = player1.Where((p) => p[0] != highCard1).ElementAt(^1);
-                var otherCard2 = player2.Where((p) => p[0] != highCard2).ElementAt(^1);
+                var otherCard1 = LastCardOtherThan(player1, highCard1);
+                var otherCard2 = LastCardOtherThan(player2, highCard2);
 
                 return GetCardValue(otherCard1) > GetCardValue(otherCard2);
             }
@@ -73,8 +76,8 @@ public sealed class Puzzle054 : Puzzle
             }
         }
 
-        int highestCard1 = player1.Max(GetCardValue);
-        int highestCard2 = player2.Max(GetCardValue);
+        int highestCard1 = GetCardValue(player1[^1]);
+        int highestCard2 = GetCardValue(player2[^1]);
 
         return highestCard1 > highestCard2;
     }
@@ -95,7 +98,7 @@ public sealed class Puzzle054 : Puzzle
     {
         foreach (char suit in Suits)
         {
-            if (hand.All((p) => IsSuit(p, suit)))
+            if (AllOfSuit(hand, suit))
             {
                 return true;
             }
@@ -104,7 +107,36 @@ public sealed class Puzzle054 : Puzzle
         return false;
     }
 
+    private static bool AllOfSuit(string[] hand, char suit)
+    {
+        foreach (string card in hand)
+        {
+            if (!IsSuit(card, suit))
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     private static bool IsValue(string card, char value) => card[0] == value;
+
+    private static int CountOfValue(string[] hand, char value)
+        => hand.Count((card) => IsValue(card, value));
+
+    private static string LastCardOtherThan(string[] hand, char value)
+    {
+        for (int i = hand.Length - 1; i >= 0; i--)
+        {
+            if (!IsValue(hand[i], value))
+            {
+                return hand[i];
+            }
+        }
+
+        throw new InvalidOperationException("The hand contains no other cards.");
+    }
 
     private static bool IsRoyalFlush(string[] hand, out char highCard)
     {
@@ -115,11 +147,11 @@ public sealed class Puzzle054 : Puzzle
             return false;
         }
 
-        if ((hand.SingleOrDefault((p) => IsValue(p, 'T')) is not null) &&
-            (hand.SingleOrDefault((p) => IsValue(p, 'J')) is not null) &&
-            (hand.SingleOrDefault((p) => IsValue(p, 'Q')) is not null) &&
-            (hand.SingleOrDefault((p) => IsValue(p, 'K')) is not null) &&
-            (hand.SingleOrDefault((p) => IsValue(p, 'A')) is not null))
+        if (CountOfValue(hand, 'T') == 1 &&
+            CountOfValue(hand, 'J') == 1 &&
+            CountOfValue(hand, 'Q') == 1 &&
+            CountOfValue(hand, 'K') == 1 &&
+            CountOfValue(hand, 'A') == 1)
         {
             highCard = 'A';
             return true;
@@ -197,7 +229,7 @@ public sealed class Puzzle054 : Puzzle
     {
         foreach (char value in Values)
         {
-            if (hand.Count((p) => IsValue(p, value)) == 4)
+            if (CountOfValue(hand, value) == 4)
             {
                 highCard = value;
                 return true;
@@ -212,7 +244,7 @@ public sealed class Puzzle054 : Puzzle
     {
         foreach (char value in Values)
         {
-            if (hand.Count((p) => IsValue(p, value)) == 3)
+            if (CountOfValue(hand, value) == 3)
             {
                 highCard = value;
                 return true;
@@ -253,7 +285,7 @@ public sealed class Puzzle054 : Puzzle
     {
         foreach (char value in Values)
         {
-            if (hand.Count((p) => IsValue(p, value)) == 2)
+            if (CountOfValue(hand, value) == 2)
             {
                 highCard = value;
                 return true;
@@ -266,7 +298,7 @@ public sealed class Puzzle054 : Puzzle
 
     private static bool IsPair(string[] hand, char value, out char highCard)
     {
-        if (hand.Count((p) => IsValue(p, value)) == 2)
+        if (CountOfValue(hand, value) == 2)
         {
             highCard = value;
             return true;

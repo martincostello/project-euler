@@ -18,17 +18,21 @@ public sealed class Puzzle036 : Puzzle
     /// <returns>
     /// <see langword="true"/> if <paramref name="value"/> is a palindrome; otherwise <see langword="false"/>.
     /// </returns>
-    internal static bool IsPalindromic(string value) => Helpers.IsPalindromic(value.ToCharArray());
+    internal static bool IsPalindromic(string value) => Helpers.IsPalindromic(value.AsSpan());
 
     /// <inheritdoc />
     protected override int SolveCore(string[] args)
     {
         int sum = 0;
 
+        Span<char> buffer = stackalloc char[32];
+
         for (int i = 1; i < 1_000_000; i++)
         {
-            if (IsPalindromic(Convert.ToString(i, 10)) &&
-                IsPalindromic(Convert.ToString(i, 2)))
+            if (i.TryFormat(buffer, out int length, default, CultureInfo.InvariantCulture) &&
+                Helpers.IsPalindromic<char>(buffer[..length]) &&
+                i.TryFormat(buffer, out length, "B", CultureInfo.InvariantCulture) &&
+                Helpers.IsPalindromic<char>(buffer[..length]))
             {
                 sum += i;
             }

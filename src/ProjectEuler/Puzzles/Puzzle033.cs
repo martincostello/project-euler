@@ -21,10 +21,10 @@ public sealed class Puzzle033 : Puzzle
     /// </returns>
     internal static bool IsCuriousFraction(double numerator, double denominator)
     {
-        IReadOnlyList<int> numeratorDigits = Maths.Digits((long)numerator);
-        IReadOnlyList<int> denominatorDigits = Maths.Digits((long)denominator);
+        int[] numeratorDigits = Maths.Digits((long)numerator);
+        int[] denominatorDigits = Maths.Digits((long)denominator);
 
-        if (numeratorDigits.Count != 2 || denominatorDigits.Count != 2 || numeratorDigits[1] != denominatorDigits[0])
+        if (numeratorDigits.Length != 2 || denominatorDigits.Length != 2 || numeratorDigits[1] != denominatorDigits[0])
         {
             return false;
         }
