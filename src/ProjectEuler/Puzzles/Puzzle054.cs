@@ -123,19 +123,7 @@ public sealed class Puzzle054 : Puzzle
     private static bool IsValue(string card, char value) => card[0] == value;
 
     private static int CountOfValue(string[] hand, char value)
-    {
-        int count = 0;
-
-        foreach (string card in hand)
-        {
-            if (IsValue(card, value))
-            {
-                count++;
-            }
-        }
-
-        return count;
-    }
+        => hand.Count((card) => IsValue(card, value));
 
     private static string LastCardOtherThan(string[] hand, char value)
     {
