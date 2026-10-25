@@ -29,38 +29,30 @@ public sealed class Puzzle035 : Puzzle
             return [value];
         }
 
-        IReadOnlyList<int> digits = Maths.Digits(value);
+        // Find the number of digits and the magnitude of the most significant digit
+        int digitCount = 1;
+        long magnitude = 1;
 
-        var result = new List<long>(digits.Count)
+        for (int remaining = value / 10; remaining > 0; remaining /= 10)
+        {
+            digitCount++;
+            magnitude *= 10;
+        }
+
+        var result = new List<long>(digitCount)
         {
             value,
         };
 
-        for (int i = 0; i < digits.Count - 1; i++)
+        long rotation = value;
+
+        for (int i = 0; i < digitCount - 1; i++)
         {
-            var rotationDigits = new int[digits.Count];
-            int index = 0;
+            // Move the most significant digit to the end of the value
+            (long first, long rest) = Math.DivRem(rotation, magnitude);
+            rotation = (rest * 10) + first;
 
-            for (int j = i + 1; j < digits.Count; j++)
-            {
-                rotationDigits[index++] = digits[j];
-            }
-
-            for (int j = 0; j < i + 1; j++)
-            {
-                rotationDigits[index++] = digits[j];
-            }
-
-            double rotation = 0;
-
-            for (int j = 0; j < rotationDigits.Length - 1; j++)
-            {
-                rotation += rotationDigits[j] * Math.Pow(10, rotationDigits.Length - j - 1);
-            }
-
-            rotation += rotationDigits[^1];
-
-            result.Add((long)rotation);
+            result.Add(rotation);
         }
 
         return result;

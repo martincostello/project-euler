@@ -24,15 +24,18 @@ public sealed class Puzzle007 : Puzzle
         }
 
         int primesFound = 0;
+        int prime = 0;
 
         for (int i = 2; primesFound < numbers; i++)
         {
             if (Maths.IsPrime(i))
             {
                 primesFound++;
-                Answer = i;
+                prime = i;
             }
         }
+
+        Answer = prime;
 
         return 0;
     }

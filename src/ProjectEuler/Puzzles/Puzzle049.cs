@@ -27,6 +27,8 @@ public sealed class Puzzle049 : Puzzle
             primes.Add(prime);
         }
 
+        var primeSet = new HashSet<long>(primes);
+
         long[] factors = [];
 
         for (int i = 0; i < primes.Count && factors.Length == 0; i++)
@@ -37,7 +39,7 @@ public sealed class Puzzle049 : Puzzle
                 long b = primes[j];
                 long c = b + b - a;
 
-                if (primes.Contains(c) &&
+                if (primeSet.Contains(c) &&
                     ArePermutations(a, b) &&
                     ArePermutations(a, c))
                 {
@@ -61,9 +63,17 @@ public sealed class Puzzle049 : Puzzle
     /// </returns>
     private static bool ArePermutations(long x, long y)
     {
-        var first = Maths.Digits(x).Order();
-        var second = Maths.Digits(y).Order();
+        int[] first = Maths.Digits(x);
+        int[] second = Maths.Digits(y);
 
-        return first.SequenceEqual(second);
+        if (first.Length != second.Length)
+        {
+            return false;
+        }
+
+        Array.Sort(first);
+        Array.Sort(second);
+
+        return first.AsSpan().SequenceEqual(second);
     }
 }

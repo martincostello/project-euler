@@ -8,7 +8,7 @@ namespace MartinCostello.ProjectEuler.Puzzles;
 /// </summary>
 public static class Puzzle092Tests
 {
-    [Fact(Skip = "Too slow.")]
+    [Fact]
     public static void Puzzle092_Returns_Correct_Solution()
     {
         // Arrange

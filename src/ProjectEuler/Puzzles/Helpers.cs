@@ -30,4 +30,26 @@ internal static class Helpers
 
         return true;
     }
+
+    /// <summary>
+    /// Returns whether the specified span is palindromic.
+    /// </summary>
+    /// <typeparam name="T">The type of the items in the span.</typeparam>
+    /// <param name="span">The span to test for being a palindrome.</param>
+    /// <returns>
+    /// <see langword="true"/> if <paramref name="span"/> is a palindrome; otherwise <see langword="false"/>.
+    /// </returns>
+    internal static bool IsPalindromic<T>(ReadOnlySpan<T> span)
+        where T : IEquatable<T>
+    {
+        for (int i = 0; i < span.Length / 2; i++)
+        {
+            if (!span[i].Equals(span[span.Length - i - 1]))
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
 }

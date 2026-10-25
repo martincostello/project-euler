@@ -16,7 +16,9 @@ public sealed class Puzzle009 : Puzzle
     {
         const int Limit = 1_000;
 
-        for (int a = 1; a < Limit; a++)
+        bool found = false;
+
+        for (int a = 1; a < Limit && !found; a++)
         {
             int squareOfA = a * a;
 
@@ -30,6 +32,9 @@ public sealed class Puzzle009 : Puzzle
                 if (squareOfA + squareOfB == squareOfC)
                 {
                     Answer = a * b * c;
+
+                    // There is exactly one triplet, so stop searching
+                    found = true;
                     break;
                 }
             }

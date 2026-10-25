@@ -25,7 +25,7 @@ public sealed class Puzzle047 : Puzzle
 
         for (int i = 1; ; i++)
         {
-            if (Enumerable.Range(i, factors).All((p) => HasPrimeFactors(p, factors)))
+            if (AllHavePrimeFactors(i, factors))
             {
                 Answer = i;
                 break;
@@ -33,6 +33,19 @@ public sealed class Puzzle047 : Puzzle
         }
 
         return 0;
+    }
+
+    private static bool AllHavePrimeFactors(int start, int count)
+    {
+        for (int value = start; value < start + count; value++)
+        {
+            if (!HasPrimeFactors(value, count))
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     /// <summary>

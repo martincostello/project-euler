@@ -155,10 +155,16 @@ public sealed class Puzzle017 : Puzzle
 
         for (int i = 1; i <= max; i++)
         {
-            sum += ToEnglish(i)
-                .Replace(" ", string.Empty)
-                .Replace("-", string.Empty)
-                .Length;
+            foreach (var chunk in ToEnglish(i).GetChunks())
+            {
+                foreach (char c in chunk.Span)
+                {
+                    if (c is not (' ' or '-'))
+                    {
+                        sum++;
+                    }
+                }
+            }
         }
 
         Answer = sum;

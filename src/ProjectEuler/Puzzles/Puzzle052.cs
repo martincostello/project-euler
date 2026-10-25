@@ -16,62 +16,20 @@ public sealed class Puzzle052 : Puzzle
     {
         for (int i = 1; i < int.MaxValue; i++)
         {
-            var digits1 = Maths.Digits(i);
-            var digits2 = Maths.Digits(i * 2);
+            (int digitCount, int digitSet) = GetDigitSignature(i);
 
-            if (digits1.Count != digits2.Count)
+            bool hasSameDigits = true;
+
+            for (int multiplier = 2; multiplier <= 6 && hasSameDigits; multiplier++)
             {
-                continue;
+                (int multipleDigitCount, int multipleDigitSet) = GetDigitSignature(i * multiplier);
+
+                hasSameDigits =
+                    multipleDigitCount == digitCount &&
+                    (multipleDigitSet & ~digitSet) == 0;
             }
 
-            var digits3 = Maths.Digits(i * 3);
-
-            if (digits2.Count != digits3.Count)
-            {
-                continue;
-            }
-
-            var digits4 = Maths.Digits(i * 4);
-
-            if (digits3.Count != digits4.Count)
-            {
-                continue;
-            }
-
-            var digits5 = Maths.Digits(i * 5);
-
-            if (digits4.Count != digits5.Count)
-            {
-                continue;
-            }
-
-            var digits6 = Maths.Digits(i * 6);
-
-            if (digits5.Count != digits6.Count)
-            {
-                continue;
-            }
-
-            var values = new HashSet<int>(digits1);
-
-            bool HasSameDigits(IReadOnlyList<int> digits)
-            {
-                for (int j = 0; j < digits.Count; j++)
-                {
-                    if (!values.Contains(digits[j]))
-                    {
-                        return false;
-                    }
-                }
-
-                return true;
-            }
-
-            if (HasSameDigits(digits2) &&
-                HasSameDigits(digits3) &&
-                HasSameDigits(digits4) &&
-                HasSameDigits(digits5) &&
-                HasSameDigits(digits6))
+            if (hasSameDigits)
             {
                 Answer = i;
                 break;
@@ -79,5 +37,26 @@ public sealed class Puzzle052 : Puzzle
         }
 
         return 0;
+    }
+
+    /// <summary>
+    /// Gets the number of digits in the specified value and the set of distinct digits it contains.
+    /// </summary>
+    /// <param name="value">The value to get the digit signature for.</param>
+    /// <returns>
+    /// The number of digits in <paramref name="value"/> and a bit mask of the digits it contains.
+    /// </returns>
+    private static (int Count, int Set) GetDigitSignature(int value)
+    {
+        int count = 0;
+        int set = 0;
+
+        for (int remaining = value; remaining > 0; remaining /= 10)
+        {
+            count++;
+            set |= 1 << (remaining % 10);
+        }
+
+        return (count, set);
     }
 }

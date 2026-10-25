@@ -23,10 +23,14 @@ public sealed class Puzzle010 : Puzzle
             return -1;
         }
 
-        Answer = Maths.Primes(maximum)
-            .AsParallel()
-            .Select((p) => (long)p)
-            .Sum();
+        long sum = 0;
+
+        foreach (int prime in Maths.Primes(maximum))
+        {
+            sum += prime;
+        }
+
+        Answer = sum;
 
         return 0;
     }

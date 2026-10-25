@@ -12,14 +12,20 @@ namespace MartinCostello.ProjectEuler;
 internal static class Maths
 {
     /// <summary>
-    /// An array containing the digits for base10. This field is read-only.
+    /// The minimum size of sieve to use to cache whether small values are prime.
     /// </summary>
-    private static readonly int[] Base10Digits = [.. Enumerable.Range(0, 10)];
+    private const int MinimumSieveSize = 1_000_000;
 
     /// <summary>
     /// A cache of values for which being prime has been computed. This field is read-only.
     /// </summary>
     private static readonly ConcurrentDictionary<long, bool> _primes = new();
+
+    /// <summary>
+    /// The largest sieve computed by <see cref="Primes(int)"/> or <see cref="IsPrime(long)"/>,
+    /// if any. A value of <see langword="false"/> at an index means that the index is prime.
+    /// </summary>
+    private static bool[]? _sieve;
 
     /// <summary>
     /// Returns the binomial coefficient for the specified values.
@@ -67,29 +73,21 @@ internal static class Maths
     /// <returns>
     /// The digits of <paramref name="value"/> in base 10.
     /// </returns>
-    internal static IList<int> Digits(BigInteger value)
+    internal static int[] Digits(BigInteger value)
     {
-        if (value == BigInteger.Zero)
+        if (value.IsZero)
         {
             return [0];
         }
 
-        if (value < BigInteger.Zero)
+        string text = BigInteger.Abs(value).ToString(CultureInfo.InvariantCulture);
+
+        int[] digits = new int[text.Length];
+
+        for (int i = 0; i < digits.Length; i++)
         {
-            value = BigInteger.Negate(value);
+            digits[i] = text[i] - '0';
         }
-
-        var digits = new List<int>();
-
-        while (value > 0)
-        {
-            var div = BigInteger.DivRem(value, 10, out var rem);
-
-            digits.Add((int)rem);
-            value = div;
-        }
-
-        digits.Reverse();
 
         return digits;
     }
@@ -101,26 +99,32 @@ internal static class Maths
     /// <returns>
     /// The digits of <paramref name="value"/> in base 10.
     /// </returns>
-    internal static IReadOnlyList<int> Digits(long value)
+    internal static int[] Digits(long value)
     {
         if (value == 0)
         {
             return [0];
         }
 
-        value = Math.Abs(value);
+        ulong remaining = value < 0 ? (ulong)-value : (ulong)value;
 
-        var digits = new List<int>();
+        // Count the digits first so that the array is allocated exactly once at the right size
+        int count = 1;
 
-        while (value > 0)
+        for (ulong temp = remaining; temp >= 10; temp /= 10)
         {
-            (long div, long rem) = Math.DivRem(value, 10);
-
-            digits.Add((int)rem);
-            value = div;
+            count++;
         }
 
-        digits.Reverse();
+        int[] digits = new int[count];
+
+        for (int i = count - 1; i >= 0; i--)
+        {
+            (ulong div, ulong rem) = Math.DivRem(remaining, 10);
+
+            digits[i] = (int)rem;
+            remaining = div;
+        }
 
         return digits;
     }
@@ -158,16 +162,14 @@ internal static class Maths
     /// </returns>
     internal static long FromDigits(IList<int> collection)
     {
-        double result = 0;
+        long result = 0;
 
-        for (int j = 0; j < collection.Count - 1; j++)
+        for (int j = 0; j < collection.Count; j++)
         {
-            result += collection[j] * Math.Pow(10, collection.Count - j - 1);
+            result = (result * 10) + collection[j];
         }
 
-        result += collection[collection.Count - 1];
-
-        return (long)result;
+        return result;
     }
 
     /// <summary>
@@ -208,14 +210,20 @@ internal static class Maths
     {
         long sum = 0;
 
-        using var enumerator = GetProperDivisors(value).GetEnumerator();
-
-        while (enumerator.MoveNext() && sum <= value)
+        foreach (long divisor in GetFactorsUnordered(value))
         {
-            sum += enumerator.Current;
+            if (divisor != value)
+            {
+                sum += divisor;
+
+                if (sum > value)
+                {
+                    return true;
+                }
+            }
         }
 
-        return sum > value;
+        return false;
     }
 
     /// <summary>
@@ -236,19 +244,32 @@ internal static class Maths
     /// </returns>
     internal static bool IsPandigital(long value)
     {
-        IReadOnlyList<int> digits = Digits(value);
-        int[] distinctDigits = [.. digits.Distinct()];
+        ulong remaining = value < 0 ? (ulong)-value : (ulong)value;
 
-        if (digits.Count != distinctDigits.Length)
+        // Track which digits have been seen using a bit per digit
+        int seen = 0;
+        int count = 0;
+
+        do
         {
-            return false;
+            (ulong div, ulong rem) = Math.DivRem(remaining, 10);
+
+            int bit = 1 << (int)rem;
+
+            // Zero is never allowed and each digit may only appear once
+            if (rem == 0 || (seen & bit) != 0)
+            {
+                return false;
+            }
+
+            seen |= bit;
+            count++;
+            remaining = div;
         }
+        while (remaining > 0);
 
-        IEnumerable<int> expectedDigits = Base10Digits
-            .Skip(1)
-            .Take(digits.Count);
-
-        return !distinctDigits.Except(expectedDigits).Any();
+        // An n-digit value is pandigital if its digits are exactly 1 to n
+        return seen == (1 << (count + 1)) - 2;
     }
 
     /// <summary>
@@ -309,6 +330,18 @@ internal static class Maths
         if (value % 2 == 0 || value % 3 == 0)
         {
             return false;
+        }
+
+        bool[]? sieve = Volatile.Read(ref _sieve);
+
+        if (value < MinimumSieveSize && (sieve is null || value >= sieve.Length))
+        {
+            sieve = PublishSieve(Sieve(MinimumSieveSize));
+        }
+
+        if (sieve is not null && value < sieve.Length)
+        {
+            return !sieve[value];
         }
 
         if (_primes.TryGetValue(value, out bool result))
@@ -390,47 +423,19 @@ internal static class Maths
 
         // Array of prime candidates. A value of false at an
         // index means that the value of the index is prime.
-        bool[] primeCandidates = new bool[maximum];
+        bool[] primeCandidates = Sieve(maximum);
 
-        // 0 and 1 are not prime
-        primeCandidates[0] = true;
-        primeCandidates[1] = true;
+        // Make the sieve available to IsPrime() if it is the largest one computed so far
+        PublishSieve(primeCandidates);
 
-        int root = (int)Math.Sqrt(maximum);
-
-        for (int i = 2; i <= root; i++)
-        {
-            if (!primeCandidates[i])
-            {
-                // Mark all values i^2 * ij up to the maximum as not prime
-                for (int j = 0; ; j++)
-                {
-                    int k = (i * i) + (i * j);
-
-                    if (k >= maximum)
-                    {
-                        break;
-                    }
-
-                    primeCandidates[k] = true;
-                }
-            }
-        }
-
-        for (int i = 2; i < primeCandidates.Length; i++)
-        {
-            if (!primeCandidates[i])
-            {
-                yield return i;
-            }
-        }
+        yield return 2;
 
         // Only odd values are prime (except 2)
         for (int i = 3; i < primeCandidates.Length; i += 2)
         {
             if (!primeCandidates[i])
             {
-                _primes[i] = true;
+                yield return i;
             }
         }
     }
@@ -447,7 +452,29 @@ internal static class Maths
     /// </remarks>
     internal static IEnumerable<long> GetFactorsUnordered(long value)
     {
-        for (int i = 1; i * i <= value; i++)
+        if (value is >= 0 and <= int.MaxValue)
+        {
+            uint smallValue = (uint)value;
+
+            for (uint i = 1; i * i <= smallValue; i++)
+            {
+                (uint div, uint rem) = Math.DivRem(smallValue, i);
+
+                if (rem == 0)
+                {
+                    yield return i;
+
+                    if (i * i != smallValue)
+                    {
+                        yield return div;
+                    }
+                }
+            }
+
+            yield break;
+        }
+
+        for (long i = 1; i * i <= value; i++)
         {
             (long div, long rem) = Math.DivRem(value, i);
 
@@ -471,4 +498,70 @@ internal static class Maths
     /// The triangular number of <paramref name="n"/>.
     /// </returns>
     internal static long Triangular(long n) => n * (n + 1) / 2;
+
+    /// <summary>
+    /// Publishes the specified sieve for use by <see cref="IsPrime(long)"/> if it
+    /// is larger than any sieve computed so far.
+    /// </summary>
+    /// <param name="sieve">The sieve to publish.</param>
+    /// <returns>
+    /// The largest sieve available, which is either <paramref name="sieve"/> or an existing larger sieve.
+    /// </returns>
+    private static bool[] PublishSieve(bool[] sieve)
+    {
+        bool[]? existing = Volatile.Read(ref _sieve);
+
+        if (existing is null || existing.Length < sieve.Length)
+        {
+            Volatile.Write(ref _sieve, sieve);
+            return sieve;
+        }
+
+        return existing;
+    }
+
+    /// <summary>
+    /// Computes a sieve of Eratosthenes for the values below the specified maximum.
+    /// </summary>
+    /// <param name="maximum">The exclusive maximum value to sieve.</param>
+    /// <returns>
+    /// An array where a value of <see langword="false"/> at an index means that the index is prime.
+    /// </returns>
+    /// <remarks>
+    /// This is a separate method, rather than part of the iterator in <see cref="Primes(int)"/>,
+    /// so that the hot loops operate on locals rather than on fields of the iterator's state machine.
+    /// </remarks>
+    private static bool[] Sieve(int maximum)
+    {
+        bool[] primeCandidates = new bool[maximum];
+
+        // 0 and 1 are not prime
+        primeCandidates[0] = true;
+        primeCandidates[1] = true;
+
+        int root = (int)Math.Sqrt(maximum);
+
+        // Mark all even values other than 2 as not prime
+        for (int k = 4; k < maximum; k += 2)
+        {
+            primeCandidates[k] = true;
+        }
+
+        for (int i = 3; i <= root; i += 2)
+        {
+            if (!primeCandidates[i])
+            {
+                // Mark all odd multiples of i from i^2 up to the maximum as not
+                // prime. The even multiples have already been marked above.
+                int step = i * 2;
+
+                for (int k = i * i; k < maximum; k += step)
+                {
+                    primeCandidates[k] = true;
+                }
+            }
+        }
+
+        return primeCandidates;
+    }
 }

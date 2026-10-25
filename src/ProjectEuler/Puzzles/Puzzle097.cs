@@ -16,19 +16,9 @@ public sealed class Puzzle097 : Puzzle
     /// <inheritdoc />
     protected override int SolveCore(string[] args)
     {
-        BigInteger value = (28433 * BigInteger.Pow(2, 7830457)) + BigInteger.One;
+        BigInteger value = (28433 * (BigInteger.One << 7830457)) + BigInteger.One;
 
-        var digits = new List<int>(10);
-
-        for (int i = 0; i < 10; i++)
-        {
-            value = BigInteger.DivRem(value, 10, out var rem);
-            digits.Add((int)rem);
-        }
-
-        digits.Reverse();
-
-        Answer = Maths.FromDigits(digits);
+        Answer = (long)(value % 10_000_000_000);
 
         return 0;
     }

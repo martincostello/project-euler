@@ -37,13 +37,16 @@ public sealed class Puzzle034 : Puzzle
     /// </returns>
     internal static bool IsCurious(int value)
     {
-        IReadOnlyList<int> digits = Maths.Digits(value);
+        if (value < 1)
+        {
+            return false;
+        }
 
         int sum = 0;
 
-        for (int i = 0; i < digits.Count && sum <= value; i++)
+        for (int remaining = value; remaining > 0 && sum <= value; remaining /= 10)
         {
-            sum += Factorials[digits[i]];
+            sum += Factorials[remaining % 10];
         }
 
         return sum == value;
@@ -58,9 +61,9 @@ public sealed class Puzzle034 : Puzzle
         for (int digitCount = 2; ; digitCount++)
         {
             sum = Factorials[9] * digitCount;
-            IReadOnlyList<int> digitsOfSum = Maths.Digits(sum);
+            int[] digitsOfSum = Maths.Digits(sum);
 
-            if (digitsOfSum.Count <= digitCount)
+            if (digitsOfSum.Length <= digitCount)
             {
                 upperBound = sum;
                 break;
